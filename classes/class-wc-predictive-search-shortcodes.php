@@ -208,9 +208,8 @@ class WC_Predictive_Search_Shortcodes {
 				.rs_date{color:#777;font-size:small;}
 				.rs_result_row{width:100%;float:left;margin:0px 0 10px;padding :0px 0 10px; 6px;border-bottom:1px solid #c2c2c2;}
 				.rs_result_row:hover{opacity:1;}
-				.rs_rs_avatar{width:64px;height:64px;margin-right:10px;overflow: hidden;}
+				.rs_rs_avatar{width:64px;margin-right:10px;overflow: hidden;float:left; text-align:center;}
 				.rs_rs_avatar img{width:100%;height:auto; padding:0 !important; margin:0 !important; border: none !important;}
-				.rs_rs_avatar{width:64px;height:64px;float:left;}
 				.rs_rs_name{margin-left:0px;}
 				.rs_content{margin-left:74px;}
 				.rs_more_result{width:89.5%;float:left;padding:10px 5%;text-align:center;margin:10px 0;background: #EDEFF4;border: 1px solid #D8DFEA;position:relative;}

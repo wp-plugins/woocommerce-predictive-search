@@ -3,7 +3,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -91,6 +91,12 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help) on the Pro Versions Home page.
 
 == Changelog ==
+
+= 1.0.1 - 2012/08/03 =
+* Fix: Show the 6 results with 100 characters of product description by default when no value is present  in Widget control and Admin panel
+* Fix: Change z-index for search box from 1001 to 99 so that themes nav bar dropdowns slide over it instead of behind the search box
+* Feature: Hide the description when enter 0 as the number of description characters in the sidebar widget and Admin panel.
+* Feature: Show first thumb image in product gallery if the product does not have feature image.
 
 = 1.0 - 2012/08/01 =
 * Initial release.

@@ -13,17 +13,60 @@
  */
 class WC_Predictive_Search{
 	function woops_get_product_thumbnail( $post_id, $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
-		global $post, $woocommerce;
+		global $woocommerce;
 		if ( $placeholder_width == 0 )
 			$placeholder_width = $woocommerce->get_image_size( 'shop_catalog_image_width' );
 		if ( $placeholder_height == 0 )
 			$placeholder_height = $woocommerce->get_image_size( 'shop_catalog_image_height' );
 		
-		if ( has_post_thumbnail($post_id) )
-			return get_the_post_thumbnail( $post_id, $size ); else return '<img src="'. woocommerce_placeholder_img_src() .'" alt="Placeholder" width="' . $placeholder_width . '" height="' . $placeholder_height . '" />';
+		if ( has_post_thumbnail($post_id) ) {
+			return get_the_post_thumbnail( $post_id, $size ); 
+		}
+		
+		if (trim($mediumSRC == '')) {
+			$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null); 
+			$attachments = get_posts($args);
+			if ($attachments) {
+				foreach ( $attachments as $attachment ) {
+					$mediumSRC = wp_get_attachment_image( $attachment->ID, $size, true );
+					break;
+				}
+			}
+		}
+		
+		if (trim($mediumSRC == '')) {
+			// Load the product
+			$product = get_post( $post_id );
+			
+			// Get ID of parent product if one exists
+			if ( !empty( $product->post_parent ) )
+				$post_id = $product->post_parent;
+				
+			if (has_post_thumbnail($post_id)) {
+				return get_the_post_thumbnail( $post_id, $size ); 
+			}
+			
+			if (trim($mediumSRC == '')) {
+				$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null); 
+				$attachments = get_posts($args);
+				if ($attachments) {
+					foreach ( $attachments as $attachment ) {
+						$mediumSRC = wp_get_attachment_image( $attachment->ID, $size, true );
+						break;
+					}
+				}
+			}
+		}
+		
+		if (trim($mediumSRC != '')) {
+			return $mediumSRC;
+		} else {
+			return '<img src="'. woocommerce_placeholder_img_src() .'" alt="Placeholder" width="' . $placeholder_width . '" height="' . $placeholder_height . '" />';
+		}
 	}
 	
 	function woops_limit_words($str='',$len=100,$more) {
+		if (trim($len) == '' || $len < 0) $len = 100;
 	   if ( $str=="" || $str==NULL ) return $str;
 	   if ( is_array($str) ) return $str;
 	   $str = trim($str);

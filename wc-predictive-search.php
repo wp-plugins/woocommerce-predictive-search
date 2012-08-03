@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Predictive Search LITE
 Plugin URI: http://www.a3rev.com/
 Description: With WooCommerce Predictive Search Lite you can add an awesome Predictive Products Search widget to any widgetized area on your site.
-Version: 1.0.0
+Version: 1.0.1
 Author: A3 Revolution Software Development team
 Author URI: http://www.a3rev.com/
 Requires at least: 3.3
