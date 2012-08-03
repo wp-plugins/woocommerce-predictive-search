@@ -93,12 +93,9 @@ Support and access to this plugin documents are available from the [HELP tab](ht
 == Changelog ==
 
 = 1.0.1 - 2012/08/03 =
-* Fix: Show the 6 results with 100 characters of product description by default when no value is present  in Widget control and Admin panel
-* Fix: Change z-index for search box from 1001 to 99 so that themes nav bar dropdowns slide over it instead of behind the search box
-* Feature: Hide the description when enter 0 as the number of description characters in the sidebar widget and Admin panel.
-* Feature: Show first thumb image in product gallery if the product does not have feature image.
+* Fix: Show the 6 results with 100 characters of product description by default when no value is present  in Widget control and Admin panel* Fix: Change z-index for search box from 1001 to 99 so that themes nav bar dropdowns slide over it instead of behind the search box* Feature: Hide the description when enter 0 as the number of description characters in the sidebar widget and Admin panel.* Feature: Show first thumb image in product gallery if the product does not have feature image.
 
-= 1.0 - 2012/08/01 =
+= 1.0.0 - 2012/08/01 =
 * Initial release.
 
   
