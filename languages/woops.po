@@ -2,288 +2,286 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search Lite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-31 16:26+0700\n"
-"PO-Revision-Date: 2012-07-31 16:26+0700\n"
+"POT-Creation-Date: 2012-08-24 15:12+0700\n"
+"PO-Revision-Date: 2012-08-24 15:12+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: a3rev\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/wc-predictive-search-init.php:6
+#: admin/wc-predictive-search-init.php:6
 msgid "Woocommerce Predictive Search"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:43
+#: admin/classes/class-wc-predictive-search-admin.php:43
 msgid "Predictive Search"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:101
+#: admin/classes/class-wc-predictive-search-admin.php:101
 msgid "Global Settings"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:105
+#: admin/classes/class-wc-predictive-search-admin.php:105
 msgid "A search results page needs to be selected so that WooCommerce Predictive Search knows where to show search results. This page should have been created upon installation of the plugin, if not you need to create it."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:116
+#: admin/classes/class-wc-predictive-search-admin.php:116
 msgid "Search results page settings"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:119
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:92
+#: admin/classes/class-wc-predictive-search-admin.php:119
+#: classes/class-wc-predictive-search-shortcodes.php:92
 msgid "Results"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:122
+#: admin/classes/class-wc-predictive-search-admin.php:122
 msgid "The number of results to show before endless scroll click to see more results."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:126
+#: admin/classes/class-wc-predictive-search-admin.php:126
 msgid "Description character count"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:129
+#: admin/classes/class-wc-predictive-search-admin.php:129
 msgid "The number of characters from product descriptions that shows with each search result."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:133
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:123
+#: admin/classes/class-wc-predictive-search-admin.php:133
+#: classes/class-wc-predictive-search-shortcodes.php:123
 msgid "Price"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:135
+#: admin/classes/class-wc-predictive-search-admin.php:135
 msgid "Show product price with search results"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:139
+#: admin/classes/class-wc-predictive-search-admin.php:139
 msgid "Product Categories"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:141
+#: admin/classes/class-wc-predictive-search-admin.php:141
 msgid "Show categories with search results"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:145
+#: admin/classes/class-wc-predictive-search-admin.php:145
 msgid "Product Tags"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:147
+#: admin/classes/class-wc-predictive-search-admin.php:147
 msgid "Show tags with search results"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:151
+#: admin/classes/class-wc-predictive-search-admin.php:151
 msgid "Code"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:155
+#: admin/classes/class-wc-predictive-search-admin.php:155
 msgid "Use this function to place the Predictive Search feature anywhere in your theme."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:158
+#: admin/classes/class-wc-predictive-search-admin.php:158
 msgid "Parameters"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:159
+#: admin/classes/class-wc-predictive-search-admin.php:159
 msgid "Number of search results to show in search field drop-down. Default value is \"6\"."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:160
+#: admin/classes/class-wc-predictive-search-admin.php:160
 msgid "Number of characters from product description to show in search field drop-down. Default value is \"100\"."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:161
+#: admin/classes/class-wc-predictive-search-admin.php:161
 msgid "Use to create a custom style for the Predictive search box | Example: "
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:162
+#: admin/classes/class-wc-predictive-search-admin.php:162
 msgid "Set global search or search in current product category or current product tag. Default value is \"true\", global search."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:214
+#: admin/classes/class-wc-predictive-search-admin.php:214
 msgid "Search Page"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:215
+#: admin/classes/class-wc-predictive-search-admin.php:215
 msgid "Page contents:"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:255
-msgid "Activate 'Smart Search', sidebar widget controls and the advance search results page features with our limited"
+#: admin/classes/class-wc-predictive-search-admin.php:255
+msgid "Like what you see so far? Upgrade to the"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:255
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:261
-msgid "WooCommerce Predictive Search Pro"
+#: admin/classes/class-wc-predictive-search-admin.php:255
+#: admin/classes/class-wc-predictive-search-admin.php:261
+msgid "Pro Version"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:255
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:261
-msgid "upgrade offer."
+#: admin/classes/class-wc-predictive-search-admin.php:255
+msgid "to unleash these truly awesome Predictive Search advanced features -  'Smart Search', per widget controls, search box shortcodes on pages and posts, plus the All search results page settings and function features that you see below."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:255
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:261
-msgid "Hurry only limited numbers at this price."
+#: admin/classes/class-wc-predictive-search-admin.php:261
+msgid "Yes you'll love the Predictive Search shortcode feature. Upgrading to the"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/admin/classes/class-wc-predictive-search-admin.php:261
-msgid "Please upgrade to the Pro version to activate this shortcode feature. Upgrade now with our limited"
+#: admin/classes/class-wc-predictive-search-admin.php:261
+msgid "activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:35
+#: classes/class-wc-predictive-search-shortcodes.php:35
 msgid "Insert WooCommerce Predictive Search Shortcode"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:88
+#: classes/class-wc-predictive-search-shortcodes.php:88
 msgid "Customize the Predictive Search Shortcode"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:92
+#: classes/class-wc-predictive-search-shortcodes.php:92
 msgid "Number of results to show in dropdown"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:93
+#: classes/class-wc-predictive-search-shortcodes.php:93
 msgid "Characters"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:93
+#: classes/class-wc-predictive-search-shortcodes.php:93
 msgid "Number of product description characters"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Alignment"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "None"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Left - wrap"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Left - no wrap"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Center"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Right - wrap"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Right - no wrap"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:94
+#: classes/class-wc-predictive-search-shortcodes.php:94
 msgid "Horizontal aliginment of search box"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:95
+#: classes/class-wc-predictive-search-shortcodes.php:95
 msgid "Search box width"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:96
+#: classes/class-wc-predictive-search-shortcodes.php:96
 msgid "Padding - Above"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:97
+#: classes/class-wc-predictive-search-shortcodes.php:97
 msgid "Padding - Below"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:98
+#: classes/class-wc-predictive-search-shortcodes.php:98
 msgid "Padding - Left"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:99
+#: classes/class-wc-predictive-search-shortcodes.php:99
 msgid "Padding - Right"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:101
+#: classes/class-wc-predictive-search-shortcodes.php:101
 msgid "Insert Shortcode"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:102
+#: classes/class-wc-predictive-search-shortcodes.php:102
 msgid "Cancel"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:119
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:121
+#: classes/class-wc-predictive-search-shortcodes.php:119
+#: classes/class-wc-predictive-search-shortcodes.php:121
 msgid "Priced"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:142
+#: classes/class-wc-predictive-search-shortcodes.php:142
 msgid "Category"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:160
+#: classes/class-wc-predictive-search-shortcodes.php:160
 msgid "Tags"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:200
+#: classes/class-wc-predictive-search-shortcodes.php:200
 msgid "Showing all results for your search"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:241
+#: classes/class-wc-predictive-search-shortcodes.php:240
 msgid "See more results"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search-shortcodes.php:265
+#: classes/class-wc-predictive-search-shortcodes.php:264
 msgid "No result"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search.php:76
+#: classes/class-wc-predictive-search.php:119
 msgid "Products"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search.php:88
+#: classes/class-wc-predictive-search.php:131
 msgid "See more results for"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search.php:88
+#: classes/class-wc-predictive-search.php:131
 msgid "Displaying top"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search.php:88
+#: classes/class-wc-predictive-search.php:131
 msgid "results"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/classes/class-wc-predictive-search.php:92
+#: classes/class-wc-predictive-search.php:135
 msgid "Keep typing..."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:16
+#: widget/wc-predictive-search-widgets.php:16
 msgid "User sees search results as they type. Shows top 6 results and links through to search results page."
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:17
+#: widget/wc-predictive-search-widgets.php:17
 msgid "WooCommerce Predictive Search"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:126
+#: widget/wc-predictive-search-widgets.php:126
 msgid "Title:"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:127
+#: widget/wc-predictive-search-widgets.php:127
 msgid "Upgrade to Pro to activate"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:128
+#: widget/wc-predictive-search-widgets.php:128
 msgid "Number of results to show:"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:129
+#: widget/wc-predictive-search-widgets.php:129
 msgid " Results description character count:"
 msgstr ""
 
-#: /Applications/XAMPP/xamppfiles/htdocs/woocommerce/wp-content/plugins/woocommerce-products-predictive-search-lite/widget/wc-predictive-search-widgets.php:130
+#: widget/wc-predictive-search-widgets.php:130
 msgid "Search all products."
 msgstr ""
 

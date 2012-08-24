@@ -252,13 +252,13 @@ class WC_Predictive_Search_Settings {
 	
 	function predictive_extension() {
 		$html = '';
-		$html .= '<div id="woo_predictive_extensions">'.__("Activate 'Smart Search', sidebar widget controls and the advance search results page features with our limited", 'woops').' <strong>$10</strong> <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('WooCommerce Predictive Search Pro', 'woops').'</a> '.__('upgrade offer.', 'woops').' '.__('Hurry only limited numbers at this price.', 'woops').'</div>';
+		$html .= '<div id="woo_predictive_extensions">'.__("Like what you see so far? Upgrade to the", 'woops').' <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('Pro Version', 'woops').'</a> '.__("to unleash these truly awesome Predictive Search advanced features -  'Smart Search', per widget controls, search box shortcodes on pages and posts, plus the All search results page settings and function features that you see below.", 'woops').'</div>';
 		return $html;	
 	}
 	
 	function predictive_extension_shortcode() {
 		$html = '';
-		$html .= '<div id="woo_predictive_extensions">'.__("Please upgrade to the Pro version to activate this shortcode feature. Upgrade now with our limited", 'woops').' <strong>$10</strong> <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('WooCommerce Predictive Search Pro', 'woops').'</a> '.__('upgrade offer.', 'woops').' '.__('Hurry only limited numbers at this price.', 'woops').'</div>';
+		$html .= '<div id="woo_predictive_extensions">'.__("Yes you'll love the Predictive Search shortcode feature. Upgrading to the", 'woops').' <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('Pro Version', 'woops').'</a> '.__("activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features.", 'woops').'</div>';
 		return $html;	
 	}
 }
