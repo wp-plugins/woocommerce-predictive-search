@@ -726,10 +726,10 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			return this.visible() && (listItems.filter("." + CLASSES.ACTIVE)[0] || options.selectFirst && listItems[0]);
 		},
 		show: function() {
-			var offset = $(input).offset();
+			var offset = $(input).parent('div').offset();
 			element.css({
-				width: typeof options.width == "string" || options.width > 0 ? options.width : $(input).width(),
-				top: offset.top + input.offsetHeight,
+				width: typeof options.width == "string" || options.width > 0 ? options.width : $(input).parent('div').innerWidth(),
+				top: offset.top + input.offsetHeight + 1,
 				left: offset.left
 			}).show();
             if(options.scroll) {

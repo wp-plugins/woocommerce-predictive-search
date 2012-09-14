@@ -38,6 +38,7 @@ class WC_Predictive_Search_Shortcodes {
 	
 	//Action target that displays the popup to insert a form to a post/page
 	function add_search_widget_mce_popup(){
+		$items_search_default = WC_Predictive_Search_Widgets::get_items_search();
 		?>
 		<script type="text/javascript">
 			function woo_search_widget_add_shortcode(){
@@ -71,6 +72,10 @@ class WC_Predictive_Search_Shortcodes {
 		</script>
 		<style type="text/css">
 		#TB_ajaxContent{width:auto !important;}
+		#TB_ajaxContent p {
+			padding:2px 0;	
+			margin:6px 0;
+		}
 		.field_content {
 			padding:0 0 0 40px;
 		}
@@ -79,9 +84,9 @@ class WC_Predictive_Search_Shortcodes {
 			float:left;
 			text-align:left;
 		}
-		#woo_predictive_upgrade_area { border:2px solid #FF0;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; padding:0; position:relative}
+		#woo_predictive_upgrade_area { border:2px solid #E6DB55;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; padding:0; position:relative}
 	  	#woo_predictive_upgrade_area h3{ margin-left:10px;}
-	   	#woo_predictive_extensions { background: url("<?php echo WOOPS_IMAGES_URL; ?>/logo_a3blue.png") no-repeat scroll 4px 6px #FFFBCC; -webkit-border-radius:4px;-moz-border-radius:4px;-o-border-radius:4px; border-radius: 4px 4px 4px 4px; color: #555555; float: right; margin: 0px; padding: 4px 8px 4px 38px; position: absolute; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); width: 260px; right:10px; top:140px; border:1px solid #E6DB55}
+	   	#woo_predictive_extensions { background: url("<?php echo WOOPS_IMAGES_URL; ?>/logo_a3blue.png") no-repeat scroll 4px 6px #FFFBCC; -webkit-border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-o-border-radius:10px 10px 0 0; border-radius: 10px 10px 0 0; color: #555555; margin: 0px; padding: 4px 8px 4px 38px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);}
 		</style>
 		<div id="woo_search_widget_shortcode" style="display:none;">
 		  <div class="">
@@ -89,14 +94,18 @@ class WC_Predictive_Search_Shortcodes {
 			<div style="clear:both"></div>
             <div id="woo_predictive_upgrade_area"><?php echo WC_Predictive_Search_Settings::predictive_extension_shortcode(); ?>
 			<div class="field_content">
-            	<p><label for="woo_search_number_items"><?php _e('Results', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_number_items" name="woo_search_number_items" type="text" value="6" /> <span class="description"><?php _e('Number of results to show in dropdown', 'woops'); ?></span></p>
+            	<?php foreach ($items_search_default as $key => $data) { ?>
+                <p><label for="woo_search_<?php echo $key ?>_items"><?php echo $data['name']; ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_<?php echo $key ?>_items" name="woo_search_<?php echo $key ?>_items" type="text" value="<?php echo $data['number'] ?>" /> <span class="description"><?php _e('Number of', 'woops'); echo ' '.$data['name'].' '; _e('results to show in dropdown', 'woops'); ?></span></p> 
+                <?php } ?>
             	<p><label for="woo_search_text_lenght"><?php _e('Characters', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_text_lenght" name="woo_search_text_lenght" type="text" value="100" /> <span class="description"><?php _e('Number of product description characters', 'woops'); ?></span></p>
                 <p><label for="woo_search_align"><?php _e('Alignment', 'woops'); ?>:</label> <select disabled="disabled" style="width:100px" id="woo_search_align" name="woo_search_align"><option value="none" selected="selected"><?php _e('None', 'woops'); ?></option><option value="left-wrap"><?php _e('Left - wrap', 'woops'); ?></option><option value="left"><?php _e('Left - no wrap', 'woops'); ?></option><option value="center"><?php _e('Center', 'woops'); ?></option><option value="right-wrap"><?php _e('Right - wrap', 'woops'); ?></option><option value="right"><?php _e('Right - no wrap', 'woops'); ?></option></select> <span class="description"><?php _e('Horizontal aliginment of search box', 'woops'); ?></span></p>
-                <p><label for="woo_search_width"><?php _e('Search box width', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_width" name="woo_search_width" type="text" value="200" /> px</p>
-                <p><label for="woo_search_padding_top"><?php _e('Padding - Above', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_padding_top" name="woo_search_padding_top" type="text" value="10" /> px</p>
-                <p><label for="woo_search_padding_bottom"><?php _e('Padding - Below', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_padding_bottom" name="woo_search_padding_bottom" type="text" value="10" /> px</p>
-                <p><label for="woo_search_padding_left"><?php _e('Padding - Left', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_padding_left" name="woo_search_padding_left" type="text" value="0" /> px</p>
-                <p><label for="woo_search_padding_right"><?php _e('Padding - Right', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_padding_right" name="woo_search_padding_right" type="text" value="0" /> px</p>
+                <p><label for="woo_search_width"><?php _e('Search box width', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_width" name="woo_search_width" type="text" value="200" />px</p>
+                <p><label for="woo_search_padding"><strong><?php _e('Padding', 'woops'); ?></strong>:</label><br /> 
+				<label for="woo_search_padding_top" style="width:auto; float:none"><?php _e('Above', 'woops'); ?>:</label><input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_top" name="woo_search_padding_top" type="text" value="10" />px &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="woo_search_padding_bottom" style="width:auto; float:none"><?php _e('Below', 'woops'); ?>:</label> <input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_bottom" name="woo_search_padding_bottom" type="text" value="10" />px &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="woo_search_padding_left" style="width:auto; float:none"><?php _e('Left', 'woops'); ?>:</label> <input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_left" name="woo_search_padding_left" type="text" value="0" />px &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="woo_search_padding_right" style="width:auto; float:none"><?php _e('Right', 'woops'); ?>:</label> <input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_right" name="woo_search_padding_right" type="text" value="0" />px
+                </p>
 			</div>
             <p>&nbsp;&nbsp;<input disabled="disabled" type="button" class="button-primary" value="<?php _e('Insert Shortcode', 'woops'); ?>" onclick="woo_search_widget_add_shortcode();"/>&nbsp;&nbsp;&nbsp;
             <a class="button" style="" href="#" onclick="tb_remove(); return false;"><?php _e('Cancel', 'woops'); ?></a>
