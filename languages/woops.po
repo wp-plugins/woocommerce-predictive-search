@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search Lite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 16:36+0700\n"
-"PO-Revision-Date: 2012-09-14 16:36+0700\n"
+"POT-Creation-Date: 2012-09-15 09:28+0700\n"
+"PO-Revision-Date: 2012-09-15 09:28+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: a3rev\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgid "Upgrade to Pro to activate"
 msgstr ""
 
 #: widget/wc-predictive-search-widgets.php:149
-msgid "Activate search in these araes by entering number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop"
+msgid "Activate search 'types' for this widget by entering the number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop"
 msgstr ""
 
 #: widget/wc-predictive-search-widgets.php:156

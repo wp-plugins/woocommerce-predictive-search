@@ -146,7 +146,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
             <p><label for="<?php echo $this->get_field_id('number_items'); ?>"><?php _e('Number of results to show:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('number_items'); ?>" name="<?php echo $this->get_field_name('number_items'); ?>" type="text" value="<?php echo esc_attr($number_items); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('text_lenght'); ?>"><?php _e(' Results description character count:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('text_lenght'); ?>" name="<?php echo $this->get_field_name('text_lenght'); ?>" type="text" value="<?php echo esc_attr($text_lenght); ?>" /></p>
             <fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to Pro to activate', 'wpscps'); ?></legend>
-            <p><?php _e('Activate search in these araes by entering number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop', 'woops'); ?></p>
+            <p><?php _e("Activate search 'types' for this widget by entering the number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop", 'woops'); ?></p>
             <ul class="ui-sortable predictive_search_item">
             <?php foreach ($items_search_default as $key => $data) { ?>
             	<li><span class="item_heading"><label><?php echo $data['name']; ?></label></span> <input disabled="disabled" id="" name="" type="text" value="<?php echo esc_attr($data['number']); ?>" style="width:50px;" /></li>
