@@ -221,7 +221,7 @@ class WC_Predictive_Search_Shortcodes {
 				.rs_rs_avatar img{width:100%;height:auto; padding:0 !important; margin:0 !important; border: none !important;}
 				.rs_rs_name{margin-left:0px;}
 				.rs_content{margin-left:74px;}
-				.rs_more_result{width:89.5%;float:left;padding:10px 5%;text-align:center;margin:10px 0;background: #EDEFF4;border: 1px solid #D8DFEA;position:relative;}
+				.rs_more_result{display:none;width:240px;text-align:center;position:fixed;bottom:50%;left:50%;margin-left:-125px;background-color: black;opacity: .75;color: white;padding: 10px;border-radius:10px;-webkit-border-radius: 10px;-moz-border-radius: 10px}
 				.rs_rs_price .oldprice{text-decoration:line-through; font-size:80%;}
 				</style>';
 				$html .= '<div class="rs_ajax_search_content">';
@@ -246,28 +246,42 @@ class WC_Predictive_Search_Shortcodes {
 				if ( count($search_products) > $row ) {
 					$woops_get_result_search_page = wp_create_nonce("woops-get-result-search-page");
 					
-					$html .= '<div id="search_more_rs"></div><div style="clear:both"></div><div class="rs_more_result"><span class="p_data">'.($p + 1).'</span><a class="see_more" href="#">'.__('See more results', 'woops').' <span>↓</span></a>
-					<div class="ajax-wait">&nbsp;</div></div>';
+					$html .= '<div id="search_more_rs"></div><div style="clear:both"></div><div id="rs_more_check"></div><div class="rs_more_result"><span class="p_data">'.($p + 1).'</span><img src="'.WOOPS_IMAGES_URL.'/more-results-loader.gif" /><div><em>'.__('Loading More Results...', 'woops').'</em></div></div>';
 					$html .= "<script>jQuery(document).ready(function() {
-						
-						jQuery('.see_more').live('click',function(){
-							var wait = jQuery('.rs_more_result .ajax-wait');
-							wait.css('display','block');
-							var p_data_obj = jQuery(this).siblings('.p_data');
-							var p_data = jQuery(this).siblings('.p_data').html();
-							var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
-							jQuery.post('".admin_url('admin-ajax.php')."', urls, function(theResponse){
-								if(theResponse != ''){
-									var num = parseInt(p_data)+1;
-									p_data_obj.html(num);
-									jQuery('#search_more_rs').append(theResponse);
-								}else{
-									jQuery('.rs_more_result').html('').hide();
-								}
-								wait.css('display','none');
-							});
-							return false;
-						});});</script>";
+var search_rs_obj = jQuery('#rs_more_check');
+var is_loading = false;
+
+function auto_click_more() {
+	if (is_loading == false) {
+		var visibleAtTop = search_rs_obj.offset().top + search_rs_obj.height() >= jQuery(window).scrollTop();
+		var visibleAtBottom = search_rs_obj.offset().top <= jQuery(window).scrollTop() + jQuery(window).height();
+		if (visibleAtTop && visibleAtBottom) {
+			is_loading = true;
+			jQuery('.rs_more_result').fadeIn('normal');
+			var p_data_obj = jQuery('.rs_more_result .p_data');
+			var p_data = p_data_obj.html();
+			p_data_obj.html('');
+			var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
+			jQuery.post('".admin_url('admin-ajax.php')."', urls, function(theResponse){
+				if(theResponse != ''){
+					var num = parseInt(p_data)+1;
+					p_data_obj.html(num);
+					jQuery('#search_more_rs').append(theResponse);
+					is_loading = false;
+					jQuery('.rs_more_result').fadeOut('normal');
+				}else{
+					jQuery('.rs_more_result').html('<em>".__('No More Results to Show', 'woops')."</em>').fadeOut(2000);
+				}
+			});
+			return false;
+		}
+	}
+}
+jQuery(window).scroll(function(){
+	auto_click_more();
+});
+auto_click_more();						
+});</script>";
 				}
 			} else {
 				$html .= '<p style="text-align:center">'.__('No result', 'woops').'</p>';
@@ -336,7 +350,7 @@ class WC_Predictive_Search_Shortcodes {
 				
 				if ( count($search_products) <= $row ) {
 					
-					$html .= '<style>.rs_more_result{display:none;}</style>';
+					$html .= '';
 				}
 				
 				$html .= '</div>';

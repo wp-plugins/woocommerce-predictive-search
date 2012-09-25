@@ -15,7 +15,8 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 	
 	function get_items_search() {
 		$items_search = array(
-				'product'				=> array( 'number' => 6, 'name' => __('Products', 'woops') ),
+				'product'				=> array( 'number' => 6, 'name' => __('Product Name', 'woops') ),
+				'p_sku'					=> array( 'number' => 0, 'name' => __('Product SKU', 'woops') ),
 				'p_cat'					=> array( 'number' => 0, 'name' => __('Product Categories', 'woops') ),
 				'p_tag'					=> array( 'number' => 0, 'name' => __('Product Tags', 'woops') ),
 				'post'					=> array( 'number' => 0, 'name' => __('Posts', 'woops') ),
@@ -26,7 +27,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 	}
 
 	function __construct() {
-		$widget_ops = array('classname' => 'widget_products_predictive_search', 'description' => __( "User sees search results as they type in a dropdown - links through to 'All Seearch Results Page' that features endless scroll.", 'woops') );
+		$widget_ops = array('classname' => 'widget_products_predictive_search', 'description' => __( "User sees search results as they type in a dropdown - links through to 'All Search Results Page' that features endless scroll.", 'woops') );
 		parent::__construct('products_predictive_search', __('WooCommerce Predictive Search', 'woops'), $widget_ops);
 	}
 

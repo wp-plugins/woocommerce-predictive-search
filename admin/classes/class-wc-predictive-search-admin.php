@@ -29,6 +29,9 @@ class WC_Predictive_Search_Settings {
 		if ( get_option('woocommerce_search_price_enable') == '' || $reset ) {
 			update_option('woocommerce_search_price_enable', 'no');
 		}
+		if ( get_option('woocommerce_search_addtocart_enable') == '' || $reset ) {
+			update_option('woocommerce_search_addtocart_enable', 'yes');
+		}
 		if ( get_option('woocommerce_search_categories_enable') == ''  || $reset ) {
 			update_option('woocommerce_search_categories_enable', 'no');
 		}
@@ -138,6 +141,12 @@ class WC_Predictive_Search_Settings {
             </td>
 		  </tr>
           <tr valign="top">
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_addtocart_enable"><?php _e('Add to cart', 'woops');?></label></th>
+		    <td class="forminp">
+              <input disabled="disabled" type="checkbox" value="1" id="woocommerce_search_addtocart_enable" name="woocommerce_search_addtocart_enable" /> <span class="description"><?php _e('Show Add to cart button with search results', 'woops');?></span>
+            </td>
+		  </tr>
+          <tr valign="top">
 		    <th class="titledesc" scope="row"><label for="ecommerce_search_categories_enable"><?php _e('Product Categories', 'woops');?></label></th>
 		    <td class="forminp">
               <input disabled="disabled" type="checkbox" value="1" id="ecommerce_search_categories_enable" name="ecommerce_search_categories_enable" /> <span class="description"><?php _e('Show categories with search results', 'woops');?></span>
@@ -155,10 +164,11 @@ class WC_Predictive_Search_Settings {
           <tr valign="top">
 		    <td class="forminp" colspan="2">
             <?php _e('Use this function to place the Predictive Search feature anywhere in your theme.', 'woops');?>
-            <br /><code>&lt;?php if(function_exists('woo_predictive_search_widget')) woo_predictive_search_widget($product_items, $product_category_items, $product_tag_items, $post_items, $page_items, $character_max, $style, $global_search); ?&gt;</code>
+            <br /><code>&lt;?php if(function_exists('woo_predictive_search_widget')) woo_predictive_search_widget($product_name_items, $product_sku_items, $product_category_items, $product_tag_items, $post_items, $page_items, $character_max, $style, $global_search); ?&gt;</code>
             <br /><br />
             <p><?php _e('Parameters', 'woops');?> :
-            <br /><code>$product_items (int)</code> : <?php _e('Number of Products to show in search field drop-down. Default value is "6".', 'woops');?>
+            <br /><code>$product_name_items (int)</code> : <?php _e('Number of Product Name to show in search field drop-down. Default value is "6".', 'woops');?>
+            <br /><code>$product_sku_items (int)</code> : <?php _e('Number of Product SKU to show in search field drop-down. Default value is "0".', 'woops');?>
             <br /><code>$product_category_items (int)</code> : <?php _e('Number of Product Categories to show in search field drop-down. Default value is "0".', 'woops');?>
             <br /><code>$product_tag_items (int)</code> : <?php _e('Number of Product Tags to show in search field drop-down. Default value is "0".', 'woops');?>
             <br /><code>$post_items (int)</code> : <?php _e('Number of Posts to show in search field drop-down. Default value is "0".', 'woops');?>
@@ -261,7 +271,7 @@ class WC_Predictive_Search_Settings {
 		$html .= '<div id="woo_predictive_extensions">';
 		$html .= '<h3>'.__('No Donations Accepted', 'woops').'</h3>';
 		$html .= '<img src="'.WOOPS_IMAGES_URL.'/btn_donate.png" />';
-		$html .= '<h3>'.__('Upgrade to the Pro version for Just', '').' $18 '.__('to', 'woops').'</h3>';
+		$html .= '<h3>'.__('Upgrade to the Pro version for Just', '').' $20 '.__('to', 'woops').'</h3>';
 		$html .= '<p>';
 		$html .= '<ul style="padding-left:10px;">';
 		$html .= '<li>1. '.__('Activate the search results pages settings in this yellow border.', 'woops').'</li>';

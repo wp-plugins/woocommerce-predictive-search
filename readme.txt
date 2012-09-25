@@ -1,9 +1,10 @@
 === WooCommerce Predictive Search  ===
+
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,9 +16,9 @@ WooCommerce Predictive Search queries <strong>your entire product database</stro
  
 = Key Features =
 
-* Searches your entire WooCommerce product database for the product titles that match what is being typed.
+* Searches your entire WooCommerce product database for the product name that match what is being typed.
 * Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
-* Set the number of Product results to show in the dropdown.
+* Set the number of Product results to show in the drop down.
 * Set the number of characters of the product description text to show with each search result. 
 * Click through from the Widget dropdown to the 'All Results Search Page'.
 * 'All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
@@ -30,19 +31,53 @@ Find detailed step-by-step set up and configuration instructions in the [plugins
 
 = Pro Version Upgrade =
 
-There is a Pro Version upgrade for WooCommerce Predictive Search. Pro version additional features include:
+The Pro Version upgrade for WooCommerce Predictive Search is the Ultimate search engine tool for your site. You will see all of the available upgrade features on the plugins widgets, admin panel and shortcode pop-up. Upgrading activates all of these advanced features.
 
-* Configure each widget to search all 'types' - Products, Product Categories, Product Tags, Posts, Pages or any combination of these.
-* Set the number of each search 'type' eg Product category results to show in the search box dropdown.
-* Use drag and drop to set the search 'type' order that the results show in the drop down.
-* All Search results page sorted is auto sorted into results types configured for the widget.
-* User can configure the All Results Search Page for each result to show Product Categories, Product Tags, Product Prices including 'special' pricing with each result.
-* User can set the number of results to show before 'endless scroll' bar.
+* Configure Predictive search for these search 'types':
+- Product names (Lite Version includes this)
+- Product SKU's
+- Product Categories 
+- Product Tags
+- Post titles
+- Page titles
+- or any combination of these.
+
+* Add Search boxes by
+- Widgets in any Widgetized area of the theme (Lite Version includes this)
+- In any Page or post via 'Shortcode'
+- Anywhere in the theme via the Predictive Serach Function.
+
+* Set the number of each search 'type' of results to show in the search box drop down from the widget, shortcode pop up or function.
+* Use drag and drop in the widget to set the search 'type' order that the results show in the drop down.
+
+All Search Results Pages.
+* Where there are more results than show in the drop down pages are auto generated showing all results for:
+- Product names (Lite Version includes this)
+- Product SKU's
+- Product Categories
+- Product Tags
+- Posts
+- Pages
+- all results pages are sorted and viewable from a single page.
+
+* All Search Results Page features include:
+- Set the number of results to show before endless scroll feature clicks in.
+- Set the number of Description text characters to show with the results.
+- Show products prices including 'specials' pricing.
+- Show 'add to cart' button for each product
+- Show Product Categories that the result is also assigned to.(Clickable link to that Category page)
+- Show Product Tags that the result is also assigned to (clickable link to that Tag page) .
+
+Shorcodes
 * WooCommerce Predictive Search shortcodes - Insert and configure the Search box into any page or post via shortcode.
+
+Smart Search
 * 'Smart Search'. An intuitive technology that auto detects if the page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy. This delivers extremely relevant  search results if activated.
 * Configure "Smart Search' or All Products Search from every search widget.
+
+Predictive Search Function
 * Function and Parameters activated to allow users to manually add and configure Predictive Search to any part of their theme e.g header.
-* Priority same day support.
+ 
  
 = Plugins Resources = 
 
@@ -111,6 +146,13 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help) on the Pro Versions Home page.
 
 == Changelog ==
+
+= 1.0.3 - 2012/09/25 =
+
+* Feature: Automated the All Results Search page endless scroll feature. No longer have to click the bar to see more results.
+* Tweak: Edited widget, shortcode pop up and function to show Pro Version new Search by Product SKU feature
+* Tweak: Edited admin page to show new Pro Version add to cart feature on All Search Results page.
+* Tweak: Updated readme for WordPress description text. 
 
 = 1.0.2 - 2012/09/14 =
 
