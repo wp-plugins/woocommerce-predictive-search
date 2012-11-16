@@ -33,7 +33,8 @@ if (in_array (basename($_SERVER['PHP_SELF']), array('post.php', 'page.php', 'pag
 	add_action('admin_footer', array('WC_Predictive_Search_Shortcodes', 'add_search_widget_mce_popup'));
 }
 
-add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
+if (!is_admin())
+	add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
 
 // AJAX get result search page
 add_action('wp_ajax_woops_get_result_search_page', array('WC_Predictive_Search_Shortcodes', 'get_result_search_page'));

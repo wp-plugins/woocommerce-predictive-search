@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -146,6 +146,11 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help) on the Pro Versions Home page.
 
 == Changelog ==
+
+= 1.0.4 - 2012/11/16 =
+
+* Fixed: Removed Predictive Search filter 'posts_search' from single product page edit page. The filter was causing the 'Related Products' Up-Sells and Cross-Sells 'Search for a Product' in the WooCommerce meta not to work at times on both the Lite version and the Pro version.
+* Tweak: Added link to our latest WooCommerce plugin - WooCommerce Widget Product Slideshow to the list of availavle A3 WooCommerce plugins on the Predictive Search admin tab.
 
 = 1.0.3 - 2012/09/25 =
 

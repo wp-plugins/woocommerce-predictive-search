@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search Lite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-25 15:15+0700\n"
-"PO-Revision-Date: 2012-09-25 15:15+0700\n"
+"POT-Creation-Date: 2012-11-16 17:10+0700\n"
+"PO-Revision-Date: 2012-11-16 17:10+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: a3rev\n"
 "MIME-Version: 1.0\n"
@@ -189,54 +189,58 @@ msgid "More WooCommerce Plugins from A3 Rev"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:289
-msgid "WooCommerce Dynamic Products Gallery"
+msgid "WooCommerce Widget Product Slideshow"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:290
-msgid "WooCommerce Compare Products"
+msgid "WooCommerce Dynamic Products Gallery"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:291
-msgid "WooCommerce Global Email Template"
+msgid "WooCommerce Compare Products"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:292
+msgid "WooCommerce Global Email Template"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:293
 msgid "WooCommerce Email Inquiry & Cart View (Pro only)"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:295
+#: admin/classes/class-wc-predictive-search-admin.php:296
 msgid "Spreading the Word about this plugin."
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:296
+#: admin/classes/class-wc-predictive-search-admin.php:297
 msgid "Things you can do to help others find this plugin"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:298
+#: admin/classes/class-wc-predictive-search-admin.php:299
 msgid "Rate this plugin 5"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:298
+#: admin/classes/class-wc-predictive-search-admin.php:299
 msgid "on WordPress.org"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:299
+#: admin/classes/class-wc-predictive-search-admin.php:300
 msgid "Write about it in your blog"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:302
+#: admin/classes/class-wc-predictive-search-admin.php:303
 msgid "Thank you for your support!"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:309
+#: admin/classes/class-wc-predictive-search-admin.php:310
 msgid "Yes you'll love the Predictive Search shortcode feature. Upgrading to the"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:309
+#: admin/classes/class-wc-predictive-search-admin.php:310
 msgid "Pro Version"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:309
+#: admin/classes/class-wc-predictive-search-admin.php:310
 msgid "activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features."
 msgstr ""
 
