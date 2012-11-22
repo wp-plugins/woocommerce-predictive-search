@@ -35,18 +35,18 @@ Find detailed step-by-step set up and configuration instructions in the [plugins
 The Pro Version upgrade for WooCommerce Predictive Search is the Ultimate search engine tool for your site. You will see all of the available upgrade features on the plugins widgets, admin panel and shortcode pop-up. Upgrading activates all of these advanced features.
 
 * Configure Predictive search for these search 'types':
-- Product names (Lite Version includes this)
-- Product SKU's
-- Product Categories 
-- Product Tags
-- Post titles
-- Page titles
-- or any combination of these.
+ - Product names (Lite Version includes this)
+ - Product SKU's
+ - Product Categories 
+ - Product Tags
+ - Post titles
+ - Page titles
+ - or any combination of these.
 
 * Add Search boxes by
-- Widgets in any Widgetized area of the theme (Lite Version includes this)
-- In any Page or post via 'Shortcode'
-- Anywhere in the theme via the Predictive Serach Function.
+ - Widgets in any Widgetized area of the theme (Lite Version includes this)
+ - In any Page or post via 'Shortcode'
+ - Anywhere in the theme via the Predictive Serach Function.
 
 * Set the number of each search 'type' of results to show in the search box drop down from the widget, shortcode pop up or function.
 * Use drag and drop in the widget to set the search 'type' order that the results show in the drop down.
@@ -55,31 +55,31 @@ The Pro Version upgrade for WooCommerce Predictive Search is the Ultimate search
 'Exclude From Predictive Search' Functionality. From the WooCommerce > Settings > Predictive Search tab you can now exclude any Product, Product Category, Product tag, Post or Page from showing in the Predictive Search results.
 
 * Where there are more results than show in the drop down pages are auto generated showing all results for:
-- Product names (Lite Version includes this)
-- Product SKU's
-- Product Categories
-- Product Tags
-- Posts
-- Pages
-- all results pages are sorted and viewable from a single page.
+ - Product names (Lite Version includes this)
+ - Product SKU's
+ - Product Categories
+ - Product Tags
+ - Posts
+ - Pages
+ - all results pages are sorted and viewable from a single page.
 
 * All Search Results Page features include:
-- Set the number of results to show before endless scroll feature clicks in.
-- Set the number of Description text characters to show with the results.
-- Show products prices including 'specials' pricing.
-- Show 'add to cart' button for each product
-- Show Product Categories that the result is also assigned to.(Clickable link to that Category page)
-- Show Product Tags that the result is also assigned to (clickable link to that Tag page) .
+ - Set the number of results to show before endless scroll feature clicks in.
+ - Set the number of Description text characters to show with the results.
+ - Show products prices including 'specials' pricing.
+ - Show 'add to cart' button for each product
+ - Show Product Categories that the result is also assigned to.(Clickable link to that Category page)
+ - Show Product Tags that the result is also assigned to (clickable link to that Tag page) .
 
-Shorcodes
-* WooCommerce Predictive Search shortcodes - Insert and configure the Search box into any page or post via shortcode.
+* Shorcodes
+ - WooCommerce Predictive Search shortcodes - Insert and configure the Search box into any page or post via shortcode.
 
-Smart Search
-* 'Smart Search'. An intuitive technology that auto detects if the page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy. This delivers extremely relevant  search results if activated.
-* Configure "Smart Search' or All Products Search from every search widget.
+* Smart Search
+ - 'Smart Search'. An intuitive technology that auto detects if the page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy. This delivers extremely relevant  search results if activated.
+ - Configure "Smart Search' or All Products Search from every search widget.
 
-Predictive Search Function
-* Function and Parameters activated to allow users to manually add and configure Predictive Search to any part of their theme e.g header.
+* Predictive Search Function
+ - Function and Parameters activated to allow users to manually add and configure Predictive Search to any part of their theme e.g header.
  
  
 = Plugins Resources = 
