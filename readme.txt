@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,7 +19,8 @@ WooCommerce Predictive Search queries <strong>your entire product database</stro
 * Searches your entire WooCommerce product database for the product name that match what is being typed.
 * Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
 * Set the number of Product results to show in the drop down.
-* Set the number of characters of the product description text to show with each search result. 
+* Set the number of characters of the product description text to show with each search result.
+* <strong>New Feature</strong> Exclude Products from Predictive Search. 
 * Click through from the Widget dropdown to the 'All Results Search Page'.
 * 'All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
 * 'All Results Search Page' features endless scroll - allows the page to load quickly and show 'infinite' number of results. 
@@ -50,7 +51,9 @@ The Pro Version upgrade for WooCommerce Predictive Search is the Ultimate search
 * Set the number of each search 'type' of results to show in the search box drop down from the widget, shortcode pop up or function.
 * Use drag and drop in the widget to set the search 'type' order that the results show in the drop down.
 
-All Search Results Pages.
+* <strong>NEW - Exclude From Search Results</strong>
+'Exclude From Predictive Search' Functionality. From the WooCommerce > Settings > Predictive Search tab you can now exclude any Product, Product Category, Product tag, Post or Page from showing in the Predictive Search results.
+
 * Where there are more results than show in the drop down pages are auto generated showing all results for:
 - Product names (Lite Version includes this)
 - Product SKU's
@@ -147,10 +150,22 @@ Support and access to this plugin documents are available from the [HELP tab](ht
 
 == Changelog ==
 
+= 1.0.5 - 2012/11/22 =
+
+* Fixed: Version 1.0.4 fix where we removed Predictive Search filter 'posts_search' from single product page edit page to fix the Cross sells and Upsells search caused the Products search filter to be corrupted because we use Wordpress ajax to show results in the widget drop down. The ajax is called from admin-ajax.php file in admin so it also did not add the filter and show incorrect results.
+
+* Feature: Added exclude individual Products from Predictive Search. From the WooCommerce > Settings > Predictive Search tab enter the Product custom post ID of any products that you do not want included in Predictive Search results.
+
+* Feature: Added Exclude all search types to the admin panel. Exclude Product category, Product tag, Posts and pages is a Pro version feature but this keeps up the code compatibility between the Pro and Lite versions for seamless upgrades.
+
+* Feature - Change to admin panel for Predictive Search Function to keep the Lite and Pro Versions in sync for seamless upgrade - Pro Version Search function for replacing WordPress / WooCommerce or Theme Search functions in theme header has been upgraded to allow for easier global function configuration. Go to the WooCommerce > Settings > Predictive Search and you will see that with the Pro Version you can now add and update the function search values on that page. Once values are added and the page updated Pro version license holders can just add the global function to their header.php file.
+
+* Tweak: Added link on admin panel to our latest WooCommerce Lite Version plugin - WooCommerce Widget Product Slideshow.   
+
 = 1.0.4 - 2012/11/16 =
 
 * Fixed: Removed Predictive Search filter 'posts_search' from single product page edit page. The filter was causing the 'Related Products' Up-Sells and Cross-Sells 'Search for a Product' in the WooCommerce meta not to work at times on both the Lite version and the Pro version.
-* Tweak: Added link to our latest WooCommerce plugin - WooCommerce Widget Product Slideshow to the list of availavle A3 WooCommerce plugins on the Predictive Search admin tab.
+* Tweak: Added link to our latest WooCommerce plugin - WooCommerce Widget Product Slideshow to the list of available A3 WooCommerce plugins on the Predictive Search admin tab.
 
 = 1.0.3 - 2012/09/25 =
 

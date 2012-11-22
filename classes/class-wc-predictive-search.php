@@ -6,12 +6,20 @@
  *
  * Table Of Contents
  *
+ * plugins_loaded()
  * woops_get_product_thumbnail()
  * woops_limit_words()
  * woops_get_result_popup()
  * create_page()
  */
 class WC_Predictive_Search{
+	
+	function plugins_loaded() {
+		global $wc_predictive_id_excludes;
+		
+		WC_Predictive_Search_Settings::get_id_excludes();
+	}
+	
 	function woops_get_product_thumbnail( $post_id, $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
 		global $woocommerce;
 		if ( $placeholder_width == 0 )
@@ -89,6 +97,8 @@ class WC_Predictive_Search{
 	
 	function get_result_popup() {
 		check_ajax_referer( 'woops-get-result-popup', 'security' );
+		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
+		global $wc_predictive_id_excludes;
 		$row = 6;
 		$text_lenght = 100;
 		$search_keyword = '';
@@ -102,7 +112,7 @@ class WC_Predictive_Search{
 		$end_row = $row;
 		
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish');
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter .= '&scat='.$cat_slug;

@@ -14,6 +14,8 @@ function woops_init() {
 // Add language
 add_action('init', 'woops_init');
 
+add_action( 'plugins_loaded', array( 'WC_Predictive_Search', 'plugins_loaded' ), 8 );
+
 // Add text on right of Visit the plugin on Plugin manager page
 add_filter( 'plugin_row_meta', array('WC_Predictive_Search_Hook_Filter', 'plugin_extra_links'), 10, 2 );
 

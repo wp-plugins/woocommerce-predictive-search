@@ -34,7 +34,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract($args);
 		$title = apply_filters('widget_title', empty($instance['title']) ? '' : $instance['title'], $instance, $this->id_base);
-		if(empty($instance['number_items']) || $instance['number_items'] <= 0) $number_items = 6; 
+		if(empty($instance['number_items']) || is_array($instance['number_items']) || $instance['number_items'] <= 0) $number_items = 6; 
 		else $number_items = $instance['number_items'];
 		if(empty($instance['text_lenght']) || $instance['text_lenght'] < 0) $text_lenght = 100; 
 		else $text_lenght = $instance['text_lenght'];
@@ -131,7 +131,8 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'number_items' => 6, 'text_lenght' => 100, 'search_global' => 0) );
 		$title = strip_tags($instance['title']);
-		$number_items = strip_tags($instance['number_items']);
+		if (empty($number_items) || is_array($number_items) ) $number_items = 6;
+		else $number_items = strip_tags($instance['number_items']);
 		$text_lenght = strip_tags($instance['text_lenght']);
 		$search_global = $instance['search_global'];
 ?>

@@ -174,6 +174,7 @@ class WC_Predictive_Search_Shortcodes {
 	}
 	
 	function display_search() {
+		global $wc_predictive_id_excludes;
 		$p = 0;
 		$row = 10;
 		$search_keyword = '';
@@ -189,7 +190,7 @@ class WC_Predictive_Search_Shortcodes {
 		$end_row = $row;
 				
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish');
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter .= '&scat='.$cat_slug;
@@ -293,6 +294,8 @@ auto_click_more();
 	
 	function get_result_search_page() {
 		check_ajax_referer( 'woops-get-result-search-page', 'security' );
+		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
+		global $wc_predictive_id_excludes;
 		$p = 1;
 		$row = 10;
 		$search_keyword = '';
@@ -311,7 +314,7 @@ auto_click_more();
 		$end_row = $row;
 		
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish');
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter .= '&scat='.$cat_slug;

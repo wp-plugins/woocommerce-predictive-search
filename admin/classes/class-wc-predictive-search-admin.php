@@ -7,6 +7,7 @@
  * Table Of Contents
  *
  * set_setting()
+ * get_id_excludes()
  * __construct()
  * on_add_tab()
  * settings_tab_action()
@@ -38,6 +39,15 @@ class WC_Predictive_Search_Settings {
 		if ( get_option('woocommerce_search_tags_enable') == '' || $reset ) {
 			update_option('woocommerce_search_tags_enable', 'no');
 		}
+	}
+	
+	public function get_id_excludes() {
+		global $wc_predictive_id_excludes;
+		
+		$wc_predictive_id_excludes = array();
+		$wc_predictive_id_excludes['exclude_products'] = get_option('woocommerce_search_exclude_products', '');
+		
+		return $wc_predictive_id_excludes;
 	}
 	
 	public function __construct() {
@@ -118,10 +128,28 @@ class WC_Predictive_Search_Settings {
        	woocommerce_admin_fields($woocommerce_settings[$current_tab]);
 		?>
         <table class="form-table"><tr valign="top"><td style="padding:0;"><div id="woo_predictive_upgrade_area"><?php echo WC_Predictive_Search_Settings::predictive_extension(); ?><div id="woo_predictive_upgrade_inner">
+        <table class="form-table">
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_p_categories"><?php _e('Exclude Product Categories', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_p_categories" name="woocommerce_search_exclude_p_categories"> <p class="description"><?php _e("Enter Product Category ID's comma separated", 'woops');?></p></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_p_tags"><?php _e('Exclude Product Tags', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_p_tags" name="woocommerce_search_exclude_p_tags"> <p class="description"><?php _e("Enter Product Tag ID's comma separated", 'woops');?></p></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_posts"><?php _e('Exclude Posts', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_posts" name="woocommerce_search_exclude_posts"> <p class="description"><?php _e("Enter Post ID's comma separated", 'woops');?></p></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_pages"><?php _e('Exclude Pages', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_pages" name="woocommerce_search_exclude_pages"> <p class="description"><?php _e("Enter Page ID's comma separated", 'woops');?></p></td>
+			</tr>
+		</table>
         <h3 style="margin-top:0; padding-top:10px;"><?php _e('Search results page settings', 'woops'); ?></h3>
         <table class="form-table">
           <tr valign="top">
-		    <th class="titledesc" scope="row"><label for="ecommerce_search_result_items"><?php _e('Results', 'woops');?>	</label></th>
+		    <th class="titledesc" scope="row"><label for="ecommerce_search_result_items"><?php _e('Results', 'woops');?></label></th>
 		    <td class="forminp">
               <input disabled="disabled" type="text" value="10" size="6" id="ecommerce_search_result_items" name="ecommerce_search_result_items" />
               <span class="description"><?php _e('The number of results to show before endless scroll click to see more results.', 'woops');?></span>
@@ -159,27 +187,83 @@ class WC_Predictive_Search_Settings {
             </td>
 		  </tr>
         </table>
-        <h3><?php _e('Code', 'woops'); ?></h3>
+        <h3><?php _e('Predictive Search Function', 'woops'); ?></h3>
 		<table class="form-table">
           <tr valign="top">
 		    <td class="forminp" colspan="2">
-            <?php _e('Use this function to place the Predictive Search feature anywhere in your theme.', 'woops');?>
-            <br /><code>&lt;?php if(function_exists('woo_predictive_search_widget')) woo_predictive_search_widget($product_name_items, $product_sku_items, $product_category_items, $product_tag_items, $post_items, $page_items, $character_max, $style, $global_search); ?&gt;</code>
-            <br /><br />
-            <p><?php _e('Parameters', 'woops');?> :
-            <br /><code>$product_name_items (int)</code> : <?php _e('Number of Product Name to show in search field drop-down. Default value is "6".', 'woops');?>
-            <br /><code>$product_sku_items (int)</code> : <?php _e('Number of Product SKU to show in search field drop-down. Default value is "0".', 'woops');?>
-            <br /><code>$product_category_items (int)</code> : <?php _e('Number of Product Categories to show in search field drop-down. Default value is "0".', 'woops');?>
-            <br /><code>$product_tag_items (int)</code> : <?php _e('Number of Product Tags to show in search field drop-down. Default value is "0".', 'woops');?>
-            <br /><code>$post_items (int)</code> : <?php _e('Number of Posts to show in search field drop-down. Default value is "0".', 'woops');?>
-            <br /><code>$page_items (int)</code> : <?php _e('Number of Pages to show in search field drop-down. Default value is "0".', 'woops');?>
-            <br /><code>$character_max (int)</code> : <?php _e('Number of characters from product description to show in search field drop-down. Default value is "100".', 'woops');?>
-            <br /><code>$style (string)</code> : <?php _e('Use to create a custom style for the Predictive search box | Example: ', 'woops');?><code>"padding-top:10px;padding-bottom:10px;padding-left:0px;padding-right:0px;"</code>
-            <br /><code>$global_search (bool)</code> : <?php _e('Set global search or search in current product category or current product tag. Default value is "true", global search.', 'woops');?>
-            </p>
+            <?php _e('Copy and paste this global function into your themes header.php file to replace any existing search function. (Be sure to delete the existing WordPress, WooCommerce or Theme search function)', 'woops');?>
+            <br /><code>&lt;?php if(function_exists('woo_predictive_search_widget')) woo_predictive_search_widget(); ?&gt;</code>
             </td>
           </tr>
         </table>
+        <h3><?php _e('Customize Search Function values', 'woops');?> :</h3>		
+        <table class="form-table">
+			<tr valign="top">
+            	<td colspan="2" class="forminp"><?php _e("The values you set here will be shown when you add the global search function to your header.php file. After adding the global function to your header.php file you can change the values here and 'Update' and they will be auto updated in the function.", "woops"); ?></td>
+            </tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_product_items"><?php _e('Product name', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_product_items" name="woocommerce_search_product_items"> <span class="description"><?php _e('Number of Product Name to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
+			</tr>
+			<tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_p_sku_items"><?php _e('Product SKU', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_p_sku_items" name="woocommerce_search_p_sku_items"> <span class="description"><?php _e('Number of Product SKU to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
+			</tr>
+			<tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_p_cat_items"><?php _e('Product category', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_p_cat_items" name="woocommerce_search_p_cat_items"> <span class="description"><?php _e('Number of Product Categories to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_p_tag_items"><?php _e('Product tag', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_p_tag_items" name="woocommerce_search_p_tag_items"> <span class="description"><?php _e('Number of Product Tags to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_post_items"><?php _e('Post', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_post_items" name="woocommerce_search_post_items"> <span class="description"><?php _e('Number of Posts to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_page_items"><?php _e('Page', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_page_items" name="woocommerce_search_page_items"> <span class="description"><?php _e('Number of Pages to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_character_max"><?php _e('Description Characters', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_character_max" name="woocommerce_search_character_max"> <span class="description"><?php _e('Number of characters from product description to show in search field drop-down. Default value is "100".', 'woops');?></span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_width"><?php _e('Width', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_width" name="woocommerce_search_width"> <span class="description">px. <?php _e('Leave &lt;empty&gt; for 100% wide', 'woops');?></span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_padding_top"><?php _e('Padding top', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_padding_top" name="woocommerce_search_padding_top"> <span class="description">px</span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_padding_bottom"><?php _e('Padding bottom', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_padding_bottom" name="woocommerce_search_padding_bottom"> <span class="description">px</span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_padding_left"><?php _e('Padding lef', 'woops');?>t</label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_padding_left" name="woocommerce_search_padding_left"> <span class="description">px</span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_padding_right"><?php _e('Padding right', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_padding_right" name="woocommerce_search_padding_right"> <span class="description">px</span></td>
+			</tr>
+            <tr valign="top">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_custom_style"><?php _e('Custom style', 'woops');?></label></th>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_custom_style" name="woocommerce_search_custom_style"> <span class="description"><?php _e('Put other custom style for the Predictive search box', 'woops');?></span></td>
+			</tr>
+            <tr valign="top" class="">
+				<th class="titledesc" scope="row"><?php _e('Global search', 'woops');?></th>
+				<td class="forminp">
+					<fieldset><legend class="screen-reader-text"><span><?php _e('Global search', 'woops');?></span></legend>
+						<label for="woocommerce_search_global_search">
+						<input disabled="disabled" checked="checked" type="checkbox" value="1" id="woocommerce_search_global_search" name="woocommerce_search_global_search">
+						<?php _e('Set global search or search in current product category or current product tag. "Checked" to activate global search.', 'woops');?></label> <br>
+					</fieldset>
+				</td>
+			</tr>
+		</table>
         </div></div></td></tr></table>
         <?php
 	}
@@ -236,7 +320,21 @@ class WC_Predictive_Search_Settings {
 				'css' 		=> 'min-width:300px;',
 				'desc_tip'	=>  false
 			),
-			array('type' => 'sectionend', 'id' => 'predictive_search_global_end')
+			array('type' => 'sectionend', 'id' => 'predictive_search_global_end'),
+			
+			array(
+            	'name' => __( 'Exclude From Predictive Search', 'woops' ),
+                'type' => 'title',
+                'desc' => '',
+          		'id' => 'predictive_search_excludes_start'
+           	),
+			array(  
+				'name' => __( 'Exclude Products', 'woops' ),
+				'desc' 		=> __("Enter Product ID's comma separated", "woops"),
+				'id' 		=> 'woocommerce_search_exclude_products',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+			),
         ));
 	}
 
