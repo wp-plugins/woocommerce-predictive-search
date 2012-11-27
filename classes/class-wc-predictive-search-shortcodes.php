@@ -184,7 +184,7 @@ class WC_Predictive_Search_Shortcodes {
 		$show_price = false;
 		$show_categories = false;
 		$show_tags = false;
-		if (isset($_REQUEST['rs']) && trim($_REQUEST['rs']) != '') $search_keyword = $_REQUEST['rs'];
+		if (isset($_REQUEST['rs']) && trim($_REQUEST['rs']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['rs'] ) );
 		
 		$start = $p * $row;
 		$end_row = $row;

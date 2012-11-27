@@ -105,9 +105,9 @@ class WC_Predictive_Search{
 		$cat_slug = '';
 		$tag_slug = '';
 		$extra_parameter = '';
-		if (isset($_REQUEST['row']) && $_REQUEST['row'] > 0) $row = $_REQUEST['row'];
-		if (isset($_REQUEST['text_lenght']) && $_REQUEST['text_lenght'] >= 0) $text_lenght = $_REQUEST['text_lenght'];
-		if (isset($_REQUEST['q']) && trim($_REQUEST['q']) != '') $search_keyword = $_REQUEST['q'];
+		if (isset($_REQUEST['row']) && $_REQUEST['row'] > 0) $row = stripslashes( strip_tags( $_REQUEST['row'] ) );
+		if (isset($_REQUEST['text_lenght']) && $_REQUEST['text_lenght'] >= 0) stripslashes( strip_tags( $text_lenght = $_REQUEST['text_lenght'] ) );
+		if (isset($_REQUEST['q']) && trim($_REQUEST['q']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['q'] ) );
 		
 		$end_row = $row;
 		

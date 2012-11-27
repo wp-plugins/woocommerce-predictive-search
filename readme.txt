@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -149,6 +149,10 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help) on the Pro Versions Home page.
 
 == Changelog ==
+
+= 1.0.6 - 2012/11/27 =
+
+Security  Vunerability Fix - please update your plugin now.* Fixed: XSS Vulnerabilities. Added strip tags function to stop XSS injections by adding script via the predictive search box. Thanks to Jason Flemming for alerting us to this issue.
 
 = 1.0.5 - 2012/11/22 =
 
