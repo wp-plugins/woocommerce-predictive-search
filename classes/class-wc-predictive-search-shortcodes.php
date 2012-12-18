@@ -226,6 +226,7 @@ class WC_Predictive_Search_Shortcodes {
 				.rs_rs_price .oldprice{text-decoration:line-through; font-size:80%;}
 				</style>';
 				$html .= '<div class="rs_ajax_search_content">';
+				$text_lenght = get_option('woocommerce_search_text_lenght');
 				foreach ( $search_products as $product ) {
 					$link_detail = get_permalink($product->ID);
 					
@@ -237,7 +238,10 @@ class WC_Predictive_Search_Shortcodes {
 					
 					$product_tags_output = WC_Predictive_Search_Shortcodes::get_product_tags($product->ID, $show_tags);
 					
-					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.WC_Predictive_Search::woops_limit_words($product->post_content,get_option('woocommerce_search_text_lenght'),'...').'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
+					$product_description = WC_Predictive_Search::woops_limit_words($product->post_content,$text_lenght,'...');
+					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words($product->post_excerpt,$text_lenght,'...');
+					
+					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
 					
 					$html .= '<div style="clear:both"></div>';
 					$end_row--;
@@ -334,6 +338,7 @@ auto_click_more();
 			$html = '';
 			if ( $search_products && count($search_products) > 0 ){
 				$html .= '<div class="rs_ajax_search_content">';
+				$text_lenght = get_option('woocommerce_search_text_lenght');
 				foreach ( $search_products as $product ) {
 					$link_detail = get_permalink($product->ID);
 					
@@ -344,8 +349,11 @@ auto_click_more();
 					$product_cats_output = WC_Predictive_Search_Shortcodes::get_product_categories($product->ID, $show_categories);
 					
 					$product_tags_output = WC_Predictive_Search_Shortcodes::get_product_tags($product->ID, $show_tags);
+					
+					$product_description = WC_Predictive_Search::woops_limit_words($product->post_content,$text_lenght,'...');
+					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words($product->post_excerpt,$text_lenght,'...');
 										
-					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.WC_Predictive_Search::woops_limit_words($product->post_content,get_option('woocommerce_search_text_lenght'),'...').'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
+					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
 					$html .= '<div style="clear:both"></div>';
 					$end_row--;
 					if ($end_row < 1) break;

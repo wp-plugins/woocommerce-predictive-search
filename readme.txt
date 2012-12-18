@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
-Tested up to: 3.4.2
-Stable tag: 1.0.6
+Tested up to: 3.5
+Stable tag: 1.0.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -149,6 +149,13 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help) on the Pro Versions Home page.
 
 == Changelog ==
+
+= 1.0.7 - 2012/12/18 =
+
+* Feature: Added get Product Name results character description from Products 'short description' if no content is entered for Product description.
+
+* Fixed: Plugin now supports themes that use post_type array rather than post_type string. If the theme post_type is array plugin will now use function is_array() and in_array() instead of trim() function to generate the All Search Results pages. Thanks to Dietmar Hohn of Germany for working with us on this quirky bug fix.
+
 
 = 1.0.6 - 2012/11/27 =
 
