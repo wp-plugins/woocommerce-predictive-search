@@ -251,7 +251,7 @@ class WC_Predictive_Search_Settings {
 			</tr>
             <tr valign="top">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_custom_style"><?php _e('Custom style', 'woops');?></label></th>
-				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_custom_style" name="woocommerce_search_custom_style"> <span class="description"><?php _e('Put other custom style for the Predictive search box', 'woops');?></span></td>
+				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_custom_style" name="woocommerce_search_custom_style"> <p class="description"><?php _e('Put other custom style for the Predictive search box', 'woops');?></p></td>
 			</tr>
             <tr valign="top" class="">
 				<th class="titledesc" scope="row"><?php _e('Global search', 'woops');?></th>
@@ -367,40 +367,57 @@ class WC_Predictive_Search_Settings {
 	function predictive_extension() {
 		$html = '';
 		$html .= '<div id="woo_predictive_extensions">';
-		$html .= '<h3>'.__('No Donations Accepted', 'woops').'</h3>';
-		$html .= '<img src="'.WOOPS_IMAGES_URL.'/btn_donate.png" />';
-		$html .= '<h3>'.__('Upgrade to the Pro version for Just', '').' $20 '.__('to', 'woops').'</h3>';
+		$html .= '<a href="http://a3rev.com/shop/" target="_blank" style="float:right;margin-top:5px; margin-left:10px;" ><img src="'.WOOPS_IMAGES_URL.'/a3logo.png" /></a>';
+		$html .= '<h3>'.__('Upgrade to Predictive Search Pro', 'woops').'</h3>';
+		$html .= '<p>'.__("Visit the", 'woops').' <a href="'.WOOPS_AUTHOR_URI.'" target="_blank">'.__("a3rev website", 'woops').'</a> '.__("to see all the extra features the Pro version of this plugin offers like", 'woops').':</p>';
 		$html .= '<p>';
 		$html .= '<ul style="padding-left:10px;">';
 		$html .= '<li>1. '.__('Activate the search results pages settings in this yellow border.', 'woops').'</li>';
 		$html .= '<li>2. '.__('Activate Search by Product Categories, Product Tags, Posts and Pages options in the search widgets.', 'woops').'</li>';
 		$html .= '<li>3. '.__('Activate Search shortcodes for Posts and pages.', 'woops').'</li>';
-		$html .= '<li>4. '.__('Same day priority support.', 'woops').'</li>';
+		$html .= '<li>4. '.__('Exclude Products, Product categories, tags post and pages from search results.', 'woops').'</li>';
 		$html .= '</ul>';
 		$html .= '</p>';
-		$html .= '<p>* '.__('See the Pro version on the', 'woops').' <a href="'.WOOPS_AUTHOR_URI.'" target="_blank">'.__('A3 market place', 'woops').'</a></p>';
-		$html .= '<h3>'.__('Go Pro and help us help you.', 'woops').'</h3>';
-		$html .= '<p>'.__('A Pro upgrade license fee helps fund and support the maintenance and ongoing development of this plugin.', 'woops').'</p>';
-		$html .= '<h3>'.__('More WooCommerce Plugins from A3 Rev', 'woops').'</h3>';
+		$html .= '<h3>'.__('Plugin Documentation', 'woops').'</h3>';
+		$html .= '<p>'.__('All of our plugins have comprehensive online documentation. Please refer to the plugins docs before raising a support request', 'woops').'. <a href="http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/" target="_blank">'.__('Visit the a3rev wiki.', 'woops').'</a></p>';
+		$html .= '<h3>'.__('More a3rev Quality Plugins', 'woops').'</h3>';
+		$html .= '<p>'.__('Below is a list of the a3rev plugins that are available for free download from wordpress.org', 'woops').'</p>';
+		$html .= '<h3>'.__('WooCommerce Plugins', 'woops').'</h3>';
 		$html .= '<p>';
 		$html .= '<ul style="padding-left:10px;">';
-		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woo-widget-product-slideshow/" target="_blank">'.__('WooCommerce Widget Product Slideshow', 'woops').'</a></li>';
 		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woocommerce-dynamic-gallery/" target="_blank">'.__('WooCommerce Dynamic Products Gallery', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woocommerce-predictive-search/" target="_blank">'.__('WooCommerce Predictive Search', 'woops').'</a></li>';
 		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woocommerce-compare-products/" target="_blank">'.__('WooCommerce Compare Products', 'woops').'</a></li>';
-		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-email-template/" target="_blank">'.__('WooCommerce Global Email Template', 'woops').'</a></li>';
-		$html .= '<li>* <a href="http://a3rev.com/products-page/woocommerce/woo-email-inquiry-and-cart-options/" target="_blank">'.__('WooCommerce Email Inquiry & Cart View (Pro only)', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woo-widget-product-slideshow/" target="_blank">'.__('WooCommerce Widget Product Slideshow', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://a3rev.com/shop/woocommerce-email-inquiry-and-cart-options/" target="_blank">'.__('WooCommerce Email Inquiry & Cart Options', 'woops').'</a>'.__(' - Pro Version only from a3rev', 'woops').'</li>';
 		$html .= '</ul>';
 		$html .= '</p>';
-		$html .= '<h3>'.__('Spreading the Word about this plugin.', 'woops').'</h3>';
+		$html .= '<h3>'.__('WordPress Plugins', 'woops').'</h3>';
+		$html .= '<p>';
+		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-email-template/" target="_blank">'.__('WordPress Email Template', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/page-views-count/" target="_blank">'.__('Page View Count', 'woops').'</a></li>';
+		$html .= '</ul>';
+		$html .= '</p>';
+		$html .= '<h3>'.__('WP e-Commerce Plugins', 'woops').'</h3>';
+		$html .= '<p>';
+		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-e-commerce-dynamic-gallery/" target="_blank">'.__('WP e-Commerce Dynamic Gallery', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-e-commerce-predictive-search/" target="_blank">'.__('WP e-Commerce Predictive Search', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-ecommerce-compare-products/" target="_blank">'.__('WP e-Commerce Compare Products', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-e-commerce-catalog-visibility-and-email-inquiry/" target="_blank">'.__('WP e-Commerce Catalog Visibility & Email Inquiry', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/wp-e-commerce-grid-view/" target="_blank">'.__('WP e-Commerce Grid View', 'woops').'</a></li>';
+		$html .= '</ul>';
+		$html .= '</p>';
+		$html .= '<h3>'.__('Help spread the Word about this plugin', 'woops').'</h3>';
 		$html .= '<p>'.__("Things you can do to help others find this plugin", 'woops');
 		$html .= '<ul style="padding-left:10px;">';
 		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woocommerce-predictive-search/" target="_blank">'.__('Rate this plugin 5', 'woops').' <img src="'.WOOPS_IMAGES_URL.'/stars.png" align="top" /> '.__('on WordPress.org', 'woops').'</a></li>';
-		$html .= '<li>* <a href="'.WOOPS_AUTHOR_URI.'" target="_blank">'.__('Write about it in your blog', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/extend/plugins/woocommerce-predictive-search/" target="_blank">'.__('Mark the plugin as a fourite', 'woops').'</a></li>';
 		$html .= '</ul>';
 		$html .= '</p>';
-		$html .= '<h3>'.__('Thank you for your support!', 'woops').'</h3>';
 		$html .= '</div>';
-		return $html;	
+		return $html;
 	}
 	
 	function predictive_extension_shortcode() {

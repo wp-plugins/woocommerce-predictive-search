@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -84,9 +84,9 @@ The Pro Version upgrade for WooCommerce Predictive Search is the Ultimate search
  
 = Plugins Resources = 
 
-[Home Page](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/) |
+[Home Page](http://a3rev.com/shop/woocommerce-predictive-search/) |
 [Documentation](http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/) |
-[Support](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help)
+[Support](http://a3rev.com/shop/woocommerce-predictive-search/#tab-reviews)
 
 = Localization =
 
@@ -146,9 +146,14 @@ You can use this plugin only when you have installed the WooCommerce plugin.
  
 == Support ==
 
-Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/products-page/woocommerce/woocommerce-predictive-search/#help) on the Pro Versions Home page.
+Support and access to this plugin documents are available from the [HELP tab](http://a3rev.com/shop/woocommerce-predictive-search/#tab-reviews) on the Pro Versions Home page.
 
 == Changelog ==
+
+= 1.0.8 - 2013/01/08 = 
+
+* Tweak: Updated Support and Pro Version link URL's on wordpress.org description, plugins and plugins dashboard. Links were returning 404 errors since the launch of the all new a3rev.com mobile responsive site as the base e-commerce permalinks is changed.
+
 
 = 1.0.7 - 2012/12/18 =
 

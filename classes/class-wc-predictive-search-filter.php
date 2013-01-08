@@ -39,7 +39,7 @@ class WC_Predictive_Search_Hook_Filter {
 			return $links;
 		}
 		$links[] = '<a href="http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/" target="_blank">'.__('Documentation', 'woops').'</a>';
-		$links[] = '<a href="'.WOOPS_AUTHOR_URI.'/#help" target="_blank">'.__('Support', 'woops').'</a>';
+		$links[] = '<a href="'.WOOPS_AUTHOR_URI.'/#tab-reviews" target="_blank">'.__('Support', 'woops').'</a>';
 		return $links;
 	}
 }

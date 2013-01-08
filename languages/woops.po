@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search Lite\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-22 10:30+0700\n"
-"PO-Revision-Date: 2012-11-22 10:30+0700\n"
+"POT-Creation-Date: 2013-01-08 17:30+0700\n"
+"PO-Revision-Date: 2013-01-08 17:30+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: a3rev\n"
 "MIME-Version: 1.0\n"
@@ -250,16 +250,20 @@ msgstr ""
 msgid "Enter Product ID's comma separated"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:370
-msgid "No Donations Accepted"
+#: admin/classes/class-wc-predictive-search-admin.php:371
+msgid "Upgrade to Predictive Search Pro"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:372
-msgid "Upgrade to the Pro version for Just"
+msgid "Visit the"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:372
-msgid "to"
+msgid "a3rev website"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:372
+msgid "to see all the extra features the Pro version of this plugin offers like"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:375
@@ -275,31 +279,31 @@ msgid "Activate Search shortcodes for Posts and pages."
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:378
-msgid "Same day priority support."
+msgid "Exclude Products, Product categories, tags post and pages from search results."
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:381
-msgid "See the Pro version on the"
-msgstr ""
-
-#: admin/classes/class-wc-predictive-search-admin.php:381
-msgid "A3 market place"
+msgid "Plugin Documentation"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:382
-msgid "Go Pro and help us help you."
+msgid "All of our plugins have comprehensive online documentation. Please refer to the plugins docs before raising a support request"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:382
+msgid "Visit the a3rev wiki."
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:383
-msgid "A Pro upgrade license fee helps fund and support the maintenance and ongoing development of this plugin."
+msgid "More a3rev Quality Plugins"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:384
-msgid "More WooCommerce Plugins from A3 Rev"
+msgid "Below is a list of the a3rev plugins that are available for free download from wordpress.org"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:387
-msgid "WooCommerce Widget Product Slideshow"
+#: admin/classes/class-wc-predictive-search-admin.php:385
+msgid "WooCommerce Plugins"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:388
@@ -307,50 +311,92 @@ msgid "WooCommerce Dynamic Products Gallery"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:389
-msgid "WooCommerce Compare Products"
+#: widget/wc-predictive-search-widgets.php:31
+msgid "WooCommerce Predictive Search"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:390
-msgid "WooCommerce Global Email Template"
+msgid "WooCommerce Compare Products"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:391
-msgid "WooCommerce Email Inquiry & Cart View (Pro only)"
+msgid "WooCommerce Widget Product Slideshow"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:394
-msgid "Spreading the Word about this plugin."
+#: admin/classes/class-wc-predictive-search-admin.php:392
+msgid "WooCommerce Email Inquiry & Cart Options"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:392
+msgid " - Pro Version only from a3rev"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:395
-msgid "Things you can do to help others find this plugin"
-msgstr ""
-
-#: admin/classes/class-wc-predictive-search-admin.php:397
-msgid "Rate this plugin 5"
-msgstr ""
-
-#: admin/classes/class-wc-predictive-search-admin.php:397
-msgid "on WordPress.org"
+msgid "WordPress Plugins"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:398
-msgid "Write about it in your blog"
+msgid "WordPress Email Template"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:401
-msgid "Thank you for your support!"
+#: admin/classes/class-wc-predictive-search-admin.php:399
+msgid "Page View Count"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:402
+msgid "WP e-Commerce Plugins"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:405
+msgid "WP e-Commerce Dynamic Gallery"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:406
+msgid "WP e-Commerce Predictive Search"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:407
+msgid "WP e-Commerce Compare Products"
 msgstr ""
 
 #: admin/classes/class-wc-predictive-search-admin.php:408
+msgid "WP e-Commerce Catalog Visibility & Email Inquiry"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:409
+msgid "WP e-Commerce Grid View"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:412
+msgid "Help spread the Word about this plugin"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:413
+msgid "Things you can do to help others find this plugin"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:415
+msgid "Rate this plugin 5"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:415
+msgid "on WordPress.org"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:416
+msgid "Mark the plugin as a fourite"
+msgstr ""
+
+#: admin/classes/class-wc-predictive-search-admin.php:425
 msgid "Yes you'll love the Predictive Search shortcode feature. Upgrading to the"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:408
+#: admin/classes/class-wc-predictive-search-admin.php:425
+#: widget/wc-predictive-search-widgets.php:150
 msgid "Pro Version"
 msgstr ""
 
-#: admin/classes/class-wc-predictive-search-admin.php:408
+#: admin/classes/class-wc-predictive-search-admin.php:425
 msgid "activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features."
 msgstr ""
 
@@ -467,15 +513,15 @@ msgstr ""
 msgid "Showing all results for your search"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:250
+#: classes/class-wc-predictive-search-shortcodes.php:254
 msgid "Loading More Results..."
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:274
+#: classes/class-wc-predictive-search-shortcodes.php:278
 msgid "No More Results to Show"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:288
+#: classes/class-wc-predictive-search-shortcodes.php:292
 msgid "No result"
 msgstr ""
 
@@ -483,19 +529,19 @@ msgstr ""
 msgid "Products"
 msgstr ""
 
-#: classes/class-wc-predictive-search.php:143
+#: classes/class-wc-predictive-search.php:145
 msgid "See more results for"
 msgstr ""
 
-#: classes/class-wc-predictive-search.php:143
+#: classes/class-wc-predictive-search.php:145
 msgid "Displaying top"
 msgstr ""
 
-#: classes/class-wc-predictive-search.php:143
+#: classes/class-wc-predictive-search.php:145
 msgid "results"
 msgstr ""
 
-#: classes/class-wc-predictive-search.php:147
+#: classes/class-wc-predictive-search.php:149
 msgid "Keep typing..."
 msgstr ""
 
@@ -515,10 +561,6 @@ msgstr ""
 msgid "User sees search results as they type in a dropdown - links through to 'All Search Results Page' that features endless scroll."
 msgstr ""
 
-#: widget/wc-predictive-search-widgets.php:31
-msgid "WooCommerce Predictive Search"
-msgstr ""
-
 #: widget/wc-predictive-search-widgets.php:147
 msgid "Title:"
 msgstr ""
@@ -533,7 +575,11 @@ msgid " Results description character count:"
 msgstr ""
 
 #: widget/wc-predictive-search-widgets.php:150
-msgid "Upgrade to Pro to activate"
+msgid "Upgrade to"
+msgstr ""
+
+#: widget/wc-predictive-search-widgets.php:150
+msgid "to activate"
 msgstr ""
 
 #: widget/wc-predictive-search-widgets.php:151

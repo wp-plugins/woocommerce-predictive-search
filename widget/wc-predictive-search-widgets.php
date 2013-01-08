@@ -138,7 +138,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 ?>
 		<style>
 			#woo_predictive_upgrade_area { border:2px solid #E6DB55;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; padding:5px; position:relative}
-			#woo_predictive_upgrade_area legend {margin-left:10px; font-weight:bold;}
+			#woo_predictive_upgrade_area legend {margin-left:4px; font-weight:bold;}
 			.item_heading{ width:130px; display:inline-block;}
 			ul.predictive_search_item li{padding-left:15px; background:url(<?php echo WOOPS_IMAGES_URL; ?>/sortable.gif) no-repeat left center; cursor:pointer;}
 			ul.predictive_search_item li.ui-sortable-placeholder{border:1px dotted #111; visibility:visible !important; background:none;}
@@ -147,7 +147,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 			<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('number_items'); ?>"><?php _e('Number of results to show:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('number_items'); ?>" name="<?php echo $this->get_field_name('number_items'); ?>" type="text" value="<?php echo esc_attr($number_items); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('text_lenght'); ?>"><?php _e(' Results description character count:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('text_lenght'); ?>" name="<?php echo $this->get_field_name('text_lenght'); ?>" type="text" value="<?php echo esc_attr($text_lenght); ?>" /></p>
-            <fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to Pro to activate', 'wpscps'); ?></legend>
+            <fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to','woops'); ?> <a href="<?php echo WOOPS_AUTHOR_URI; ?>" target="_blank"><?php _e('Pro Version', 'woops'); ?></a> <?php _e('to activate', 'woops'); ?></legend>
             <p><?php _e("Activate search 'types' for this widget by entering the number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop", 'woops'); ?></p>
             <ul class="ui-sortable predictive_search_item">
             <?php foreach ($items_search_default as $key => $data) { ?>
