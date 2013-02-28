@@ -16,7 +16,7 @@ WooCommerce Predictive Search queries <strong>your entire product database</stro
  
 = Key Features =
 
-* <strong>New Feature</strong> Pretty URL for the All Search Results pages.
+* New Feature Pretty URL for the All Search Results pages.
 * Use 'live search' to wow your customers - fast and accurate.
 * Add and configure a search box to any widgetized area on your site.
 * Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
@@ -39,65 +39,65 @@ Once you have the plugin installed and activated please refer to the plugins com
 
 WooCommerce Predictive Search allows you to optimize your site search just the way you want it with 100% accuracy while delivering your customers stunning 'live search' results for your entire site. <strong>Pro Version advanced features.</strong>
 
-* <strong>Site Search Optimization:</strong>
- - Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
- - Predictive Search meta section on each product page, post and page for setting 'Focus Keywords and Keyword Phrases'.
- - Exclude any product, post or page from Predictive Search results Globally from the admin panel or right from the Predictive Search Meta on product, post or page.
- - Integration with SEO plugins. Can be a massive time saver. Configure your plugin with the click of a mouse to use Focus Keywords that are set on an SEO plugin you are using. Include any 'Focus Keywords' that have been set while optimizing the site content for search engine search.  
- - Currently supports * Yoasts WordPress SEO and the * All in One SEO plugins. If you use another WordPress SEO Plugin and would like to see it included in the list of supported plugins please just let us know and we will look in including support for it in future updates.
+= Site Search Optimization: =
+* Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
+* Predictive Search meta section on each product page, post and page for setting 'Focus Keywords and Keyword Phrases'.
+* Exclude any product, post or page from Predictive Search results Globally from the admin panel or right from the Predictive Search Meta on product, post or page.
+* Integration with SEO plugins. Can be a massive time saver. Configure your plugin with the click of a mouse to use Focus Keywords that are set on an SEO plugin you are using. Include any 'Focus Keywords' that have been set while optimizing the site content for search engine search.  
+* Currently supports * Yoasts WordPress SEO and the * All in One SEO plugins. If you use another WordPress SEO Plugin and would like to see it included in the list of supported plugins please just let us know and we will look in including support for it in future updates.
 
-* <strong>General</strong>
- - Use 'live search' to wow your customers - fast and deadly accurate.
- - Add Predictive Search anywhere on your site via unlimited Widgets, Shortcodes and Search functions
- - Fully customizable - define what gets searched and what shows in the search box drop down.
- - Easy to read and easy to sort All Search Results pages featuring endless scroll. 
- - Pretty URL's for the All Search Results pages.
- - Search by Product name, Product SKU, Product Categories, Product tags, posts and Pages and any combination of these
- - Configure Search of your entire WooCommerce product database by Product titles, SKU's, Product Categories and Tags, exclude any. 
+= General =
+* Use 'live search' to wow your customers - fast and deadly accurate.
+* Add Predictive Search anywhere on your site via unlimited Widgets, Shortcodes and Search functions
+* Fully customizable - define what gets searched and what shows in the search box drop down.
+* Easy to read and easy to sort All Search Results pages featuring endless scroll. 
+* Pretty URL's for the All Search Results pages.
+* Search by Product name, Product SKU, Product Categories, Product tags, posts and Pages and any combination of these
+* Configure Search of your entire WooCommerce product database by Product titles, SKU's, Product Categories and Tags, exclude any. 
 
-* <strong>All Search Results Pages:</strong>
- - To see more results for the search Click through from the Widget drop down footer to the 'All Results Search Page'. Design like the facebook search.
- - 'All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
- - User can configure the All Results Search Page for each result to show 
-  + Number of Characters of description text to show
-  + Product Categories, 
-  + Product Tags, 
-  + Product Prices including 'special' pricing with each result.
-  + Add to cart button
-  + Number of results to show before 'endless scroll' bar.
+= All Search Results Pages: =
+* To see more results for the search Click through from the Widget drop down footer to the 'All Results Search Page'. Design like the facebook search.
+* All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
+* User can configure the All Results Search Page for each result to show 
+ - Number of Characters of description text to show
+ - Product Categories, 
+ - Product Tags, 
+ - Product Prices including 'special' pricing with each result.
+ - Add to cart button
+ - Number of results to show before 'endless scroll' bar.
 
 * 'All Results Search Page' features endless scroll - allows the page to load quickly and show 'infinite' number of results. 
 
-* <strong>Widget Search</strong>
- - Configure each widget to search all 'types'
-  - Product name, 
-  - Product SKU,
-  - Product Categories, 
-  - Product Tags, 
-  - Posts, 
-  - Pages 
-  - or any combination of these.
+= Widget Search =
+* Configure each widget to search all 'types'
+ - Product name, 
+ - Product SKU,
+ - Product Categories, 
+ - Product Tags, 
+ - Posts, 
+ - Pages 
+ - or any combination of these.
 
 * Set the number of each search 'type' eg Product category results to show in the search box dropdown.
 * Use drag and drop to set the search 'type' order that the results show in the drop down.
 * All Search results page sorted is auto sorted into results types configured for the widget.
 
-* <strong>Shortcodes</strong>
- - WooCommerce Predictive Search shortcodes - Insert and configure the Search box into any page or post via shortcode.
- - Customize shortcodes search box dimensions and alignment on page.
- - Full customization just like the Widget search
+= Shortcodes =
+* WooCommerce Predictive Search shortcodes - Insert and configure the Search box into any page or post via shortcode.
+* Customize shortcodes search box dimensions and alignment on page.
+* Full customization just like the Widget search
 
-* <strong>Smart Search</strong>
- - 'Smart Search'. An intuitive technology that auto detects if the page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy. This delivers extremely relevant  search results.
- - Activate Smart search in any widget or any search function.
- - Activate or deactivate the 'Smart Search" feature with the click of a mouse.
+= Smart Search =
+* 'Smart Search'. An intuitive technology that auto detects if the page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy. This delivers extremely relevant  search results.
+* Activate Smart search in any widget or any search function.
+* Activate or deactivate the 'Smart Search" feature with the click of a mouse.
 
-* <strong>Search Function</strong>
- - Add a Predictive Search box to any part of your site that is not widgetized via the Predictive search Function.
- - From the admin panel configure all the Parameters of the Search function then just use the short function code to add the Search box where ever you want it. example in the header.
- - Once installed change the parameters of the global search from the admin panel.
- - Full documentation instructions on how to add the search function to your sites header.
- - Back up 'Book a Service' with us to place the search function if your theme requires advanced CSS skills and you don't have easy access to a coder.
+= Search Function =
+* Add a Predictive Search box to any part of your site that is not widgetized via the Predictive search Function.
+* From the admin panel configure all the Parameters of the Search function then just use the short function code to add the Search box where ever you want it. example in the header.
+* Once installed change the parameters of the global search from the admin panel.
+* Full documentation instructions on how to add the search function to your sites header.
+* Back up 'Book a Service' with us to place the search function if your theme requires advanced CSS skills and you don't have easy access to a coder.
  
 = Plugins Resources = 
 
