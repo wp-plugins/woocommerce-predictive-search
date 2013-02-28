@@ -10,6 +10,10 @@
  * add_search_widget_icon()
  * add_search_widget_mce_popup()
  * parse_shortcode_search_result()
+ * get_product_price()
+ * get_product_addtocart()
+ * get_product_categories()
+ * get_product_tags()
  * display_search()
  * get_result_search_page()
  */
@@ -86,7 +90,7 @@ class WC_Predictive_Search_Shortcodes {
 		}
 		#woo_predictive_upgrade_area { border:2px solid #E6DB55;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; padding:0; position:relative}
 	  	#woo_predictive_upgrade_area h3{ margin-left:10px;}
-	   	#woo_predictive_extensions { background: url("<?php echo WOOPS_IMAGES_URL; ?>/logo_a3blue.png") no-repeat scroll 4px 6px #FFFBCC; -webkit-border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-o-border-radius:10px 10px 0 0; border-radius: 10px 10px 0 0; color: #555555; margin: 0px; padding: 4px 8px 4px 38px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);}
+	   	#woo_predictive_extensions { background: url("<?php echo WOOPS_IMAGES_URL; ?>/logo_a3blue.png") no-repeat scroll 4px 6px #FFFBCC; -webkit-border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-o-border-radius:10px 10px 0 0; border-radius: 10px 10px 0 0; color: #555555; margin: 0px; padding: 4px 8px 4px 100px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);}
 		</style>
 		<div id="woo_search_widget_shortcode" style="display:none;">
 		  <div class="">
@@ -100,6 +104,7 @@ class WC_Predictive_Search_Shortcodes {
             	<p><label for="woo_search_text_lenght"><?php _e('Characters', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_text_lenght" name="woo_search_text_lenght" type="text" value="100" /> <span class="description"><?php _e('Number of product description characters', 'woops'); ?></span></p>
                 <p><label for="woo_search_align"><?php _e('Alignment', 'woops'); ?>:</label> <select disabled="disabled" style="width:100px" id="woo_search_align" name="woo_search_align"><option value="none" selected="selected"><?php _e('None', 'woops'); ?></option><option value="left-wrap"><?php _e('Left - wrap', 'woops'); ?></option><option value="left"><?php _e('Left - no wrap', 'woops'); ?></option><option value="center"><?php _e('Center', 'woops'); ?></option><option value="right-wrap"><?php _e('Right - wrap', 'woops'); ?></option><option value="right"><?php _e('Right - no wrap', 'woops'); ?></option></select> <span class="description"><?php _e('Horizontal aliginment of search box', 'woops'); ?></span></p>
                 <p><label for="woo_search_width"><?php _e('Search box width', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_width" name="woo_search_width" type="text" value="200" />px</p>
+                <p><label for="woo_search_box_text"><?php _e('Search box text message', 'woops'); ?>:</label> <input disabled="disabled" style="width:300px;" size="10" id="woo_search_box_text" name="woo_search_box_text" type="text" value="<?php echo get_option('woocommerce_search_box_text'); ?>" /></p>
                 <p><label for="woo_search_padding"><strong><?php _e('Padding', 'woops'); ?></strong>:</label><br /> 
 				<label for="woo_search_padding_top" style="width:auto; float:none"><?php _e('Above', 'woops'); ?>:</label><input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_top" name="woo_search_padding_top" type="text" value="10" />px &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <label for="woo_search_padding_bottom" style="width:auto; float:none"><?php _e('Below', 'woops'); ?>:</label> <input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_bottom" name="woo_search_padding_bottom" type="text" value="10" />px &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -123,7 +128,12 @@ class WC_Predictive_Search_Shortcodes {
 	function get_product_price($product_id, $show_price=true) {
 		$product_price_output = '';
 		if ($show_price) {
-			$current_product = new WC_Product($product_id);
+			$current_db_version = get_option( 'woocommerce_db_version', null );
+			if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
+				$current_product = new WC_Product($product_id);
+			} else {
+				$current_product = get_product($product_id);
+			}
 			if ($current_product->is_type('grouped')) {
 				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
 			} elseif ($current_product->is_type('variable')) {
@@ -134,6 +144,26 @@ class WC_Predictive_Search_Shortcodes {
 		}
 		
 		return $product_price_output;
+	}
+	
+	function get_product_addtocart($product_id, $show_addtocart=true) {
+		$product_addtocart_output = '';
+		global $product;
+		if ($show_addtocart) {
+			$current_db_version = get_option( 'woocommerce_db_version', null );
+			if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
+				$current_product = new WC_Product($product_id);
+			} else {
+				$current_product = get_product($product_id);
+			}
+			$product = $current_product;
+			ob_start();
+			do_action('woocommerce_after_shop_loop_item');
+			$product_addtocart_html = ob_get_clean();
+			$product_addtocart_output = '<div class="rs_rs_addtocart">'. $product_addtocart_html. '</div>';
+		}
+		
+		return $product_addtocart_output;
 	}
 	
 	function get_product_categories($product_id, $show_categories=true) {
@@ -174,6 +204,8 @@ class WC_Predictive_Search_Shortcodes {
 	}
 	
 	function display_search() {
+		global $wp_query;
+		global $wpdb;
 		global $wc_predictive_id_excludes;
 		$p = 0;
 		$row = 10;
@@ -184,7 +216,9 @@ class WC_Predictive_Search_Shortcodes {
 		$show_price = false;
 		$show_categories = false;
 		$show_tags = false;
-		if (isset($_REQUEST['rs']) && trim($_REQUEST['rs']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['rs'] ) );
+		
+		if (isset($wp_query->query_vars['keyword'])) $search_keyword = stripslashes( strip_tags( urldecode( $wp_query->query_vars['keyword'] ) ) );
+		else if (isset($_REQUEST['rs']) && trim($_REQUEST['rs']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['rs'] ) );
 		
 		$start = $p * $row;
 		$end_row = $row;
@@ -193,10 +227,18 @@ class WC_Predictive_Search_Shortcodes {
 			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
-				$extra_parameter .= '&scat='.$cat_slug;
+				$extra_parameter_admin .= '&scat='.$cat_slug;
+				if (get_option('permalink_structure') == '') 
+					$extra_parameter .= '&scat='.$cat_slug;
+				else
+					$extra_parameter .= '/scat/'.$cat_slug;
 			} elseif($tag_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_tag', 'field' => 'slug', 'terms' => $tag_slug) );
-				$extra_parameter .= '&stag='.$tag_slug;
+				$extra_parameter_admin .= '&stag='.$tag_slug;
+				if (get_option('permalink_structure') == '') 
+					$extra_parameter .= '&stag='.$tag_slug;
+				else
+					$extra_parameter .= '/stag/'.$tag_slug;
 			}
 			
 			$total_args = $args;
@@ -266,7 +308,7 @@ function auto_click_more() {
 			var p_data_obj = jQuery('.rs_more_result .p_data');
 			var p_data = p_data_obj.html();
 			p_data_obj.html('');
-			var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
+			var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter_admin."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
 			jQuery.post('".admin_url('admin-ajax.php')."', urls, function(theResponse){
 				if(theResponse != ''){
 					var num = parseInt(p_data)+1;
@@ -289,7 +331,7 @@ auto_click_more();
 });</script>";
 				}
 			} else {
-				$html .= '<p style="text-align:center">'.__('No result', 'woops').'</p>';
+				$html .= '<p style="text-align:center">'.__('Nothing Found! Please refine your search and try again.', 'woops').'</p>';
 			} 
 			
 			return $html;

@@ -11,6 +11,7 @@
  * woops_limit_words()
  * woops_get_result_popup()
  * create_page()
+ * upgrade_version_2_0()
  */
 class WC_Predictive_Search{
 	
@@ -30,6 +31,8 @@ class WC_Predictive_Search{
 		if ( has_post_thumbnail($post_id) ) {
 			return get_the_post_thumbnail( $post_id, $size ); 
 		}
+		
+		$mediumSRC = '';
 		
 		if (trim($mediumSRC == '')) {
 			$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null); 
@@ -115,10 +118,16 @@ class WC_Predictive_Search{
 			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
-				$extra_parameter .= '&scat='.$cat_slug;
+				if (get_option('permalink_structure') == '')
+					$extra_parameter .= '&scat='.$cat_slug;
+				else
+					$extra_parameter .= '/scat/'.$cat_slug;
 			} elseif($tag_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_tag', 'field' => 'slug', 'terms' => $tag_slug) );
-				$extra_parameter .= '&stag='.$tag_slug;
+				if (get_option('permalink_structure') == '')
+					$extra_parameter .= '&stag='.$tag_slug;
+				else
+					$extra_parameter .= '/stag/'.$tag_slug;
 			}
 			$total_args = $args;
 			$total_args['numberposts'] = -1;
@@ -141,7 +150,10 @@ class WC_Predictive_Search{
 				}
 				$rs_item = '';
 				if ( count($search_products) > $row ) {
-					$link_search = get_permalink(get_option('woocommerce_search_page_id')).'?rs='.$search_keyword.$extra_parameter;
+					if (get_option('permalink_structure') == '')
+						$link_search = get_permalink(get_option('woocommerce_search_page_id')).'?rs='.$search_keyword.$extra_parameter;
+					else
+						$link_search = get_permalink(get_option('woocommerce_search_page_id')).'/keyword/'.$search_keyword.$extra_parameter;
 					$rs_item .= '<div class="more_result"><a href="'.$link_search.'">'.__('See more results for', 'woops').' '.$search_keyword.' <span class="see_more_arrow"></span></a><span>'.__('Displaying top', 'woops').' '.$row.' '.__('results', 'woops').'</span></div>';
 					echo "$rs_item|$link_search|$search_keyword\n";
 				}
@@ -180,6 +192,25 @@ class WC_Predictive_Search{
 		$page_id = wp_insert_post( $page_data );
 		
 		update_option( $option, $page_id );
+	}
+	
+	function upgrade_version_2_0() {
+		$exclude_products = get_option('woocommerce_search_exclude_products', '');
+		if ($exclude_products !== false) {
+			$exclude_products_array = explode(",", $exclude_products);
+			if (is_array($exclude_products_array) && count($exclude_products_array) > 0) {
+				$exclude_products_array_new = array();
+				foreach ($exclude_products_array as $exclude_products_item) {
+					if ( trim($exclude_products_item) > 0) $exclude_products_array_new[] = trim($exclude_products_item);
+				}
+				$exclude_products = $exclude_products_array_new;
+			} else {
+				$exclude_products = array();
+			}
+			update_option('woocommerce_search_exclude_products', (array) $exclude_products);
+		} else {
+			update_option('woocommerce_search_exclude_products', array());
+		}
 	}
 }
 ?>

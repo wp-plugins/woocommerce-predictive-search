@@ -39,15 +39,17 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		if(empty($instance['text_lenght']) || $instance['text_lenght'] < 0) $text_lenght = 100; 
 		else $text_lenght = $instance['text_lenght'];
 		$search_global = empty($instance['search_global']) ? 0 : $instance['search_global'];
+		$search_box_text = $instance['search_box_text'];
+		if (trim($search_box_text) == '') $search_box_text = get_option('woocommerce_search_box_text');
 
 		echo $before_widget;
 		if ( $title )
 			echo $before_title . $title . $after_title;
-		$this->woops_results_search_form($widget_id, $number_items, $text_lenght, '',$search_global);
+		$this->woops_results_search_form($widget_id, $number_items, $text_lenght, '',$search_global, $search_box_text);
 		echo $after_widget;
 	}
 	
-	function woops_results_search_form($widget_id, $number_items=6, $text_lenght=100, $style='', $search_global = 0) {
+	function woops_results_search_form($widget_id, $number_items=6, $text_lenght=100, $style='', $search_global = 0, $search_box_text = '') {
 		
 		// Add ajax search box script and style at footer
 		add_action('wp_footer',array('WC_Predictive_Search_Hook_Filter','add_frontend_script'));
@@ -62,7 +64,44 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
         <script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery("#bt_pp_search_<?php echo $id;?>").click(function(){
-				jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();
+				if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
+					<?php if (get_option('permalink_structure') == '') { ?>
+					
+					jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();
+					
+					<?php } else { ?>
+					
+					var pp_search_url_<?php echo $id;?> = '<?php echo get_permalink(get_option('woocommerce_search_page_id'));?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
+					
+					<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
+					<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
+					
+					window.location = pp_search_url_<?php echo $id;?>;
+					
+					<?php } ?>
+				}
+			});
+			jQuery("#fr_pp_search_widget_<?php echo $id;?>").bind("keypress", function(e) {
+				if (e.keyCode == 13) {
+					if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
+						<?php if (get_option('permalink_structure') == '') { ?>
+						
+						jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();
+						
+						<?php } else { ?>
+						
+						var pp_search_url_<?php echo $id;?> = '<?php echo get_permalink(get_option('woocommerce_search_page_id'));?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
+					
+						<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
+						<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
+						
+						window.location = pp_search_url_<?php echo $id;?>;
+						<?php } ?>
+						return false;
+					} else {
+						return false;
+					}
+				}
 			});
 			var ul_width = jQuery("#pp_search_container_<?php echo $id;?>").find('.ctr_search').innerWidth();
 			var ul_height = jQuery("#pp_search_container_<?php echo $id;?>").height();
@@ -94,9 +133,11 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 			if (get_option('permalink_structure') == '') {
 			?>
             <input type="hidden" name="page_id" value="<?php echo get_option('woocommerce_search_page_id'); ?>"  />
-            <?php
-			}
-			
+            <?php } ?>
+   			<div class="ctr_search">
+			<input type="text" id="pp_course_<?php echo $id;?>" onblur="if (this.value == '') {this.value = '<?php echo $search_box_text; ?>';}" onfocus="if (this.value == '<?php echo $search_box_text; ?>') {this.value = '';}" value="<?php echo $search_box_text; ?>" name="rs" class="txt_livesearch" /><span class="bt_search" id="bt_pp_search_<?php echo $id;?>"></span>
+            </div>
+            <?php			
 			if ($cat_slug != '') { ?>
             	<input type="hidden" name="scat" value="<?php echo $cat_slug; ?>"  />
             <?php
@@ -105,9 +146,6 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
             <?php
 			}
 			?>
-   			<div class="ctr_search">
-			<input type="text" id="pp_course_<?php echo $id;?>" value="" name="rs" class="txt_livesearch" /><span class="bt_search" id="bt_pp_search_<?php echo $id;?>"></span>
-            </div>
 		</form>
         </div>
         <?php if (trim($style) == '') { ?>
@@ -123,18 +161,21 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		$instance['number_items'] = $new_instance['number_items'];
 		$instance['text_lenght'] = strip_tags($new_instance['text_lenght']);
 		$instance['search_global'] = 1;
+		$instance['search_box_text'] = strip_tags($new_instance['search_box_text']);
 		return $instance;
 	}
 
 	function form( $instance ) {
+		$global_search_box_text = get_option('woocommerce_search_box_text');
 		$items_search_default = WC_Predictive_Search_Widgets::get_items_search();
 		
-		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'number_items' => 6, 'text_lenght' => 100, 'search_global' => 0) );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'number_items' => 6, 'text_lenght' => 100, 'search_global' => 0, 'search_box_text' => $global_search_box_text) );
 		$title = strip_tags($instance['title']);
 		if (empty($number_items) || is_array($number_items) ) $number_items = 6;
 		else $number_items = strip_tags($instance['number_items']);
 		$text_lenght = strip_tags($instance['text_lenght']);
 		$search_global = $instance['search_global'];
+		$search_box_text = $instance['search_box_text'];
 ?>
 		<style>
 			#woo_predictive_upgrade_area { border:2px solid #E6DB55;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; padding:5px; position:relative}
@@ -145,6 +186,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 			ul.predictive_search_item li.ui-sortable-helper{background-color:#DDD;}
 		</style>
 			<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
+            <p><label for="<?php echo $this->get_field_id('search_box_text'); ?>"><?php _e('Search box text message:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('search_box_text'); ?>" name="<?php echo $this->get_field_name('search_box_text'); ?>" type="text" value="<?php echo esc_attr($search_box_text); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('number_items'); ?>"><?php _e('Number of results to show:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('number_items'); ?>" name="<?php echo $this->get_field_name('number_items'); ?>" type="text" value="<?php echo esc_attr($number_items); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('text_lenght'); ?>"><?php _e(' Results description character count:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('text_lenght'); ?>" name="<?php echo $this->get_field_name('text_lenght'); ?>" type="text" value="<?php echo esc_attr($text_lenght); ?>" /></p>
             <fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to','woops'); ?> <a href="<?php echo WOOPS_AUTHOR_URI; ?>" target="_blank"><?php _e('Pro Version', 'woops'); ?></a> <?php _e('to activate', 'woops'); ?></legend>

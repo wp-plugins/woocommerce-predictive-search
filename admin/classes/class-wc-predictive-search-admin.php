@@ -6,10 +6,12 @@
  *
  * Table Of Contents
  *
+ * custom_types()
  * set_setting()
  * get_id_excludes()
  * __construct()
  * on_add_tab()
+ * predictive_search_global_start()
  * settings_tab_action()
  * add_settings_fields()
  * get_tab_in_view()
@@ -18,8 +20,16 @@
  * setting()
  * predictive_extension()
  * predictive_extension_shortcode()
+ * wc_predictive_search_multi_select()
+ * add_scripts()
  */
 class WC_Predictive_Search_Settings {
+	public function custom_types() {
+		$custom_type = array('wc_predictive_search_multi_select');
+		
+		return $custom_type;
+	}
+	
 	public function set_setting($reset=false){
 		if ( get_option('woocommerce_search_text_lenght') <= 0 || $reset ) {
 			update_option('woocommerce_search_text_lenght','100');
@@ -44,8 +54,13 @@ class WC_Predictive_Search_Settings {
 	public function get_id_excludes() {
 		global $wc_predictive_id_excludes;
 		
+		$exclude_products = get_option('woocommerce_search_exclude_products', '');
+		if (is_array($exclude_products)) {
+			$exclude_products = implode(",", $exclude_products);
+		}
+		
 		$wc_predictive_id_excludes = array();
-		$wc_predictive_id_excludes['exclude_products'] = get_option('woocommerce_search_exclude_products', '');
+		$wc_predictive_id_excludes['exclude_products'] = $exclude_products;
 		
 		return $wc_predictive_id_excludes;
 	}
@@ -56,6 +71,11 @@ class WC_Predictive_Search_Settings {
         	'ps_settings' => __('Predictive Search', 'woops')
         );
         add_action('woocommerce_settings_tabs', array(&$this, 'on_add_tab'), 10);
+		
+		// add custom type to woocommerce fields
+		foreach ($this->custom_types() as $custom_type) {
+			add_action('woocommerce_admin_field_'.$custom_type, array(&$this, $custom_type) );
+		}
 
         // Run these actions when generating the settings tabs.
         foreach ( $this->settings_tabs as $name => $label ) {
@@ -67,8 +87,7 @@ class WC_Predictive_Search_Settings {
 			}
         }
 		
-		add_action( 'woocommerce_settings_predictive_search_code_start', array(&$this, 'predictive_search_code_start') );
-		add_action( 'woocommerce_settings_predictive_search_code_end', array(&$this, 'predictive_search_code_end') );
+		add_action( 'woocommerce_settings_predictive_search_global_start', array(&$this, 'predictive_search_global_start') );
 
         // Add the settings fields to each tab.
         add_action('woocommerce_ps_settings', array(&$this, 'add_settings_fields'), 10);
@@ -90,6 +109,10 @@ class WC_Predictive_Search_Settings {
       		echo '<a href="' . admin_url('admin.php?page=woocommerce&tab=' . $name) . '" class="' . $class . '">' . $label . '</a>';
      	endforeach;
 	}
+	
+	function predictive_search_global_start() {
+		echo '<tr valign="top"><td class="forminp" colspan="2">'.__('A search results page needs to be selected so that WooCommerce Predictive Search knows where to show search results. This page should have been created upon installation of the plugin, if not you need to create it.', 'woops').'</td></tr>';
+	}
 
     /**
      * settings_tab_action()
@@ -97,7 +120,7 @@ class WC_Predictive_Search_Settings {
      * Do this when viewing our custom settings tab(s). One function for all tabs.
     */
     function settings_tab_action() {
-    	global $woocommerce_settings;
+    	global $wpdb, $woocommerce_settings;
 		
 		// Determine the current tab in effect.
         $current_tab = $this->get_tab_in_view(current_filter(), 'woocommerce_settings_tabs_');
@@ -113,14 +136,6 @@ class WC_Predictive_Search_Settings {
 		#woo_predictive_upgrade_inner h3{ margin-left:10px;}
 		#woo_predictive_extensions { -webkit-border-radius:4px;-moz-border-radius:4px;-o-border-radius:4px; border-radius: 4px 4px 4px 4px; color: #555555; float: right; margin: 0px; padding: 5px; position: absolute; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); width: 38%; right:0; top:0px;}		
         </style>
-        <h3><?php _e('Global Settings', 'woops'); ?></h3>
-        <table class="form-table">
-          <tr valign="top">
-		    <td class="forminp">
-            <?php _e('A search results page needs to be selected so that WooCommerce Predictive Search knows where to show search results. This page should have been created upon installation of the plugin, if not you need to create it.', 'woops');?>
-            </td>
-          </tr>
-		</table>
         <?php
        	do_action('woocommerce_ps_settings');
 		
@@ -131,21 +146,80 @@ class WC_Predictive_Search_Settings {
         <table class="form-table">
             <tr valign="top">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_p_categories"><?php _e('Exclude Product Categories', 'woops');?></label></th>
-				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_p_categories" name="woocommerce_search_exclude_p_categories"> <p class="description"><?php _e("Enter Product Category ID's comma separated", 'woops');?></p></td>
+				<td class="forminp">
+                <select multiple="multiple" name="woocommerce_search_exclude_p_categories" data-placeholder="<?php _e( 'Choose Product Categories', 'woops' ); ?>" style="display:none; width:300px;" class="chzn-select">
+                <?php
+				$results_p_categories = $wpdb->get_results("SELECT t.term_id, t.name FROM ".$wpdb->prefix."terms AS t INNER JOIN ".$wpdb->prefix."term_taxonomy AS tt ON(t.term_id=tt.term_id) WHERE tt.taxonomy='product_cat' ORDER BY t.name ASC");
+				if ($results_p_categories) {
+					foreach($results_p_categories as $p_categories_data) {
+				?>
+                    <option value="<?php echo $p_categories_data->term_id; ?>"><?php echo $p_categories_data->name; ?></option>
+                <? } } ?>
+                </select>
+                </td>
 			</tr>
             <tr valign="top">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_p_tags"><?php _e('Exclude Product Tags', 'woops');?></label></th>
-				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_p_tags" name="woocommerce_search_exclude_p_tags"> <p class="description"><?php _e("Enter Product Tag ID's comma separated", 'woops');?></p></td>
+				<td class="forminp">
+                <select multiple="multiple" name="woocommerce_search_exclude_p_tags" data-placeholder="<?php _e( 'Choose Product Tags', 'woops' ); ?>" style="display:none; width:300px;" class="chzn-select">
+                <?php
+				$results_p_tags = $wpdb->get_results("SELECT t.term_id, t.name FROM ".$wpdb->prefix."terms AS t INNER JOIN ".$wpdb->prefix."term_taxonomy AS tt ON(t.term_id=tt.term_id) WHERE tt.taxonomy='product_tag' ORDER BY t.name ASC");
+				if ($results_p_tags) {
+					foreach($results_p_tags as $p_tags_data) {
+				?>
+                    <option value="<?php echo $p_tags_data->term_id; ?>"><?php echo $p_tags_data->name; ?></option>
+                <? } } ?>
+                </select>
+                </td>
 			</tr>
             <tr valign="top">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_posts"><?php _e('Exclude Posts', 'woops');?></label></th>
-				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_posts" name="woocommerce_search_exclude_posts"> <p class="description"><?php _e("Enter Post ID's comma separated", 'woops');?></p></td>
+				<td class="forminp">
+                <select multiple="multiple" name="woocommerce_search_exclude_posts" data-placeholder="<?php _e( 'Choose Posts', 'woops' ); ?>" style="display:none; width:300px;" class="chzn-select">
+                <?php
+				$results_posts = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='post' AND post_status='publish' ORDER BY post_title ASC");
+				if ($results_posts) {
+					foreach($results_posts as $post_data) {
+				?>
+                    <option value="<?php echo $post_data->ID; ?>"><?php echo $post_data->post_title; ?></option>
+                <? } } ?>
+                </select>
+                </td>
 			</tr>
             <tr valign="top">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_exclude_pages"><?php _e('Exclude Pages', 'woops');?></label></th>
-				<td class="forminp"><input disabled="disabled" type="text" value="" style="min-width:300px;" id="woocommerce_search_exclude_pages" name="woocommerce_search_exclude_pages"> <p class="description"><?php _e("Enter Page ID's comma separated", 'woops');?></p></td>
+				<td class="forminp">
+                <select multiple="multiple" name="woocommerce_search_exclude_posts" data-placeholder="<?php _e( 'Choose Pages', 'woops' ); ?>" style="display:none; width:300px;" class="chzn-select">
+                <?php
+				$results_pages = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='page' AND post_status='publish' ORDER BY post_title ASC");
+				if ($results_pages) {
+					foreach($results_pages as $page_data) {
+				?>
+                    <option value="<?php echo $page_data->ID; ?>"><?php echo $page_data->post_title; ?></option>
+                <? } } ?>
+                </select>
+                </td>
 			</tr>
 		</table>
+        <h3 style="margin-top:0; padding-top:10px;"><?php _e('Focus Keywords', 'woops'); ?></h3>
+        <table class="form-table">
+          <tr valign="top">
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_focus_enable"><?php _e('Predictive Search', 'woops');?></label></th>
+		    <td class="forminp">
+              <input disabled="disabled" type="checkbox" value="1" id="woocommerce_search_focus_enable" name="woocommerce_search_focus_enable" /> <label for="woocommerce_search_focus_enable"><?php _e("Activate to optimize your sites content with Predictive Search 'Focus keywords'", 'woops');?></label>
+            </td>
+		  </tr>
+          <tr valign="top">
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_focus_plugin"><?php _e("Activate SEO 'Focus Keywords'", 'woops');?></label></th>
+		    <td class="forminp">
+              	<select name="woocommerce_search_focus_plugin" data-placeholder="" style="display:none; width:300px;" class="chzn-select">
+                    <option value="" selected="selected"><?php _e( 'Select SEO plugin', 'woops' ); ?></option>
+                    <option value="yoast_seo_plugin" selected="selected"><?php _e( 'Yoast WordPress SEO', 'woops' ); ?></option>
+                    <option value="all_in_one_seo_plugin" selected="selected"><?php _e( 'All in One SEO', 'woops' ); ?></option>
+                </select>
+            </td>
+		  </tr>
+        </table>
         <h3 style="margin-top:0; padding-top:10px;"><?php _e('Search results page settings', 'woops'); ?></h3>
         <table class="form-table">
           <tr valign="top">
@@ -266,6 +340,7 @@ class WC_Predictive_Search_Settings {
 		</table>
         </div></div></td></tr></table>
         <?php
+		add_action('admin_footer', array(&$this, 'add_scripts'), 10);
 	}
 
 	/**
@@ -302,10 +377,34 @@ class WC_Predictive_Search_Settings {
      */
 	function init_form_fields() {
 		global $wpdb;
+		$all_products = array();
+		$results_products = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='product' AND post_status='publish' ORDER BY post_title ASC");
+		if ($results_products) {
+			foreach($results_products as $product_data) {
+				$all_products[$product_data->ID] = $product_data->post_title;
+			}
+		}
+		
   		// Define settings			
      	$this->fields['ps_settings'] = apply_filters('woocommerce_ps_settings_fields', array(
-      		array(
-            	'name' => '',
+			array(
+            	'name' => __( 'Global Search Box Text', 'woops' ),
+                'type' => 'title',
+                'desc' => '',
+          		'id' => 'predictive_search_searchbox_text_start'
+           	),
+			array(  
+				'name' => __( 'Text to Show', 'woops' ),
+				'desc' 		=> __('&lt;empty&gt; shows nothing', 'woops'),
+				'id' 		=> 'woocommerce_search_box_text',
+				'type' 		=> 'text',
+				'css' 		=> 'min-width:300px;',
+				'std' 		=> ''
+			),
+			array('type' => 'sectionend', 'id' => 'predictive_search_searchbox_text_end'),
+			
+			array(
+            	'name' => __('Global Settings', 'woops'),
                 'type' => 'title',
                 'desc' => '',
           		'id' => 'predictive_search_global_start'
@@ -330,10 +429,12 @@ class WC_Predictive_Search_Settings {
            	),
 			array(  
 				'name' => __( 'Exclude Products', 'woops' ),
-				'desc' 		=> __("Enter Product ID's comma separated", "woops"),
+				'desc' 		=> '',
 				'id' 		=> 'woocommerce_search_exclude_products',
-				'type' 		=> 'text',
-				'css' 		=> 'min-width:300px;',
+				'type' 		=> 'wc_predictive_search_multi_select',
+				'std' 		=> '',
+				'placeholder' => __( 'Choose Products', 'woops' ),
+				'options'	=> $all_products,
 			),
         ));
 	}
@@ -353,6 +454,8 @@ class WC_Predictive_Search_Settings {
 
 		woocommerce_update_options($woocommerce_settings[$current_tab]);
 		WC_Predictive_Search_Settings::set_setting(true);
+		
+		update_option('woocommerce_search_exclude_products', (array) $_REQUEST['woocommerce_search_exclude_products']);
 	}
 
     /** Helper functions ***************************************************** */
@@ -372,10 +475,14 @@ class WC_Predictive_Search_Settings {
 		$html .= '<p>'.__("Visit the", 'woops').' <a href="'.WOOPS_AUTHOR_URI.'" target="_blank">'.__("a3rev website", 'woops').'</a> '.__("to see all the extra features the Pro version of this plugin offers like", 'woops').':</p>';
 		$html .= '<p>';
 		$html .= '<ul style="padding-left:10px;">';
-		$html .= '<li>1. '.__('Activate the search results pages settings in this yellow border.', 'woops').'</li>';
-		$html .= '<li>2. '.__('Activate Search by Product Categories, Product Tags, Posts and Pages options in the search widgets.', 'woops').'</li>';
-		$html .= '<li>3. '.__('Activate Search shortcodes for Posts and pages.', 'woops').'</li>';
-		$html .= '<li>4. '.__('Exclude Products, Product categories, tags post and pages from search results.', 'woops').'</li>';
+		$html .= '<li>1. '.__("Activate site search optimization with Predictive Search 'Focus Keywords'.", 'woops').'</li>';
+		$html .= '<li>2. '.__('Activate integration with Yoasts WordPress SEO or All in One SEO plugins.', 'woops').'</li>';
+		$html .= '<li>3. '.__('Activate the Advance All Search results page customization setting.', 'woops').'</li>';
+		$html .= '<li>4. '.__('Activate Search by Product Categories, Product Tags, Posts and Pages options in the search widgets.', 'woops').'</li>';
+		$html .= '<li>5. '.__('Activate Search shortcodes for Posts and pages.', 'woops').'</li>';
+		$html .= '<li>6. '.__('Activate Exclude Product Cats, Product Tags , Posts and pages from search results.', 'woops').'</li>';
+		$html .= '<li>7. '.__('Activate Predictive Search Function to place the search box in any non widget area of your site - example the header.', 'woops').'</li>';
+		$html .= '<li>8. '.__("Activate 'Smart Search' function on Widgets, Shortcode and the search Function", 'woops').'</li>';
 		$html .= '</ul>';
 		$html .= '</p>';
 		$html .= '<h3>'.__('Plugin Documentation', 'woops').'</h3>';
@@ -424,6 +531,45 @@ class WC_Predictive_Search_Settings {
 		$html = '';
 		$html .= '<div id="woo_predictive_extensions">'.__("Yes you'll love the Predictive Search shortcode feature. Upgrading to the", 'woops').' <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('Pro Version', 'woops').'</a> '.__("activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features.", 'woops').'</div>';
 		return $html;	
+	}
+	
+	function wc_predictive_search_multi_select($value) {
+		if ( $value['desc_tip'] === true ) {
+    		$description = '<img class="help_tip" data-tip="' . esc_attr( $value['desc'] ) . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';
+    	} elseif ( $value['desc_tip'] ) {
+    		$description = '<img class="help_tip" data-tip="' . esc_attr( $value['desc_tip'] ) . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';
+    	} else {
+    		$description = '<span class="description">' . $value['desc'] . '</span>';
+    	}
+		$selections = (array) get_option($value['id']);
+	?>
+    	<tr valign="top">
+            <th scope="row" class="titledesc">
+                <label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo $value['name']; ?></label>
+            </th>
+            <td class="forminp">
+                <select multiple="multiple" name="<?php echo esc_attr( $value['id'] ); ?>[]" data-placeholder="<?php echo $value['placeholder']; ?>" style="display:none; width:600px; <?php echo esc_attr( $value['css'] ); ?>" class="chzn-select <?php if (isset($value['class'])) echo $value['class']; ?>">
+                <?php
+                foreach ($value['options'] as $key => $val) {
+                ?>
+                    <option value="<?php echo esc_attr( $key ); ?>" <?php selected( in_array($key, $selections), true ); ?>><?php echo $val ?></option>
+                <?php
+                }
+                ?>
+                </select> <?php echo $description; ?>
+            </td>
+		</tr>
+    <?php
+	}
+	
+	function add_scripts(){
+		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+		wp_enqueue_script('jquery');
+		
+		wp_enqueue_style( 'a3rev-chosen-style', WOOPS_JS_URL . '/chosen/chosen.css' );
+		wp_enqueue_script( 'chosen', WOOPS_JS_URL . '/chosen/chosen.jquery'.$suffix.'.js', array(), false, true );
+		
+		wp_enqueue_script( 'a3rev-chosen-script-init', WOOPS_JS_URL.'/init-chosen.js', array(), false, true );
 	}
 }
 ?>
