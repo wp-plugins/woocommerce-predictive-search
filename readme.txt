@@ -16,7 +16,7 @@ WooCommerce Predictive Search queries <strong>your entire product database</stro
  
 = Key Features =
 
-* <strong>New Feature</strong> ‘Pretty URL's for the All Search Results pages.
+* <strong>New Feature</strong> Pretty URL for the All Search Results pages.
 * Use 'live search' to wow your customers - fast and accurate.
 * Add and configure a search box to any widgetized area on your site.
 * Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
@@ -65,17 +65,18 @@ WooCommerce Predictive Search allows you to optimize your site search just the w
   + Product Prices including 'special' pricing with each result.
   + Add to cart button
   + Number of results to show before 'endless scroll' bar.
+
 * 'All Results Search Page' features endless scroll - allows the page to load quickly and show 'infinite' number of results. 
 
 * <strong>Widget Search</strong>
-* Configure each widget to search all 'types' - 
- - Product name, 
- - Product SKU,
- - Product Categories, 
- - Product Tags, 
- - Posts, 
- - Pages 
- - or any combination of these.
+ - Configure each widget to search all 'types'
+  - Product name, 
+  - Product SKU,
+  - Product Categories, 
+  - Product Tags, 
+  - Posts, 
+  - Pages 
+  - or any combination of these.
 
 * Set the number of each search 'type' eg Product category results to show in the search box dropdown.
 * Use drag and drop to set the search 'type' order that the results show in the drop down.
@@ -168,9 +169,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 = 2.0 - 2013/02/28 =
 * Feature: Updated all plugin code to be WooCommerce V2.0 compatible with backward compatibility.
-* Feature: Added ‘Pretty URL' support to replace the All Search Results pages parameter driven URLS
+* Feature: Added 'Pretty URL' support to replace the All Search Results pages parameter driven URLS
 * Feature: Added the ability to add text content that shows inside the Search box. Added as a Global setting or can be individually set on each Widget
-* Feature: Added a new styling lib for drop-downs and Options this was important because it now uses the same lib as WooCommerce uses – makes excluding Products from Predictive Serach very easy and quick.
+* Feature: Added a new styling lib for drop-downs and Options this was important because it now uses the same lib as WooCommerce uses to makes excluding Products from Predictive Serach very easy and quick.
 * Fixed: Undefined variable mediumSRC notice showing in search box dropdown when product does not have a featured image.We fixed by defining the variable.
 * Tweak: Jumped version to 2.0 to keep in synch with the Pro Version.
 
