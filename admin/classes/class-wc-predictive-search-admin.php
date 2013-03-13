@@ -154,7 +154,7 @@ class WC_Predictive_Search_Settings {
 					foreach($results_p_categories as $p_categories_data) {
 				?>
                     <option value="<?php echo $p_categories_data->term_id; ?>"><?php echo $p_categories_data->name; ?></option>
-                <? } } ?>
+                <?php } } ?>
                 </select>
                 </td>
 			</tr>
@@ -168,7 +168,7 @@ class WC_Predictive_Search_Settings {
 					foreach($results_p_tags as $p_tags_data) {
 				?>
                     <option value="<?php echo $p_tags_data->term_id; ?>"><?php echo $p_tags_data->name; ?></option>
-                <? } } ?>
+                <?php } } ?>
                 </select>
                 </td>
 			</tr>
@@ -182,7 +182,7 @@ class WC_Predictive_Search_Settings {
 					foreach($results_posts as $post_data) {
 				?>
                     <option value="<?php echo $post_data->ID; ?>"><?php echo $post_data->post_title; ?></option>
-                <? } } ?>
+                <?php } } ?>
                 </select>
                 </td>
 			</tr>
@@ -196,7 +196,7 @@ class WC_Predictive_Search_Settings {
 					foreach($results_pages as $page_data) {
 				?>
                     <option value="<?php echo $page_data->ID; ?>"><?php echo $page_data->post_title; ?></option>
-                <? } } ?>
+                <?php } } ?>
                 </select>
                 </td>
 			</tr>
