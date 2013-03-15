@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -165,6 +165,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.0.2 - 2013/03/15 =
+* Feature: All Results search page shortcode now shows as an image in the Search results page Visual text editor instead of the shortcode [woocommerce_search]. We have used an image to overcome some confusion about if the shortcode was a3rev Predictive Search or a WooCommerce shortcode function. Also has instructions (in English) about moving the shortcode to another page. After you upgrade, take a look
 
 = 2.0.1 - 2013/03/13 =
 * Fixed : Can't activate the plugin on some sites . The problem was in php configuration differences .It was caused by php configuration related to short <?php syntax which allows to use <? instead. Thanks to WordPress member Ovidiu for firstly reporting this then giving us ftp and wp-admin access to see and find the problem on his server.
