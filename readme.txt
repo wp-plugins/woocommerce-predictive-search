@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,12 +12,13 @@ WooCommerce Predictive Search gives your customers an awesome search experience 
  
 == Description ==
 
-WooCommerce Predictive Search queries <strong>your entire product database</strong> while you type. It delivers users instant and changing results as they type in the dropdown which shows the product thumbnail, product title and description. Users can click through from the dropdown to the 'All Results Search page' that features endless scroll. 
+WooCommerce Predictive Search engine queries <strong>your entire product database</strong> while you type. It delivers users instant and changing results as they type in the dropdown which shows the product thumbnail, product title and description. Users can click through from the dropdown to the 'All Results Search page' that features endless scroll. 
  
 = Key Features =
 
+* WooCommerce Predictive Search engine delivers 100% accurate results, 100% of the time.
 * New Feature Pretty URL for the All Search Results pages.
-* Use 'live search' to wow your customers - fast and accurate.
+* Use 'live search' to wow your customers by delivering deadly, super fast search results.
 * Add and configure a search box to any widgetized area on your site.
 * Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
 * Searches your entire WooCommerce product database for the product name that match what is being typed.
@@ -37,7 +38,9 @@ Once you have the plugin installed and activated please refer to the plugins com
 
 = Pro Version Upgrade =
 
-WooCommerce Predictive Search allows you to optimize your site search just the way you want it with 100% accuracy while delivering your customers stunning 'live search' results for your entire site. <strong>Pro Version advanced features.</strong>
+WooCommerce Predictive Search is now the most powerful site search engine ever developed, because with the Pro version you can optimize your entire site search to perform just the way you want it too. No matter how your customers or clients search the all new Predictive Search 'Focus keyword' feature allows you to configure your site search feature to return the results you want when you want it. Total Control.
+
+= Pro Version advanced features.=
 
 = Site Search Optimization: =
 * Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
@@ -166,8 +169,15 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.0 - 2013/03/22 =
+* Feature: Newly developed mysql command that makes the Predictive Search Engine results 100% accurate, 100% of the time. Install this upgrade and try it out for yourself - you will be absolutely amazed, excited, over the moon like we are about it.
+* Fixed: Bug for users who have https: (SSL) on their sites wp-admin but have http on sites front end. This was causing search results to show a -1 in the drop down instead of the results because wp-admin with SSL applied only allows https:, but the url of admin-ajax.php is http: and it is denied hence returning the ajax -1 error. Fixed by writing a filter to recognize when https is configured on wp-admin and parsing correctly. If you do not have this configuration nothing chnages, if you then Predictive Search works as it should without doing anything.
+* Tweak: Jumped version from 2.0.2 to 2.1.0 with the release of the Predictive Search engine 100% accurate results upgrade. 
+
+
 = 2.0.2 - 2013/03/15 =
 * Feature: All Results search page shortcode now shows as an image in the Search results page Visual text editor instead of the shortcode [woocommerce_search]. We have used an image to overcome some confusion about if the shortcode was a3rev Predictive Search or a WooCommerce shortcode function. Also has instructions (in English) about moving the shortcode to another page. After you upgrade, take a look
+
 
 = 2.0.1 - 2013/03/13 =
 * Fixed : Can't activate the plugin on some sites . The problem was in php configuration differences .It was caused by php configuration related to short <?php syntax which allows to use <? instead. Thanks to WordPress member Ovidiu for firstly reporting this then giving us ftp and wp-admin access to see and find the problem on his server.

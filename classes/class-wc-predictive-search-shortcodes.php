@@ -158,7 +158,8 @@ class WC_Predictive_Search_Shortcodes {
 			}
 			$product = $current_product;
 			ob_start();
-			do_action('woocommerce_after_shop_loop_item');
+			if (function_exists('woocommerce_template_loop_add_to_cart') )
+				woocommerce_template_loop_add_to_cart();
 			$product_addtocart_html = ob_get_clean();
 			$product_addtocart_output = '<div class="rs_rs_addtocart">'. $product_addtocart_html. '</div>';
 		}
@@ -224,7 +225,7 @@ class WC_Predictive_Search_Shortcodes {
 		$end_row = $row;
 				
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter_admin .= '&scat='.$cat_slug;
@@ -309,7 +310,7 @@ function auto_click_more() {
 			var p_data = p_data_obj.html();
 			p_data_obj.html('');
 			var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter_admin."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
-			jQuery.post('".admin_url('admin-ajax.php')."', urls, function(theResponse){
+			jQuery.post('".( ( is_ssl() || force_ssl_admin() || force_ssl_login() ) ? str_replace( 'http:', 'https:', admin_url( 'admin-ajax.php' ) ) : str_replace( 'https:', 'http:', admin_url( 'admin-ajax.php' ) ) )."', urls, function(theResponse){
 				if(theResponse != ''){
 					var num = parseInt(p_data)+1;
 					p_data_obj.html(num);
@@ -341,6 +342,7 @@ auto_click_more();
 	function get_result_search_page() {
 		check_ajax_referer( 'woops-get-result-search-page', 'security' );
 		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
+		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
 		global $wc_predictive_id_excludes;
 		$p = 1;
 		$row = 10;
@@ -360,7 +362,7 @@ auto_click_more();
 		$end_row = $row;
 		
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter .= '&scat='.$cat_slug;

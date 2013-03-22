@@ -101,6 +101,7 @@ class WC_Predictive_Search{
 	function get_result_popup() {
 		check_ajax_referer( 'woops-get-result-popup', 'security' );
 		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
+		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
 		global $wc_predictive_id_excludes;
 		$row = 6;
 		$text_lenght = 100;
@@ -115,7 +116,7 @@ class WC_Predictive_Search{
 		$end_row = $row;
 		
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'title', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products']);
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				if (get_option('permalink_structure') == '')

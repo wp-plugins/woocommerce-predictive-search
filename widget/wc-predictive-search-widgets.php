@@ -106,7 +106,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 			var ul_width = jQuery("#pp_search_container_<?php echo $id;?>").find('.ctr_search').innerWidth();
 			var ul_height = jQuery("#pp_search_container_<?php echo $id;?>").height();
 			
-			var urls = '<?php echo admin_url('admin-ajax.php');?>'+'?action=woops_get_result_popup';
+			var urls = '<?php echo ( ( is_ssl() || force_ssl_admin() || force_ssl_login() ) ? str_replace( 'http:', 'https:', admin_url( 'admin-ajax.php' ) ) : str_replace( 'https:', 'http:', admin_url( 'admin-ajax.php' ) ) ) ;?>'+'?action=woops_get_result_popup';
 			
             jQuery("#pp_course_<?php echo $id;?>").autocomplete(urls, {
                 width: ul_width,

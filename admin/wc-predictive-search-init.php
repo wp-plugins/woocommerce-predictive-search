@@ -6,7 +6,7 @@ function wc_predictive_install() {
 	global $wp_rewrite;
 	WC_Predictive_Search::create_page( _x('woocommerce-search', 'page_slug', 'woops') , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
 	WC_Predictive_Search_Settings::set_setting();
-	update_option('wc_predictive_search_lite_version', '2.0.2');
+	update_option('wc_predictive_search_lite_version', '2.1.0');
 	$wp_rewrite->flush_rules();
 }
 
@@ -49,8 +49,10 @@ if (in_array (basename($_SERVER['PHP_SELF']), array('post.php', 'page.php', 'pag
 	add_action('admin_footer', array('WC_Predictive_Search_Shortcodes', 'add_search_widget_mce_popup'));
 }
 
-if (!is_admin())
+if (!is_admin()) {
 	add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
+	add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
+}
 
 // AJAX get result search page
 add_action('wp_ajax_woops_get_result_search_page', array('WC_Predictive_Search_Shortcodes', 'get_result_search_page'));
@@ -66,7 +68,7 @@ if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -
 	update_option('wc_predictive_search_lite_version', '2.0');
 }
 
-update_option('wc_predictive_search_lite_version', '2.0.2');
+update_option('wc_predictive_search_lite_version', '2.1.0');
 
 global $wc_predictive;
 $wc_predictive = new WC_Predictive_Search_Settings();

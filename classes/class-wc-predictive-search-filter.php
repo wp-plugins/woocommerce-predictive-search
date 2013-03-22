@@ -94,7 +94,7 @@ class WC_Predictive_Search_Hook_Filter {
 	function search_by_title_only( $search, &$wp_query ) {
 		global $wpdb;
 		$q = $wp_query->query_vars;
-		if ( empty( $search) )
+		if ( empty( $search) || !isset($q['s']) )
 			return $search; // skip processing - no search term in query
 		$search = '';
 		$term = esc_sql( like_escape( trim($q['s']) ) );
@@ -103,6 +103,17 @@ class WC_Predictive_Search_Hook_Filter {
 			$search = " AND ({$search}) ";
 		}
 		return $search;
+	}
+	
+	function predictive_posts_orderby( $orderby, &$wp_query ) {
+		global $wpdb;
+		$q = $wp_query->query_vars;
+		if (isset($q['orderby']) && $q['orderby'] == 'predictive' && isset($q['s']) ) {
+			$term = esc_sql( like_escape( trim($q['s']) ) );
+			$orderby = "$wpdb->posts.post_title NOT LIKE '{$term}%' ASC, $wpdb->posts.post_title ASC";
+		}
+		
+		return $orderby;
 	}
 	
 	function plugin_extra_links($links, $plugin_name) {
