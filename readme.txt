@@ -40,7 +40,7 @@ Once you have the plugin installed and activated please refer to the plugins com
 
 WooCommerce Predictive Search is now the most powerful site search engine ever developed, because with the Pro version you can optimize your entire site search to perform just the way you want it too. No matter how your customers or clients search the all new Predictive Search 'Focus keyword' feature allows you to configure your site search feature to return the results you want when you want it. Total Control.
 
-= Pro Version advanced features.=
+= Pro Version advanced features =
 
 = Site Search Optimization: =
 * Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
