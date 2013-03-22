@@ -171,7 +171,7 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 = 2.1.0 - 2013/03/22 =
 * Feature: Newly developed mysql command that makes the Predictive Search Engine results 100% accurate, 100% of the time. Install this upgrade and try it out for yourself - you will be absolutely amazed, excited, over the moon like we are about it.
-* Fixed: Bug for users who have https: (SSL) on their sites wp-admin but have http on sites front end. This was causing search results to show a -1 in the drop down instead of the results because wp-admin with SSL applied only allows https:, but the url of admin-ajax.php is http: and it is denied hence returning the ajax -1 error. Fixed by writing a filter to recognize when https is configured on wp-admin and parsing correctly. If you do not have this configuration nothing chnages, if you then Predictive Search works as it should without doing anything.
+* Fixed: Bug for users who have https: (SSL) on their sites wp-admin but have http on sites front end. This was causing search results to show a -1 in the drop down instead of the results because wp-admin with SSL applied only allows https:, but the url of admin-ajax.php is http: and it is denied hence returning the ajax -1 error. Fixed by writing a filter to recognize when https is configured on wp-admin and parsing correctly. If you do not have this configuration nothing changes for you, if you do have https on your wp-admin (or install it in the future) and http on the front end then Predictive Search now automatically detects that and works as it should.
 * Tweak: Jumped version from 2.0.2 to 2.1.0 with the release of the Predictive Search engine 100% accurate results upgrade. 
 
 
