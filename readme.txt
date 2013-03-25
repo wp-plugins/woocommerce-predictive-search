@@ -110,7 +110,9 @@ WooCommerce Predictive Search is now the most powerful site search engine ever d
 
 = Localization =
 
-* English (default) - always included. *.po file (woops.po) in languages folder for translations.
+* English (default) - always included.
+* Dutch (nl_NL) credit to Erwin Saunders.
+*.po file (woops.po) in languages folder for translations.
 * If you do a translation for your site please send it to us for inclusion in the plugin language folder. We'll acknowledge your work here. [Go here](http://www.a3rev.com/contact/) to send your translation files to us.
 
 == Installation ==
