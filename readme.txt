@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -147,7 +147,6 @@ The manual installation method involves downloading our plugin and uploading it 
 
 4. The plugin auto adds a Predictive search Shortcode icon to all of your pages and posts visual editors. Note: Shortcodes are not a supported feature on the lite version.
 
-
 == Usage ==
 
 1. WP admin > WooCommerce > Settings > Predictive Search Tab
@@ -171,19 +170,19 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.1 - 2013/04/01 =
+* Fixed: All Results pages returning a 404 page not found when custom permalinks set with a trailing slash. When a sites custom permalinks where set with a trailing slash this caused an extra / in the Results Search pages URL resulting in a 404. The plugin now checks if the trailing slash is present and allows for that to produce the correct URL.
+
 = 2.1.0 - 2013/03/22 =
 * Feature: Newly developed mysql command that makes the Predictive Search Engine results 100% accurate, 100% of the time. Install this upgrade and try it out for yourself - you will be absolutely amazed, excited, over the moon like we are about it.
 * Fixed: Bug for users who have https: (SSL) on their sites wp-admin but have http on sites front end. This was causing search results to show a -1 in the drop down instead of the results because wp-admin with SSL applied only allows https:, but the url of admin-ajax.php is http: and it is denied hence returning the ajax -1 error. Fixed by writing a filter to recognize when https is configured on wp-admin and parsing correctly. If you do not have this configuration nothing changes for you, if you do have https on your wp-admin (or install it in the future) and http on the front end then Predictive Search now automatically detects that and works as it should.
 * Tweak: Jumped version from 2.0.2 to 2.1.0 with the release of the Predictive Search engine 100% accurate results upgrade. 
 
-
 = 2.0.2 - 2013/03/15 =
 * Feature: All Results search page shortcode now shows as an image in the Search results page Visual text editor instead of the shortcode [woocommerce_search]. We have used an image to overcome some confusion about if the shortcode was a3rev Predictive Search or a WooCommerce shortcode function. Also has instructions (in English) about moving the shortcode to another page. After you upgrade, take a look
 
-
 = 2.0.1 - 2013/03/13 =
 * Fixed : Can't activate the plugin on some sites . The problem was in php configuration differences .It was caused by php configuration related to short <?php syntax which allows to use <? instead. Thanks to WordPress member Ovidiu for firstly reporting this then giving us ftp and wp-admin access to see and find the problem on his server.
-
 
 = 2.0 - 2013/02/28 =
 * Feature: Updated all plugin code to be WooCommerce V2.0 compatible with backward compatibility.
@@ -193,21 +192,16 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 * Fixed: Undefined variable mediumSRC notice showing in search box dropdown when product does not have a featured image.We fixed by defining the variable.
 * Tweak: Jumped version to 2.0 to keep in synch with the Pro Version.
 
-
 = 1.0.8 - 2013/01/08 = 
 * Tweak: Updated Support and Pro Version link URL's on wordpress.org description, plugins and plugins dashboard. Links were returning 404 errors since the launch of the all new a3rev.com mobile responsive site as the base e-commerce permalinks is changed.
-
 
 = 1.0.7 - 2012/12/18 =
 * Feature: Added get Product Name results character description from Products 'short description' if no content is entered for Product description.
 * Fixed: Plugin now supports themes that use post_type array rather than post_type string. If the theme post_type is array plugin will now use function is_array() and in_array() instead of trim() function to generate the All Search Results pages. Thanks to Dietmar Hohn of Germany for working with us on this quirky bug fix.
 
-
 = 1.0.6 - 2012/11/27 =
 Security - Vulnerability Fix - please update your plugin now.
-
 * Fixed: XSS Vulnerabilities. Added strip tags function to stop XSS injections by adding script via the predictive search box. Thanks to Jason Flemming for alerting us to this issue.
-
 
 = 1.0.5 - 2012/11/22 =
 * Fixed: Version 1.0.4 fix where we removed Predictive Search filter 'posts_search' from single product page edit page to fix the Cross sells and Upsells search caused the Products search filter to be corrupted because we use Wordpress ajax to show results in the widget drop down. The ajax is called from admin-ajax.php file in admin so it also did not add the filter and show incorrect results.
@@ -216,18 +210,15 @@ Security - Vulnerability Fix - please update your plugin now.
 * Feature - Change to admin panel for Predictive Search Function to keep the Lite and Pro Versions in sync for seamless upgrade - Pro Version Search function for replacing WordPress / WooCommerce or Theme Search functions in theme header has been upgraded to allow for easier global function configuration. Go to the WooCommerce > Settings > Predictive Search and you will see that with the Pro Version you can now add and update the function search values on that page. Once values are added and the page updated Pro version license holders can just add the global function to their header.php file.
 * Tweak: Added link on admin panel to our latest WooCommerce Lite Version plugin - WooCommerce Widget Product Slideshow.   
 
-
 = 1.0.4 - 2012/11/16 =
 * Fixed: Removed Predictive Search filter 'posts_search' from single product page edit page. The filter was causing the 'Related Products' Up-Sells and Cross-Sells 'Search for a Product' in the WooCommerce meta not to work at times on both the Lite version and the Pro version.
 * Tweak: Added link to our latest WooCommerce plugin - WooCommerce Widget Product Slideshow to the list of available A3 WooCommerce plugins on the Predictive Search admin tab.
-
 
 = 1.0.3 - 2012/09/25 =
 * Feature: Automated the All Results Search page endless scroll feature. No longer have to click the bar to see more results.
 * Tweak: Edited widget, shortcode pop up and function to show Pro Version new Search by Product SKU feature
 * Tweak: Edited admin page to show new Pro Version add to cart feature on All Search Results page.
 * Tweak: Updated readme for WordPress description text. 
-
 
 = 1.0.2 - 2012/09/14 =
 * Feature: Activated the ability in Lite version to set the number of search results that show in the widget search box dropdown. 
@@ -238,13 +229,11 @@ Security - Vulnerability Fix - please update your plugin now.
 * Tweak: Updated Predictive Search WooCommerce Tab with links to other A3 WooCommerce plugins on wordpress.org for ease of navigation.
 * Tweak: UI changes to Widget to accommodate the new Pro Major Update features. 
 
-
 = 1.0.1 - 2012/08/03 =
 * Fix: Show the 6 results with 100 characters of product description by default when no value is present in Widget control and Admin panel
 * Fix: Change z-index for search box from 1001 to 99 so that themes nav bar dropdowns slide over it instead of behind the search box
 * Feature: Hide the description when enter 0 as the number of description characters in the sidebar widget and Admin panel.
 * Feature: Show first thumb image in product gallery if the product does not have feature image.
-
 
 = 1.0.0 - 2012/08/01 =
 * Initial release.
