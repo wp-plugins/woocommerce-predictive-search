@@ -155,7 +155,7 @@ class WC_Predictive_Search{
 						$link_search = get_permalink(get_option('woocommerce_search_page_id')).'?rs='.$search_keyword.$extra_parameter;
 					else
 						$link_search = rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' ).'/keyword/'.$search_keyword.$extra_parameter;
-					$rs_item .= '<div class="more_result"><a href="'.$link_search.'">'.__('See more results for', 'woops').' '.$search_keyword.' <span class="see_more_arrow"></span></a><span>'.__('Displaying top', 'woops').' '.$row.' '.__('results', 'woops').'</span></div>';
+					$rs_item .= '<div class="more_result" rel="more_result"><a href="'.$link_search.'">'.__('See more results for', 'woops').' '.$search_keyword.' <span class="see_more_arrow"></span></a><span>'.__('Displaying top', 'woops').' '.$row.' '.__('results', 'woops').'</span></div>';
 					echo "$rs_item|$link_search|$search_keyword\n";
 				}
 			} else {

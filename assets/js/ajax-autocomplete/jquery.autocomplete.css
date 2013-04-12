@@ -20,6 +20,7 @@
 .predictive_results ul li .rs_content_popup{float:left; width:68%;}
 .rs_name{margin-left:0px;}
 .predictive_results ul li, .predictive_results ul li a, .predictive_results ul li p{font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:14px; color:#000 !important;}
+.predictive_results ul li .result_row a{display:inline-block !important;width:100% !important;}
 .predictive_results ul li a:hover{opacity:1 !important; color:#FFF !important;}
 .predictive_results ul li .rs_name{width:100%;color: #3B5998 !important; font-weight:bold !important; padding-bottom:2px !important; float:left !important;}
 .predictive_results ul li .rs_description{width:100%; float:left !important;}

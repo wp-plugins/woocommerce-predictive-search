@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -170,6 +170,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.2 - 2013/04/12 =
+* Fixed: Link from search box drop down footer to All Results Search pages not working in Internet Explorer 8, 9 and 10.
+
 = 2.1.1 - 2013/04/01 =
 * Fixed: All Results pages returning a 404 page not found when custom permalinks set with a trailing slash. When a sites custom permalinks where set with a trailing slash this caused an extra / in the Results Search pages URL resulting in a 404. The plugin now checks if the trailing slash is present and allows for that to produce the correct URL.
 
@@ -237,3 +240,9 @@ Security - Vulnerability Fix - please update your plugin now.
 
 = 1.0.0 - 2012/08/01 =
 * Initial release.
+
+
+== Upgrade Notice ==
+
+= 2.1.2 =
+Fix for IE bug. Please install this update now.

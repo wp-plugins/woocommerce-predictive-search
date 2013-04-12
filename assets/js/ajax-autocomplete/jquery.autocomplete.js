@@ -606,11 +606,13 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			    $(target(event)).addClass(CLASSES.ACTIVE);            
 	        }
 		}).click(function(event) {
-			$(target(event)).addClass(CLASSES.ACTIVE);
-			select();
-			// TODO provide option to avoid setting focus again after selection? useful for cleanup-on-focus
-			input.focus();
-			return false;
+			if ( $(target(event)).children('div').attr('rel') != 'more_result' ) {
+				$(target(event)).addClass(CLASSES.ACTIVE);
+				select();
+				// TODO provide option to avoid setting focus again after selection? useful for cleanup-on-focus
+				input.focus();
+				return false;
+			}
 		}).mousedown(function() {
 			config.mouseDownOnSelect = true;
 		}).mouseup(function() {
