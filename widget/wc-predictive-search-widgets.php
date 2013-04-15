@@ -63,7 +63,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		?>
         <script type="text/javascript">
 		jQuery(document).ready(function() {
-			jQuery("#bt_pp_search_<?php echo $id;?>").click(function(){
+			jQuery(document).on("click", "#bt_pp_search_<?php echo $id;?>", function(){
 				if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
 					<?php if (get_option('permalink_structure') == '') { ?>
 					
@@ -71,7 +71,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 					
 					<?php } else { ?>
 					
-					var pp_search_url_<?php echo $id;?> = '<?php echo get_permalink(get_option('woocommerce_search_page_id'));?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
+					var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
 					
 					<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
 					<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
@@ -90,7 +90,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 						
 						<?php } else { ?>
 						
-						var pp_search_url_<?php echo $id;?> = '<?php echo get_permalink(get_option('woocommerce_search_page_id'));?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
+						var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
 					
 						<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
 						<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
