@@ -39,13 +39,13 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		if(empty($instance['text_lenght']) || $instance['text_lenght'] < 0) $text_lenght = 100; 
 		else $text_lenght = $instance['text_lenght'];
 		$search_global = empty($instance['search_global']) ? 0 : $instance['search_global'];
-		$search_box_text = $instance['search_box_text'];
+		$search_box_text = ( isset($instance['search_box_text']) ? $instance['search_box_text'] : '' );
 		if (trim($search_box_text) == '') $search_box_text = get_option('woocommerce_search_box_text');
 
 		echo $before_widget;
 		if ( $title )
 			echo $before_title . $title . $after_title;
-		$this->woops_results_search_form($widget_id, $number_items, $text_lenght, '',$search_global, $search_box_text);
+		echo $this->woops_results_search_form($widget_id, $number_items, $text_lenght, '',$search_global, $search_box_text);
 		echo $after_widget;
 	}
 	
@@ -60,72 +60,55 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		$tag_slug = '';
 		$row = 6;
 		if ( $number_items > 0  ) $row = $number_items;
+		
+		ob_start();
 		?>
-        <script type="text/javascript">
-		jQuery(document).ready(function() {
-			jQuery(document).on("click", "#bt_pp_search_<?php echo $id;?>", function(){
-				if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
-					<?php if (get_option('permalink_structure') == '') { ?>
-					
-					jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();
-					
-					<?php } else { ?>
-					
-					var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
-					
-					<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
-					<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
-					
-					window.location = pp_search_url_<?php echo $id;?>;
-					
-					<?php } ?>
-				}
-			});
-			jQuery("#fr_pp_search_widget_<?php echo $id;?>").bind("keypress", function(e) {
-				if (e.keyCode == 13) {
-					if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
-						<?php if (get_option('permalink_structure') == '') { ?>
-						
-						jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();
-						
-						<?php } else { ?>
-						
-						var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
-					
-						<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
-						<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
-						
-						window.location = pp_search_url_<?php echo $id;?>;
-						<?php } ?>
-						return false;
-					} else {
-						return false;
-					}
-				}
-			});
-			var ul_width = jQuery("#pp_search_container_<?php echo $id;?>").find('.ctr_search').innerWidth();
-			var ul_height = jQuery("#pp_search_container_<?php echo $id;?>").height();
-			
-			var urls = '<?php echo ( ( is_ssl() || force_ssl_admin() || force_ssl_login() ) ? str_replace( 'http:', 'https:', admin_url( 'admin-ajax.php' ) ) : str_replace( 'https:', 'http:', admin_url( 'admin-ajax.php' ) ) ) ;?>'+'?action=woops_get_result_popup';
-			
-            jQuery("#pp_course_<?php echo $id;?>").autocomplete(urls, {
-                width: ul_width,
-    			scrollHeight: 2000,
-				max: <?php echo ($row + 2); ?>,
-				extraParams: {'row':'<?php echo $row; ?>', 'text_lenght':'<?php echo $text_lenght;?>', 'security':'<?php echo $woops_get_result_popup;?>' <?php if($cat_slug != ''){ ?>, 'scat':'<?php echo $cat_slug ?>' <?php } ?> <?php if($tag_slug != ''){ ?>, 'stag':'<?php echo $tag_slug ?>' <?php } ?> },
-				inputClass: "ac_input_<?php echo $id; ?>",
-				resultsClass: "ac_results_<?php echo $id; ?>",
-				loadingClass: "predictive_loading",
-				highlight : false
-            });
-            jQuery("#pp_course_<?php echo $id;?>").result(function(event, data, formatted) {
-				if(data[2] != ''){
-					jQuery("#pp_course_<?php echo $id;?>").val(data[2]);
-				}
-				window.location.href(data[1]);
-            });
-        });
-        </script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery(document).on("click", "#bt_pp_search_<?php echo $id;?>", function(){
+		if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
+			<?php if (get_option('permalink_structure') == '') { ?>jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();<?php } else { ?>var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
+			<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
+			<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
+			window.location = pp_search_url_<?php echo $id;?>;
+		<?php } ?>
+		}
+	});
+	jQuery("#fr_pp_search_widget_<?php echo $id;?>").bind("keypress", function(e) {
+		if (e.keyCode == 13) {
+			if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
+				<?php if (get_option('permalink_structure') == '') { ?>jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();<?php } else { ?>var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+jQuery("#pp_course_<?php echo $id;?>").val();
+				<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
+				<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
+				window.location = pp_search_url_<?php echo $id;?>;
+				<?php } ?>
+				return false;
+			} else {
+				return false;
+			}
+		}
+	});
+	var ul_width = jQuery("#pp_search_container_<?php echo $id;?>").find('.ctr_search').innerWidth();
+	var ul_height = jQuery("#pp_search_container_<?php echo $id;?>").height();
+	var urls = '<?php echo ( ( is_ssl() || force_ssl_admin() || force_ssl_login() ) ? str_replace( 'http:', 'https:', admin_url( 'admin-ajax.php' ) ) : str_replace( 'https:', 'http:', admin_url( 'admin-ajax.php' ) ) ) ;?>'+'?action=woops_get_result_popup';
+	jQuery("#pp_course_<?php echo $id;?>").autocomplete(urls, {
+		width: ul_width,
+		scrollHeight: 2000,
+		max: <?php echo ($row + 2); ?>,
+		extraParams: {'row':'<?php echo $row; ?>', 'text_lenght':'<?php echo $text_lenght;?>', 'security':'<?php echo $woops_get_result_popup;?>' <?php if($cat_slug != ''){ ?>, 'scat':'<?php echo $cat_slug ?>' <?php } ?> <?php if($tag_slug != ''){ ?>, 'stag':'<?php echo $tag_slug ?>' <?php } ?> },
+		inputClass: "ac_input_<?php echo $id; ?>",
+		resultsClass: "ac_results_<?php echo $id; ?>",
+		loadingClass: "predictive_loading",
+		highlight : false
+	});
+	jQuery("#pp_course_<?php echo $id;?>").result(function(event, data, formatted) {
+		if(data[2] != ''){
+			jQuery("#pp_course_<?php echo $id;?>").val(data[2]);
+		}
+		window.location.href(data[1]);
+	});
+});
+</script>
         <div class="pp_search_container" id="pp_search_container_<?php echo $id;?>" style=" <?php echo $style; ?> ">
         <div style="display:none" class="chrome_xp"></div>
 		<form autocomplete="off" action="<?php echo get_permalink(get_option('woocommerce_search_page_id'));?>" method="get" class="fr_search_widget" id="fr_pp_search_widget_<?php echo $id;?>">
@@ -152,7 +135,9 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
         <div style="clear:both;"></div>
 		<?php } ?>
     	<?php
-		
+		$search_form = ob_get_contents();
+		ob_clean();
+		return $search_form;
 	}
 	
 	function update( $new_instance, $old_instance ) {

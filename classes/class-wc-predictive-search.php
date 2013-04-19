@@ -11,6 +11,7 @@
  * woops_limit_words()
  * woops_get_result_popup()
  * create_page()
+ * strip_shortcodes()
  * upgrade_version_2_0()
  */
 class WC_Predictive_Search{
@@ -102,6 +103,7 @@ class WC_Predictive_Search{
 		check_ajax_referer( 'woops-get-result-popup', 'security' );
 		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
 		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
+		add_filter( 'posts_request', array('WC_Predictive_Search_Hook_Filter', 'posts_request_unconflict_role_scoper_plugin'), 500, 2);
 		global $wc_predictive_id_excludes;
 		$row = 6;
 		$text_lenght = 100;
@@ -142,8 +144,8 @@ class WC_Predictive_Search{
 				foreach ( $search_products as $product ) {
 					$link_detail = get_permalink($product->ID);
 					$avatar = WC_Predictive_Search::woops_get_product_thumbnail($product->ID,'shop_catalog',64,64);
-					$product_description = WC_Predictive_Search::woops_limit_words(strip_tags( strip_shortcodes( str_replace("\n", "", $product->post_content) ) ),$text_lenght,'...');
-					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words(strip_tags( strip_shortcodes( str_replace("\n", "", $product->post_excerpt) ) ),$text_lenght,'...');
+					$product_description = WC_Predictive_Search::woops_limit_words(strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( str_replace("\n", "", $product->post_content) ) ) ),$text_lenght,'...');
+					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words(strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( str_replace("\n", "", $product->post_excerpt) ) ) ),$text_lenght,'...');
 					$item = '<div class="ajax_search_content"><div class="result_row"><a href="'.$link_detail.'"><span class="rs_avatar">'.$avatar.'</span><div class="rs_content_popup"><span class="rs_name">'.stripslashes( $product->post_title).'</span><span class="rs_description">'.$product_description.'</span></div></a></div></div>';
 					echo "$item|$link_detail|".stripslashes( $product->post_title)."\n";
 					$end_row--;
@@ -193,6 +195,12 @@ class WC_Predictive_Search{
 		$page_id = wp_insert_post( $page_data );
 		
 		update_option( $option, $page_id );
+	}
+	
+	function strip_shortcodes ($content='') {
+		$content = preg_replace( '|\[(.+?)\](.+?\[/\\1\])?|s', '', $content);
+		
+		return $content;
 	}
 	
 	function upgrade_version_2_0() {

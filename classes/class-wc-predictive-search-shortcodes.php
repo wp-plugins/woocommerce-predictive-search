@@ -281,8 +281,8 @@ class WC_Predictive_Search_Shortcodes {
 					
 					$product_tags_output = WC_Predictive_Search_Shortcodes::get_product_tags($product->ID, $show_tags);
 					
-					$product_description = WC_Predictive_Search::woops_limit_words($product->post_content,$text_lenght,'...');
-					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words($product->post_excerpt,$text_lenght,'...');
+					$product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_content ) ) ),$text_lenght,'...');
+					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_excerpt ) ) ),$text_lenght,'...');
 					
 					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
 					
@@ -343,6 +343,7 @@ auto_click_more();
 		check_ajax_referer( 'woops-get-result-search-page', 'security' );
 		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
 		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
+		add_filter( 'posts_request', array('WC_Predictive_Search_Hook_Filter', 'posts_request_unconflict_role_scoper_plugin'), 500, 2);
 		global $wc_predictive_id_excludes;
 		$p = 1;
 		$row = 10;
@@ -394,8 +395,8 @@ auto_click_more();
 					
 					$product_tags_output = WC_Predictive_Search_Shortcodes::get_product_tags($product->ID, $show_tags);
 					
-					$product_description = WC_Predictive_Search::woops_limit_words($product->post_content,$text_lenght,'...');
-					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words($product->post_excerpt,$text_lenght,'...');
+					$product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_content ) ) ),$text_lenght,'...');
+					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_excerpt ) ) ),$text_lenght,'...');
 										
 					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
 					$html .= '<div style="clear:both"></div>';

@@ -11,6 +11,7 @@
  * add_rewrite_rules()
  * custom_rewrite_rule()
  * search_by_title_only()
+ * posts_request_unconflict_role_scoper_plugin()
  * plugin_extra_links()
  */
 class WC_Predictive_Search_Hook_Filter {
@@ -114,6 +115,12 @@ class WC_Predictive_Search_Hook_Filter {
 		}
 		
 		return $orderby;
+	}
+	
+	function posts_request_unconflict_role_scoper_plugin( $posts_request, &$wp_query ) {
+		$posts_request = str_replace('1=2', '2=2', $posts_request);
+		
+		return $posts_request;
 	}
 	
 	function plugin_extra_links($links, $plugin_name) {
