@@ -156,6 +156,7 @@ jQuery(document).ready(function() {
 		
 		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'number_items' => 6, 'text_lenght' => 100, 'search_global' => 0, 'search_box_text' => $global_search_box_text) );
 		$title = strip_tags($instance['title']);
+		$number_items = $instance['number_items'];
 		if (empty($number_items) || is_array($number_items) ) $number_items = 6;
 		else $number_items = strip_tags($instance['number_items']);
 		$text_lenght = strip_tags($instance['text_lenght']);

@@ -47,7 +47,7 @@ class WC_Predictive_Search_Meta{
     	<table class="form-table" cellspacing="0">
         	<tr valign="top">
 				<th scope="rpw" class="titledesc"><label for="_predictive_search_focuskw"><?php _e('Focus Keywords', 'woops'); ?></label></th>
-				<td class="forminp"><div class="wide_div"><input disabled="disabled" type="text" value="" id="_predictive_search_focuskw" name="_predictive_search_focuskw" style="width:98%;" /></div></td>
+				<td class="forminp"><div class="wide_div"><input type="text" value="" id="_predictive_search_focuskw" name="_predictive_search_focuskw" style="width:98%;" /></div></td>
 			</tr>
         </table>
         </fieldset>
@@ -58,7 +58,7 @@ class WC_Predictive_Search_Meta{
 	function save_custombox($post_id) {
 		$post_status = get_post_status($post_id);
 		$post_type = get_post_type($post_id);
-		if(in_array($post_type, array('product') ) && isset($_REQUEST['_woocommerce_search_exclude_item']) && $post_status != false  && $post_status != 'inherit') {
+		if(in_array($post_type, array('product') ) && isset($_REQUEST['_predictive_search_focuskw']) && $post_status != false  && $post_status != 'inherit') {
 			extract($_REQUEST);
 			
 			$exclude_option = 'woocommerce_search_exclude_products';

@@ -2,11 +2,12 @@
 /**
  * Register Activation Hook
  */
+update_option('wc_predictive_search_plugin', 'woo_predictive_search');
 function wc_predictive_install() {
 	global $wp_rewrite;
-	WC_Predictive_Search::create_page( _x('woocommerce-search', 'page_slug', 'woops') , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
+	WC_Predictive_Search::create_page( 'woocommerce-search' , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
 	WC_Predictive_Search_Settings::set_setting();
-	update_option('wc_predictive_search_lite_version', '2.1.4');
+	update_option('wc_predictive_search_lite_version', '2.1.5');
 	$wp_rewrite->flush_rules();
 	
 	update_option('wc_predictive_search_just_installed', true);
@@ -76,7 +77,7 @@ if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -
 	update_option('wc_predictive_search_lite_version', '2.0');
 }
 
-update_option('wc_predictive_search_lite_version', '2.1.4');
+update_option('wc_predictive_search_lite_version', '2.1.5');
 
 global $wc_predictive;
 $wc_predictive = new WC_Predictive_Search_Settings();
