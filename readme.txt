@@ -261,7 +261,7 @@ Security - Vulnerability Fix - please update your plugin now.
 Update now for 2 important Lite Version feature fixes.
 
 = 2.1.4 =
-Fixed Role Scoper plugin blocking our serach plus 2 minor fixes.
+Fixed Role Scoper plugin blocking our search plus 2 minor fixes.
 
 = 2.1.3 =
 Fix: Updated all JavaScript functions to be compatible with latest jQuery Version 1.9 back to jQuery v1.6
