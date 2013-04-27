@@ -135,8 +135,7 @@ jQuery(document).ready(function() {
         <div style="clear:both;"></div>
 		<?php } ?>
     	<?php
-		$search_form = ob_get_contents();
-		ob_clean();
+		$search_form = ob_get_clean();
 		return $search_form;
 	}
 	

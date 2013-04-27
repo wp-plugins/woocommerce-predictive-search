@@ -37,11 +37,14 @@ class WC_Predictive_Search_Settings {
 		if ( get_option('woocommerce_search_result_items') <= 0 || $reset ) {
 			update_option('woocommerce_search_result_items','10');
 		}
+		if ( get_option('woocommerce_search_sku_enable') == '' || $reset ) {
+			update_option('woocommerce_search_sku_enable', 'no');
+		}
 		if ( get_option('woocommerce_search_price_enable') == '' || $reset ) {
 			update_option('woocommerce_search_price_enable', 'no');
 		}
 		if ( get_option('woocommerce_search_addtocart_enable') == '' || $reset ) {
-			update_option('woocommerce_search_addtocart_enable', 'yes');
+			update_option('woocommerce_search_addtocart_enable', 'no');
 		}
 		if ( get_option('woocommerce_search_categories_enable') == ''  || $reset ) {
 			update_option('woocommerce_search_categories_enable', 'no');
@@ -237,6 +240,12 @@ class WC_Predictive_Search_Settings {
             </td>
 		  </tr>
           <tr valign="top">
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_sku_enable"><?php _e('SKU', 'woops');?></label></th>
+		    <td class="forminp">
+              <input disabled="disabled" type="checkbox" value="1" id="woocommerce_search_sku_enable" name="woocommerce_search_sku_enable" /> <span class="description"><?php _e('Show product SKU with search results', 'woops');?></span>
+            </td>
+		  </tr>
+          <tr valign="top">
 		    <th class="titledesc" scope="row"><label for="ecommerce_search_price_enable"><?php _e('Price', 'woops');?></label></th>
 		    <td class="forminp">
               <input disabled="disabled" type="checkbox" value="1" id="ecommerce_search_price_enable" name="ecommerce_search_price_enable" /> <span class="description"><?php _e('Show product price with search results', 'woops');?></span>
@@ -399,7 +408,8 @@ class WC_Predictive_Search_Settings {
 				'id' 		=> 'woocommerce_search_box_text',
 				'type' 		=> 'text',
 				'css' 		=> 'min-width:300px;',
-				'std' 		=> ''
+				'std' 		=> '',
+				'default'	=> ''
 			),
 			array('type' => 'sectionend', 'id' => 'predictive_search_searchbox_text_end'),
 			
@@ -415,6 +425,7 @@ class WC_Predictive_Search_Settings {
 				'id' 		=> 'woocommerce_search_page_id',
 				'type' 		=> 'single_select_page',
 				'std' 		=> '',
+				'default'	=> '',
 				'class'		=> 'chosen_select_nostd',
 				'css' 		=> 'min-width:300px;',
 				'desc_tip'	=>  false
@@ -433,6 +444,7 @@ class WC_Predictive_Search_Settings {
 				'id' 		=> 'woocommerce_search_exclude_products',
 				'type' 		=> 'wc_predictive_search_multi_select',
 				'std' 		=> '',
+				'default'	=> '',
 				'placeholder' => __( 'Choose Products', 'woops' ),
 				'options'	=> $all_products,
 			),

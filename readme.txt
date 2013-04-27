@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -170,6 +170,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.6 - 2013/04/26 =
+* Feature: Further reduction in search function memory use achieved by tweaking the output buffering function. Particularly useful for those with servers running low on or operating on low memory resources.
+
 = 2.1.5 - 2013/04/23 =
 * Fixed: On the widget fixed the number of Product results to show in search box dropdown. Setting was fixed at 6. Now can select and save any number.
 * Fixed: Go to correct predictive search result page url when click on More result in dropdown with WordPress permalink of site is set to default.
@@ -256,6 +259,9 @@ Security - Vulnerability Fix - please update your plugin now.
 
 
 == Upgrade Notice ==
+
+= 2.1.6 =
+Install this upgrade for a futher reduction in memory used by each search that is performed.
 
 = 2.1.5 =
 Update now for 2 important Lite Version feature fixes.
