@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.1.6
+Stable tag: 2.1.6.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -112,6 +112,7 @@ WooCommerce Predictive Search is now the most powerful site search engine ever d
 
 * English (default) - always included.
 * Dutch (nl_NL) credit to Erwin Saunders.
+* Spanish (es_ES) credit to Fidel Diez.
 * .po file (woops.po) in languages folder for translations.
 * If you do a translation for your site please send it to us for inclusion in the plugin language folder. We'll acknowledge your work here. [Go here](http://www.a3rev.com/contact/) to send your translation files to us.
 
@@ -169,6 +170,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.1.6.1 - 2013/05/03 =
+* Translation: Added Spanish translation thanks to Fidel Diez
 
 = 2.1.6 - 2013/04/26 =
 * Feature: Further reduction in search function memory use achieved by tweaking the output buffering function. Particularly useful for those with servers running low on or operating on low memory resources.
