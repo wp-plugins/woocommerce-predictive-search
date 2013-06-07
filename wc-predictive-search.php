@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Predictive Search LITE
 Plugin URI: http://a3rev.com/shop/woocommerce-predictive-search/
 Description: With WooCommerce Predictive Search Lite you can add an awesome Predictive Products Search widget to any widgetized area on your site.
-Version: 2.1.6.1
+Version: 2.1.6.2
 Author: A3 Revolution
 Author URI: http://www.a3rev.com/
 Requires at least: 3.3
@@ -49,4 +49,54 @@ include 'admin/wc-predictive-search-init.php';
 * Call when the plugin is activated
 */
 register_activation_hook(__FILE__,'wc_predictive_install');
+
+function wc_predictive_uninstall() {
+	if ( get_option('woocommerce_search_clean_on_deletion') == 1 ) {
+		delete_option('woocommerce_search_text_lenght');
+		delete_option('woocommerce_search_result_items');
+		delete_option('woocommerce_search_sku_enable');
+		delete_option('woocommerce_search_price_enable');
+		delete_option('woocommerce_search_addtocart_enable');
+		delete_option('woocommerce_search_categories_enable');
+		delete_option('woocommerce_search_tags_enable');
+		delete_option('woocommerce_search_box_text');
+		delete_option('woocommerce_search_page_id');
+		delete_option('woocommerce_search_exclude_products');
+		
+		delete_option('woocommerce_search_exclude_p_categories');
+		delete_option('woocommerce_search_exclude_p_tags');
+		delete_option('woocommerce_search_exclude_posts');
+		delete_option('woocommerce_search_exclude_pages');
+		delete_option('woocommerce_search_focus_enable');
+		delete_option('woocommerce_search_focus_plugin');
+		delete_option('woocommerce_search_result_items');
+		delete_option('woocommerce_search_text_lenght');
+		delete_option('woocommerce_search_sku_enable');
+		delete_option('woocommerce_search_price_enable');
+		delete_option('woocommerce_search_addtocart_enable');
+		delete_option('woocommerce_search_categories_enable');
+		delete_option('woocommerce_search_tags_enable');
+		delete_option('woocommerce_search_product_items');
+		delete_option('woocommerce_search_p_sku_items');
+		delete_option('woocommerce_search_p_cat_items');
+		delete_option('woocommerce_search_p_tag_items');
+		delete_option('woocommerce_search_post_items');
+		delete_option('woocommerce_search_page_items');
+		delete_option('woocommerce_search_character_max');
+		delete_option('woocommerce_search_width');
+		delete_option('woocommerce_search_padding_top');
+		delete_option('woocommerce_search_padding_bottom');
+		delete_option('woocommerce_search_padding_left');
+		delete_option('woocommerce_search_padding_right');
+		delete_option('woocommerce_search_custom_style');
+		delete_option('woocommerce_search_global_search');
+		
+		delete_option('woocommerce_search_clean_on_deletion');
+		
+		delete_post_meta_by_key('_predictive_search_focuskw');
+	}
+}
+if ( get_option('woocommerce_search_clean_on_deletion') == 1 ) {
+	register_uninstall_hook( __FILE__, 'wc_predictive_uninstall' );
+}
 ?>

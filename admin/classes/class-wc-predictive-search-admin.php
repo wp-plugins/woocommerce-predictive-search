@@ -52,6 +52,9 @@ class WC_Predictive_Search_Settings {
 		if ( get_option('woocommerce_search_tags_enable') == '' || $reset ) {
 			update_option('woocommerce_search_tags_enable', 'no');
 		}
+		if ( get_option('woocommerce_search_clean_on_deletion') == '' || $reset ) {
+			update_option('woocommerce_search_clean_on_deletion', 0);
+		}
 	}
 	
 	public function get_id_excludes() {
@@ -226,16 +229,16 @@ class WC_Predictive_Search_Settings {
         <h3 style="margin-top:0; padding-top:10px;"><?php _e('Search results page settings', 'woops'); ?></h3>
         <table class="form-table">
           <tr valign="top">
-		    <th class="titledesc" scope="row"><label for="ecommerce_search_result_items"><?php _e('Results', 'woops');?></label></th>
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_result_items"><?php _e('Results', 'woops');?></label></th>
 		    <td class="forminp">
-              <input disabled="disabled" type="text" value="10" size="6" id="ecommerce_search_result_items" name="ecommerce_search_result_items" />
+              <input disabled="disabled" type="text" value="10" size="6" id="woocommerce_search_result_items" name="woocommerce_search_result_items" />
               <span class="description"><?php _e('The number of results to show before endless scroll click to see more results.', 'woops');?></span>
             </td>
 		  </tr>
 		  <tr valign="top">
-		    <th class="titledesc" scope="row"><label for="ecommerce_search_text_lenght"><?php _e('Description character count', 'woops');?></label></th>
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_text_lenght"><?php _e('Description character count', 'woops');?></label></th>
 		    <td class="forminp">
-              <input disabled="disabled" type="text" value="100" size="6" id="ecommerce_search_text_lenght" name="ecommerce_search_text_lenght" />
+              <input disabled="disabled" type="text" value="100" size="6" id="woocommerce_search_text_lenght" name="woocommerce_search_text_lenght" />
               <span class="description"><?php _e('The number of characters from product descriptions that shows with each search result.', 'woops');?></span>
             </td>
 		  </tr>
@@ -246,9 +249,9 @@ class WC_Predictive_Search_Settings {
             </td>
 		  </tr>
           <tr valign="top">
-		    <th class="titledesc" scope="row"><label for="ecommerce_search_price_enable"><?php _e('Price', 'woops');?></label></th>
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_price_enable"><?php _e('Price', 'woops');?></label></th>
 		    <td class="forminp">
-              <input disabled="disabled" type="checkbox" value="1" id="ecommerce_search_price_enable" name="ecommerce_search_price_enable" /> <span class="description"><?php _e('Show product price with search results', 'woops');?></span>
+              <input disabled="disabled" type="checkbox" value="1" id="woocommerce_search_price_enable" name="woocommerce_search_price_enable" /> <span class="description"><?php _e('Show product price with search results', 'woops');?></span>
             </td>
 		  </tr>
           <tr valign="top">
@@ -258,15 +261,15 @@ class WC_Predictive_Search_Settings {
             </td>
 		  </tr>
           <tr valign="top">
-		    <th class="titledesc" scope="row"><label for="ecommerce_search_categories_enable"><?php _e('Product Categories', 'woops');?></label></th>
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_categories_enable"><?php _e('Product Categories', 'woops');?></label></th>
 		    <td class="forminp">
-              <input disabled="disabled" type="checkbox" value="1" id="ecommerce_search_categories_enable" name="ecommerce_search_categories_enable" /> <span class="description"><?php _e('Show categories with search results', 'woops');?></span>
+              <input disabled="disabled" type="checkbox" value="1" id="woocommerce_search_categories_enable" name="woocommerce_search_categories_enable" /> <span class="description"><?php _e('Show categories with search results', 'woops');?></span>
             </td>
 		  </tr>
           <tr valign="top">
-		    <th class="titledesc" scope="row"><label for="ecommerce_search_tags_enable"><?php _e('Product Tags', 'woops');?></label></th>
+		    <th class="titledesc" scope="row"><label for="woocommerce_search_tags_enable"><?php _e('Product Tags', 'woops');?></label></th>
 		    <td class="forminp">
-              <input disabled="disabled" type="checkbox" value="1" id="ecommerce_search_tags_enable" name="ecommerce_search_tags_enable" /> <span class="description"><?php _e('Show tags with search results', 'woops');?></span>
+              <input disabled="disabled" type="checkbox" value="1" id="woocommerce_search_tags_enable" name="woocommerce_search_tags_enable" /> <span class="description"><?php _e('Show tags with search results', 'woops');?></span>
             </td>
 		  </tr>
         </table>
@@ -348,6 +351,18 @@ class WC_Predictive_Search_Settings {
 			</tr>
 		</table>
         </div></div></td></tr></table>
+        
+        <h3><?php _e('House Keeping', 'woops');?> :</h3>		
+        <table class="form-table">
+            <tr valign="top" class="">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_clean_on_deletion"><?php _e('Clean up on Deletion', 'woops');?></label></th>
+				<td class="forminp">
+						<label>
+						<input <?php checked( get_option('woocommerce_search_clean_on_deletion'), 1); ?> type="checkbox" value="1" id="woocommerce_search_clean_on_deletion" name="woocommerce_search_clean_on_deletion">
+						<?php _e('Check this box and if you ever delete this plugin it will completely remove all tables and data it created, leaving no trace it was ever here. If upgrading to the Pro Version this is', 'woops');?> <span class="description"><?php _e('not recommended', 'woops'); ?></span></label> <br>
+				</td>
+			</tr>
+		</table>
         <?php
 		add_action('admin_footer', array(&$this, 'add_scripts'), 10);
 	}
@@ -468,6 +483,14 @@ class WC_Predictive_Search_Settings {
 		WC_Predictive_Search_Settings::set_setting(true);
 		
 		update_option('woocommerce_search_exclude_products', (array) $_REQUEST['woocommerce_search_exclude_products']);
+		if ( isset($_REQUEST['woocommerce_search_clean_on_deletion']) ) {
+			update_option('woocommerce_search_clean_on_deletion',  $_REQUEST['woocommerce_search_clean_on_deletion']);
+		} else { 
+			update_option('woocommerce_search_clean_on_deletion',  0);
+			$uninstallable_plugins = (array) get_option('uninstall_plugins');
+			unset($uninstallable_plugins[WOOPS_NAME]);
+			update_option('uninstall_plugins', $uninstallable_plugins);
+		}
 	}
 
     /** Helper functions ***************************************************** */

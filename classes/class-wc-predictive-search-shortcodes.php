@@ -310,7 +310,7 @@ function auto_click_more() {
 			var p_data = p_data_obj.html();
 			p_data_obj.html('');
 			var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter_admin."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
-			jQuery.post('".( ( is_ssl() || force_ssl_admin() || force_ssl_login() ) ? str_replace( 'http:', 'https:', admin_url( 'admin-ajax.php' ) ) : str_replace( 'https:', 'http:', admin_url( 'admin-ajax.php' ) ) )."', urls, function(theResponse){
+			jQuery.post('".admin_url( 'admin-ajax.php', 'relative' )."', urls, function(theResponse){
 				if(theResponse != ''){
 					var num = parseInt(p_data)+1;
 					p_data_obj.html(num);
