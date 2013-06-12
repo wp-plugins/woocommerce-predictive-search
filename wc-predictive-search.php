@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Predictive Search LITE
 Plugin URI: http://a3rev.com/shop/woocommerce-predictive-search/
 Description: With WooCommerce Predictive Search Lite you can add an awesome Predictive Products Search widget to any widgetized area on your site.
-Version: 2.1.6.2
+Version: 2.1.7
 Author: A3 Revolution
 Author URI: http://www.a3rev.com/
 Requires at least: 3.3
@@ -69,13 +69,6 @@ function wc_predictive_uninstall() {
 		delete_option('woocommerce_search_exclude_pages');
 		delete_option('woocommerce_search_focus_enable');
 		delete_option('woocommerce_search_focus_plugin');
-		delete_option('woocommerce_search_result_items');
-		delete_option('woocommerce_search_text_lenght');
-		delete_option('woocommerce_search_sku_enable');
-		delete_option('woocommerce_search_price_enable');
-		delete_option('woocommerce_search_addtocart_enable');
-		delete_option('woocommerce_search_categories_enable');
-		delete_option('woocommerce_search_tags_enable');
 		delete_option('woocommerce_search_product_items');
 		delete_option('woocommerce_search_p_sku_items');
 		delete_option('woocommerce_search_p_cat_items');

@@ -7,6 +7,7 @@
  * Table Of Contents
  *
  * add_frontend_script()
+ * add_frontend_style()
  * add_query_vars()
  * add_rewrite_rules()
  * custom_rewrite_rule()
@@ -20,8 +21,12 @@ class WC_Predictive_Search_Hook_Filter {
 	* Include the script for widget search and Search page
 	*/
 	function add_frontend_script() {
-		wp_enqueue_style( 'ajax-woo-autocomplete-style', WOOPS_JS_URL . '/ajax-autocomplete/jquery.autocomplete.css' );
+		wp_enqueue_script('jquery');
 		wp_enqueue_script( 'ajax-woo-autocomplete-script', WOOPS_JS_URL . '/ajax-autocomplete/jquery.autocomplete.js', array(), false, true );
+	}
+	
+	function add_frontend_style() {
+		wp_enqueue_style( 'ajax-woo-autocomplete-style', WOOPS_JS_URL . '/ajax-autocomplete/jquery.autocomplete.css' );
 	}
 	
 	function add_query_vars($aVars) {

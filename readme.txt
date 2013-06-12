@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.1.6.2
+Stable tag: 2.1.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -170,6 +170,10 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.1.7 - 2013/06/12 =
+* Feature: Search box dropdown now can show the full wide when search function is activated by a third party script. An example of this is when the search box is not loaded on page load but is activated by click on a button or element.
+* Tweak: Changed the search box drop down z index to 999999 so that it always overlays any other element on the page.
 
 = 2.1.6.2 - 2013/06/07 =
 * Feature: Added House keeping function to settings. Clean up on Deletion.  Option - Choose if you ever delete this plugin it will completely remove all tables and data it created, leaving no trace it was ever here.

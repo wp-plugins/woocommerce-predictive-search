@@ -92,7 +92,7 @@ jQuery(document).ready(function() {
 	var ul_height = jQuery("#pp_search_container_<?php echo $id;?>").height();
 	var urls = '<?php echo admin_url( 'admin-ajax.php', 'relative' ) ;?>'+'?action=woops_get_result_popup';
 	jQuery("#pp_course_<?php echo $id;?>").autocomplete(urls, {
-		width: ul_width,
+		/*width: ul_width,*/
 		scrollHeight: 2000,
 		max: <?php echo ($row + 2); ?>,
 		extraParams: {'row':'<?php echo $row; ?>', 'text_lenght':'<?php echo $text_lenght;?>', 'security':'<?php echo $woops_get_result_popup;?>' <?php if($cat_slug != ''){ ?>, 'scat':'<?php echo $cat_slug ?>' <?php } ?> <?php if($tag_slug != ''){ ?>, 'stag':'<?php echo $tag_slug ?>' <?php } ?> },
