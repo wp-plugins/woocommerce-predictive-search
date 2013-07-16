@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search PRO v2.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-16 16:22+0700\n"
-"PO-Revision-Date: 2013-07-16 16:22+0700\n"
+"POT-Creation-Date: 2013-07-16 18:12+0700\n"
+"PO-Revision-Date: 2013-07-16 18:12+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,6 @@ msgstr "Stel globale zoektocht of zoek in de huidige categorie producten of huid
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:398
-#: admin/classes/class-wc-predictive-search-admin.php:534
 msgid "Global Settings"
 msgstr "Globale instellingen"
 
@@ -384,6 +383,12 @@ msgstr "Alles in een SEO"
 #: admin/classes/class-wc-predictive-search-admin.php:517
 msgid "Global Search Box Text"
 msgstr "Globale Zoekvak tekst "
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:534
+#, fuzzy
+msgid "Search Page Configuration"
+msgstr "Zoekpagina"
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:540

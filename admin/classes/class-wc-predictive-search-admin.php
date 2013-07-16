@@ -531,7 +531,7 @@ class WC_Predictive_Search_Settings
 			array('type' => 'sectionend', 'id' => 'predictive_search_searchbox_text_end'),
 			
 			array(
-            	'name' => __('Global Settings', 'woops'),
+            	'name' => __('Search Page Configuration', 'woops'),
                 'type' => 'title',
                 'desc' => '',
           		'id' => 'predictive_search_global_start'

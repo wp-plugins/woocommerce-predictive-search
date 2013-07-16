@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search PRO v2.1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-16 16:22+0700\n"
-"PO-Revision-Date: 2013-07-16 16:22+0700\n"
+"POT-Creation-Date: 2013-07-16 18:23+0700\n"
+"PO-Revision-Date: 2013-07-16 18:23+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,6 @@ msgstr "Establecer búsqueda global o buscar en la categoría del producto actua
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:398
-#: admin/classes/class-wc-predictive-search-admin.php:534
 msgid "Global Settings"
 msgstr "Ajustes Globales"
 
@@ -384,6 +383,12 @@ msgstr "Todo en uno SEO"
 #: admin/classes/class-wc-predictive-search-admin.php:517
 msgid "Global Search Box Text"
 msgstr "Caja de Texto de Búsqueda Global"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:534
+#, fuzzy
+msgid "Search Page Configuration"
+msgstr "Página de Búsqueda"
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:540
