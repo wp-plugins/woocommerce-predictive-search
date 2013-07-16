@@ -172,10 +172,10 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 == Changelog ==
 
 = 2.1.8 - 2013/07/16 =
-* Features:
+* Features :
 	* Complete UI overhaul and renovation of the plugins admin dashboard.
 	* Admin dashboard content broken up into sub nav tabs for ease of feature management. Global Settings | All Results Pages | Exclude Content | Search Function. 
-* Tweaks:
+* Tweaks :
 	* Updated Lite Version code for seamless upgrade for new Pro Version Multi Lingual feature.
 	* Ran full WP_DEBUG All Uncaught exceptions errors and warnings fixed.
 	* Added PHP Public Static to functions in Class. Done so that Public Static warnings don't show in DE_BUG mode.
