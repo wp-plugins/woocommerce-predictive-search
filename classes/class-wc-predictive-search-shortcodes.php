@@ -17,7 +17,8 @@
  * display_search()
  * get_result_search_page()
  */
-class WC_Predictive_Search_Shortcodes {
+class WC_Predictive_Search_Shortcodes
+{
 	public static function parse_shortcode_search_widget($attributes) {
 		extract(shortcode_atts(array(
 			 'items' => 6,
@@ -34,14 +35,14 @@ class WC_Predictive_Search_Shortcodes {
 		return WC_Predictive_Search_Widgets::woops_results_search_form($widget_id, $items, $character_max, $style, 1).$wrap_div;
 	}
 	
-	function add_search_widget_icon($context){
+	public static function add_search_widget_icon($context){
 		$image_btn = WOOPS_IMAGES_URL . "/ps_icon.png";
 		$out = '<a href="#TB_inline?width=670&height=650&modal=false&inlineId=woo_search_widget_shortcode" class="thickbox" title="'.__('Insert WooCommerce Predictive Search Shortcode', 'woops').'"><img class="search_widget_shortcode_icon" src="'.$image_btn.'" alt="'.__('Insert WooCommerce Predictive Search Shortcode', 'woops').'" /></a>';
 		return $context . $out;
 	}
 	
 	//Action target that displays the popup to insert a form to a post/page
-	function add_search_widget_mce_popup(){
+	public static function add_search_widget_mce_popup(){
 		$items_search_default = WC_Predictive_Search_Widgets::get_items_search();
 		?>
 		<script type="text/javascript">
@@ -96,7 +97,7 @@ class WC_Predictive_Search_Shortcodes {
 		  <div class="">
 			<h3><?php _e('Customize the Predictive Search Shortcode', 'woops'); ?></h3>
 			<div style="clear:both"></div>
-            <div id="woo_predictive_upgrade_area"><?php echo WC_Predictive_Search_Settings::predictive_extension_shortcode(); ?>
+            <div id="woo_predictive_upgrade_area"><?php echo WC_Predictive_Search::predictive_extension_shortcode(); ?>
 			<div class="field_content">
             	<?php foreach ($items_search_default as $key => $data) { ?>
                 <p><label for="woo_search_<?php echo $key ?>_items"><?php echo $data['name']; ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_<?php echo $key ?>_items" name="woo_search_<?php echo $key ?>_items" type="text" value="<?php echo $data['number'] ?>" /> <span class="description"><?php _e('Number of', 'woops'); echo ' '.$data['name'].' '; _e('results to show in dropdown', 'woops'); ?></span></p> 
@@ -125,7 +126,7 @@ class WC_Predictive_Search_Shortcodes {
     	return WC_Predictive_Search_Shortcodes::display_search();	
     }
 	
-	function get_product_price($product_id, $show_price=true) {
+	public static function get_product_price($product_id, $show_price=true) {
 		$product_price_output = '';
 		if ($show_price) {
 			$current_db_version = get_option( 'woocommerce_db_version', null );
@@ -146,7 +147,7 @@ class WC_Predictive_Search_Shortcodes {
 		return $product_price_output;
 	}
 	
-	function get_product_addtocart($product_id, $show_addtocart=true) {
+	public static function get_product_addtocart($product_id, $show_addtocart=true) {
 		$product_addtocart_output = '';
 		global $product;
 		if ($show_addtocart) {
@@ -167,7 +168,7 @@ class WC_Predictive_Search_Shortcodes {
 		return $product_addtocart_output;
 	}
 	
-	function get_product_categories($product_id, $show_categories=true) {
+	public static function get_product_categories($product_id, $show_categories=true) {
 		$product_cats_output = '';
 		if ($show_categories) {
 			
@@ -186,7 +187,7 @@ class WC_Predictive_Search_Shortcodes {
 		return $product_cats_output;
 	}
 	
-	function get_product_tags($product_id, $show_tags=true) {
+	public static function get_product_tags($product_id, $show_tags=true) {
 		$product_tags_output = '';
 		if ($show_tags) {
 			$product_tags = get_the_terms( $product_id, 'product_tag' );
@@ -204,7 +205,7 @@ class WC_Predictive_Search_Shortcodes {
 		return $product_tags_output;
 	}
 	
-	function display_search() {
+	public static function display_search() {
 		global $wp_query;
 		global $wpdb;
 		global $wc_predictive_id_excludes;
@@ -217,6 +218,7 @@ class WC_Predictive_Search_Shortcodes {
 		$show_price = false;
 		$show_categories = false;
 		$show_tags = false;
+		$extra_parameter_admin = '';
 		
 		if (isset($wp_query->query_vars['keyword'])) $search_keyword = stripslashes( strip_tags( urldecode( $wp_query->query_vars['keyword'] ) ) );
 		else if (isset($_REQUEST['rs']) && trim($_REQUEST['rs']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['rs'] ) );
@@ -339,7 +341,7 @@ auto_click_more();
 		}
 	}
 	
-	function get_result_search_page() {
+	public static function get_result_search_page() {
 		check_ajax_referer( 'woops-get-result-search-page', 'security' );
 		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
 		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );

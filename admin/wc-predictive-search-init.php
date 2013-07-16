@@ -7,7 +7,7 @@ function wc_predictive_install() {
 	global $wp_rewrite;
 	WC_Predictive_Search::create_page( 'woocommerce-search' , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
 	WC_Predictive_Search_Settings::set_setting();
-	update_option('wc_predictive_search_lite_version', '2.1.7');
+	update_option('wc_predictive_search_lite_version', '2.1.8');
 	$wp_rewrite->flush_rules();
 	
 	update_option('wc_predictive_search_just_installed', true);
@@ -25,7 +25,7 @@ function woops_init() {
 // Add language
 add_action('init', 'woops_init');
 
-add_action( 'plugins_loaded', array( 'WC_Predictive_Search', 'plugins_loaded' ), 8 );
+add_action( 'plugins_loaded', array( 'WC_Predictive_Search_Hook_Filter', 'plugins_loaded' ), 8 );
 
 // Add text on right of Visit the plugin on Plugin manager page
 add_filter( 'plugin_row_meta', array('WC_Predictive_Search_Hook_Filter', 'plugin_extra_links'), 10, 2 );
@@ -68,8 +68,8 @@ add_action('wp_ajax_woops_get_result_search_page', array('WC_Predictive_Search_S
 add_action('wp_ajax_nopriv_woops_get_result_search_page', array('WC_Predictive_Search_Shortcodes', 'get_result_search_page'));
 
 // AJAX get result search popup
-add_action('wp_ajax_woops_get_result_popup', array('WC_Predictive_Search', 'get_result_popup'));
-add_action('wp_ajax_nopriv_woops_get_result_popup', array('WC_Predictive_Search', 'get_result_popup'));
+add_action('wp_ajax_woops_get_result_popup', array('WC_Predictive_Search_Hook_Filter', 'get_result_popup'));
+add_action('wp_ajax_nopriv_woops_get_result_popup', array('WC_Predictive_Search_Hook_Filter', 'get_result_popup'));
 
 if ( ! is_admin() )
 	add_action('init',array('WC_Predictive_Search_Hook_Filter','add_frontend_style'));
@@ -80,7 +80,7 @@ if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -
 	update_option('wc_predictive_search_lite_version', '2.0');
 }
 
-update_option('wc_predictive_search_lite_version', '2.1.7');
+update_option('wc_predictive_search_lite_version', '2.1.8');
 
 global $wc_predictive;
 $wc_predictive = new WC_Predictive_Search_Settings();

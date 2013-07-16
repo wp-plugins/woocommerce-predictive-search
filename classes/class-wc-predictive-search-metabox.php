@@ -10,8 +10,9 @@
  * create_custombox()
  * a3_people_metabox()
  */
-class WC_Predictive_Search_Meta{
-	function create_custombox() {
+class WC_Predictive_Search_Meta
+{
+	public static function create_custombox() {
 		global $post;
 		$exclude_items = array();
 		if (get_post_type($post->ID) == 'product') {
@@ -34,7 +35,7 @@ class WC_Predictive_Search_Meta{
 		add_meta_box( 'wc_predictive_search_metabox', __('Predictive Search Meta', 'woops').$hide_item_from_result_text , array('WC_Predictive_Search_Meta','data_metabox'), 'product', 'normal', 'high' );
 	}
 	
-	function data_metabox() {
+	public static function data_metabox() {
 		global $post;
 		$postid = $post->ID;
 				
@@ -55,7 +56,7 @@ class WC_Predictive_Search_Meta{
 		
 	}
 	
-	function save_custombox($post_id) {
+	public static function save_custombox($post_id) {
 		$post_status = get_post_status($post_id);
 		$post_type = get_post_type($post_id);
 		if(in_array($post_type, array('product') ) && isset($_REQUEST['_predictive_search_focuskw']) && $post_status != false  && $post_status != 'inherit') {

@@ -11,9 +11,10 @@
  * update()
  * form()
  */
-class WC_Predictive_Search_Widgets extends WP_Widget {
+class WC_Predictive_Search_Widgets extends WP_Widget 
+{
 	
-	function get_items_search() {
+	public static function get_items_search() {
 		$items_search = array(
 				'product'				=> array( 'number' => 6, 'name' => __('Product Name', 'woops') ),
 				'p_sku'					=> array( 'number' => 0, 'name' => __('Product SKU', 'woops') ),
@@ -49,7 +50,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget {
 		echo $after_widget;
 	}
 	
-	function woops_results_search_form($widget_id, $number_items=6, $text_lenght=100, $style='', $search_global = 0, $search_box_text = '') {
+	public static function woops_results_search_form($widget_id, $number_items=6, $text_lenght=100, $style='', $search_global = 0, $search_box_text = '') {
 		
 		// Add ajax search box script and style at footer
 		add_action('wp_footer',array('WC_Predictive_Search_Hook_Filter','add_frontend_script'));
@@ -172,6 +173,25 @@ jQuery(document).ready(function() {
 		</style>
 			<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('search_box_text'); ?>"><?php _e('Search box text message:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('search_box_text'); ?>" name="<?php echo $this->get_field_name('search_box_text'); ?>" type="text" value="<?php echo esc_attr($search_box_text); ?>" /></p>
+            <?php
+			if ( class_exists('SitePress') ) {
+				global $sitepress;
+				$active_languages = $sitepress->get_active_languages();
+				if ( is_array($active_languages)  && count($active_languages) > 0 ) {
+			?>
+			<fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to','woops'); ?> <a href="<?php echo WOOPS_AUTHOR_URI; ?>" target="_blank"><?php _e('Pro Version', 'woops'); ?></a> <?php _e('to activate', 'woops'); ?></legend>
+            <?php
+					foreach ( $active_languages as $language ) {
+			?>
+				<p><label for="search_box_text_<?php echo $language['code']; ?>"><?php _e('Search box text message', 'woops'); ?> (<?php echo $language['display_name']; ?>)</label> <input disabled="disabled" class="widefat" id="search_box_text_<?php echo $language['code']; ?>" name="search_box_text_language[<?php echo $language['code']; ?>]" type="text" value="" /></p>
+			<?php
+					}
+			?>
+            </fieldset>
+            <?php
+				}
+			}
+			?>
             <p><label for="<?php echo $this->get_field_id('number_items'); ?>"><?php _e('Number of results to show:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('number_items'); ?>" name="<?php echo $this->get_field_name('number_items'); ?>" type="text" value="<?php echo esc_attr($number_items); ?>" /></p>
             <p><label for="<?php echo $this->get_field_id('text_lenght'); ?>"><?php _e(' Results description character count:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('text_lenght'); ?>" name="<?php echo $this->get_field_name('text_lenght'); ?>" type="text" value="<?php echo esc_attr($text_lenght); ?>" /></p>
             <fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to','woops'); ?> <a href="<?php echo WOOPS_AUTHOR_URI; ?>" target="_blank"><?php _e('Pro Version', 'woops'); ?></a> <?php _e('to activate', 'woops'); ?></legend>

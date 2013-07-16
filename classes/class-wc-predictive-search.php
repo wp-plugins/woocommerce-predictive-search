@@ -6,23 +6,32 @@
  *
  * Table Of Contents
  *
- * plugins_loaded()
+ * get_id_excludes()
  * woops_get_product_thumbnail()
  * woops_limit_words()
- * woops_get_result_popup()
  * create_page()
  * strip_shortcodes()
+ * predictive_extension()
+ * predictive_extension_shortcode()
  * upgrade_version_2_0()
  */
-class WC_Predictive_Search{
-	
-	function plugins_loaded() {
+class WC_Predictive_Search
+{
+	public static function get_id_excludes() {
 		global $wc_predictive_id_excludes;
 		
-		WC_Predictive_Search_Settings::get_id_excludes();
+		$exclude_products = get_option('woocommerce_search_exclude_products', '');
+		if (is_array($exclude_products)) {
+			$exclude_products = implode(",", $exclude_products);
+		}
+		
+		$wc_predictive_id_excludes = array();
+		$wc_predictive_id_excludes['exclude_products'] = $exclude_products;
+		
+		return $wc_predictive_id_excludes;
 	}
 	
-	function woops_get_product_thumbnail( $post_id, $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
+	public static function woops_get_product_thumbnail( $post_id, $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
 		global $woocommerce;
 		if ( $placeholder_width == 0 )
 			$placeholder_width = $woocommerce->get_image_size( 'shop_catalog_image_width' );
@@ -77,7 +86,7 @@ class WC_Predictive_Search{
 		}
 	}
 	
-	function woops_limit_words($str='',$len=100,$more) {
+	public static function woops_limit_words($str='',$len=100,$more) {
 		if (trim($len) == '' || $len < 0) $len = 100;
 	   if ( $str=="" || $str==NULL ) return $str;
 	   if ( is_array($str) ) return $str;
@@ -99,75 +108,7 @@ class WC_Predictive_Search{
 			return $str;
 	}
 	
-	function get_result_popup() {
-		check_ajax_referer( 'woops-get-result-popup', 'security' );
-		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
-		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
-		add_filter( 'posts_request', array('WC_Predictive_Search_Hook_Filter', 'posts_request_unconflict_role_scoper_plugin'), 500, 2);
-		global $wc_predictive_id_excludes;
-		$row = 6;
-		$text_lenght = 100;
-		$search_keyword = '';
-		$cat_slug = '';
-		$tag_slug = '';
-		$extra_parameter = '';
-		if (isset($_REQUEST['row']) && $_REQUEST['row'] > 0) $row = stripslashes( strip_tags( $_REQUEST['row'] ) );
-		if (isset($_REQUEST['text_lenght']) && $_REQUEST['text_lenght'] >= 0) stripslashes( strip_tags( $text_lenght = $_REQUEST['text_lenght'] ) );
-		if (isset($_REQUEST['q']) && trim($_REQUEST['q']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['q'] ) );
-		
-		$end_row = $row;
-		
-		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
-			if ($cat_slug != '') {
-				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
-				if (get_option('permalink_structure') == '')
-					$extra_parameter .= '&scat='.$cat_slug;
-				else
-					$extra_parameter .= '/scat/'.$cat_slug;
-			} elseif($tag_slug != '') {
-				$args['tax_query'] = array( array('taxonomy' => 'product_tag', 'field' => 'slug', 'terms' => $tag_slug) );
-				if (get_option('permalink_structure') == '')
-					$extra_parameter .= '&stag='.$tag_slug;
-				else
-					$extra_parameter .= '/stag/'.$tag_slug;
-			}
-			$total_args = $args;
-			$total_args['numberposts'] = -1;
-			
-			//$search_all_products = get_posts($total_args);
-			
-			$search_products = get_posts($args);
-						
-			if ( $search_products && count($search_products) > 0 ) {
-				echo "<div class='ajax_search_content_title'>".__('Products', 'woops')."</div>|#|$search_keyword\n";
-				foreach ( $search_products as $product ) {
-					$link_detail = get_permalink($product->ID);
-					$avatar = WC_Predictive_Search::woops_get_product_thumbnail($product->ID,'shop_catalog',64,64);
-					$product_description = WC_Predictive_Search::woops_limit_words(strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( str_replace("\n", "", $product->post_content) ) ) ),$text_lenght,'...');
-					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words(strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( str_replace("\n", "", $product->post_excerpt) ) ) ),$text_lenght,'...');
-					$item = '<div class="ajax_search_content"><div class="result_row"><a href="'.$link_detail.'"><span class="rs_avatar">'.$avatar.'</span><div class="rs_content_popup"><span class="rs_name">'.stripslashes( $product->post_title).'</span><span class="rs_description">'.$product_description.'</span></div></a></div></div>';
-					echo "$item|$link_detail|".stripslashes( $product->post_title)."\n";
-					$end_row--;
-					if ($end_row < 1) break;
-				}
-				$rs_item = '';
-				if ( count($search_products) > $row ) {
-					if (get_option('permalink_structure') == '')
-						$link_search = get_permalink(get_option('woocommerce_search_page_id')).'&rs='.$search_keyword.$extra_parameter;
-					else
-						$link_search = rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' ).'/keyword/'.$search_keyword.$extra_parameter;
-					$rs_item .= '<div class="more_result" rel="more_result"><a href="'.$link_search.'">'.__('See more results for', 'woops').' '.$search_keyword.' <span class="see_more_arrow"></span></a><span>'.__('Displaying top', 'woops').' '.$row.' '.__('results', 'woops').'</span></div>';
-					echo "$rs_item|$link_search|$search_keyword\n";
-				}
-			} else {
-				echo '<div class="ajax_no_result">'.__('Keep typing...', 'woops').'</div>';
-			}
-		}
-		die();
-	}
-	
-	function create_page( $slug, $option, $page_title = '', $page_content = '', $post_parent = 0 ) {
+	public static function create_page( $slug, $option, $page_title = '', $page_content = '', $post_parent = 0 ) {
 		global $wpdb;
 		 
 		$option_value = get_option($option); 
@@ -197,13 +138,73 @@ class WC_Predictive_Search{
 		update_option( $option, $page_id );
 	}
 	
-	function strip_shortcodes ($content='') {
+	public static function strip_shortcodes ($content='') {
 		$content = preg_replace( '|\[(.+?)\](.+?\[/\\1\])?|s', '', $content);
 		
 		return $content;
 	}
 	
-	function upgrade_version_2_0() {
+	public static function predictive_extension() {
+		$html = '';
+		$html .= '<div id="a3_plugin_panel_extensions">';
+		$html .= '<a href="http://a3rev.com/shop/" target="_blank" style="float:right;margin-top:5px; margin-left:10px;" ><img src="'.WOOPS_IMAGES_URL.'/a3logo.png" /></a>';
+		$html .= '<h3>'.__('Upgrade to Predictive Search Pro', 'woops').'</h3>';
+		$html .= '<p>'.__("<strong>NOTE:</strong> All the functions inside the Yellow border on the plugins admin panel are extra functionality that is activated by upgrading to the Pro version", 'woops').':</p>';
+		$html .= '<p>';
+		$html .= '<h3>* <a href="'.WOOPS_AUTHOR_URI.'" target="_blank">'.__('WooCommerce Predictive Search Pro', 'woops').'</a> '.__('Features', 'woops').':</h3>';
+		$html .= '<p>';
+		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>1. '.__("Activate site search optimization with Predictive Search 'Focus Keywords'.", 'woops').'</li>';
+		$html .= '<li>2. '.__('Activate integration with Yoasts WordPress SEO or All in One SEO plugins.', 'woops').'</li>';
+		$html .= '<li>3. '.__('Activate the Advance All Search results page customization setting.', 'woops').'</li>';
+		$html .= '<li>4. '.__('Activate Search by Product Categories, Product Tags, Posts and Pages options in the search widgets.', 'woops').'</li>';
+		$html .= '<li>5. '.__('Activate Search shortcodes for Posts and pages.', 'woops').'</li>';
+		$html .= '<li>6. '.__('Activate Exclude Product Cats, Product Tags , Posts and pages from search results.', 'woops').'</li>';
+		$html .= '<li>7. '.__('Activate Predictive Search Function to place the search box in any non widget area of your site - example the header.', 'woops').'</li>';
+		$html .= '<li>8. '.__("Activate 'Smart Search' function on Widgets, Shortcode and the search Function", 'woops').'</li>';
+		$html .= '<li>9. '.__("Multi Lingual Support. Fully compatible with WPML", 'woops').'</li>';
+		$html .= '</ul>';
+		$html .= '</p>';
+		$html .= '<h3>'.__('View this plugins', 'woops').' <a href="http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/" target="_blank">'.__('documentation', 'woops').'</a></h3>';
+		$html .= '<h3>'.__('Visit this plugins', 'woops').' <a href="http://wordpress.org/support/plugin/woocommerce-predictive-search/" target="_blank">'.__('support forum', 'woops').'</a></h3>';
+		$html .= '<h3>'.__('More a3rev Quality Plugins', 'woops').'</h3>';
+		$html .= '<p>'.__('Below is a list of the a3rev plugins that are available for free download from wordpress.org', 'woops').'</p>';
+		$html .= '<h3>'.__('More FREE a3rev WooCommerce Plugins', 'woops').'</h3>';
+		$html .= '<p>';
+		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-dynamic-gallery/" target="_blank">'.__('WooCommerce Dynamic Products Gallery', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('WooCommerce Predictive Search', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-compare-products/" target="_blank">'.__('WooCommerce Compare Products', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woo-widget-product-slideshow/" target="_blank">'.__('WooCommerce Widget Product Slideshow', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-email-inquiry-cart-options/" target="_blank">'.__('WooCommerce Email Inquiry & Cart Options', 'woops').'</a></li>';
+		$html .= '</ul>';
+		$html .= '</p>';
+		$html .= '<h3>'.__('FREE a3rev WordPress Plugins', 'woops').'</h3>';
+		$html .= '<p>';
+		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/contact-us-page-contact-people/" target="_blank">'.__('Contact Us Page - Contact People', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/wp-email-template/" target="_blank">'.__('WordPress Email Template', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/page-views-count/" target="_blank">'.__('Page View Count', 'woops').'</a></li>';
+		$html .= '</ul>';
+		$html .= '</p>';
+		$html .= '<h3>'.__('Help spread the Word about this plugin', 'woops').'</h3>';
+		$html .= '<p>'.__("Things you can do to help others find this plugin", 'woops');
+		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Rate this plugin 5', 'woops').' <img src="'.WOOPS_IMAGES_URL.'/stars.png" align="top" /> '.__('on WordPress.org', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Mark the plugin as a fourite', 'woops').'</a></li>';
+		$html .= '</ul>';
+		$html .= '</p>';
+		$html .= '</div>';
+		return $html;
+	}
+	
+	public static function predictive_extension_shortcode() {
+		$html = '';
+		$html .= '<div id="woo_predictive_extensions">'.__("Yes you'll love the Predictive Search shortcode feature. Upgrading to the", 'woops').' <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('Pro Version', 'woops').'</a> '.__("activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features.", 'woops').'</div>';
+		return $html;	
+	}
+	
+	public static function upgrade_version_2_0() {
 		$exclude_products = get_option('woocommerce_search_exclude_products', '');
 		if ($exclude_products !== false) {
 			$exclude_products_array = explode(",", $exclude_products);

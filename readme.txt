@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 2.1.7
+Tested up to: 3.5.2
+Stable tag: 2.1.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -171,6 +171,16 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.8 - 2013/07/16 =
+* Features:
+	* Complete UI overhaul and renovation of the plugins admin dashboard.
+	* Admin dashboard content broken up into sub nav tabs for ease of feature management. Global Settings | All Results Pages | Exclude Content | Search Function. 
+* Tweaks:
+	* Updated Lite Version code for seamless upgrade for new Pro Version Multi Lingual feature.
+	* Ran full WP_DEBUG All Uncaught exceptions errors and warnings fixed.
+	* Added PHP Public Static to functions in Class. Done so that Public Static warnings don't show in DE_BUG mode.
+	* Updated admin dashboard Yellow Sidebar content.
+
 = 2.1.7 - 2013/06/12 =
 * Feature: Search box dropdown now can show the full wide when search function is activated by a third party script. An example of this is when the search box is not loaded on page load but is activated by click on a button or element.
 * Tweak: Changed the search box drop down z index to 999999 so that it always overlays any other element on the page.
@@ -271,6 +281,9 @@ Security - Vulnerability Fix - please update your plugin now.
 
 
 == Upgrade Notice ==
+
+= 2.1.8 =
+Upgrade now for a Complete admin dashboard UI overhaul and comprehensive code WP_DEBUG.
 
 = 2.1.6 =
 Install this upgrade for a futher reduction in memory used by each search that is performed.
