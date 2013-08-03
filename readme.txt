@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
-Tested up to: 3.5.2
-Stable tag: 2.1.8
+Tested up to: 3.6
+Stable tag: 2.1.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -171,6 +171,14 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.9 - 2013/08/03 =
+* Tweaks :
+	* Tested for full compatibility with WordPress v3.6.0
+* Fixes :
+	* Added box-sizing:content-box class attribute for compatibility with new WordPress Twenty Thirteen default theme.
+* Translations :
+	* German translation by Matthias Rimkus
+
 = 2.1.8 - 2013/07/16 =
 * Features :
 	* Complete UI overhaul and renovation of the plugins admin dashboard.
@@ -281,6 +289,9 @@ Security - Vulnerability Fix - please update your plugin now.
 
 
 == Upgrade Notice ==
+
+= 2.1.9 =
+Please update your plugin now for full WordPress v3.6.0 compatibility
 
 = 2.1.8 =
 Upgrade now for a Complete admin dashboard UI overhaul and comprehensive code WP_DEBUG.

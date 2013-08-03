@@ -1,0 +1,877 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Predictive Search\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-03 09:43+0700\n"
+"PO-Revision-Date: 2013-08-03 09:43+0700\n"
+"Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ woops
+#: admin/wc-predictive-search-init.php:8
+msgid "Woocommerce Predictive Search"
+msgstr "Woocommerce Predictive Search"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:60
+#: admin/classes/class-wc-predictive-search-admin.php:409
+msgid "Predictive Search"
+msgstr "Predictive Search"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:121
+#: admin/classes/class-wc-predictive-search-admin.php:523
+msgid "Text to Show"
+msgstr "Anzuzeigender Text"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:123
+#: admin/classes/class-wc-predictive-search-admin.php:524
+msgid "&lt;empty&gt; shows nothing"
+msgstr "&lt;Leer&gt; = es wird nichts angezeigt"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:137
+msgid "A search results page needs to be selected so that WooCommerce Predictive Search knows where to show search results. This page should have been created upon installation of the plugin, if not you need to create it."
+msgstr "Es muss eine Seite festgelegt werden, auf der WooCommerce Predictive Search die Ergebnisse anzeigt. Diese Seite sollte bereits bei der Installation des Plugins erstellt worden sein. Falls nicht, lege bitte eine Seite dafür an."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:142
+msgid "House Keeping"
+msgstr "Aufräumen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:145
+msgid "Clean up on Deletion"
+msgstr "Saubermachen nach dem Entfernen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:149
+#, fuzzy
+msgid "Check this box and if you ever delete this plugin it will completely remove all tables and data it created, leaving no trace it was ever here. If upgrading to the Pro Version this is"
+msgstr "Markiere dieses Feld, um nach dem Entfernen des Plugins alle zugehörigen Tabellen und Daten zu löschen. Bei einem Upgrade auf die Pro-Version ist dies"
+
+#: admin/classes/class-wc-predictive-search-admin.php:149
+msgid "not recommended"
+msgstr ""
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:157
+msgid "Search results page settings"
+msgstr "Einstellungen für Suchergebnisseite"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:160
+msgid "Results"
+msgstr "Ergebnisse"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:163
+msgid "The number of results to show before endless scroll click to see more results."
+msgstr "Anzahl der Ergebnisse, die anzeigt werden sollen, bevor durch Klick weitere Ergebnisse geladen werden."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:167
+msgid "Description character count"
+msgstr "Zeichenzahl der Beschreibung"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:170
+msgid "The number of characters from product descriptions that shows with each search result."
+msgstr "Anzahl der Zeichen in den Beschreibungen, die für die Suchergebnisse anzeigt werden."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:174
+msgid "SKU"
+msgstr "SKU"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:176
+msgid "Show product SKU with search results"
+msgstr "SKU-Nummer mit den Suchergebnissen anzeigen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:180
+#: classes/class-wc-predictive-search-shortcodes.php:143
+msgid "Price"
+msgstr "Preis"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:182
+msgid "Show product price with search results"
+msgstr "Preise mit den Suchergebnissen anzeigen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:186
+msgid "Add to cart"
+msgstr "In den Warenkorb"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:188
+msgid "Show Add to cart button with search results"
+msgstr "Schaltfläche \\\"In den Warenkorb\\\" mit den Suchergebnissen anzeigen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:192
+#: widget/wc-predictive-search-widgets.php:21
+msgid "Product Categories"
+msgstr "Produktkategorien"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:194
+msgid "Show categories with search results"
+msgstr "Kategorien mit den Suchergebnissen anzeigen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:198
+#: widget/wc-predictive-search-widgets.php:22
+msgid "Product Tags"
+msgstr "Produkt-Tags"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:200
+msgid "Show tags with search results"
+msgstr "Tags mit den Suchergebnissen anzeigen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:215
+msgid "Exclude Product Categories"
+msgstr "Produktkategorien ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:217
+msgid "Choose Product Categories"
+msgstr "Produktkategorien auswählen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:229
+msgid "Exclude Product Tags"
+msgstr "Produkt-Tags ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:231
+msgid "Choose Product Tags"
+msgstr "Produkt-Tags auswählen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:243
+msgid "Exclude Posts"
+msgstr "Beiträge ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:245
+msgid "Choose Posts"
+msgstr "Beiträge auswählen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:257
+msgid "Exclude Pages"
+msgstr "Seiten ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:259
+msgid "Choose Pages"
+msgstr "Seiten auswählen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:276
+msgid "Predictive Search Function"
+msgstr "Predictive-Search-Funktion"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:280
+#: admin/classes/class-wc-predictive-search-admin.php:360
+msgid "Copy and paste this global function into your themes header.php file to replace any existing search function. (Be sure to delete the existing WordPress, WooCommerce or Theme search function)"
+msgstr "Füge diese globale Funktion in die header.php deines Themes ein, um die vorhandene Suchfunktion zu ersetzen (die vorhandene Suchfunktion von WordPress, WooCommerce bzw. Theme muss unbedingt entfernt werden)"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:285
+#: admin/classes/class-wc-predictive-search-admin.php:363
+msgid "Customize Search Function values"
+msgstr "Werte für die Suchfunktion anpassen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:288
+#: admin/classes/class-wc-predictive-search-admin.php:365
+msgid "The values you set here will be shown when you add the global search function to your header.php file. After adding the global function to your header.php file you can change the values here and 'Update' and they will be auto updated in the function."
+msgstr "Die hier gesetzten Werte werden angezeigt, wenn du die globale Suchfunktion in deine header.php einfügst. Nach dem Einfügen der globalen Funktion in die header.php kannst du die Werte hier ändern und durch einen Klick auf \\\"Aktualisieren\\\" in die Funktion übernehmen."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:291
+msgid "Product name"
+msgstr "Produktname"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:292
+msgid "Number of Product Name to show in search field drop-down. Leave &lt;empty&gt; for not activated"
+msgstr "Anzahl der Produktnamen, die im Suchfeld-Dropdown angezeigt werden. &lt;Leer&gt; = nicht aktiviert."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:295
+#: widget/wc-predictive-search-widgets.php:20
+msgid "Product SKU"
+msgstr "Produkt-SKU"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:296
+msgid "Number of Product SKU to show in search field drop-down. Leave &lt;empty&gt; for not activated"
+msgstr "Anzahl der Produkt-SKUs, die im Suchfeld-Dropdown angezeigt werden. &lt;Leer&gt; = nicht aktiviert."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:299
+msgid "Product category"
+msgstr "Produktkategorie"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:300
+msgid "Number of Product Categories to show in search field drop-down. Leave &lt;empty&gt; for not activated"
+msgstr "Anzahl der Produktkategorien, die im Suchfeld-Dropdown angezeigt werden. &lt;Leer&gt; = nicht aktiviert."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:303
+msgid "Product tag"
+msgstr "Produkt-Tag"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:304
+msgid "Number of Product Tags to show in search field drop-down. Leave &lt;empty&gt; for not activated"
+msgstr "Anzahl der Produkt-Tags, die im Suchfeld-Dropdown angezeigt werden. &lt;Leer&gt; = nicht aktiviert."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:307
+msgid "Post"
+msgstr "Beitrag"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:308
+msgid "Number of Posts to show in search field drop-down. Leave &lt;empty&gt; for not activated"
+msgstr "Anzahl der Beiträge, die im Suchfeld-Dropdown angezeigt werden. &lt;Leer&gt; = nicht aktiviert."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:311
+msgid "Page"
+msgstr "Seite"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:312
+msgid "Number of Pages to show in search field drop-down. Leave &lt;empty&gt; for not activated"
+msgstr "Anzahl der Seiten, die im Suchfeld-Dropdown angezeigt werden. &lt;Leer&gt; = nicht aktiviert."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:315
+msgid "Description Characters"
+msgstr "Zeichen in Beschreibung"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:316
+msgid "Number of characters from product description to show in search field drop-down. Default value is \"100\"."
+msgstr "Anzahl der Zeichen für die Produktbeschreibungen im Suchfeld-Dropdown. Standard ist \"100\"."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:319
+msgid "Width"
+msgstr "Breite"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:320
+msgid "Leave &lt;empty&gt; for 100% wide"
+msgstr "&lt;Leer&gt; = 100%"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:323
+msgid "Padding top"
+msgstr "Padding oben"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:327
+msgid "Padding bottom"
+msgstr "Padding unten"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:331
+#, fuzzy
+msgid "Padding lef"
+msgstr "Padding links"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:335
+msgid "Padding right"
+msgstr "Padding rechts"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:339
+msgid "Custom style"
+msgstr "Eigener Stil"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:340
+msgid "Put other custom style for the Predictive search box"
+msgstr "Custom Style für das Predictive-Search-Suchfeld"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:343
+#: admin/classes/class-wc-predictive-search-admin.php:345
+msgid "Global search"
+msgstr "Globale Suche"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:348
+msgid "Set global search or search in current product category or current product tag. \"Checked\" to activate global search."
+msgstr "Globale Suche oder Suche in aktueller Produktkategorie bzw. aktuellem Produkt-Tag. \"Markiert\" = Globale Suche aktiv."
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:398
+msgid "Global Settings"
+msgstr "Globale Einstellungen"
+
+#: admin/classes/class-wc-predictive-search-admin.php:399
+msgid "All Results Pages"
+msgstr ""
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:400
+#, fuzzy
+msgid "Exclude Content"
+msgstr "Beiträge ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:401
+#, fuzzy
+msgid "Search Function"
+msgstr "Predictive-Search-Funktion"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:406
+#: classes/class-wc-predictive-search-metabox.php:50
+msgid "Focus Keywords"
+msgstr "Schlüsselwörter"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:411
+msgid "Activate to optimize your sites content with Predictive Search 'Focus keywords'"
+msgstr "Optimierung der Inhalte dieser Site mit Schlüsselwörtern für Predictive Search"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:415
+msgid "Activate SEO 'Focus Keywords'"
+msgstr "Focus Keywords für SEO aktivieren"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:418
+msgid "Select SEO plugin"
+msgstr "SEO Plugin auswählen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:419
+msgid "Yoast WordPress SEO"
+msgstr "Yoast WordPress SEO"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:420
+msgid "All in One SEO"
+msgstr "All in One SEO"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:517
+msgid "Global Search Box Text"
+msgstr "Text im Eingabefeld der globalen Suche"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:534
+#, fuzzy
+msgid "Search Page Configuration"
+msgstr "Suchseite"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:540
+msgid "Search Page"
+msgstr "Suchseite"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:541
+msgid "Page contents:"
+msgstr "Seiteninhalt:"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:553
+msgid "Exclude From Predictive Search"
+msgstr "Von der Suche ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:559
+msgid "Exclude Products"
+msgstr "Produkte ausschließen"
+
+# @ woops
+#: admin/classes/class-wc-predictive-search-admin.php:565
+msgid "Choose Products"
+msgstr "Produkte auswählen"
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:70
+#, fuzzy
+msgid "Products"
+msgstr "Produkt-Tags"
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:87
+#, fuzzy
+msgid "See more results for"
+msgstr "Weitere Ergebnisse anzeigen für"
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:87
+#, fuzzy
+msgid "Displaying top"
+msgstr "Padding oben"
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:87
+#, fuzzy
+msgid "results"
+msgstr "Ergebnisse"
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:91
+msgid "Keep typing..."
+msgstr "Mehr Zeichen eingeben..."
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:222
+msgid "Documentation"
+msgstr "Dokumentation"
+
+# @ woops
+#: classes/class-wc-predictive-search-filter.php:223
+msgid "Support"
+msgstr "Support"
+
+# @ woops
+#: classes/class-wc-predictive-search-metabox.php:27
+#: classes/class-wc-predictive-search-metabox.php:29
+msgid "Hide from Predictive Search results."
+msgstr "Aus den Suchergebnissen ausblenden"
+
+# @ woops
+#: classes/class-wc-predictive-search-metabox.php:32
+#: classes/class-wc-predictive-search-metabox.php:34
+#: classes/class-wc-predictive-search-metabox.php:35
+msgid "Predictive Search Meta"
+msgstr "Predictive Search Meta"
+
+#: classes/class-wc-predictive-search-metabox.php:47
+#: widget/wc-predictive-search-widgets.php:182
+#: widget/wc-predictive-search-widgets.php:197
+msgid "Upgrade to"
+msgstr ""
+
+#: classes/class-wc-predictive-search-metabox.php:47
+#: classes/class-wc-predictive-search.php:203
+#: widget/wc-predictive-search-widgets.php:182
+#: widget/wc-predictive-search-widgets.php:197
+msgid "Pro Version"
+msgstr ""
+
+#: classes/class-wc-predictive-search-metabox.php:47
+#: widget/wc-predictive-search-widgets.php:182
+#: widget/wc-predictive-search-widgets.php:197
+msgid "to activate"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:40
+msgid "Insert WooCommerce Predictive Search Shortcode"
+msgstr "WooCommerce Predictive Search Shortcode einfügen"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:98
+msgid "Customize the Predictive Search Shortcode"
+msgstr "Predictive Search Shortcode anpassen"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:103
+msgid "Number of"
+msgstr "Anzahl der"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:103
+msgid "results to show in dropdown"
+msgstr "im Dropdown angezeigten Ergebnisse"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:105
+msgid "Characters"
+msgstr "Zeichen"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:105
+msgid "Number of product description characters"
+msgstr "Zahl der Zeichen in der Produktbeschreibung"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Alignment"
+msgstr "Ausrichtung"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "None"
+msgstr "Ohne"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Left - wrap"
+msgstr "Links mit Umbruch"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Left - no wrap"
+msgstr "Links ohne Umbruch"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Center"
+msgstr "Zentriert"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Right - wrap"
+msgstr "Rechts mit Umbruch"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Right - no wrap"
+msgstr "Rechts ohne Umbruch"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:106
+msgid "Horizontal aliginment of search box"
+msgstr "Horizontale Ausrichtung des Suchfelds"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:107
+msgid "Search box width"
+msgstr "Breite des Suchfelds"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:108
+#: widget/wc-predictive-search-widgets.php:186
+msgid "Search box text message"
+msgstr "Im Suchfeld anzuzeigender Text"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:109
+msgid "Padding"
+msgstr "Padding"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:110
+msgid "Above"
+msgstr "Über"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:111
+msgid "Below"
+msgstr "Unter"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:112
+msgid "Left"
+msgstr "Links"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:113
+msgid "Right"
+msgstr "Rechts"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:116
+msgid "Insert Shortcode"
+msgstr "Shortcode einfügen"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:117
+msgid "Cancel"
+msgstr "Abbrechen"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:139
+#: classes/class-wc-predictive-search-shortcodes.php:141
+msgid "Priced"
+msgstr "Mit Preis"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:183
+msgid "Category"
+msgstr "Kategorie"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:201
+msgid "Tags"
+msgstr "Tags"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:255
+#, fuzzy
+msgid "Showing all results for your search"
+msgstr "Es werden alle Suchergebnisse angezeigt"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:299
+msgid "Loading More Results..."
+msgstr "Weitere Ergebnisse laden..."
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:323
+msgid "No More Results to Show"
+msgstr "Keine weiteren Ergebnisse"
+
+# @ woops
+#: classes/class-wc-predictive-search-shortcodes.php:337
+msgid "Nothing Found! Please refine your search and try again."
+msgstr "Nichts zu finden! Bitte andere Suchbegriffe verwenden."
+
+# @ woops
+#: classes/class-wc-predictive-search.php:151
+#, fuzzy
+msgid "Upgrade to Predictive Search Pro"
+msgstr "Von der Suche ausschließen"
+
+#: classes/class-wc-predictive-search.php:152
+msgid "<strong>NOTE:</strong> All the functions inside the Yellow border on the plugins admin panel are extra functionality that is activated by upgrading to the Pro version"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search.php:154
+#, fuzzy
+msgid "WooCommerce Predictive Search Pro"
+msgstr "WooCommerce Predictive Search"
+
+#: classes/class-wc-predictive-search.php:154
+msgid "Features"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search.php:157
+#, fuzzy
+msgid "Activate site search optimization with Predictive Search 'Focus Keywords'."
+msgstr "Optimierung der Inhalte dieser Site mit Schlüsselwörtern für Predictive Search"
+
+#: classes/class-wc-predictive-search.php:158
+msgid "Activate integration with Yoasts WordPress SEO or All in One SEO plugins."
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:159
+msgid "Activate the Advance All Search results page customization setting."
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:160
+msgid "Activate Search by Product Categories, Product Tags, Posts and Pages options in the search widgets."
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:161
+msgid "Activate Search shortcodes for Posts and pages."
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:162
+msgid "Activate Exclude Product Cats, Product Tags , Posts and pages from search results."
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:163
+msgid "Activate Predictive Search Function to place the search box in any non widget area of your site - example the header."
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:164
+msgid "Activate 'Smart Search' function on Widgets, Shortcode and the search Function"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:165
+msgid "Multi Lingual Support. Fully compatible with WPML"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:168
+msgid "View this plugins"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search.php:168
+#, fuzzy
+msgid "documentation"
+msgstr "Dokumentation"
+
+#: classes/class-wc-predictive-search.php:169
+msgid "Visit this plugins"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search.php:169
+#, fuzzy
+msgid "support forum"
+msgstr "Support"
+
+#: classes/class-wc-predictive-search.php:170
+msgid "More a3rev Quality Plugins"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:171
+msgid "Below is a list of the a3rev plugins that are available for free download from wordpress.org"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:172
+msgid "More FREE a3rev WooCommerce Plugins"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search.php:175
+#, fuzzy
+msgid "WooCommerce Dynamic Products Gallery"
+msgstr "WooCommerce Predictive Search"
+
+# @ woops
+#: classes/class-wc-predictive-search.php:176
+#: widget/wc-predictive-search-widgets.php:32
+msgid "WooCommerce Predictive Search"
+msgstr "WooCommerce Predictive Search"
+
+# @ woops
+#: classes/class-wc-predictive-search.php:177
+#, fuzzy
+msgid "WooCommerce Compare Products"
+msgstr "Produkte auswählen"
+
+# @ woops
+#: classes/class-wc-predictive-search.php:178
+#, fuzzy
+msgid "WooCommerce Widget Product Slideshow"
+msgstr "WooCommerce Predictive Search"
+
+#: classes/class-wc-predictive-search.php:179
+msgid "WooCommerce Email Inquiry & Cart Options"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:182
+msgid "FREE a3rev WordPress Plugins"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:185
+msgid "Contact Us Page - Contact People"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:186
+msgid "WordPress Email Template"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:187
+msgid "Page View Count"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:190
+msgid "Help spread the Word about this plugin"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:191
+msgid "Things you can do to help others find this plugin"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:193
+msgid "Rate this plugin 5"
+msgstr ""
+
+# @ woops
+#: classes/class-wc-predictive-search.php:193
+#, fuzzy
+msgid "on WordPress.org"
+msgstr "Yoast WordPress SEO"
+
+#: classes/class-wc-predictive-search.php:194
+msgid "Mark the plugin as a fourite"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:203
+msgid "Yes you'll love the Predictive Search shortcode feature. Upgrading to the"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:203
+msgid "activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features."
+msgstr ""
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:19
+msgid "Product Name"
+msgstr "Produktname"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:23
+msgid "Posts"
+msgstr "Beiträge"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:24
+msgid "Pages"
+msgstr "Seiten"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:31
+msgid "User sees search results as they type in a dropdown - links through to 'All Search Results Page' that features endless scroll."
+msgstr "Ergebnisse werden während der Eingabe in einem Dropdown angezeigt mit Verweis auf Alle Ergebnisse mit Endlos-Scroll-Funktion"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:174
+msgid "Title:"
+msgstr "Titel:"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:175
+msgid "Search box text message:"
+msgstr "Im Suchfeld anzuzeigender Text"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:195
+#, fuzzy
+msgid "Number of results to show:"
+msgstr "Keine weiteren Ergebnisse"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:196
+#: widget/wc-predictive-search-widgets.php:204
+msgid " Results description character count:"
+msgstr "Zeichenzahl in den Beschreibungen der Ergebnisse"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:198
+msgid "Activate search 'types' for this widget by entering the number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop"
+msgstr "Suchart für dieses Widget durch Eingabe der Anzahl im Dropdown anzuzeigender Ergebnisse festlegen. &lt;Leer&gt; = nicht aktiviert. Reihenfolge ändern mit Drag&Drop."
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:205
+msgid "Search All Products"
+msgstr "Alle Produkte durchsuchen"
+
+# @ woops
+#: widget/wc-predictive-search-widgets.php:206
+msgid "Smart Search"
+msgstr "Smart Search"
+
+# @ woops
+#, fuzzy
+#~ msgctxt "page_slug"
+
+#~ msgid "woocommerce-search"
+#~ msgstr "Woocommerce Predictive Search"
+
+# @ woops
+#, fuzzy
+#~ msgid "Sort Search Results by"
+#~ msgstr "Tags mit den Suchergebnissen anzeigen"
