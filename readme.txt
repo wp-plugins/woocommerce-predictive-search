@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 2.1.9
+Stable tag: 2.1.9.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,10 +111,11 @@ WooCommerce Predictive Search is now the most powerful site search engine ever d
 = Localization =
 
 * English (default) - always included.
+* Romanian (ro_RO) credit to Balanean Corneliu.
 * Dutch (nl_NL) credit to Erwin Saunders.
 * Spanish (es_ES) credit to Fidel Diez.
 * .po file (woops.po) in languages folder for translations.
-* If you do a translation for your site please send it to us for inclusion in the plugin language folder. We'll acknowledge your work here. [Go here](http://www.a3rev.com/contact/) to send your translation files to us.
+* If you do a translation for your site please send it to us for inclusion in the plugin language folder. We'll acknowledge your work here. [Go here](http://a3rev.com/contact-us-page/) to send your translation files to us.
 
 == Installation ==
 
@@ -170,6 +171,15 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.1.9.1 - 2013/09/10 =
+* Features :
+	* Added 'View Docs' link from the top of each admin panel to that menus section on the plugins docs.
+* Fixes :
+	* Product Thumbnail images not showing in Chrome with SSL on product pages. Stripped http// and https// protocols so browser will use the protocol that the page was loaded with. 
+	* Plugins admin script and style not loading in Firefox with SSL on admin. Stripped http// and https// protocols so browser will use the protocol that the page was loaded with.
+* Localization :
+	* Added Romanian thanks to Balanean Corneliu
 
 = 2.1.9 - 2013/08/03 =
 * Tweaks :
@@ -289,6 +299,9 @@ Security - Vulnerability Fix - please update your plugin now.
 
 
 == Upgrade Notice ==
+
+= 2.1.9.1 =
+Update now for new 'View Docs' quick reference feature and 2 SSL bug fixes.
 
 = 2.1.9 =
 Please update your plugin now for full WordPress v3.6.0 compatibility

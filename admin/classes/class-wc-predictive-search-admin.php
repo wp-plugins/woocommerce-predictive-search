@@ -101,7 +101,7 @@ class WC_Predictive_Search_Settings
         	$class = 'nav-tab';
       		if ( $this->current_tab == $name )
             	$class .= ' nav-tab-active';
-      		echo '<a href="' . admin_url('admin.php?page=woocommerce&tab=' . $name) . '" class="' . $class . '">' . $label . '</a>';
+      		echo '<a href="' . admin_url('admin.php?page=woocommerce_settings&tab=' . $name, 'relative' ) . '" class="' . $class . '">' . $label . '</a>';
      	endforeach;
 	}
 	
@@ -154,7 +154,7 @@ class WC_Predictive_Search_Settings
 		echo '</div><div class="section" id="all-results-pages">';
 	?>
     	<div class="pro_feature_fields">
-    	<h3 style="margin-top:0; padding-top:10px;"><?php _e('Search results page settings', 'woops'); ?></h3>
+    	<h3 style="margin-top:0; padding-top:10px;"><?php _e('Search results page settings', 'woops'); ?></h3><div class="view-docs-container"><a class="add-new-h2 a3-view-docs-button" target="_blank" href="<?php echo WOO_PREDICTIVE_SEARCH_DOCS_URI; ?>#section-13" ><?php _e('View Docs', 'woops'); ?></a></div>
         <table class="form-table">
           <tr valign="top">
 		    <th class="titledesc" scope="row"><label for="woocommerce_search_result_items"><?php _e('Results', 'woops');?></label></th>
@@ -273,7 +273,7 @@ class WC_Predictive_Search_Settings
 		echo '</div><div class="section" id="search-function">';
 	?>
     	<div class="pro_feature_fields">
-    	<h3><?php _e('Predictive Search Function', 'woops'); ?></h3>
+    	<h3><?php _e('Predictive Search Function', 'woops'); ?></h3><div class="view-docs-container"><a class="add-new-h2 a3-view-docs-button" target="_blank" href="<?php echo WOO_PREDICTIVE_SEARCH_DOCS_URI; ?>#section-14" ><?php _e('View Docs', 'woops'); ?></a></div>
 		<table class="form-table">
           <tr valign="top">
 		    <td class="forminp" colspan="2">
@@ -383,6 +383,20 @@ class WC_Predictive_Search_Settings
 		?>
         <style type="text/css">
 		.form-table { margin:0; }
+		.view-docs-container {
+			position:relative;	
+		}
+		.a3-view-docs-button {
+			background-color: #FFFFE0 !important;
+			border: 1px solid #E6DB55 !important;
+			text-shadow:none !important;
+			font-weight:normal !important;
+			margin-left:0 !important;
+			margin-bottom:5px !important;
+			position: absolute !important;
+			top: -32px !important;
+			left:244px !important;
+		}
 		#a3_plugin_panel_container { position:relative; margin-top:10px;}
 		#a3_plugin_panel_fields {width:65%; float:left;}
 		#a3_plugin_panel_upgrade_area { position:relative; margin-left: 65%; padding-left:10px;}
@@ -403,7 +417,7 @@ class WC_Predictive_Search_Settings
                 <br class="clear">
                 <div class="section" id="global-settings">
                 	<div class="pro_feature_fields">
-                    <h3 style="margin-top:0; padding-top:10px;"><?php _e('Focus Keywords', 'woops'); ?></h3>
+                    <h3 style="margin-top:0; padding-top:10px;"><?php _e('Focus Keywords', 'woops'); ?></h3><div class="view-docs-container"><a class="add-new-h2 a3-view-docs-button" target="_blank" href="<?php echo WOO_PREDICTIVE_SEARCH_DOCS_URI; ?>#section-11" ><?php _e('View Docs', 'woops'); ?></a></div>
                     <table class="form-table">
                       <tr valign="top">
                         <th class="titledesc" scope="row"><label for="woocommerce_search_focus_enable"><?php _e('Predictive Search', 'woops');?></label></th>
@@ -552,7 +566,7 @@ class WC_Predictive_Search_Settings
 			array(
             	'name' => __( 'Exclude From Predictive Search', 'woops' ),
                 'type' => 'title',
-                'desc' => '',
+                'desc' => '<div class="view-docs-container"><a class="add-new-h2 a3-view-docs-button" target="_blank" href="'.WOO_PREDICTIVE_SEARCH_DOCS_URI.'#section-12" >'.__('View Docs', 'woops').'</a></div>',
           		'id' => 'predictive_search_excludes_start'
            	),
 			array(  

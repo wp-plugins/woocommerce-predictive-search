@@ -7,7 +7,7 @@ function wc_predictive_install() {
 	global $wp_rewrite;
 	WC_Predictive_Search::create_page( 'woocommerce-search' , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
 	WC_Predictive_Search_Settings::set_setting();
-	update_option('wc_predictive_search_lite_version', '2.1.9');
+	update_option('wc_predictive_search_lite_version', '2.1.9.1');
 	$wp_rewrite->flush_rules();
 	
 	update_option('wc_predictive_search_just_installed', true);
@@ -16,7 +16,7 @@ function wc_predictive_install() {
 function woops_init() {
 	if ( get_option('wc_predictive_search_just_installed') ) {
 		delete_option('wc_predictive_search_just_installed');
-		wp_redirect( ( ( is_ssl() || force_ssl_admin() || force_ssl_login() ) ? str_replace( 'http:', 'https:', admin_url( 'admin.php?page=woocommerce&tab=ps_settings' ) ) : str_replace( 'https:', 'http:', admin_url( 'admin.php?page=woocommerce&tab=ps_settings' ) ) ) );
+		wp_redirect( admin_url( 'admin.php?page=woocommerce_settings&tab=ps_settings', 'relative' ) );
 		exit;
 	}
 	load_plugin_textdomain( 'woops', false, WOOPS_FOLDER.'/languages' );
@@ -80,7 +80,7 @@ if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -
 	update_option('wc_predictive_search_lite_version', '2.0');
 }
 
-update_option('wc_predictive_search_lite_version', '2.1.9');
+update_option('wc_predictive_search_lite_version', '2.1.9.1');
 
 global $wc_predictive;
 $wc_predictive = new WC_Predictive_Search_Settings();

@@ -219,7 +219,7 @@ class WC_Predictive_Search_Hook_Filter
 		if ( $plugin_name != WOOPS_NAME) {
 			return $links;
 		}
-		$links[] = '<a href="http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/" target="_blank">'.__('Documentation', 'woops').'</a>';
+		$links[] = '<a href="'.WOO_PREDICTIVE_SEARCH_DOCS_URI.'" target="_blank">'.__('Documentation', 'woops').'</a>';
 		$links[] = '<a href="http://wordpress.org/support/plugin/woocommerce-predictive-search/" target="_blank">'.__('Support', 'woops').'</a>';
 		return $links;
 	}

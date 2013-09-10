@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Predictive Search PRO v2.1.5\n"
+"Project-Id-Version: WooCommerce Predictive Search\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-16 18:23+0700\n"
-"PO-Revision-Date: 2013-07-16 18:23+0700\n"
+"POT-Creation-Date: 2013-09-10 15:35+0700\n"
+"PO-Revision-Date: 2013-09-10 15:35+0700\n"
 "Last-Translator: Nguyen Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,19 +26,19 @@ msgstr "Búsqueda Predictiva Woocommerce"
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:60
-#: admin/classes/class-wc-predictive-search-admin.php:409
+#: admin/classes/class-wc-predictive-search-admin.php:423
 msgid "Predictive Search"
 msgstr "Búsqueda Predictiva"
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:121
-#: admin/classes/class-wc-predictive-search-admin.php:523
+#: admin/classes/class-wc-predictive-search-admin.php:537
 msgid "Text to Show"
 msgstr "Texto a Mostrar"
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:123
-#: admin/classes/class-wc-predictive-search-admin.php:524
+#: admin/classes/class-wc-predictive-search-admin.php:538
 msgid "&lt;empty&gt; shows nothing"
 msgstr "&lt;vacio&gt; no muestra nada"
 
@@ -67,6 +67,14 @@ msgstr ""
 #: admin/classes/class-wc-predictive-search-admin.php:157
 msgid "Search results page settings"
 msgstr "Página de ajustes de los resultados de la búsqueda"
+
+#: admin/classes/class-wc-predictive-search-admin.php:157
+#: admin/classes/class-wc-predictive-search-admin.php:276
+#: admin/classes/class-wc-predictive-search-admin.php:420
+#: admin/classes/class-wc-predictive-search-admin.php:569
+#: classes/class-wc-predictive-search-shortcodes.php:119
+msgid "View Docs"
+msgstr ""
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:160
@@ -100,7 +108,7 @@ msgstr "Mostrar el SKU del producto con los resultados de las búsquedas"
 
 # @ woops
 #: admin/classes/class-wc-predictive-search-admin.php:180
-#: classes/class-wc-predictive-search-shortcodes.php:143
+#: classes/class-wc-predictive-search-shortcodes.php:164
 msgid "Price"
 msgstr "Precio"
 
@@ -328,90 +336,90 @@ msgid "Set global search or search in current product category or current produc
 msgstr "Establecer búsqueda global o buscar en la categoría del producto actual o en la etiqueta del producto actual.  \"Marcar\" para activar la búsqueda global."
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:398
+#: admin/classes/class-wc-predictive-search-admin.php:412
 msgid "Global Settings"
 msgstr "Ajustes Globales"
 
-#: admin/classes/class-wc-predictive-search-admin.php:399
+#: admin/classes/class-wc-predictive-search-admin.php:413
 msgid "All Results Pages"
 msgstr ""
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:400
+#: admin/classes/class-wc-predictive-search-admin.php:414
 #, fuzzy
 msgid "Exclude Content"
 msgstr "Excluir Posts"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:401
+#: admin/classes/class-wc-predictive-search-admin.php:415
 #, fuzzy
 msgid "Search Function"
 msgstr "Función de Búsqueda Predictiva"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:406
+#: admin/classes/class-wc-predictive-search-admin.php:420
 #: classes/class-wc-predictive-search-metabox.php:50
 msgid "Focus Keywords"
 msgstr "Centrar en Palabras Clave"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:411
+#: admin/classes/class-wc-predictive-search-admin.php:425
 msgid "Activate to optimize your sites content with Predictive Search 'Focus keywords'"
 msgstr "Activar para optimizar el contenido de tu sitio con la función 'Centrar en Palabras Clave' de la Búsqueda Predictiva"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:415
+#: admin/classes/class-wc-predictive-search-admin.php:429
 msgid "Activate SEO 'Focus Keywords'"
 msgstr "Activar 'Centrar en Palabras Clave' SEO"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:418
+#: admin/classes/class-wc-predictive-search-admin.php:432
 msgid "Select SEO plugin"
 msgstr "Seleccionar el plugin SEO"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:419
+#: admin/classes/class-wc-predictive-search-admin.php:433
 msgid "Yoast WordPress SEO"
 msgstr "SEO Yoast de WordPress"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:420
+#: admin/classes/class-wc-predictive-search-admin.php:434
 msgid "All in One SEO"
 msgstr "Todo en uno SEO"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:517
+#: admin/classes/class-wc-predictive-search-admin.php:531
 msgid "Global Search Box Text"
 msgstr "Caja de Texto de Búsqueda Global"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:534
+#: admin/classes/class-wc-predictive-search-admin.php:548
 #, fuzzy
 msgid "Search Page Configuration"
 msgstr "Página de Búsqueda"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:540
+#: admin/classes/class-wc-predictive-search-admin.php:554
 msgid "Search Page"
 msgstr "Página de Búsqueda"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:541
+#: admin/classes/class-wc-predictive-search-admin.php:555
 msgid "Page contents:"
 msgstr "Contenidos de la página:"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:553
+#: admin/classes/class-wc-predictive-search-admin.php:567
 msgid "Exclude From Predictive Search"
 msgstr "Excluir de la Búsqueda Predictiva"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:559
+#: admin/classes/class-wc-predictive-search-admin.php:573
 msgid "Exclude Products"
 msgstr "Excluir Productos"
 
 # @ woops
-#: admin/classes/class-wc-predictive-search-admin.php:565
+#: admin/classes/class-wc-predictive-search-admin.php:579
 msgid "Choose Products"
 msgstr "Escoger Productos"
 
@@ -492,150 +500,150 @@ msgid "Insert WooCommerce Predictive Search Shortcode"
 msgstr "Añadir el código corto (shortcode) de la Búsqueda  Predictiva de WooCommerce"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:98
+#: classes/class-wc-predictive-search-shortcodes.php:119
 msgid "Customize the Predictive Search Shortcode"
 msgstr "Personaliza el código corto (shortcode) de la Búsqueda Predictiva"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:103
+#: classes/class-wc-predictive-search-shortcodes.php:124
 msgid "Number of"
 msgstr "Número de"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:103
+#: classes/class-wc-predictive-search-shortcodes.php:124
 msgid "results to show in dropdown"
 msgstr "resultados a mostrar en el desplegable"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:105
+#: classes/class-wc-predictive-search-shortcodes.php:126
 msgid "Characters"
 msgstr "Caracteres"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:105
+#: classes/class-wc-predictive-search-shortcodes.php:126
 msgid "Number of product description characters"
 msgstr "Número de caracteres de la descripción de producto"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Alignment"
 msgstr "Alineación"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "None"
 msgstr "Ninguno"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Left - wrap"
 msgstr "Envolver a la izquierda"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Left - no wrap"
 msgstr "No envolver a la izquierda"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Center"
 msgstr "Centro"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Right - wrap"
 msgstr "Envolver a la derecha"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Right - no wrap"
 msgstr "No envolver a la derecha"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:106
+#: classes/class-wc-predictive-search-shortcodes.php:127
 msgid "Horizontal aliginment of search box"
 msgstr "Alineamiento horizontal de la caja de búsqueda"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:107
+#: classes/class-wc-predictive-search-shortcodes.php:128
 msgid "Search box width"
 msgstr "Ancho de la caja de búsqueda"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:108
+#: classes/class-wc-predictive-search-shortcodes.php:129
 #: widget/wc-predictive-search-widgets.php:186
 msgid "Search box text message"
 msgstr "Mensaje de texto de la caja de búsqueda"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:109
+#: classes/class-wc-predictive-search-shortcodes.php:130
 msgid "Padding"
 msgstr "Relleno"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:110
+#: classes/class-wc-predictive-search-shortcodes.php:131
 msgid "Above"
 msgstr "Encima"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:111
+#: classes/class-wc-predictive-search-shortcodes.php:132
 msgid "Below"
 msgstr "Debajo"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:112
+#: classes/class-wc-predictive-search-shortcodes.php:133
 msgid "Left"
 msgstr "Izquierda"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:113
+#: classes/class-wc-predictive-search-shortcodes.php:134
 msgid "Right"
 msgstr "Derecha"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:116
+#: classes/class-wc-predictive-search-shortcodes.php:137
 msgid "Insert Shortcode"
 msgstr "Insertar código corto (shorcode)"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:117
+#: classes/class-wc-predictive-search-shortcodes.php:138
 msgid "Cancel"
 msgstr "Cancelar"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:139
-#: classes/class-wc-predictive-search-shortcodes.php:141
+#: classes/class-wc-predictive-search-shortcodes.php:160
+#: classes/class-wc-predictive-search-shortcodes.php:162
 msgid "Priced"
 msgstr "Precio"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:183
+#: classes/class-wc-predictive-search-shortcodes.php:204
 msgid "Category"
 msgstr "Categoría"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:201
+#: classes/class-wc-predictive-search-shortcodes.php:222
 msgid "Tags"
 msgstr "Etiquetas"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:255
+#: classes/class-wc-predictive-search-shortcodes.php:276
 #, fuzzy
 msgid "Showing all results for your search"
 msgstr "resultados de la búsqueda de tu sentencia a buscar"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:299
+#: classes/class-wc-predictive-search-shortcodes.php:320
 msgid "Loading More Results..."
 msgstr "Cargando Más Resultados..."
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:323
+#: classes/class-wc-predictive-search-shortcodes.php:344
 msgid "No More Results to Show"
 msgstr "No hay más resultados a mostrar"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:337
+#: classes/class-wc-predictive-search-shortcodes.php:358
 msgid "Nothing Found! Please refine your search and try again."
 msgstr "No se ha encontrado nada! Por favor refine su búsqueda y vuelva a intentarlo."
 
