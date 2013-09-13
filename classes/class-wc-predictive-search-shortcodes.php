@@ -6,11 +6,11 @@
  *
  * Table Of Contents
  *
- * parse_shortcode_search_widget()
  * add_search_widget_icon()
  * add_search_widget_mce_popup()
  * parse_shortcode_search_result()
  * get_product_price()
+ * get_product_price_dropdown()
  * get_product_addtocart()
  * get_product_categories()
  * get_product_tags()
@@ -19,21 +19,6 @@
  */
 class WC_Predictive_Search_Shortcodes
 {
-	public static function parse_shortcode_search_widget($attributes) {
-		extract(shortcode_atts(array(
-			 'items' => 6,
-			 'character_max' => 100,
-			 'style' => '',
-			 'wrap'	=> 'false'
-        ), $attributes));
-		
-		$widget_id = rand(100, 10000);
-		
-		$wrap_div = '';
-		if ($wrap == 'true') $wrap_div = '<div style="clear:both;"></div>';
-		
-		return WC_Predictive_Search_Widgets::woops_results_search_form($widget_id, $items, $character_max, $style, 1).$wrap_div;
-	}
 	
 	public static function add_search_widget_icon($context){
 		$image_btn = WOOPS_IMAGES_URL . "/ps_icon.png";
@@ -45,36 +30,6 @@ class WC_Predictive_Search_Shortcodes
 	public static function add_search_widget_mce_popup(){
 		$items_search_default = WC_Predictive_Search_Widgets::get_items_search();
 		?>
-		<script type="text/javascript">
-			function woo_search_widget_add_shortcode(){
-				var woo_search_number_items = jQuery("#woo_search_number_items").val();
-				var woo_search_text_lenght = jQuery("#woo_search_text_lenght").val();
-				var woo_search_align = jQuery("#woo_search_align").val();
-				var woo_search_width = jQuery("#woo_search_width").val();
-				var woo_search_padding_top = jQuery("#woo_search_padding_top").val();
-				var woo_search_padding_bottom = jQuery("#woo_search_padding_bottom").val();
-				var woo_search_padding_left = jQuery("#woo_search_padding_left").val();
-				var woo_search_padding_right = jQuery("#woo_search_padding_right").val();
-				var woo_search_style = '';
-				var wrap = '';
-				if (woo_search_align == 'center') woo_search_style += 'float:none;margin:auto;display:table;';
-				else if (woo_search_align == 'left-wrap') woo_search_style += 'float:left;';
-				else if (woo_search_align == 'right-wrap') woo_search_style += 'float:right;';
-				else woo_search_style += 'float:'+woo_search_align+';';
-				
-				if(woo_search_align == 'left-wrap' || woo_search_align == 'right-wrap') wrap = 'wrap="true"';
-				
-				if (parseInt(woo_search_width) > 0) woo_search_style += 'width:'+parseInt(woo_search_width)+'px;';
-				if (parseInt(woo_search_padding_top) >= 0) woo_search_style += 'padding-top:'+parseInt(woo_search_padding_top)+'px;';
-				if (parseInt(woo_search_padding_bottom) >= 0) woo_search_style += 'padding-bottom:'+parseInt(woo_search_padding_bottom)+'px;';
-				if (parseInt(woo_search_padding_left) >= 0) woo_search_style += 'padding-left:'+parseInt(woo_search_padding_left)+'px;';
-				if (parseInt(woo_search_padding_right) >= 0) woo_search_style += 'padding-right:'+parseInt(woo_search_padding_right)+'px;';
-				var win = window.dialogArguments || opener || parent || top;
-				win.send_to_editor('[woocommerce_search_widget items="' + woo_search_number_items +'" character_max="'+woo_search_text_lenght+'" style="'+woo_search_style+'" '+wrap+ ']');
-			}
-			
-			
-		</script>
 		<style type="text/css">
 		#TB_ajaxContent{width:auto !important;}
 		#TB_ajaxContent p {
@@ -123,6 +78,7 @@ class WC_Predictive_Search_Shortcodes
             	<?php foreach ($items_search_default as $key => $data) { ?>
                 <p><label for="woo_search_<?php echo $key ?>_items"><?php echo $data['name']; ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_<?php echo $key ?>_items" name="woo_search_<?php echo $key ?>_items" type="text" value="<?php echo $data['number'] ?>" /> <span class="description"><?php _e('Number of', 'woops'); echo ' '.$data['name'].' '; _e('results to show in dropdown', 'woops'); ?></span></p> 
                 <?php } ?>
+                <p><label for="woo_search_show_price"><?php _e('Price', 'woops'); ?>:</label> <input disabled="disabled" type="checkbox" checked="checked" id="woo_search_show_price" name="woo_search_show_price" value="1" /> <span class="description"><?php _e('Show Product prices', 'woops'); ?></span></p>
             	<p><label for="woo_search_text_lenght"><?php _e('Characters', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_text_lenght" name="woo_search_text_lenght" type="text" value="100" /> <span class="description"><?php _e('Number of product description characters', 'woops'); ?></span></p>
                 <p><label for="woo_search_align"><?php _e('Alignment', 'woops'); ?>:</label> <select disabled="disabled" style="width:100px" id="woo_search_align" name="woo_search_align"><option value="none" selected="selected"><?php _e('None', 'woops'); ?></option><option value="left-wrap"><?php _e('Left - wrap', 'woops'); ?></option><option value="left"><?php _e('Left - no wrap', 'woops'); ?></option><option value="center"><?php _e('Center', 'woops'); ?></option><option value="right-wrap"><?php _e('Right - wrap', 'woops'); ?></option><option value="right"><?php _e('Right - no wrap', 'woops'); ?></option></select> <span class="description"><?php _e('Horizontal aliginment of search box', 'woops'); ?></span></p>
                 <p><label for="woo_search_width"><?php _e('Search box width', 'woops'); ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_width" name="woo_search_width" type="text" value="200" />px</p>
@@ -134,7 +90,7 @@ class WC_Predictive_Search_Shortcodes
                 <label for="woo_search_padding_right" style="width:auto; float:none"><?php _e('Right', 'woops'); ?>:</label> <input disabled="disabled" style="width:50px;" size="10" id="woo_search_padding_right" name="woo_search_padding_right" type="text" value="0" />px
                 </p>
 			</div>
-            <p>&nbsp;&nbsp;<input disabled="disabled" type="button" class="button-primary" value="<?php _e('Insert Shortcode', 'woops'); ?>" onclick="woo_search_widget_add_shortcode();"/>&nbsp;&nbsp;&nbsp;
+            <p>&nbsp;&nbsp;<input disabled="disabled" type="button" class="button-primary" value="<?php _e('Insert Shortcode', 'woops'); ?>" />&nbsp;&nbsp;&nbsp;
             <a class="button" style="" href="#" onclick="tb_remove(); return false;"><?php _e('Cancel', 'woops'); ?></a>
 			</p>
            	</div>
@@ -163,6 +119,25 @@ class WC_Predictive_Search_Shortcodes
 			} else {
 				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			}
+		}
+		
+		return $product_price_output;
+	}
+	
+	public static function get_product_price_dropdown($product_id) {
+		$product_price_output = '';
+		$current_db_version = get_option( 'woocommerce_db_version', null );
+		if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
+			$current_product = new WC_Product($product_id);
+		} else {
+			$current_product = get_product($product_id);
+		}
+		if ($current_product->is_type('grouped')) {
+			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+		} elseif ($current_product->is_type('variable')) {
+			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+		} else {
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		}
 		
 		return $product_price_output;

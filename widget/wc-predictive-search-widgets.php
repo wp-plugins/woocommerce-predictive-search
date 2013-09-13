@@ -40,17 +40,18 @@ class WC_Predictive_Search_Widgets extends WP_Widget
 		if(empty($instance['text_lenght']) || $instance['text_lenght'] < 0) $text_lenght = 100; 
 		else $text_lenght = $instance['text_lenght'];
 		$search_global = empty($instance['search_global']) ? 0 : $instance['search_global'];
+		$show_price = empty($instance['show_price']) ? 0 : $instance['show_price'];
 		$search_box_text = ( isset($instance['search_box_text']) ? $instance['search_box_text'] : '' );
 		if (trim($search_box_text) == '') $search_box_text = get_option('woocommerce_search_box_text');
 
 		echo $before_widget;
 		if ( $title )
 			echo $before_title . $title . $after_title;
-		echo $this->woops_results_search_form($widget_id, $number_items, $text_lenght, '',$search_global, $search_box_text);
+		echo $this->woops_results_search_form($widget_id, $number_items, $text_lenght, '',$search_global, $search_box_text, $show_price);
 		echo $after_widget;
 	}
 	
-	public static function woops_results_search_form($widget_id, $number_items=6, $text_lenght=100, $style='', $search_global = 0, $search_box_text = '') {
+	public static function woops_results_search_form($widget_id, $number_items=6, $text_lenght=100, $style='', $search_global = 0, $search_box_text = '', $show_price = 1) {
 		
 		// Add ajax search box script and style at footer
 		add_action('wp_footer',array('WC_Predictive_Search_Hook_Filter','add_frontend_script'));
@@ -96,7 +97,7 @@ jQuery(document).ready(function() {
 		/*width: ul_width,*/
 		scrollHeight: 2000,
 		max: <?php echo ($row + 2); ?>,
-		extraParams: {'row':'<?php echo $row; ?>', 'text_lenght':'<?php echo $text_lenght;?>', 'security':'<?php echo $woops_get_result_popup;?>' <?php if($cat_slug != ''){ ?>, 'scat':'<?php echo $cat_slug ?>' <?php } ?> <?php if($tag_slug != ''){ ?>, 'stag':'<?php echo $tag_slug ?>' <?php } ?> },
+		extraParams: {'row':'<?php echo $row; ?>', 'text_lenght':'<?php echo $text_lenght;?>', 'security':'<?php echo $woops_get_result_popup;?>' <?php if($cat_slug != ''){ ?>, 'scat':'<?php echo $cat_slug ?>' <?php } ?> <?php if($tag_slug != ''){ ?>, 'stag':'<?php echo $tag_slug ?>' <?php } ?>, 'show_price':'<?php echo $show_price; ?>' },
 		inputClass: "ac_input_<?php echo $id; ?>",
 		resultsClass: "ac_results_<?php echo $id; ?>",
 		loadingClass: "predictive_loading",
@@ -145,6 +146,7 @@ jQuery(document).ready(function() {
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['number_items'] = $new_instance['number_items'];
 		$instance['text_lenght'] = strip_tags($new_instance['text_lenght']);
+		$instance['show_price'] = $new_instance['show_price'];
 		$instance['search_global'] = 1;
 		$instance['search_box_text'] = strip_tags($new_instance['search_box_text']);
 		return $instance;
@@ -154,12 +156,13 @@ jQuery(document).ready(function() {
 		$global_search_box_text = get_option('woocommerce_search_box_text');
 		$items_search_default = WC_Predictive_Search_Widgets::get_items_search();
 		
-		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'number_items' => 6, 'text_lenght' => 100, 'search_global' => 0, 'search_box_text' => $global_search_box_text) );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'number_items' => 6, 'text_lenght' => 100, 'show_price' => 1, 'search_global' => 0, 'search_box_text' => $global_search_box_text) );
 		$title = strip_tags($instance['title']);
 		$number_items = $instance['number_items'];
 		if (empty($number_items) || is_array($number_items) ) $number_items = 6;
 		else $number_items = strip_tags($instance['number_items']);
 		$text_lenght = strip_tags($instance['text_lenght']);
+		$show_price = $instance['show_price'];
 		$search_global = $instance['search_global'];
 		$search_box_text = $instance['search_box_text'];
 ?>
@@ -193,6 +196,8 @@ jQuery(document).ready(function() {
 			}
 			?>
             <p><label for="<?php echo $this->get_field_id('number_items'); ?>"><?php _e('Number of results to show:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('number_items'); ?>" name="<?php echo $this->get_field_name('number_items'); ?>" type="text" value="<?php echo esc_attr($number_items); ?>" /></p>
+            <p><label><input type="checkbox" name="<?php echo $this->get_field_name('show_price'); ?>" value="1" <?php checked( $show_price, 1 ); ?>  /> <?php _e('Show Product prices', 'woops'); ?></label>
+            </p>
             <p><label for="<?php echo $this->get_field_id('text_lenght'); ?>"><?php _e(' Results description character count:', 'woops'); ?></label> <input class="widefat" id="<?php echo $this->get_field_id('text_lenght'); ?>" name="<?php echo $this->get_field_name('text_lenght'); ?>" type="text" value="<?php echo esc_attr($text_lenght); ?>" /></p>
             <fieldset id="woo_predictive_upgrade_area"><legend><?php _e('Upgrade to','woops'); ?> <a href="<?php echo WOOPS_AUTHOR_URI; ?>" target="_blank"><?php _e('Pro Version', 'woops'); ?></a> <?php _e('to activate', 'woops'); ?></legend>
             <p><?php _e("Activate search 'types' for this widget by entering the number of results to show in the widget dropdown. &lt;empty&gt; = not activated. Sort order by drag and drop", 'woops'); ?></p>

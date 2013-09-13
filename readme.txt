@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 2.1.9.1
+Stable tag: 2.1.9.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -172,6 +172,16 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.1.9.2 - 2013/09/13 =
+* Features :
+	* Added option to show product prices in widget, shortcode and search function drop down.
+	* Credit to George Papanikolaou (Greece) for suggesting this feature.
+* Fixes :
+	* Use browser protocol http or https on page load fix in v2.1.9.1 caused sites that use Minify plugins to crash on update. Updated style url and script url to fix Minify conflict.
+	* Thanks to Roy Vella (USA) for reporting the issue and the wp-admin and ftp access to his site to find and fix the bug.
+* Localizations :
+	* Romanian updates by Balanean Corneliu
+
 = 2.1.9.1 - 2013/09/10 =
 * Features :
 	* Added 'View Docs' link from the top of each admin panel to that menus section on the plugins docs.
@@ -299,6 +309,9 @@ Security - Vulnerability Fix - please update your plugin now.
 
 
 == Upgrade Notice ==
+
+= 2.1.9.2 =
+Upgrade now for 1 very important bug fix and 1 new feature – option to show product prices in drop down.
 
 = 2.1.9.1 =
 Update now for new 'View Docs' quick reference feature and 2 SSL bug fixes.

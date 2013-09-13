@@ -311,6 +311,14 @@ class WC_Predictive_Search_Settings
 				<th class="titledesc" scope="row"><label for="woocommerce_search_page_items"><?php _e('Page', 'woops');?></label></th>
 				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_page_items" name="woocommerce_search_page_items"> <span class="description"><?php _e('Number of Pages to show in search field drop-down. Leave &lt;empty&gt; for not activated', 'woops');?></span></td>
 			</tr>
+            <tr valign="top" class="">
+				<th class="titledesc" scope="row"><?php _e('Price', 'woops');?></th>
+				<td class="forminp">
+						<label for="woocommerce_search_show_price">
+						<input disabled="disabled" checked="checked" type="checkbox" value="1" id="woocommerce_search_show_price" name="woocommerce_search_show_price">
+						<?php _e('Show Product prices', 'woops');?></label> <br>
+				</td>
+			</tr>
             <tr valign="top">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_character_max"><?php _e('Description Characters', 'woops');?></label></th>
 				<td class="forminp"><input disabled="disabled" type="text" value="" style="width:30px;" id="woocommerce_search_character_max" name="woocommerce_search_character_max"> <span class="description"><?php _e('Number of characters from product description to show in search field drop-down. Default value is "100".', 'woops');?></span></td>

@@ -34,12 +34,14 @@ class WC_Predictive_Search_Hook_Filter
 		global $wc_predictive_id_excludes;
 		$row = 6;
 		$text_lenght = 100;
+		$show_price = 1;
 		$search_keyword = '';
 		$cat_slug = '';
 		$tag_slug = '';
 		$extra_parameter = '';
 		if (isset($_REQUEST['row']) && $_REQUEST['row'] > 0) $row = stripslashes( strip_tags( $_REQUEST['row'] ) );
 		if (isset($_REQUEST['text_lenght']) && $_REQUEST['text_lenght'] >= 0) stripslashes( strip_tags( $text_lenght = $_REQUEST['text_lenght'] ) );
+		if (isset($_REQUEST['show_price']) && trim($_REQUEST['show_price']) != '') $show_price = stripslashes( strip_tags( $_REQUEST['show_price'] ) );
 		if (isset($_REQUEST['q']) && trim($_REQUEST['q']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['q'] ) );
 		
 		$end_row = $row;
@@ -73,7 +75,12 @@ class WC_Predictive_Search_Hook_Filter
 					$avatar = WC_Predictive_Search::woops_get_product_thumbnail($product->ID,'shop_catalog',64,64);
 					$product_description = WC_Predictive_Search::woops_limit_words(strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( str_replace("\n", "", $product->post_content) ) ) ),$text_lenght,'...');
 					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words(strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( str_replace("\n", "", $product->post_excerpt) ) ) ),$text_lenght,'...');
-					$item = '<div class="ajax_search_content"><div class="result_row"><a href="'.$link_detail.'"><span class="rs_avatar">'.$avatar.'</span><div class="rs_content_popup"><span class="rs_name">'.stripslashes( $product->post_title).'</span><span class="rs_description">'.$product_description.'</span></div></a></div></div>';
+					
+					$price_html = '';
+					if ( $show_price == 1)
+						$price_html = WC_Predictive_Search_Shortcodes::get_product_price_dropdown($product->ID);
+							
+					$item = '<div class="ajax_search_content"><div class="result_row"><a href="'.$link_detail.'"><span class="rs_avatar">'.$avatar.'</span><div class="rs_content_popup"><span class="rs_name">'.stripslashes( $product->post_title).'</span>'.$price_html.'<span class="rs_description">'.$product_description.'</span></div></a></div></div>';
 					echo "$item|$link_detail|".stripslashes( $product->post_title)."\n";
 					$end_row--;
 					if ($end_row < 1) break;
