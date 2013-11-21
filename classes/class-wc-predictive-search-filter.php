@@ -69,7 +69,7 @@ class WC_Predictive_Search_Hook_Filter
 			$search_products = get_posts($args);
 						
 			if ( $search_products && count($search_products) > 0 ) {
-				echo "<div class='ajax_search_content_title'>".__('Products', 'woops')."</div>|#|$search_keyword\n";
+				echo "<div class='ajax_search_content_title'>".__('Products', 'woops')."</div>[|]#[|]$search_keyword\n";
 				foreach ( $search_products as $product ) {
 					$link_detail = get_permalink($product->ID);
 					$avatar = WC_Predictive_Search::woops_get_product_thumbnail($product->ID,'shop_catalog',64,64);
@@ -81,7 +81,7 @@ class WC_Predictive_Search_Hook_Filter
 						$price_html = WC_Predictive_Search_Shortcodes::get_product_price_dropdown($product->ID);
 							
 					$item = '<div class="ajax_search_content"><div class="result_row"><a href="'.$link_detail.'"><span class="rs_avatar">'.$avatar.'</span><div class="rs_content_popup"><span class="rs_name">'.stripslashes( $product->post_title).'</span>'.$price_html.'<span class="rs_description">'.$product_description.'</span></div></a></div></div>';
-					echo "$item|$link_detail|".stripslashes( $product->post_title)."\n";
+					echo $item.'[|]'.$link_detail.'[|]'.stripslashes( $product->post_title)."\n";
 					$end_row--;
 					if ($end_row < 1) break;
 				}
@@ -92,7 +92,7 @@ class WC_Predictive_Search_Hook_Filter
 					else
 						$link_search = rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' ).'/keyword/'.$search_keyword.$extra_parameter;
 					$rs_item .= '<div class="more_result" rel="more_result"><a href="'.$link_search.'">'.__('See more results for', 'woops').' '.$search_keyword.' <span class="see_more_arrow"></span></a><span>'.__('Displaying top', 'woops').' '.$row.' '.__('results', 'woops').'</span></div>';
-					echo "$rs_item|$link_search|$search_keyword\n";
+					echo $rs_item.'[|]'.$link_search.'[|]'.$search_keyword."\n";
 				}
 			} else {
 				echo '<div class="ajax_no_result">'.__('Keep typing...', 'woops').'</div>';

@@ -393,7 +393,7 @@ $.Autocompleter = function(input, options) {
 		for (var i=0; i < rows.length; i++) {
 			var row = $.trim(rows[i]);
 			if (row) {
-				row = row.split("|");
+				row = row.split("[|]");
 				parsed[parsed.length] = {
 					data: row,
 					value: row[0],

@@ -366,7 +366,10 @@ class WC_Predictive_Search_Settings
 		echo '<tr valign="top"><td class="forminp" colspan="2">';
 		?>
         <?php _e('Copy and paste this global function into your themes header.php file to replace any existing search function. (Be sure to delete the existing WordPress, WooCommerce or Theme search function)', 'woops');?>
-            <br /><code>&lt;?php if(function_exists('woo_predictive_search_widget')) woo_predictive_search_widget(); ?&gt;</code>
+            <br /><code>&lt;?php<br />
+            $ps_echo = true ; <br /> 
+            if ( function_exists( 'woo_predictive_search_widget' ) ) woo_predictive_search_widget( $ps_echo ); <br /> 
+            ?&gt;</code>
             <br /><br />
             <h3><?php _e('Customize Search Function values', 'woops');?> :</h3>
 		<?php
