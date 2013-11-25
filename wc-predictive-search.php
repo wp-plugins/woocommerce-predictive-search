@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Predictive Search LITE
 Plugin URI: http://a3rev.com/shop/woocommerce-predictive-search/
 Description: With WooCommerce Predictive Search Lite you can add an awesome Predictive Products Search widget to any widgetized area on your site.
-Version: 2.1.9.3
+Version: 2.2.0
 Author: A3 Revolution
 Author URI: http://www.a3rev.com/
 Requires at least: 3.5
@@ -34,13 +34,18 @@ if(!defined("WOOPS_AUTHOR_URI"))
 if(!defined("WOO_PREDICTIVE_SEARCH_DOCS_URI"))
     define("WOO_PREDICTIVE_SEARCH_DOCS_URI", "http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/");
 
+include('admin/admin-ui.php');
+include('admin/admin-interface.php');
+
+include('admin/admin-pages/predictive-search-page.php');
+
+include('admin/admin-init.php');
+
 include 'classes/class-wc-predictive-search-filter.php';
 include 'classes/class-wc-predictive-search.php';
 include 'classes/class-wc-predictive-search-shortcodes.php';
 include 'classes/class-wc-predictive-search-metabox.php';
 include 'widget/wc-predictive-search-widgets.php';
-
-include 'admin/classes/class-wc-predictive-search-admin.php';
 
 // Editor
 include 'tinymce3/tinymce.php';
@@ -53,7 +58,7 @@ include 'admin/wc-predictive-search-init.php';
 register_activation_hook(__FILE__,'wc_predictive_install');
 
 function wc_predictive_uninstall() {
-	if ( get_option('woocommerce_search_clean_on_deletion') == 1 ) {
+	if ( get_option('woocommerce_search_lite_clean_on_deletion') == 1 ) {
 		delete_option('woocommerce_search_text_lenght');
 		delete_option('woocommerce_search_result_items');
 		delete_option('woocommerce_search_sku_enable');
@@ -86,14 +91,14 @@ function wc_predictive_uninstall() {
 		delete_option('woocommerce_search_custom_style');
 		delete_option('woocommerce_search_global_search');
 		
-		delete_option('woocommerce_search_clean_on_deletion');
+		delete_option('woocommerce_search_lite_clean_on_deletion');
 		
 		delete_post_meta_by_key('_predictive_search_focuskw');
 		
 		wp_delete_post( get_option('woocommerce_search_page_id') , true );
 	}
 }
-if ( get_option('woocommerce_search_clean_on_deletion') == 1 ) {
+if ( get_option('woocommerce_search_lite_clean_on_deletion') == 1 ) {
 	register_uninstall_hook( __FILE__, 'wc_predictive_uninstall' );
 }
 ?>

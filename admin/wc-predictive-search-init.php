@@ -6,8 +6,11 @@ update_option('wc_predictive_search_plugin', 'woo_predictive_search');
 function wc_predictive_install() {
 	global $wp_rewrite;
 	WC_Predictive_Search::create_page( 'woocommerce-search' , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
-	WC_Predictive_Search_Settings::set_setting();
-	update_option('wc_predictive_search_lite_version', '2.1.9.3');
+	
+	// Set Settings Default from Admin Init
+	global $wc_predictive_search_admin_init;
+	$wc_predictive_search_admin_init->set_default_settings();
+	update_option('wc_predictive_search_lite_version', '2.2.0');
 	$wp_rewrite->flush_rules();
 	
 	update_option('wc_predictive_search_just_installed', true);
@@ -16,7 +19,7 @@ function wc_predictive_install() {
 function woops_init() {
 	if ( get_option('wc_predictive_search_just_installed') ) {
 		delete_option('wc_predictive_search_just_installed');
-		wp_redirect( admin_url( 'admin.php?page=woocommerce_settings&tab=ps_settings', 'relative' ) );
+		wp_redirect( admin_url( 'admin.php?page=woo-predictive-search', 'relative' ) );
 		exit;
 	}
 	load_plugin_textdomain( 'woops', false, WOOPS_FOLDER.'/languages' );
@@ -33,6 +36,13 @@ add_filter( 'plugin_row_meta', array('WC_Predictive_Search_Hook_Filter', 'plugin
 function register_widget_woops_predictive_search() {
 	register_widget('WC_Predictive_Search_Widgets');
 }
+
+// Need to call Admin Init to show Admin UI
+global $wc_predictive_search_admin_init;
+$wc_predictive_search_admin_init->init();
+
+// Add upgrade notice to Dashboard pages
+add_filter( $wc_predictive_search_admin_init->plugin_name . '_plugin_extension', array( 'WC_Predictive_Search', 'plugin_extension' ) );
 
 // Custom Rewrite Rules
 add_action('init', array('WC_Predictive_Search_Hook_Filter', 'custom_rewrite_rule') );
@@ -80,8 +90,6 @@ if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -
 	update_option('wc_predictive_search_lite_version', '2.0');
 }
 
-update_option('wc_predictive_search_lite_version', '2.1.9.3');
+update_option('wc_predictive_search_lite_version', '2.2.0');
 
-global $wc_predictive;
-$wc_predictive = new WC_Predictive_Search_Settings();
 ?>

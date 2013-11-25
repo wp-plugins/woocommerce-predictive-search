@@ -11,7 +11,7 @@
  * woops_limit_words()
  * create_page()
  * strip_shortcodes()
- * predictive_extension()
+ * plugin_extension()
  * predictive_extension_shortcode()
  * upgrade_version_2_0()
  */
@@ -144,9 +144,8 @@ class WC_Predictive_Search
 		return $content;
 	}
 	
-	public static function predictive_extension() {
+	public static function plugin_extension() {
 		$html = '';
-		$html .= '<div id="a3_plugin_panel_extensions">';
 		$html .= '<a href="http://a3rev.com/shop/" target="_blank" style="float:right;margin-top:5px; margin-left:10px;" ><img src="'.WOOPS_IMAGES_URL.'/a3logo.png" /></a>';
 		$html .= '<h3>'.__('Upgrade to Predictive Search Pro', 'woops').'</h3>';
 		$html .= '<p>'.__("<strong>NOTE:</strong> All the functions inside the Yellow border on the plugins admin panel are extra functionality that is activated by upgrading to the Pro version", 'woops').':</p>';
@@ -191,11 +190,10 @@ class WC_Predictive_Search
 		$html .= '<h3>'.__('Help spread the Word about this plugin', 'woops').'</h3>';
 		$html .= '<p>'.__("Things you can do to help others find this plugin", 'woops');
 		$html .= '<ul style="padding-left:10px;">';
-		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Rate this plugin 5', 'woops').' <img src="'.WOOPS_IMAGES_URL.'/stars.png" align="top" /> '.__('on WordPress.org', 'woops').'</a></li>';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Rate this plugin 5', 'woops').' <img src="'.WOOPS_IMAGES_URL.'/stars.png" align="top" style="width:auto;height:auto" /> '.__('on WordPress.org', 'woops').'</a></li>';
 		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Mark the plugin as a fourite', 'woops').'</a></li>';
 		$html .= '</ul>';
 		$html .= '</p>';
-		$html .= '</div>';
 		return $html;
 	}
 	

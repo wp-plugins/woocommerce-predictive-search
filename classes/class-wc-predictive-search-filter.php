@@ -15,7 +15,6 @@
  * custom_rewrite_rule()
  * search_by_title_only()
  * posts_request_unconflict_role_scoper_plugin()
- * admin_add_scripts()
  * plugin_extra_links()
  */
 class WC_Predictive_Search_Hook_Filter
@@ -210,16 +209,6 @@ class WC_Predictive_Search_Hook_Filter
 		$posts_request = str_replace('1=2', '2=2', $posts_request);
 		
 		return $posts_request;
-	}
-	
-	public static function admin_add_scripts(){
-		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
-		wp_enqueue_script('jquery');
-		
-		wp_enqueue_style( 'a3rev-chosen-style', WOOPS_JS_URL . '/chosen/chosen.css' );
-		wp_enqueue_script( 'chosen', WOOPS_JS_URL . '/chosen/chosen.jquery'.$suffix.'.js', array(), false, true );
-		
-		wp_enqueue_script( 'a3rev-chosen-script-init', WOOPS_JS_URL.'/init-chosen.js', array(), false, true );
 	}
 	
 	public static function plugin_extra_links($links, $plugin_name) {

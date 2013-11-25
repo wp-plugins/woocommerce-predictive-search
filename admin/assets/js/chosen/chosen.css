@@ -154,7 +154,7 @@
   margin: 0;
   padding: 0;
 }
-.chzn-container-multi .chzn-choices .search-field input {
+body .chzn-container-multi .chzn-choices .search-field input {
   color: #666;
   background: transparent !important;
   border: 0 !important;
