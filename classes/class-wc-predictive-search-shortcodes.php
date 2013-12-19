@@ -22,7 +22,7 @@ class WC_Predictive_Search_Shortcodes
 	
 	public static function add_search_widget_icon($context){
 		$image_btn = WOOPS_IMAGES_URL . "/ps_icon.png";
-		$out = '<a href="#TB_inline?width=670&height=650&modal=false&inlineId=woo_search_widget_shortcode" class="thickbox" title="'.__('Insert WooCommerce Predictive Search Shortcode', 'woops').'"><img class="search_widget_shortcode_icon" src="'.$image_btn.'" alt="'.__('Insert WooCommerce Predictive Search Shortcode', 'woops').'" /></a>';
+		$out = '<a href="#TB_inline?width=670&height=500&modal=false&inlineId=woo_search_widget_shortcode" class="thickbox" title="'.__('Insert WooCommerce Predictive Search Shortcode', 'woops').'"><img class="search_widget_shortcode_icon" src="'.$image_btn.'" alt="'.__('Insert WooCommerce Predictive Search Shortcode', 'woops').'" /></a>';
 		return $context . $out;
 	}
 	
@@ -60,20 +60,51 @@ class WC_Predictive_Search_Shortcodes
 			padding: 3px 8px;
 			position: relative;
 			margin-left: 4px;
-			top: -3px;
+			white-space:nowrap;
 		}
 		.a3-view-docs-button:hover {
 			color: #D54E21 !important;
 		}
+		@media screen and ( max-width: 782px ) {
+			#woo_search_box_text {
+				width:100% !important;	
+			}
+		}
+		@media screen and ( max-width: 480px ) {
+			.a3_woocommerce_search_exclude_item {
+				float:none !important;
+				display:block;
+			}
+		}
 		#woo_predictive_upgrade_area { border:2px solid #E6DB55;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; padding:0; position:relative}
 	  	#woo_predictive_upgrade_area h3{ margin-left:10px;}
-	   	#woo_predictive_extensions { background: url("<?php echo WOOPS_IMAGES_URL; ?>/logo_a3blue.png") no-repeat scroll 4px 6px #FFFBCC; -webkit-border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-o-border-radius:10px 10px 0 0; border-radius: 10px 10px 0 0; color: #555555; margin: 0px; padding: 4px 8px 4px 100px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);}
+		.a3-rev-logo-extensions { position:absolute; left:10px; top:0px; z-index:10; color:#46719D; }
+		.a3-rev-logo-extensions:before {
+		  font-family: "a3-sidebar-menu" !important;
+		  font-style: normal !important;
+		  font-weight: normal !important;
+		  font-variant: normal !important;
+		  text-transform: none !important;
+		  speak: none;
+		  line-height: 1;
+		  -webkit-font-smoothing: antialiased;
+		  -moz-osx-font-smoothing: grayscale;
+			display:inline-block;
+			font-size:25px !important;
+			font-weight:400;
+			height: 36px;
+			padding: 8px 0;
+			transition: all 0.1s ease-in-out 0s;
+		  
+		  content: "\a3" !important;
+		}
+	   	#woo_predictive_extensions { background:#FFFBCC; -webkit-border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0;-o-border-radius:10px 10px 0 0; border-radius: 10px 10px 0 0; color: #555555; margin: 0px; padding: 4px 8px 4px 40px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); position:relative;}
 		</style>
 		<div id="woo_search_widget_shortcode" style="display:none;">
-		  <div class="">
+		  <div>
 			<h3><?php _e('Customize the Predictive Search Shortcode', 'woops'); ?> <a class="add-new-h2 a3-view-docs-button" target="_blank" href="<?php echo WOO_PREDICTIVE_SEARCH_DOCS_URI; ?>#section-16" ><?php _e('View Docs', 'woops'); ?></a></h3>
 			<div style="clear:both"></div>
-            <div id="woo_predictive_upgrade_area"><?php echo WC_Predictive_Search::predictive_extension_shortcode(); ?>
+            <div id="woo_predictive_upgrade_area"><div class="a3-rev-logo-extensions"></div><?php echo WC_Predictive_Search::predictive_extension_shortcode(); ?>
 			<div class="field_content">
             	<?php foreach ($items_search_default as $key => $data) { ?>
                 <p><label for="woo_search_<?php echo $key ?>_items"><?php echo $data['name']; ?>:</label> <input disabled="disabled" style="width:100px;" size="10" id="woo_search_<?php echo $key ?>_items" name="woo_search_<?php echo $key ?>_items" type="text" value="<?php echo $data['number'] ?>" /> <span class="description"><?php _e('Number of', 'woops'); echo ' '.$data['name'].' '; _e('results to show in dropdown', 'woops'); ?></span></p> 
@@ -93,8 +124,10 @@ class WC_Predictive_Search_Shortcodes
             <p>&nbsp;&nbsp;<input disabled="disabled" type="button" class="button-primary" value="<?php _e('Insert Shortcode', 'woops'); ?>" />&nbsp;&nbsp;&nbsp;
             <a class="button" style="" href="#" onclick="tb_remove(); return false;"><?php _e('Cancel', 'woops'); ?></a>
 			</p>
+            <div style="clear:both;"></div>
            	</div>
 		  </div>
+          <div style="clear:both;"></div>
 		</div>
 <?php
 	}

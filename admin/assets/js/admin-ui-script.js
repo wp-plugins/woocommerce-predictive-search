@@ -22,10 +22,10 @@
 								range: "min",
 								min: parseInt($(this).attr('min')), 
 								max: parseInt($(this).attr('max')), 
-								value: parseInt($(this).parent('.a3rev-ui-slide-container-end').parent('.a3rev-ui-slide-container-start').next("input").val()),
+								value: parseInt($(this).parent('.a3rev-ui-slide-container-end').parent('.a3rev-ui-slide-container-start').next(".a3rev-ui-slide-result-container").children("input").val()),
 								step: parseInt($(this).attr('inc')) ,
 								slide: function( event, ui ) {
-									$( this ).parent('.a3rev-ui-slide-container-end').parent('.a3rev-ui-slide-container-start').next("input").val(ui.value);
+									$( this ).parent('.a3rev-ui-slide-container-end').parent('.a3rev-ui-slide-container-start').next(".a3rev-ui-slide-result-container").children("input").val(ui.value);
 								}
 							});
 

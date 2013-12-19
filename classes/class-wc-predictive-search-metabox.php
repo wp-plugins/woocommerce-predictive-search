@@ -24,9 +24,9 @@ class WC_Predictive_Search_Meta
 		}
 		
 		if (get_post_type($post->ID) == 'product') {
-			$hide_item_from_result_text = ' <span style="float:right;"><label><input style="position: relative; top: 2px;" type="checkbox" '.$check.' value="1" name="_woocommerce_search_exclude_item" /> '.__('Hide from Predictive Search results.', 'woops').'</label></span>';
+			$hide_item_from_result_text = ' <span style="float:right;" class="a3_woocommerce_search_exclude_item"><label><input style="position: relative; top: 2px;" type="checkbox" '.$check.' value="1" name="_woocommerce_search_exclude_item" /> '.__('Hide from Predictive Search results.', 'woops').'</label></span>';
 		} else {
-			$hide_item_from_result_text = ' <span style="float:right;"><label><input disabled="disabled" style="position: relative; top: 2px;" type="checkbox" checked="checked" value="1" name="_woocommerce_search_exclude_item" /> '.__('Hide from Predictive Search results.', 'woops').'</label></span>';
+			$hide_item_from_result_text = ' <span style="float:right;" class="a3_woocommerce_search_exclude_item"><label><input disabled="disabled" style="position: relative; top: 2px;" type="checkbox" checked="checked" value="1" name="_woocommerce_search_exclude_item" /> '.__('Hide from Predictive Search results.', 'woops').'</label></span>';
 		}
 		
 		add_meta_box( 'wc_predictive_search_metabox', __('Predictive Search Meta', 'woops').$hide_item_from_result_text , array('WC_Predictive_Search_Meta','data_metabox'), 'post', 'normal', 'high' );

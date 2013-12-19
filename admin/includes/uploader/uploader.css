@@ -10,7 +10,7 @@
 	margin-right:15px;
 }
 .a3_uploader_remove {
-	background:url(delete.png) no-repeat center center #EEEEEE;
+	background:#EEEEEE;
 	border: 1px solid #DDDDDD;
     border-radius: 2px 2px 2px 2px;
 	-webkit-border-radius: 2px 2px 2px 2px;
@@ -31,4 +31,5 @@
 	margin:0;
 	float:left;
 	max-width:225px;
+	width:100%;
 }

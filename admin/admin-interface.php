@@ -105,8 +105,13 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	/*-----------------------------------------------------------------------------------*/
 
 	public function admin_css_load () {
+		global $wp_version;
 		
 		wp_enqueue_style( 'a3rev-admin-ui-style', $this->admin_plugin_url() . '/assets/css/admin-ui-style.css' );
+		
+		if ( version_compare( $wp_version, '3.8', '>=' ) ) {
+			wp_enqueue_style( 'a3rev-admin-flat-ui-style', $this->admin_plugin_url() . '/assets/css/admin-flat-ui-style.css' );
+		}
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( 'a3rev-chosen-style', $this->admin_plugin_url() . '/assets/js/chosen/chosen.css' );
 		wp_enqueue_style( 'a3rev-tiptip-style', $this->admin_plugin_url() . '/assets/js/tipTip/tipTip.css' );
@@ -613,10 +618,36 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 						if ( ! isset( $value['type'] ) ) continue;
 						if ( in_array( $value['type'], array( 'heading' ) ) ) continue;
 						if ( ! isset( $value['id'] ) || trim( $value['id'] ) == '' ) continue;
-						if ( ! isset( $value['default'] ) ) $value['default'] = '';
-						if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
-						if ( $value['free_version'] ) unset( $default_settings[ $value['id']] );
+						
+						switch ( $value['type'] ) {
+				
+							// Array textfields
+							case 'array_textfields' :
+								if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) break;
+								
+								foreach ( $value['ids'] as $text_field ) {
+									if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
+									if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
+									if ( ! isset( $text_field['free_version'] ) ) {
+										if ( ! isset( $value['free_version'] ) ) 
+											$text_field['free_version'] = false;
+										else
+											$text_field['free_version'] = $value['free_version'];
+									}
+									if ( $text_field['free_version'] ) unset( $default_settings[ $text_field['id']] );
+								}
+								
+							break;
+							
+							default :
+								if ( ! isset( $value['default'] ) ) $value['default'] = '';
+								if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
+								if ( $value['free_version'] ) unset( $default_settings[ $value['id']] );
+							
+							break;
+						}
 					}
+					
 					$current_settings = array_merge( $current_settings, $default_settings );
 					update_option( $option_name, $current_settings );
 				} else {
@@ -637,28 +668,75 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 			// For way it has an option name
 			if ( ! isset( $value['separate_option'] ) ) $value['separate_option'] = false;
 			
-			// Remove [, ] characters from id argument
-			if ( strstr( $value['id'], '[' ) ) {
-				parse_str( esc_attr( $value['id'] ), $option_array );
-	
-				// Option name is first key
-				$option_keys = array_keys( $option_array );
-				$first_key = current( $option_keys );
+			switch ( $value['type'] ) {
+				
+				// Array textfields
+				case 'array_textfields' :
+					if ( !isset( $value['ids'] ) || !is_array( $value['ids'] ) || count( $value['ids'] ) < 1 ) break;
+								
+					foreach ( $value['ids'] as $text_field ) {
+						if ( ! isset( $text_field['id'] ) || trim( $text_field['id'] ) == '' ) continue;
+						if ( ! isset( $text_field['default'] ) ) $text_field['default'] = '';
+						if ( ! isset( $text_field['free_version'] ) ) {
+							if ( ! isset( $value['free_version'] ) ) 
+								$text_field['free_version'] = false;
+							else
+								$text_field['free_version'] = $value['free_version'];
+						}
+						
+						// Remove [, ] characters from id argument
+						if ( strstr( $text_field['id'], '[' ) ) {
+							parse_str( esc_attr( $text_field['id'] ), $option_array );
+				
+							// Option name is first key
+							$option_keys = array_keys( $option_array );
+							$first_key = current( $option_keys );
+								
+							$id_attribute		= $first_key;
+						} else {
+							$id_attribute		= esc_attr( $text_field['id'] );
+						}
+						
+						if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+							if ( $reset && $text_field['free_version'] && !$free_version ) {
+								update_option( $id_attribute,  $text_field['default'] );
+							} elseif ( $reset && !$text_field['free_version'] ) {
+								update_option( $id_attribute,  $text_field['default'] );
+							} else {
+								add_option( $id_attribute,  $text_field['default'] );
+							}
+						}
+					}
+								
+				break;
+							
+				default :
+					// Remove [, ] characters from id argument
+					if ( strstr( $value['id'], '[' ) ) {
+						parse_str( esc_attr( $value['id'] ), $option_array );
+			
+						// Option name is first key
+						$option_keys = array_keys( $option_array );
+						$first_key = current( $option_keys );
+							
+						$id_attribute		= $first_key;
+					} else {
+						$id_attribute		= esc_attr( $value['id'] );
+					}
 					
-				$id_attribute		= $first_key;
-			} else {
-				$id_attribute		= esc_attr( $value['id'] );
+					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+						if ( $reset && $value['free_version'] && !$free_version ) {
+							update_option( $id_attribute,  $value['default'] );
+						} elseif ( $reset && !$value['free_version'] ) {
+							update_option( $id_attribute,  $value['default'] );
+						} else {
+							add_option( $id_attribute,  $value['default'] );
+						}
+					}
+							
+				break;
 			}
 			
-			if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
-				if ( $reset && $value['free_version'] && !$free_version ) {
-					update_option( $id_attribute,  $value['default'] );
-				} elseif ( $reset && !$value['free_version'] ) {
-					update_option( $id_attribute,  $value['default'] );
-				} else {
-					add_option( $id_attribute,  $value['default'] );
-				}
-			}
 		}
 				
 	}
@@ -726,9 +804,10 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	 *						   array( 'width' => '125', 'height' => '125', 'crop' => 1 ) : apply image_size only
 	 *						   array( 'size' => '9px', 'face' => 'Arial', 'style' => 'normal', 'color' => '#515151' ) : apply for typography only 
 	 *						   array( 'width' => '1px', 'style' => 'normal', 'color' => '#515151', 'corner' => 'rounded' | 'square' , 'top_left_corner' => 3, 
-	 *									'top_right_corner' => 3, 'bottom_left_corner' => 3, 'bottom_right_corner' => 3 ) : apply for border, border_styles only
+	 *									'top_right_corner' => 3, 'bottom_left_corner' => 3, 'bottom_right_corner' => 3 ) : apply for border only
+	  *						   array( 'width' => '1px', 'style' => 'normal', 'color' => '#515151' ) : apply for border_styles only
 	 *						   array( 'corner' => 'rounded' | 'square' , 'top_left_corner' => 3, 'top_right_corner' => 3, 'bottom_left_corner' => 3, 
-	 *									'bottom_right_corner' => 3 ) : apply for border, border_corner only
+	 *									'bottom_right_corner' => 3 ) : apply for border_corner only
 	 *						   array( 'enable' => 1|0, 'h_shadow' => '5px' , 'v_shadow' => '5px', 'blur' => '2px' , 'spread' => '2px', 'color' => '#515151', 
 	 *									'inset' => '' | 'insert' ) : apply for box_shadow only
 	 *
@@ -747,7 +826,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	 * unchecked_label		=> text : apply for onoff_checkbox, switcher_checkbox only ( set it to show the text instead OFF word default  )
 	 * options				=> array : apply for select, multiselect, radio types
 	 *
-	 * onoff_options		=> array : apply for onoff_options only
+	 * onoff_options		=> array : apply for onoff_radio only
 	 *						   ---------------- example ---------------------
 	 *							array( 
 	 *								array(  'val' 				=> 1,
@@ -958,7 +1037,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	
 			} elseif ( $tip ) {
 	
-				$tip = '<img class="help_tip" data-tip="' . esc_attr( $tip ) . '" src="' . $this->admin_plugin_url() . '/assets/images/help.png" height="16" width="16" />';
+				$tip = '<div class="help_tip a3-plugin-ui-icon a3-plugin-ui-help-icon" data-tip="' . esc_attr( $tip ) . '"></div>';
 	
 			}
 			
@@ -1047,8 +1126,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<input
@@ -1072,8 +1151,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<input
@@ -1094,8 +1173,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<?php echo $description; ?>
@@ -1121,8 +1200,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<select
@@ -1162,8 +1241,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<fieldset>
@@ -1201,8 +1280,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<fieldset>
@@ -1306,8 +1385,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<input
@@ -1335,8 +1414,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 							<input
@@ -1369,7 +1448,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					}
 	
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
 	
 							<label><?php _e( 'Width', 'woops' ); ?> <input name="<?php echo $name_attribute; ?>[width]" id="<?php echo $id_attribute; ?>-width" type="text" class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-width" value="<?php echo $width; ?>" /></label>
@@ -1402,7 +1481,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 						$args = wp_parse_args( $value['args'], $args );
 	
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp">
 							<?php echo str_replace(' id=', " data-placeholder='" . esc_html( $value['placeholder'] ) .  "' style='" . $value['css'] . "' class='" . $value['class'] . "' id=", wp_dropdown_pages( $args ) ); ?> <?php echo $description; ?>
 						</td>
@@ -1427,7 +1506,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					}
 				
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp">
                         	<?php echo $description; ?>
                             <div class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?>-control">
@@ -1591,7 +1670,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					$bottom_right_corner = intval( $bottom_right_corner );
 				
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp forminp-border_corner">
                         	<?php echo $description; ?>
                             <div class="a3rev-ui-settings-control">
@@ -1660,69 +1739,85 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 							<!-- Border Rounded Value -->
 								<div class="a3rev-ui-border-corner-value-container">
                                 	<div class="a3rev-ui-border_corner-top_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'woops' ); ?></span>
+                                        <div class="a3rev-ui-slide-container">
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[top_left_corner]"
-                                            id="<?php echo $id_attribute; ?>-top_left_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $top_left_corner ); ?>"
-                                            class="a3rev-ui-border_top_left_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[top_left_corner]"
+                                                id="<?php echo $id_attribute; ?>-top_left_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $top_left_corner ); ?>"
+                                                class="a3rev-ui-border_top_left_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                     <div class="a3rev-ui-border_corner-top_right">
                                         <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <div class="a3rev-ui-slide-container">
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[top_right_corner]"
-                                            id="<?php echo $id_attribute; ?>-top_right_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $top_right_corner ); ?>"
-                                            class="a3rev-ui-border_top_right_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[top_right_corner]"
+                                                id="<?php echo $id_attribute; ?>-top_right_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $top_right_corner ); ?>"
+                                                class="a3rev-ui-border_top_right_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                     <div class="a3rev-ui-border_corner-bottom_right">
                                         <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <div class="a3rev-ui-slide-container">
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[bottom_right_corner]"
-                                            id="<?php echo $id_attribute; ?>-bottom_right_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $bottom_right_corner ); ?>"
-                                            class="a3rev-ui-border_bottom_right_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[bottom_right_corner]"
+                                                id="<?php echo $id_attribute; ?>-bottom_right_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $bottom_right_corner ); ?>"
+                                                class="a3rev-ui-border_bottom_right_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                     <div class="a3rev-ui-border_corner-bottom_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'woops' ); ?></span>
+                                        <div class="a3rev-ui-slide-container"> 
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[bottom_left_corner]"
-                                            id="<?php echo $id_attribute; ?>-bottom_left_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $bottom_left_corner ); ?>"
-                                            class="a3rev-ui-border_bottom_left_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[bottom_left_corner]"
+                                                id="<?php echo $id_attribute; ?>-bottom_left_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $bottom_left_corner ); ?>"
+                                                class="a3rev-ui-border_bottom_left_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                 </div>
                                 <div style="clear:both"></div>
 							</div>
@@ -1748,7 +1843,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					}
 				
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp">
                         	<?php echo $description; ?>
                             <div class="a3rev-ui-settings-control">
@@ -1865,7 +1960,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					$bottom_right_corner = intval( $bottom_right_corner );
 				
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
                         	<?php echo $description; ?>
                             <div class="a3rev-ui-settings-control">	
@@ -1888,69 +1983,85 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
                                	<!-- Border Rounded Value -->
 								<div class="a3rev-ui-border-corner-value-container">
                                 	<div class="a3rev-ui-border_corner-top_left">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Left Corner', 'woops' ); ?></span>
+                                        <div class="a3rev-ui-slide-container">
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[top_left_corner]"
-                                            id="<?php echo $id_attribute; ?>-top_left_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $top_left_corner ); ?>"
-                                            class="a3rev-ui-border_top_left_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[top_left_corner]"
+                                                id="<?php echo $id_attribute; ?>-top_left_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $top_left_corner ); ?>"
+                                                class="a3rev-ui-border_top_left_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                     <div class="a3rev-ui-border_corner-top_right">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Top Right Corner', 'woops' ); ?></span>
+                                        <div class="a3rev-ui-slide-container"> 
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-top_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[top_right_corner]"
-                                            id="<?php echo $id_attribute; ?>-top_right_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $top_right_corner ); ?>"
-                                            class="a3rev-ui-border_top_right_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[top_right_corner]"
+                                                id="<?php echo $id_attribute; ?>-top_right_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $top_right_corner ); ?>"
+                                                class="a3rev-ui-border_top_right_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                     <div class="a3rev-ui-border_corner-bottom_right">
-                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Right Corner', 'woops' ); ?></span>
+                                        <div class="a3rev-ui-slide-container"> 
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_right_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[bottom_right_corner]"
-                                            id="<?php echo $id_attribute; ?>-bottom_right_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $bottom_right_corner ); ?>"
-                                            class="a3rev-ui-border_bottom_right_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[bottom_right_corner]"
+                                                id="<?php echo $id_attribute; ?>-bottom_right_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $bottom_right_corner ); ?>"
+                                                class="a3rev-ui-border_bottom_right_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                     <div class="a3rev-ui-border_corner-bottom_left">
                                         <span class="a3rev-ui-border_corner-span"><?php _e( 'Bottom Left Corner', 'woops' ); ?></span> 
-                                        <div class="a3rev-ui-slide-container-start">
-                                            <div class="a3rev-ui-slide-container-end">
-												<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                        <div class="a3rev-ui-slide-container">
+                                            <div class="a3rev-ui-slide-container-start">
+                                                <div class="a3rev-ui-slide-container-end">
+                                                    <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>-bottom_left_corner_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input
-                                            readonly="readonly"
-                                            name="<?php echo $name_attribute; ?>[bottom_left_corner]"
-                                            id="<?php echo $id_attribute; ?>-bottom_left_corner"
-                                            type="text"
-                                            value="<?php echo esc_attr( $bottom_left_corner ); ?>"
-                                            class="a3rev-ui-border_bottom_left_corner a3rev-ui-slider"
-                                        /> <span class="a3rev-ui-border_corner-px">px</span>
-                                	</div>
+                                            <div class="a3rev-ui-slide-result-container">
+                                            <input
+                                                readonly="readonly"
+                                                name="<?php echo $name_attribute; ?>[bottom_left_corner]"
+                                                id="<?php echo $id_attribute; ?>-bottom_left_corner"
+                                                type="text"
+                                                value="<?php echo esc_attr( $bottom_left_corner ); ?>"
+                                                class="a3rev-ui-border_bottom_left_corner a3rev-ui-slider"
+                                            /> <span class="a3rev-ui-border_corner-px">px</span>
+                                            </div>
+                                		</div>
+                                    </div>
                                 </div>
                                 <div style="clear:both"></div>
                             </div>
@@ -1986,7 +2097,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					}
 				
 					?><tr valign="top">
-						<th scope="row" class="titledesc"><?php echo esc_html( $value['name'] ) ?> <?php echo $tip; ?></th>
+						<th scope="row" class="titledesc"><?php echo $tip; ?><?php echo esc_html( $value['name'] ) ?></th>
 						<td class="forminp forminp-box_shadow">
                         	<?php echo $description; ?>
                             <input
@@ -2119,23 +2230,27 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
-                        <div class="a3rev-ui-slide-container-start"><div class="a3rev-ui-slide-container-end">
-                        	<div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
-                        </div></div>
-							<input
-                            	readonly="readonly"
-								name="<?php echo $name_attribute; ?>"
-								id="<?php echo $id_attribute; ?>"
-								type="text"
-								value="<?php echo esc_attr( $option_value ); ?>"
-								class="a3rev-ui-slider"
-								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <?php echo $description; ?>
-						</td>
+                        <div class="a3rev-ui-slide-container">
+                            <div class="a3rev-ui-slide-container-start"><div class="a3rev-ui-slide-container-end">
+                                <div class="a3rev-ui-slide" id="<?php echo $id_attribute; ?>_div" min="<?php echo esc_attr( $value['min'] ); ?>" max="<?php echo esc_attr( $value['max'] ); ?>" inc="<?php echo esc_attr( $value['increment'] ); ?>"></div>
+                            </div></div>
+                            <div class="a3rev-ui-slide-result-container">
+                                <input
+                                    readonly="readonly"
+                                    name="<?php echo $name_attribute; ?>"
+                                    id="<?php echo $id_attribute; ?>"
+                                    type="text"
+                                    value="<?php echo esc_attr( $option_value ); ?>"
+                                    class="a3rev-ui-slider"
+                                    <?php echo implode( ' ', $custom_attributes ); ?>
+                                    /> <?php echo $description; ?>
+							</div>
+                        </div>
+                        </td>
 					</tr><?php
 					
 				break;
@@ -2147,8 +2262,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
                         	<?php echo $description; ?>
@@ -2165,8 +2280,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
                         	<?php echo $description; ?>
@@ -2188,8 +2303,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
+                        	<?php echo $tip; ?>
 							<label for="<?php echo $id_attribute; ?>"><?php echo esc_html( $value['name'] ); ?></label>
-							<?php echo $tip; ?>
 						</th>
 						<td class="forminp forminp-<?php echo sanitize_title( $value['type'] ) ?>">
                         	<?php echo $description; ?>
@@ -2283,7 +2398,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		?>
 		<?php do_action( $this->plugin_name . '-' . trim( $form_key ) . '_settings_end' ); ?>
             <p class="submit">
-                    <input type="submit" value="<?php _e('Save changes', 'woops'); ?>" class="button-primary" name="bt_save_settings" />
+                    <input type="submit" value="<?php _e('Save changes', 'woops'); ?>" class="button button-primary" name="bt_save_settings" />
                     <input type="submit" name="bt_reset_settings" class="button" value="<?php _e('Reset Settings', 'woops'); ?>"  />
                     <input type="hidden" name="form_name_action" value="<?php echo $form_key; ?>"  />
                     <input type="hidden" class="last_tab" name="subtab" value="#<?php echo $current_subtab; ?>" />

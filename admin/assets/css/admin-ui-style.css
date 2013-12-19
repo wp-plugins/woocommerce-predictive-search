@@ -1,6 +1,8 @@
 /*-------------------------------------------------------------------------------------------*/
 /* A3rev Panel UI */
 /*-------------------------------------------------------------------------------------------*/
+@charset "UTF-8";
+
 .a3rev_panel_container {
 	visibility:hidden; 
 	height:0; 
@@ -31,7 +33,7 @@
 .a3rev_panel_container .a3rev-ui-typography-preview { display:inline-block; }
 
 .a3rev_panel_container .typography-preview-container .preview_remove { 
-	background: url( "../images/ico-delete.png") no-repeat scroll center center #EEEEEE;
+	background:#EEEEEE;
     border: 1px solid #DDDDDD;
     border-radius: 2px 2px 2px 2px;
 	-webkit-border-radius: 2px 2px 2px 2px;
@@ -46,15 +48,14 @@
 	z-index: 99;
 	text-decoration:none !important;
 }
-.a3rev_panel_container .a3rev-ui-typography-preview-button { float: left; margin: 0px; padding-top: 3px; }
-.a3rev_panel_container .a3rev-ui-typography-preview-button span { background: transparent url("../images/ico-preview.png") no-repeat center center; display: block; width: 14px; height: 16px; }
-.a3rev_panel_container .a3rev-ui-typography-preview-button span.refresh { background-image: url("../images/ico-refresh.png"); }
+.a3rev_panel_container .a3rev-ui-typography-preview-button { float: left; margin: 0px; padding-top: 0px; height:24px; line-height:24px; }
 .a3rev_panel_container .typography-preview-container { clear: both; position:relative; width:50%; margin-top:10px; }
 .a3rev_panel_container .typography-preview { word-wrap: break-word; clear: both; padding: 20px; border: 1px solid #CCCCCC; background: #FDFDFD; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
-.wf-loading .a3rev_panel_container .typography-preview.current { background: #FDFDFD url("../images/loading-bottom.gif") no-repeat 560px center; } /* Class is dynamically added to the "html" tag. */
+/* Class is dynamically added to the "html" tag. */
 
 /* Color Control */
 .a3rev_panel_container .wp-picker-holder { position:absolute; z-index: 10000; }
+.a3rev_panel_container input.wp-picker-default { height:24px !important; }
 .a3rev_panel_container .wp-color-result { top:0px; }
 
 /* Text Input Control */
@@ -93,7 +94,7 @@
 .a3rev_panel_container .a3rev-ui-settings-preview { display:inline-block; }
 .a3rev_panel_container .settings-apply-preview { padding:10px;  background:#FF0; }
 .a3rev_panel_container .settings-preview-container .preview_remove { 
-	background: url( "../images/ico-delete.png") no-repeat scroll center center #EEEEEE;
+	background:#EEEEEE;
     border: 1px solid #DDDDDD;
     border-radius: 2px 2px 2px 2px;
 	-webkit-border-radius: 2px 2px 2px 2px;
@@ -108,12 +109,9 @@
 	z-index: 99;
 	text-decoration:none !important;
 }
-.a3rev_panel_container .a3rev-ui-settings-preview-button { float: left; margin: 0px; padding-top: 3px; }
-.a3rev_panel_container .a3rev-ui-settings-preview-button span { background: transparent url("../images/ico-preview.png") no-repeat center center; display: block; width: 14px; height: 16px; }
-.a3rev_panel_container .a3rev-ui-settings-preview-button span.refresh { background-image: url("../images/ico-refresh.png"); }
+.a3rev_panel_container .a3rev-ui-settings-preview-button { float: left; margin: 0px; padding-top: 0px; height:24px; line-height:24px; }
 .a3rev_panel_container .settings-preview-container { clear: both; position:relative; margin-top:12px; width:50%; }
 .a3rev_panel_container .settings-preview { word-wrap: break-word; clear: both; padding: 30px; border: 1px solid #CCCCCC; background: #FDFDFD; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
-.wf-loading .a3rev_panel_container .settings-preview.current { background: #FDFDFD url("../images/loading-bottom.gif") no-repeat 560px center; }
 
 /* Border Styles Control */
 .a3rev_panel_container .a3rev-ui-border_styles-width { width:80px; }
@@ -124,7 +122,7 @@
 .a3rev_panel_container .forminp-border_corner .iPhoneCheckContainer { margin-right:30px; }
 .a3rev_panel_container .a3rev-ui-border-corner-value-container { float:left; width:100%; }
 .a3rev_panel_container .a3rev-ui-border_corner-top_left, .a3rev_panel_container .a3rev-ui-border_corner-top_right, .a3rev_panel_container .a3rev-ui-border_corner-bottom_left, .a3rev_panel_container .a3rev-ui-border_corner-bottom_right { float:left; width:100%; clear:both; padding-top:5px; }
-.a3rev_panel_container .a3rev-ui-border_corner-span { float:left; width:140px; }
+.a3rev_panel_container .a3rev-ui-border_corner-span { float:left; width:140px; margin-bottom:8px; }
 .a3rev_panel_container .a3rev-ui-border_corner-px { float:left; margin-right:10px; }
 .a3rev_panel_container .forminp-border_corner .settings-apply-preview { border:1px solid #515151; }
 .a3rev_panel_container .forminp-border_corner .iPhoneCheckContainer .iPhoneCheckLabelOff, .a3rev_panel_container .forminp-border_corner .iOSCheckContainer .iOSCheckLabelOff {
@@ -178,6 +176,20 @@
 .a3rev_panel_container .a3rev-ui-upload { width:300px; height:24px; }
 
 /* SLIDER Control */
+.a3rev_panel_container .a3rev-ui-slide-container {
+	white-space:nowrap;
+	float:left;
+}
+.a3rev_panel_container .a3rev-ui-slide-container-start {
+	padding-left:12px;
+	margin-bottom:15px;
+	margin-right:20px;
+	float:left;
+}
+.a3rev_panel_container .a3rev-ui-slide-result-container {
+	float:left;
+	white-space:nowrap;	
+}
 .a3rev_panel_container .a3rev-ui-slide {
     background: #ededed;
 	background: -moz-linear-gradient(top,#dcdcdc 20%,#ededed 50%,#f7f6f6 52%,#ffffff 100%); 
@@ -245,7 +257,7 @@
 	top: -1px;
 	height: 100%;
 }
-.a3rev_panel_container .a3rev-ui-slider  { float:left; width: 40px; margin-left:20px; padding:3px; margin-top:-1px;}
+.a3rev_panel_container .a3rev-ui-slider  { float:left; width: 50px; padding:3px; margin-top:-1px;}
 
 /* Array TextFields Control */
 .a3rev_panel_container .a3rev-ui-array_textfields { width:40px; }
@@ -443,4 +455,211 @@
 }
 .a3rev_blue_message_box a {
 	color:#F00;
+}
+
+/* Chosen Style */
+.a3rev_panel_container .chzn-container {
+	margin-bottom:5px;
+	margin-right:2px;	
+}
+
+/* A3 Plugin Framework Font Icons */
+
+/* GENERATE by Fontastic http://fontastic.me */
+@font-face {
+  font-family: "a3-plugin-framework";
+  src:url("../fonts/a3-plugin-framework.eot");
+  src:url("../fonts/a3-plugin-framework.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/a3-plugin-framework.woff") format("woff"),
+    url("../fonts/a3-plugin-framework.ttf") format("truetype"),
+    url("../fonts/a3-plugin-framework.svg#a3-plugin-framework") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "a3-plugin-framework" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="a3-plugin-ui-"]:before,
+[class*=" a3-plugin-ui-"]:before {
+  font-family: "a3-plugin-framework" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.a3-plugin-ui-a3-plugins-icon:before {
+  content: "a";
+}
+.a3-plugin-ui-a3-rev-logo:before {
+  content: "b";
+}
+.a3-plugin-ui-a3-thumb-icon:before {
+  content: "c";
+}
+.a3-plugin-ui-delete-icon:before {
+  content: "d";
+}
+.a3-plugin-ui-help-icon:before {
+  content: "e";
+}
+.a3-plugin-ui-key-icon:before {
+  content: "f";
+}
+.a3-plugin-ui-preview-icon:before {
+  content: "g";
+}
+.a3-plugin-ui-refresh-icon:before {
+  content: "h";
+}
+.a3-plugin-ui-loading-icon:before {
+  content: "k";
+}
+.a3-plugin-ui-a3-plugins-icon-1:before {
+  content: "i";
+}
+.a3-plugin-ui-a3-rev-logo-1:before {
+  content: "j";
+}
+
+/* Custom for each element web icons font */
+.a3-plugin-ui-delete-icon:before {
+  vertical-align:top;
+}
+.a3-plugin-ui-icon {
+	color:#46719d;
+	overflow:hidden;
+}
+.a3-plugin-ui-a3-rev-logo {
+	font-size: 170px;
+    height: 125px;
+    margin-top: -30px;
+}
+.a3-plugin-ui-help-icon {
+	color:#777;
+	float:right;
+	margin-right:-15px;
+	width:14px;
+	height:14px;
+	cursor:pointer;
+	font-size:12px;
+	margin-top:5px;
+}
+.a3-plugin-ui-preview-icon {
+	color: #000;
+	display: block; 
+	width: 14px; 
+	height: 16px;
+}
+.a3rev_panel_container .a3rev-ui-typography-preview-button span:before, .a3rev_panel_container .a3rev-ui-settings-preview-button span:before {
+  font-family: "a3-plugin-framework" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  content: "g";
+  width: 14px; 
+  height: 16px;
+  font-size:12px;
+}
+.a3rev_panel_container .a3rev-ui-typography-preview-button span.refresh:before, .a3rev_panel_container .a3rev-ui-settings-preview-button span.refresh:before {
+  content: "h" !important;
+}
+.wf-loading .a3rev_panel_container .typography-preview.current:before, .wf-loading .a3rev_panel_container .settings-preview.current:before {
+  content: "k" !important;
+}
+.a3-plugin-ui-delete-icon {
+	font-size:10px;
+	color:#C00;	
+}
+
+/* END A3 Plugin Framework Font Icons */
+
+@media screen and ( max-width: 782px ) {
+	#a3_plugin_panel_fields {
+		width: 100%;	
+	}
+	#a3_plugin_panel_upgrade_area {
+		display:none;	
+	}
+	.a3rev_panel_container .pro_feature_fields {
+		border-color: #E6DB55;
+		margin-right: 0px;
+		border-radius:10px;
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px;
+		-o-border-radius:10px;	
+	}
+	.a3rev_panel_container input[type="text"], .a3rev_panel_container input[type="email"], .a3rev_panel_container input[type="number"], .a3rev_panel_container input[type="password"] {
+		min-width:50px;
+	}
+	.a3rev_panel_container .a3rev-ui-text {
+		max-width:none;
+		width:100%;
+	}
+	.a3rev_panel_container .a3rev-ui-textarea {
+		max-width:none !important;
+		width:100% !important;
+	}
+	.a3rev_panel_container .a3rev-ui-slider {
+		width:50px !important;
+	}
+	.a3rev_panel_container .typography-preview-container, .a3rev_panel_container .settings-preview-container {
+		width:90%;	
+	}
+	.a3rev_panel_container .a3rev-ui-typography-preview-button:active, .a3rev_panel_container .a3rev-ui-settings-preview-button:active {
+		padding-top:inherit !important;	
+	}
+	.a3rev_panel_container .wp-picker-container input.wp-color-picker[type="text"] {
+		width:75px !important;
+		padding:3px 10px !important;
+	}
+	.wp-core-ui .button.wp-picker-default {
+		padding:0 8px 1px;	
+	}
+	.a3rev_panel_container input.a3rev-color-picker { margin-top: 1px !important;}
+	.a3rev_panel_container input.wp-picker-default { margin-top: 1px !important; padding:2px 8px !important; }
+	
+	.a3rev_panel_container .chzn-container-multi {
+		width: 100% !important;	
+	}
+	.a3rev_blue_message_box_container {
+		width:100% !important;
+	}
+	.a3-plugin-ui-help-icon {
+		margin-right:0px;	
+	}
+}
+
+@media screen and ( max-width: 480px ) {
+	.a3rev_panel_container .a3rev-ui-slide-container-start {
+		margin-top:5px;	
+	}
+	.a3_subsubsub_section .subsubsub {
+		text-align:left;	
+	}
+	.a3rev_panel_container .chzn-container-single {
+		max-width: 300px !important;
+	}
 }
