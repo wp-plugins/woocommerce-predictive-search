@@ -332,6 +332,7 @@
 	padding-right: 10px;
 	padding-left: 0px;
 	display: inline-block;
+	text-transform:uppercase;
 }
 .a3rev_panel_container label.iPhoneCheckLabelOn, .a3rev_panel_container label.iOSCheckLabelOn {
 	background: #569aef;
@@ -358,6 +359,7 @@
 .a3rev_panel_container label.iPhoneCheckLabelOn span, .a3rev_panel_container label.iOSCheckLabelOn span {
 	padding-left:10px;
 	display: inline-block;
+	text-transform:uppercase;
 }
 .a3rev_panel_container .iPhoneCheckHandle, .a3rev_panel_container .iOSCheckHandle {
 	background: #569aef;
@@ -436,6 +438,7 @@
 #a3_plugin_panel_upgrade_area { margin-left: 65%; padding-left:10px;}
 #a3_plugin_panel_extensions { border:2px solid #E6DB55;-webkit-border-radius:10px;-moz-border-radius:10px;-o-border-radius:10px; border-radius: 10px; color: #555555; margin: 0px; padding: 5px 10px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); background:#FFFBCC; }
 #a3_plugin_panel_extensions img { width:100%; max-width:100%; }
+.pro_feature_top_message { font-size:11px; text-align:center; margin:10px 0; }
 .pro_feature_fields { margin-right: -12px; position: relative; z-index: 10; border:2px solid #E6DB55;-webkit-border-radius:10px 0 0 10px;-moz-border-radius:10px 0 0 10px;-o-border-radius:10px 0 0 10px; border-radius: 10px 0 0 10px; border-right: 2px solid #FFFFFF; }
 .pro_feature_fields h3 { margin:8px 5px; }
 .pro_feature_fields p { margin-left:5px; }
@@ -613,6 +616,7 @@
 	}
 	.a3rev_panel_container input[type="text"], .a3rev_panel_container input[type="email"], .a3rev_panel_container input[type="number"], .a3rev_panel_container input[type="password"] {
 		min-width:50px;
+		width:100%;
 	}
 	.a3rev_panel_container .a3rev-ui-text {
 		max-width:none;

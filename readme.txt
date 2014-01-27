@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.5
-Tested up to: 3.8.0
-Stable tag: 2.2.1
+Tested up to: 3.8.1
+Stable tag: 2.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -184,6 +184,13 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.2.2 - 2014/01/27 =
+* Feature - Upgraded for 100% compatibility with WooCommerce Version 2.1 with backward compatibility to Version 2.0
+* Feature - Added all required code so plugin can work with WooCommerce Version 2.1 refactored code.
+* Tweak - Tested for compatibility with WordPress version 3.8.1
+* Tweak - Added description text to the top of each Pro Version yellow border section
+* Tweak - All switch text to show as Uppercase.
+
 = 2.2.1 - 2013/12/19 =
 * Feature - a3rev Plugin Framework admin interface upgraded to 100% Compatibility with WordPress v3.8.0 with backward compatibility.
 * Feature - a3rev framework 100% mobile and tablet responsive, portrait and landscape viewing.
@@ -329,6 +336,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+Upgrade now for full compatibility with soon to be released WooCommerce Version 2.1 and just released WordPress version 3.8.1. Includes full backward compatibly with WooCommerce versions 2.0 to 2.0.20.
 
 = 2.2.1 =
 Upgrade now for full a3rev Plugin Framework compatibility with WordPress version 3.8.0 and backwards. New admin interface full mobile and tablet responsive display.

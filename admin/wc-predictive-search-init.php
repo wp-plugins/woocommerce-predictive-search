@@ -4,14 +4,13 @@
  */
 update_option('wc_predictive_search_plugin', 'woo_predictive_search');
 function wc_predictive_install() {
-	global $wp_rewrite;
 	WC_Predictive_Search::create_page( 'woocommerce-search' , 'woocommerce_search_page_id', __('Woocommerce Predictive Search', 'woops'), '[woocommerce_search]' );
 	
 	// Set Settings Default from Admin Init
 	global $wc_predictive_search_admin_init;
 	$wc_predictive_search_admin_init->set_default_settings();
-	update_option('wc_predictive_search_lite_version', '2.2.1');
-	$wp_rewrite->flush_rules();
+	update_option('wc_predictive_search_lite_version', '2.2.2');
+	flush_rewrite_rules();
 	
 	update_option('wc_predictive_search_just_installed', true);
 }
@@ -48,7 +47,7 @@ $wc_predictive_search_admin_init->init();
 add_filter( $wc_predictive_search_admin_init->plugin_name . '_plugin_extension', array( 'WC_Predictive_Search', 'plugin_extension' ) );
 
 // Custom Rewrite Rules
-add_action('init', array('WC_Predictive_Search_Hook_Filter', 'custom_rewrite_rule') );
+add_action('init', array('WC_Predictive_Search_Hook_Filter', 'custom_rewrite_rule'), 101 );
 
 // Registry widget
 add_action('widgets_init', 'register_widget_woops_predictive_search');
@@ -87,12 +86,18 @@ add_action('wp_ajax_nopriv_woops_get_result_popup', array('WC_Predictive_Search_
 if ( ! is_admin() )
 	add_action('init',array('WC_Predictive_Search_Hook_Filter','add_frontend_style'));
 
-// Upgrade to 1.0.9
-if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -1){
-	WC_Predictive_Search::upgrade_version_2_0();
-	update_option('wc_predictive_search_lite_version', '2.0');
+// Check upgrade functions
+add_action('plugins_loaded', 'woo_ps_lite_upgrade_plugin');
+function woo_ps_lite_upgrade_plugin () {
+	
+	// Upgrade to 1.0.9
+	if(version_compare(get_option('wc_predictive_search_lite_version'), '2.0') === -1){
+		WC_Predictive_Search::upgrade_version_2_0();
+		update_option('wc_predictive_search_lite_version', '2.0');
+	}
+	
+	update_option('wc_predictive_search_lite_version', '2.2.2');
+	
 }
-
-update_option('wc_predictive_search_lite_version', '2.2.1');
 
 ?>

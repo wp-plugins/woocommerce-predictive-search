@@ -191,6 +191,9 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 		$all_pages = array();
 		$all_p_categories = array();
 		$all_p_tags = array();
+		
+		if ( is_admin() && in_array (basename($_SERVER['PHP_SELF']), array('admin.php') ) && isset( $_GET['tab'] ) && $_GET['tab'] == 'exclude-content' ) {
+			
 		$results_products = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='product' AND post_status='publish' ORDER BY post_title ASC");
 		if ($results_products) {
 			foreach($results_products as $product_data) {
@@ -220,6 +223,8 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 			foreach($results_p_tags as $p_tags_data) {
 				$all_p_tags[$p_tags_data->term_id] = $p_tags_data->name;
 			}
+		}
+		
 		}
 				
   		// Define settings			

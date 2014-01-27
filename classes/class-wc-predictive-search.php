@@ -33,11 +33,14 @@ class WC_Predictive_Search
 	
 	public static function woops_get_product_thumbnail( $post_id, $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
 		global $woocommerce;
-		if ( $placeholder_width == 0 )
-			$placeholder_width = $woocommerce->get_image_size( 'shop_catalog_image_width' );
-		if ( $placeholder_height == 0 )
-			$placeholder_height = $woocommerce->get_image_size( 'shop_catalog_image_height' );
-		
+		$woocommerce_db_version = get_option( 'woocommerce_db_version', null );
+		$shop_catalog = ( ( version_compare( $woocommerce_db_version, '2.1', '<' ) ) ? $woocommerce->get_image_size( 'shop_catalog' ) : wc_get_image_size( 'shop_catalog' ) );
+		if ( is_array( $shop_catalog ) && isset( $shop_catalog['width'] ) && $placeholder_width == 0 ) {
+			$placeholder_width = $shop_catalog['width'];
+		}
+		if ( is_array( $shop_catalog ) && isset( $shop_catalog['height'] ) && $placeholder_height == 0 ) {
+			$placeholder_height = $shop_catalog['height'];
+		}
 		if ( has_post_thumbnail($post_id) ) {
 			return get_the_post_thumbnail( $post_id, $size ); 
 		}
@@ -82,7 +85,7 @@ class WC_Predictive_Search
 		if (trim($mediumSRC != '')) {
 			return $mediumSRC;
 		} else {
-			return '<img src="'. woocommerce_placeholder_img_src() .'" alt="Placeholder" width="' . $placeholder_width . '" height="' . $placeholder_height . '" />';
+			return '<img src="'. ( ( version_compare( $woocommerce_db_version, '2.1', '<' ) ) ? woocommerce_placeholder_img_src() : wc_placeholder_img_src() ) .'" alt="Placeholder" width="' . $placeholder_width . '" height="' . $placeholder_height . '" />';
 		}
 	}
 	

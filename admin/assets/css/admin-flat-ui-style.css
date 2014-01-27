@@ -105,7 +105,7 @@
 .a3rev_panel_container .iPhoneCheckContainer label, .a3rev_panel_container .iOSCheckContainer label {
 	white-space: nowrap;
     font-size: 14px;
-    line-height: 24px;
+    line-height: 23px;
     font-weight: bold;
     font-family: inherit !important;
     cursor: pointer;

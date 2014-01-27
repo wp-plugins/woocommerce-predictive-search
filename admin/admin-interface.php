@@ -1109,6 +1109,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					if ( ! empty( $value['id'] ) ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $value['id'] ) . '_before' );
 					
 					echo '<div id="'. esc_attr( $value['id'] ) . '" class="a3rev_panel_inner '. esc_attr( $value['class'] ) .'" style="'. esc_attr( $value['css'] ) .'">' . "\n\n";
+					if ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
 					echo ( ! empty( $value['name'] ) ) ? '<h3>'. esc_html( $value['name'] ) .' '. $view_doc .'</h3>' : '';
 					if ( ! empty( $value['desc'] ) ) echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
 					echo '<table class="form-table">' . "\n\n";
