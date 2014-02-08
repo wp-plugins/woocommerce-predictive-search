@@ -185,11 +185,11 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 == Changelog ==
 
 = 2.2.2.1 - 2014/02/08 =
-* Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg d’E return all matches found for d’e and de.
+* Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg dÕE return all matches found for dÕe and de.
 * Feature - Special Characters Prepend and Append near match e.g. Query (Purple) will return all matches found for (Purple) and Purple.
 * Tweak - Settings admin panel Tweak. Added SEO Plugin Focus Keyword Activation setting only shows when the Predictive Search Focus Keyword Feature is ON.
 * Tweak - Updated the Focus Keyword text on Settings tab to be more descriptive and useful.
-* Tweak - Updated the Predictive Search box dropdown message ‘Keep typing ... when no results found to a more helpful dialog. 
+* Tweak - Updated the Predictive Search box dropdown message Keep typing ... when no results found to a more helpful dialog. 
 * Tweak - Framework load time. Added remove_all_filters('mce_external_plugins'); before call to wp_editor to remove extension scripts from other plugins.
 * Credit - Thanks to Mylene http://www.marcelbroquet.com for pointing out the Special Characters Within issue.
 * Credit - Thanks to Scott Lesh http://ledanse.com/ for pointing out the Special characters Prepend and Append issue.
