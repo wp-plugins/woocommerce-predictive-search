@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 2.2.2
+Stable tag: 2.2.2.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -184,6 +184,17 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.2.2.1 - 2014/02/08 =
+* Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg d’E return all matches found for d’e and de.
+* Feature - Special Characters Prepend and Append near match e.g. Query (Purple) will return all matches found for (Purple) and Purple.
+* Tweak - Settings admin panel Tweak. Added SEO Plugin Focus Keyword Activation setting only shows when the Predictive Search Focus Keyword Feature is ON.
+* Tweak - Updated the Focus Keyword text on Settings tab to be more descriptive and useful.
+* Tweak - Updated the Predictive Search box dropdown message ‘Keep typing ... when no results found to a more helpful dialog. 
+* Tweak - Framework load time. Added remove_all_filters('mce_external_plugins'); before call to wp_editor to remove extension scripts from other plugins.
+* Credit - Thanks to Mylene http://www.marcelbroquet.com for pointing out the Special Characters Within issue.
+* Credit - Thanks to Scott Lesh http://ledanse.com/ for pointing out the Special characters Prepend and Append issue.
+
+
 = 2.2.2 - 2014/01/27 =
 * Feature - Upgraded for 100% compatibility with WooCommerce Version 2.1 with backward compatibility to Version 2.0
 * Feature - Added all required code so plugin can work with WooCommerce Version 2.1 refactored code.
@@ -336,6 +347,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.1 =
+Update your plugin now for 2 new special characters search functions and 4 associated tweaks
 
 = 2.2.2 =
 Upgrade now for full compatibility with soon to be released WooCommerce Version 2.1 and just released WordPress version 3.8.1. Includes full backward compatibly with WooCommerce versions 2.0 to 2.0.20.

@@ -84,6 +84,8 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 				'reset_message'		=> __( 'Global Settings successfully reseted.', 'woops' ),
 			);
 			
+		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_end', array( $this, 'include_script' ) );
+			
 		add_action( $this->plugin_name . '_set_default_settings' , array( $this, 'set_default_settings' ) );
 		
 		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'reset_default_settings' ) );
@@ -92,6 +94,10 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 		
 		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'after_save_settings' ) );
 		//add_action( $this->plugin_name . '_get_all_settings' , array( $this, 'get_settings' ) );
+		
+		// Add yellow border for pro fields
+		add_action( $this->plugin_name . '_settings_pro_focus_keywords_before', array( $this, 'pro_fields_before' ) );
+		add_action( $this->plugin_name . '_settings_pro_seo_focus_keywords_after', array( $this, 'pro_fields_after' ) );
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -208,13 +214,14 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
      	$this->form_fields = apply_filters( $this->option_name . '_settings_fields', array(
 		
 			array(
-            	'name' 		=> __( 'Focus Keywords', 'woops' ),
+            	'name' 		=> __( 'Advanced Site Search Optimization', 'woops' ),
+				'desc'		=> __( 'Get Complete Control over Search results, for every product, post and page with Predictive Search Focus Keywords and / or the Focus Keywords you have set in leading SEO plugins.', 'woops' ),
                 'type' 		=> 'heading',
-				'class'		=> 'pro_feature_fields',
+				'id'		=> 'pro_focus_keywords',
            	),
 			array(  
 				'name' 		=> __( 'Predictive Search', 'woops' ),
-				'desc' 		=> __("ON to optimize your sites content with Predictive Search 'Focus keywords'", 'woops'),
+				'class'		=> 'woocommerce_search_focus_enable',
 				'id' 		=> 'woocommerce_search_focus_enable',
 				'type' 		=> 'onoff_checkbox',
 				'default'	=> 'no',
@@ -223,8 +230,15 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 				'checked_label'		=> __( 'ON', 'woops' ),
 				'unchecked_label' 	=> __( 'OFF', 'woops' ),
 			),
+			
+			array(
+                'type' 		=> 'heading',
+				'class'		=> 'woocommerce_search_focus_plugin_container',
+				'id'		=> 'pro_seo_focus_keywords',
+           	),
 			array(  
-				'name' 		=> __( "Activate SEO 'Focus Keywords'", 'woops' ),
+				'name' 		=> __( "SEO Focus Keywords", 'woops' ),
+				'desc' 		=> __("Supported plugins, WordPress SEO and ALL in ONE SEO Pack.", 'woops'),
 				'id' 		=> 'woocommerce_search_focus_plugin',
 				'type' 		=> 'select',
 				'default'	=> 'none',
@@ -308,7 +322,36 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
             </div>
     <?php
 			}
-    	} 	
+    	} 
+		
+	}
+
+	public function include_script() {
+	?>
+<script>
+(function($) {
+	
+	$(document).ready(function() {
+		
+		if ( $("input.woocommerce_search_focus_enable:checked").val() == 'yes') {
+			$(".woocommerce_search_focus_plugin_container").show();
+		} else {
+			$(".woocommerce_search_focus_plugin_container").hide();
+		}
+			
+		$(document).on( "a3rev-ui-onoff_checkbox-switch", '.woocommerce_search_focus_enable', function( event, value, status ) {
+			if ( status == 'true' ) {
+				$(".woocommerce_search_focus_plugin_container").slideDown();
+			} else {
+				$(".woocommerce_search_focus_plugin_container").slideUp();
+			}
+		});
+		
+	});
+	
+})(jQuery);
+</script>
+    <?php	
 	}
 }
 
