@@ -2,9 +2,9 @@
 
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
-Requires at least: 3.5
-Tested up to: 3.8.1
-Stable tag: 2.2.2.1
+Requires at least: 3.7
+Tested up to: 3.9
+Stable tag: 2.2.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,6 +111,10 @@ WooCommerce Predictive Search is now the most powerful site search engine ever d
 * Full documentation instructions on how to add the search function to your sites header.
 * Back up 'Book a Service' with us to place the search function if your theme requires advanced CSS skills and you don't have easy access to a coder.
 
+= Google Analytics Site Search =
+* Full integration with the Google Analytics Site Serach Feature
+* Use the plugins default Query parameter:ps or create your own.
+
 = Priority Support =
 
 Please note that we do not provide support for our Lite Version plugins. Hundreds of thousands of plugin downloads has proven that vast majority of the support requests we get have nothing to do with our plugins but are related to bugs in the users theme or other plugins they have installed. We give priority support to those users who purchase a Pro Version license. In this plugins case, we offer a single payment, Lifetime License fee which includes access to and full support from the a3rev developers on the plugins support forum.
@@ -135,7 +139,7 @@ If you do a translation for your site please send it to us for inclusion in the 
 
 = Minimum Requirements =
 
-* WordPress 3.5 or greater
+* WordPress 3.7 or greater
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
  
@@ -171,7 +175,7 @@ The manual installation method involves downloading our plugin and uploading it 
 
 3. Locate WooCommerce Predictive Search widget and drag it into the sidebar where you want it to show. 
 
-4.Give the widget a Title and click SAVE.
+4. Give the widget a Title and click SAVE.
  
 5. Enjoy.
 
@@ -183,6 +187,14 @@ You can use this plugin only when you have installed the WooCommerce plugin.
  
 
 == Changelog ==
+
+= 2.2.2.2 - 2014/04/26 =
+* Tweak - Added new Google Analytics tab and config settings to dashboard. (New Pro Version feature)
+* Tweak - Updated Priced text in search box drop down and on Search Results page to Price.
+* Tweak - Updated Framework help text font for consistency.
+* Tweak - Added remove_all_filters('mce_external_plugins'); before call to wp_editor to remove extension scripts from other plugins.
+* Tweak - Checked and updated for full compatibility with WooCommerce Version 2.1.7 and WordPress version 3.9
+* Credit - Thanks to [Simon Edge](https://a3rev.com/forums/topic/how-do-i-change-textlayout-of-search-results-template/) for pointing out the Priced typo.
 
 = 2.2.2.1 - 2014/02/08 =
 * Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg d'E return all matches found for d'e and de.
@@ -347,6 +359,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.2 =
+Update your plugin now for 4 code Tweaks and full compatibility with WooCommerce 2.1.7 and WordPress 3.9
 
 = 2.2.2.1 =
 Update your plugin now for 2 new special characters search functions and 4 associated tweaks

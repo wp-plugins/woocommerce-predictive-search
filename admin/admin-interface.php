@@ -1111,7 +1111,9 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					if ( ! empty( $value['id'] ) ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $value['id'] ) . '_before' );
 					
 					echo '<div id="'. esc_attr( $value['id'] ) . '" class="a3rev_panel_inner '. esc_attr( $value['class'] ) .'" style="'. esc_attr( $value['css'] ) .'">' . "\n\n";
-					if ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
+					if ( stristr( $value['class'], 'pro_feature_fields' ) !== false && ! empty( $value['id'] ) ) $this->upgrade_top_message( true, sanitize_title( $value['id'] ) );
+					elseif ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
+					
 					echo ( ! empty( $value['name'] ) ) ? '<h3>'. esc_html( $value['name'] ) .' '. $view_doc .'</h3>' : '';
 					if ( ! empty( $value['desc'] ) ) echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
 					echo '<table class="form-table">' . "\n\n";
@@ -1264,7 +1266,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 												class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
 												<?php echo implode( ' ', $custom_attributes ); ?>
 												<?php checked( $val, $option_value ); ?>
-												/> <?php echo $text ?></label>
+												/> <span class="description" style="margin-left:5px;"><?php echo $text ?></span></label>
 										</li>
 										<?php
 									}
@@ -1309,7 +1311,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
                                                 value="<?php echo esc_attr( stripslashes( $i_option['val'] ) ); ?>"
                                                 <?php checked( esc_attr( stripslashes( $i_option['val'] ) ), $option_value ); ?>
                                                 <?php echo implode( ' ', $custom_attributes ); ?>
-                                                /> <?php echo $i_option['text'] ?>
+                                                /> <span class="description" style="margin-left:5px;"><?php echo $i_option['text'] ?></span>
 										</li>
 										<?php
 									}
@@ -1362,7 +1364,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 							value="<?php echo esc_attr( stripslashes( $value['checked_value'] ) ); ?>"
 							<?php checked( $option_value, esc_attr( stripslashes( $value['checked_value'] ) ) ); ?>
 							<?php echo implode( ' ', $custom_attributes ); ?>
-						/> <?php echo wp_kses_post( $value['desc'] ) ?></label> <?php echo $tip; ?>
+						/> <?php echo $description; ?></label> <?php echo $tip; ?>
 					<?php
 	
 					if ( ! isset( $value['checkboxgroup'] ) || ( isset( $value['checkboxgroup'] ) && $value['checkboxgroup'] == 'end' ) ) {
@@ -1402,7 +1404,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 								value="<?php echo esc_attr( stripslashes( $value['checked_value'] ) ); ?>"
 								<?php checked( $option_value, esc_attr( stripslashes( $value['checked_value'] ) ) ); ?>
 								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <?php echo wp_kses_post( $value['desc'] ) ?>
+								/> <?php echo $description; ?>
                         </td>
 					</tr><?php
 	
@@ -1431,7 +1433,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 								value="<?php echo esc_attr( stripslashes( $value['checked_value'] ) ); ?>"
 								<?php checked( $option_value, esc_attr( stripslashes( $value['checked_value'] ) ) ); ?>
 								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <?php echo wp_kses_post( $value['desc'] ) ?>
+								/> <?php echo $description; ?>
                         </td>
 					</tr><?php
 	

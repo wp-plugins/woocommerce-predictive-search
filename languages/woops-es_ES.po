@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-08 13:33+0700\n"
-"PO-Revision-Date: 2014-02-08 13:33+0700\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-04-26 12:48+0700\n"
+"PO-Revision-Date: 2014-04-26 12:48+0700\n"
+"Last-Translator: Nguyen Cong Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -87,8 +87,8 @@ msgstr ""
 msgid "Outset"
 msgstr ""
 
-#: admin/admin-interface.php:1296 admin/admin-interface.php:1386
-#: admin/admin-interface.php:1415
+#: admin/admin-interface.php:1298 admin/admin-interface.php:1388
+#: admin/admin-interface.php:1417
 #: admin/settings/all-results-page-settings.php:221
 #: admin/settings/all-results-page-settings.php:232
 #: admin/settings/all-results-page-settings.php:243
@@ -96,13 +96,14 @@ msgstr ""
 #: admin/settings/all-results-page-settings.php:265
 #: admin/settings/global-settings.php:230
 #: admin/settings/global-settings.php:293
+#: admin/settings/google-analytics-settings.php:209
 #: admin/settings/search-function-settings.php:257
 #: admin/settings/search-function-settings.php:314
 msgid "ON"
 msgstr ""
 
-#: admin/admin-interface.php:1297 admin/admin-interface.php:1387
-#: admin/admin-interface.php:1416
+#: admin/admin-interface.php:1299 admin/admin-interface.php:1389
+#: admin/admin-interface.php:1418
 #: admin/settings/all-results-page-settings.php:222
 #: admin/settings/all-results-page-settings.php:233
 #: admin/settings/all-results-page-settings.php:244
@@ -110,113 +111,114 @@ msgstr ""
 #: admin/settings/all-results-page-settings.php:266
 #: admin/settings/global-settings.php:231
 #: admin/settings/global-settings.php:294
+#: admin/settings/google-analytics-settings.php:210
 #: admin/settings/search-function-settings.php:258
 #: admin/settings/search-function-settings.php:315
 msgid "OFF"
 msgstr ""
 
 # @ woops
-#: admin/admin-interface.php:1457
+#: admin/admin-interface.php:1459
 #: admin/settings/search-function-settings.php:268
 msgid "Width"
 msgstr "Ancho"
 
 # @ woops
-#: admin/admin-interface.php:1459
+#: admin/admin-interface.php:1461
 #, fuzzy
 msgid "Height"
 msgstr "Derecha"
 
-#: admin/admin-interface.php:1461
+#: admin/admin-interface.php:1463
 msgid "Hard Crop"
 msgstr ""
 
-#: admin/admin-interface.php:1539
+#: admin/admin-interface.php:1541
 msgid "-- Default Fonts --"
 msgstr ""
 
-#: admin/admin-interface.php:1550
+#: admin/admin-interface.php:1552
 msgid "-- Google Fonts --"
 msgstr ""
 
-#: admin/admin-interface.php:1591
+#: admin/admin-interface.php:1593
 msgid "Preview your customized typography settings"
 msgstr ""
 
-#: admin/admin-interface.php:1725 admin/admin-interface.php:1984
+#: admin/admin-interface.php:1727 admin/admin-interface.php:1986
 msgid "Preview your customized border settings"
 msgstr ""
 
-#: admin/admin-interface.php:1734 admin/admin-interface.php:1975
+#: admin/admin-interface.php:1736 admin/admin-interface.php:1977
 msgid "Rounded"
 msgstr ""
 
-#: admin/admin-interface.php:1735 admin/admin-interface.php:1976
+#: admin/admin-interface.php:1737 admin/admin-interface.php:1978
 msgid "Square"
 msgstr ""
 
-#: admin/admin-interface.php:1745 admin/admin-interface.php:1989
+#: admin/admin-interface.php:1747 admin/admin-interface.php:1991
 msgid "Top Left Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1765 admin/admin-interface.php:2009
+#: admin/admin-interface.php:1767 admin/admin-interface.php:2011
 msgid "Top Right Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1785 admin/admin-interface.php:2029
+#: admin/admin-interface.php:1787 admin/admin-interface.php:2031
 msgid "Bottom Right Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1805 admin/admin-interface.php:2049
+#: admin/admin-interface.php:1807 admin/admin-interface.php:2051
 msgid "Bottom Left Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1898
+#: admin/admin-interface.php:1900
 msgid "Preview your customized border styles settings"
 msgstr ""
 
-#: admin/admin-interface.php:2110
+#: admin/admin-interface.php:2112
 msgid "YES"
 msgstr ""
 
-#: admin/admin-interface.php:2111
+#: admin/admin-interface.php:2113
 msgid "NO"
 msgstr ""
 
-#: admin/admin-interface.php:2125
+#: admin/admin-interface.php:2127
 msgid "Horizontal Shadow"
 msgstr ""
 
-#: admin/admin-interface.php:2143
+#: admin/admin-interface.php:2145
 msgid "Vertical Shadow"
 msgstr ""
 
-#: admin/admin-interface.php:2161
+#: admin/admin-interface.php:2163
 msgid "Blur Distance"
 msgstr ""
 
-#: admin/admin-interface.php:2179
+#: admin/admin-interface.php:2181
 msgid "Spread Size"
 msgstr ""
 
-#: admin/admin-interface.php:2197
+#: admin/admin-interface.php:2199
 msgid "INNER"
 msgstr ""
 
-#: admin/admin-interface.php:2198
+#: admin/admin-interface.php:2200
 msgid "OUTER"
 msgstr ""
 
-#: admin/admin-interface.php:2216
+#: admin/admin-interface.php:2218
 msgid "Preview your customized box shadow settings"
 msgstr ""
 
-#: admin/admin-interface.php:2405
+#: admin/admin-interface.php:2407
 msgid "Save changes"
 msgstr ""
 
 # @ woops
-#: admin/admin-interface.php:2406
+#: admin/admin-interface.php:2408
 #, fuzzy
 msgid "Reset Settings"
 msgstr "Ajustes Globales"
@@ -333,7 +335,11 @@ msgstr "Mostrar el SKU del producto con los resultados de las búsquedas"
 #: admin/settings/all-results-page-settings.php:225
 #: admin/settings/search-function-settings.php:250
 #: classes/class-wc-predictive-search-shortcodes.php:112
+#: classes/class-wc-predictive-search-shortcodes.php:149
+#: classes/class-wc-predictive-search-shortcodes.php:151
 #: classes/class-wc-predictive-search-shortcodes.php:153
+#: classes/class-wc-predictive-search-shortcodes.php:169
+#: classes/class-wc-predictive-search-shortcodes.php:171
 #: classes/class-wc-predictive-search-shortcodes.php:173
 msgid "Price"
 msgstr "Precio"
@@ -578,6 +584,53 @@ msgid ""
 "code and tables it has created, leaving no trace it was ever here. If "
 "upgrading to the Pro Version this is <span class=\"description\">not "
 "recommended</span>"
+msgstr ""
+
+# @ woops
+#: admin/settings/google-analytics-settings.php:82
+#, fuzzy
+msgid "Google Analytics Settings successfully saved."
+msgstr "Ajustes Globales"
+
+#: admin/settings/google-analytics-settings.php:83
+msgid "Error: Google Analytics Settings can not save."
+msgstr ""
+
+# @ woops
+#: admin/settings/google-analytics-settings.php:84
+#, fuzzy
+msgid "Google Analytics Settings successfully reseted."
+msgstr "Ajustes Globales"
+
+#: admin/settings/google-analytics-settings.php:154
+#: admin/tabs/google-analytics-tab.php:78
+msgid "Google Analytics"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:198
+msgid "Google Analytics Site Search Integration"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:202
+msgid "Track Predictive Search Result with Google Analytics"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:218
+msgid "Google Analytics UID"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:219
+msgid "Example:"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:226
+msgid "Query Parameter"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:227
+msgid ""
+"The parameter that is to be entered on the track Site Search config page on "
+"your Google Anayitics account. Default: [default_value]"
 msgstr ""
 
 #: admin/settings/search-function-settings.php:81
@@ -982,14 +1035,6 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 # @ woops
-#: classes/class-wc-predictive-search-shortcodes.php:149
-#: classes/class-wc-predictive-search-shortcodes.php:151
-#: classes/class-wc-predictive-search-shortcodes.php:169
-#: classes/class-wc-predictive-search-shortcodes.php:171
-msgid "Priced"
-msgstr "Precio"
-
-# @ woops
 #: classes/class-wc-predictive-search-shortcodes.php:212
 msgid "Category"
 msgstr "Categoría"
@@ -1284,6 +1329,10 @@ msgstr "Buscar Todos los Productos"
 #: widget/wc-predictive-search-widgets.php:211
 msgid "Smart Search"
 msgstr "Búsqueda Inteligente"
+
+# @ woops
+#~ msgid "Priced"
+#~ msgstr "Precio"
 
 # @ woops
 #, fuzzy
