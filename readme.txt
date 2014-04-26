@@ -196,6 +196,7 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 * Tweak - Checked and updated for full compatibility with WooCommerce Version 2.1.7 and WordPress version 3.9
 * Credit - Thanks to [Simon Edge](https://a3rev.com/forums/topic/how-do-i-change-textlayout-of-search-results-template/) for pointing out the Priced typo.
 
+
 = 2.2.2.1 - 2014/02/08 =
 * Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg d'E return all matches found for d'e and de.
 * Feature - Special Characters Prepend and Append near match e.g. Query (Purple) will return all matches found for (Purple) and Purple.
