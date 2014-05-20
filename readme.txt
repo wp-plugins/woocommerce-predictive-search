@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
-Tested up to: 3.9
-Stable tag: 2.2.2.2
+Tested up to: 3.9.1
+Stable tag: 2.2.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,11 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.2.2.3 - 2014/05/20 =
+* Tweak - Checked and updated for full compatibility with WooCommerce Version 2.1.9 and WordPress version 3.9.1
+* Fix - Updated preg_replace function that removes special characters from database query.
+* Credit - to Peter Scott [Web Systems Management](http://www.websysman.com/) for advising the issue and access to find and fix it.
+
 = 2.2.2.2 - 2014/04/26 =
 * Tweak - Added new Google Analytics tab and config settings to dashboard. (New Pro Version feature)
 * Tweak - Updated Priced text in search box drop down and on Search Results page to Price.
@@ -195,7 +200,6 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 * Tweak - Added remove_all_filters('mce_external_plugins'); before call to wp_editor to remove extension scripts from other plugins.
 * Tweak - Checked and updated for full compatibility with WooCommerce Version 2.1.7 and WordPress version 3.9
 * Credit - Thanks to [Simon Edge](https://a3rev.com/forums/topic/how-do-i-change-textlayout-of-search-results-template/) for pointing out the Priced typo.
-
 
 = 2.2.2.1 - 2014/02/08 =
 * Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg d'E return all matches found for d'e and de.
@@ -360,6 +364,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.3 =
+Update now for an important bug fix and full compatibility with WooCommerce Version 2.1.9 and WordPress Version 3.9.1
 
 = 2.2.2.2 =
 Update your plugin now for 4 code Tweaks and full compatibility with WooCommerce 2.1.7 and WordPress 3.9
