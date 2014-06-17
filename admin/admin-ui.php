@@ -32,6 +32,14 @@ class WC_Predictive_Search_Admin_UI
 	 */
 	public $plugin_name = 'woo_predictive_search';
 	
+	public $is_free_plugin = true;
+	
+	/**
+	 * @var string
+	 * You must change to correct class name that you are working
+	 */
+	public $class_name = 'WC_Predictive_Search';
+	
 	/**
 	 * @var string
 	 * You must change to correct pro plugin page url on a3rev site
