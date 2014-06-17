@@ -39,7 +39,7 @@ WooCommerce Predictive Search engine queries <strong>your entire product databas
 
 >= Premium Support = 
 >
->The a3rev team does not provide support for the WooCommerce Predictive Search plugin on the WordPress.org forums. One on one developer support is available via the plugins a3rev [support forum](https://a3rev.com/forums/forum/woocommerce-plugins/predictive-search/) to people who have purchased a [WooCommerce Predictive Serach Pro](http://a3rev.com/shop/woocommerce-predictive-search/) plugin Lifetime License. 
+>The a3rev team does not provide support for the WooCommerce Predictive Search plugin on the WordPress.org forums. One on one developer support is available via the plugins a3rev [support forum](https://a3rev.com/forums/forum/woocommerce-plugins/predictive-search/) to people who have purchased a [WooCommerce Predictive Search Pro](http://a3rev.com/shop/woocommerce-predictive-search/) plugin Lifetime License. 
 >
 >The Pro Version has lots of extra features that coupled with developer support might be well worth your investment!
 
