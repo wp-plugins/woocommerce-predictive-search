@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
 Tested up to: 3.9.1
-Stable tag: 2.2.2.4
+Stable tag: 2.2.2.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -39,7 +39,7 @@ WooCommerce Predictive Search engine queries <strong>your entire product databas
 
 >= Premium Support = 
 >
->The a3rev team does not provide support for the WooCommerce Predictive Search plugin on the WordPress.org forums. One on one developer support is available via the plugins a3rev [support forum](https://a3rev.com/forums/forum/woocommerce-plugins/predictive-search/) to people who have purchased a [WooCommerce Predictive Search Pro](http://a3rev.com/shop/woocommerce-predictive-search/) plugin Lifetime License. 
+>The a3rev team does not provide support for the WooCommerce Predictive Search plugin on the WordPress.org forums. One on one developer support is available via the plugins a3rev [support forum](https://a3rev.com/forums/forum/woocommerce-plugins/predictive-search/) to people who have purchased a [WooCommerce Predictive Serach Pro](http://a3rev.com/shop/woocommerce-predictive-search/) plugin Lifetime License. 
 >
 >The Pro Version has lots of extra features that coupled with developer support might be well worth your investment!
 
@@ -189,6 +189,11 @@ You can use this plugin only when you have installed the WooCommerce plugin.
  
 
 == Changelog ==
+
+= 2.2.2.5 - 2014/07/21 = 
+* Fix - Moved $search_box_text into esc_js() function to stop the search breaking when default text is entered with slash characters.
+* Tweak - Tested 100% compatible with WooCommerce version 2.1.12
+* Credit - Thanks to Rodney Washington for alerting us to this issue.
 
 = 2.2.2.4 - 2014/06/17 =
 * Tweak - Changed add_filter( 'gettext', array( $this, 'change_button_text' ), null, 2 ); to add_filter( 'gettext', array( $this, 'change_button_text' ), null, 3 ); 
@@ -373,6 +378,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.5 =
+Update your plugin now for 1 new bug fix and full compatibility with WooCommerce version 2.1.12.
 
 = 2.2.2.4 =
 Upgrade now for 4 framework code tweaks that makes your plugin fully compatible with WooCommerce version 2.1.11
