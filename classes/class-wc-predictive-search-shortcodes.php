@@ -146,9 +146,9 @@ class WC_Predictive_Search_Shortcodes
 				$current_product = get_product($product_id);
 			}
 			if ($current_product->is_type('grouped')) {
-				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
+				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			} elseif ($current_product->is_type('variable')) {
-				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
+				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			} else {
 				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			}
@@ -166,9 +166,9 @@ class WC_Predictive_Search_Shortcodes
 			$current_product = get_product($product_id);
 		}
 		if ($current_product->is_type('grouped')) {
-			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		} elseif ($current_product->is_type('variable')) {
-			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		} else {
 			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		}
