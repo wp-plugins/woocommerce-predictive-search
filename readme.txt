@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
 Tested up to: 3.9.1
-Stable tag: 2.2.2.5
+Stable tag: 2.2.2.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -189,6 +189,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
  
 
 == Changelog ==
+
+= 2.2.2.6 - 2014/07/29 = 
+* Fix - Added .woocommerce class to container div of search result page to apply WooCommerce style from theme.
 
 = 2.2.2.5 - 2014/07/21 = 
 * Fix - Moved $search_box_text into esc_js() function to stop the search breaking when default text is entered with slash characters.
@@ -378,6 +381,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.6 =
+Upgrade now for a Results page style bug fix.
 
 = 2.2.2.5 =
 Update your plugin now for 1 new bug fix and full compatibility with WooCommerce version 2.1.12.
