@@ -229,7 +229,7 @@ class WC_Predictive_Search_Hook_Filter
 			return $search; // skip processing - no search term in query
 		$search = '';
 		$term = esc_sql( like_escape( trim($q['s']) ) );
-		$term_nospecial = preg_replace( "/[^a-zA-Z0-9_.-\s]/", "", $term );
+		$term_nospecial = preg_replace( "/[^a-zA-Z0-9_.\s]/", "", $term );
 		$search_nospecial = false;
 		if ( $term != $term_nospecial ) $search_nospecial = true;
 		

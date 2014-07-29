@@ -334,12 +334,13 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 	$(document).ready(function() {
 		
 		if ( $("input.woocommerce_search_focus_enable:checked").val() == 'yes') {
-			$(".woocommerce_search_focus_plugin_container").show();
+			$('.woocommerce_search_focus_plugin_container').css( {'visibility': 'visible', 'height' : 'auto', 'overflow' : 'inherit'} );
 		} else {
-			$(".woocommerce_search_focus_plugin_container").hide();
+			$('.woocommerce_search_focus_plugin_container').css( {'visibility': 'hidden', 'height' : '0px', 'overflow' : 'hidden'} );
 		}
 			
 		$(document).on( "a3rev-ui-onoff_checkbox-switch", '.woocommerce_search_focus_enable', function( event, value, status ) {
+			$('.woocommerce_search_focus_plugin_container').hide().css( {'visibility': 'visible', 'height' : 'auto', 'overflow' : 'inherit'} );
 			if ( status == 'true' ) {
 				$(".woocommerce_search_focus_plugin_container").slideDown();
 			} else {

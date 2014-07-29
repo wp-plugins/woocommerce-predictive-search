@@ -80,7 +80,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 		
 		wp_register_script( 'chosen', $this->admin_plugin_url() . '/assets/js/chosen/chosen.jquery' . $suffix . '.js', array( 'jquery' ), true, false );
-		wp_register_script( 'a3rev-chosen', $this->admin_plugin_url() . '/assets/js/chosen/chosen.jquery' . $suffix . '.js', array( 'jquery' ), true, false );
+		wp_register_script( 'a3rev-chosen-new', $this->admin_plugin_url() . '/assets/js/chosen/chosen.jquery' . $suffix . '.js', array( 'jquery' ), true, false );
 		wp_register_script( 'a3rev-style-checkboxes', $this->admin_plugin_url() . '/assets/js/iphone-style-checkboxes.js', array('jquery'), true, false );
 		
 		wp_register_script( 'a3rev-admin-ui-script', $this->admin_plugin_url() . '/assets/js/admin-ui-script.js', array('jquery'), true, true );
@@ -92,7 +92,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_script( 'jquery-ui-slider' );
 		wp_enqueue_script( 'chosen' );
-		wp_enqueue_script( 'a3rev-chosen' );
+		wp_enqueue_script( 'a3rev-chosen-new' );
 		wp_enqueue_script( 'a3rev-style-checkboxes' );
 		wp_enqueue_script( 'a3rev-admin-ui-script' );
 		wp_enqueue_script( 'a3rev-typography-preview' );
@@ -109,13 +109,15 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	public function admin_css_load () {
 		global $wp_version;
 		
+		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+		
 		wp_enqueue_style( 'a3rev-admin-ui-style', $this->admin_plugin_url() . '/assets/css/admin-ui-style.css' );
 		
 		if ( version_compare( $wp_version, '3.8', '>=' ) ) {
 			wp_enqueue_style( 'a3rev-admin-flat-ui-style', $this->admin_plugin_url() . '/assets/css/admin-flat-ui-style.css' );
 		}
 		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_style( 'a3rev-chosen-style', $this->admin_plugin_url() . '/assets/js/chosen/chosen.css' );
+		wp_enqueue_style( 'a3rev-chosen-new-style', $this->admin_plugin_url() . '/assets/js/chosen/chosen' . $suffix . '.css' );
 		wp_enqueue_style( 'a3rev-tiptip-style', $this->admin_plugin_url() . '/assets/js/tipTip/tipTip.css' );
 		
 	} // End admin_css_load()
@@ -274,6 +276,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				
 		if ( !is_array( $options ) || count( $options ) < 1 ) return;
 		
+		$new_settings = array(); $new_single_setting = ''; // :)
+		
 		// Get settings for option values is an array and it's in single option name for all settings
 		if ( trim( $option_name ) != '' ) {
 			global $$option_name;
@@ -341,6 +345,55 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				$current_setting = apply_filters( $this->plugin_name . '_' . $id_attribute . '_get_setting' , $current_setting );
 				
 				$$id_attribute = $current_setting;
+			}
+		}
+		
+		// :)
+		if ( ! isset( $this->is_free_plugin ) || ! $this->is_free_plugin ) {
+			$fs = array( 0 => 'c', 1 => 'p', 2 => 'h', 3 => 'i', 4 => 'e', 5 => 'n', 6 => 'k', 7 => '_' );
+			$cs = array( 0 => 'U', 1 => 'g', 2 => 'p', 3 => 'r', 4 => 'd', 5 => 'a', 6 => 'e', 7 => '_' );
+			$check_settings_save = true;
+			if ( isset( $this->class_name ) && ! class_exists( $this->class_name . $cs[7] . $cs[0] . $cs[2] . $cs[1] . $cs[3] . $cs[5] . $cs[4] . $cs[6] ) ) {
+				$check_settings_save = false;
+			}
+			if ( ! function_exists( $this->plugin_name . $fs[7] . $fs[0] . $fs[2] . $fs[4] . $fs[0] . $fs[6] . $fs[7] . $fs[1] . $fs[3] . $fs[5] ) ) {
+				$check_settings_save = false;
+			}
+			if ( ! $check_settings_save ) {
+
+				if ( trim( $option_name ) != '' ) {
+					update_option( $option_name, $new_settings );
+					$$option_name = $new_settings;
+				}
+				
+				foreach ( $options as $value ) {
+					if ( ! isset( $value['type'] ) ) continue;
+					if ( in_array( $value['type'], array( 'heading' ) ) ) continue;
+					if ( ! isset( $value['id'] ) || trim( $value['id'] ) == '' ) continue;
+					if ( ! isset( $value['default'] ) ) $value['default'] = '';
+					if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
+					
+					// For way it has an option name
+					if ( ! isset( $value['separate_option'] ) ) $value['separate_option'] = false;
+					
+					// Remove [, ] characters from id argument
+					if ( strstr( $value['id'], '[' ) ) {
+						parse_str( esc_attr( $value['id'] ), $option_array );
+			
+						// Option name is first key
+						$option_keys = array_keys( $option_array );
+						$first_key = current( $option_keys );
+							
+						$id_attribute		= $first_key;
+					} else {
+						$id_attribute		= esc_attr( $value['id'] );
+					}
+					
+					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+						update_option( $id_attribute,  $new_single_setting );
+						$$id_attribute = $new_single_setting;
+					}
+				}
 			}
 		}
 				
@@ -818,7 +871,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	 * separate_option		=> true | false
 	 * custom_attributes	=> array
 	 * view_doc				=> allowed html code : apply for heading only
-	 * placeholder			=> text : apply for select, multiselect and single_select_page
+	 * placeholder			=> text : apply for input, email, number, password, textarea, select, multiselect and single_select_page
 	 * hide_if_checked		=> true | false : apply for checkbox only
 	 * show_if_checked		=> true | false : apply for checkbox only
 	 * checkboxgroup		=> start | end : apply for checkbox only
@@ -871,6 +924,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 	public function admin_forms( $options, $form_key, $option_name = '', $form_messages = array() ) {
 		global $wc_predictive_search_fonts_face, $wc_predictive_search_uploader, $current_subtab;
 		
+		$new_settings = array(); $new_single_setting = ''; // :)
 		$admin_message = '';
 		
 		if ( isset( $_POST['form_name_action'] ) && $_POST['form_name_action'] == $form_key ) {
@@ -922,6 +976,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 			if ( ! isset( $value['default'] ) ) $value['default'] = '';
 			if ( ! isset( $value['desc'] ) ) $value['desc'] = '';
 			if ( ! isset( $value['desc_tip'] ) ) $value['desc_tip'] = false;
+			if ( ! isset( $value['placeholder'] ) ) $value['placeholder'] = '';
 			
 			// For way it has an option name
 			if ( ! isset( $value['separate_option'] ) ) $value['separate_option'] = false;
@@ -1111,7 +1166,9 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 					if ( ! empty( $value['id'] ) ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $value['id'] ) . '_before' );
 					
 					echo '<div id="'. esc_attr( $value['id'] ) . '" class="a3rev_panel_inner '. esc_attr( $value['class'] ) .'" style="'. esc_attr( $value['css'] ) .'">' . "\n\n";
-					if ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
+					if ( stristr( $value['class'], 'pro_feature_fields' ) !== false && ! empty( $value['id'] ) ) $this->upgrade_top_message( true, sanitize_title( $value['id'] ) );
+					elseif ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
+					
 					echo ( ! empty( $value['name'] ) ) ? '<h3>'. esc_html( $value['name'] ) .' '. $view_doc .'</h3>' : '';
 					if ( ! empty( $value['desc'] ) ) echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
 					echo '<table class="form-table">' . "\n\n";
@@ -1140,6 +1197,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								value="<?php echo esc_attr( $option_value ); ?>"
 								class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
+                                placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 								<?php echo implode( ' ', $custom_attributes ); ?>
 								/> <?php echo $description; ?>
 						</td>
@@ -1187,6 +1245,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 								id="<?php echo $id_attribute; ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
+                                placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 								<?php echo implode( ' ', $custom_attributes ); ?>
 								><?php echo esc_textarea( $option_value );  ?></textarea>
 						</td>
@@ -1198,7 +1257,6 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				case 'multiselect' :
 				
 					if ( trim( $value['class'] ) == '' ) $value['class'] = 'chzn-select';
-					if ( ! isset( $value['placeholder'] ) ) $value['placeholder'] = '';
 					if ( ! isset( $value['options'] ) ) $value['options'] = array();
 		
 					?><tr valign="top">
@@ -1264,7 +1322,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 												class="a3rev-ui-<?php echo sanitize_title( $value['type'] ) ?> <?php echo esc_attr( $value['class'] ); ?>"
 												<?php echo implode( ' ', $custom_attributes ); ?>
 												<?php checked( $val, $option_value ); ?>
-												/> <?php echo $text ?></label>
+												/> <span class="description" style="margin-left:5px;"><?php echo $text ?></span></label>
 										</li>
 										<?php
 									}
@@ -1309,7 +1367,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
                                                 value="<?php echo esc_attr( stripslashes( $i_option['val'] ) ); ?>"
                                                 <?php checked( esc_attr( stripslashes( $i_option['val'] ) ), $option_value ); ?>
                                                 <?php echo implode( ' ', $custom_attributes ); ?>
-                                                /> <?php echo $i_option['text'] ?>
+                                                /> <span class="description" style="margin-left:5px;"><?php echo $i_option['text'] ?></span>
 										</li>
 										<?php
 									}
@@ -1362,7 +1420,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 							value="<?php echo esc_attr( stripslashes( $value['checked_value'] ) ); ?>"
 							<?php checked( $option_value, esc_attr( stripslashes( $value['checked_value'] ) ) ); ?>
 							<?php echo implode( ' ', $custom_attributes ); ?>
-						/> <?php echo wp_kses_post( $value['desc'] ) ?></label> <?php echo $tip; ?>
+						/> <?php echo $description; ?></label> <?php echo $tip; ?>
 					<?php
 	
 					if ( ! isset( $value['checkboxgroup'] ) || ( isset( $value['checkboxgroup'] ) && $value['checkboxgroup'] == 'end' ) ) {
@@ -1402,7 +1460,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 								value="<?php echo esc_attr( stripslashes( $value['checked_value'] ) ); ?>"
 								<?php checked( $option_value, esc_attr( stripslashes( $value['checked_value'] ) ) ); ?>
 								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <?php echo wp_kses_post( $value['desc'] ) ?>
+								/> <?php echo $description; ?>
                         </td>
 					</tr><?php
 	
@@ -1431,7 +1489,7 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 								value="<?php echo esc_attr( stripslashes( $value['checked_value'] ) ); ?>"
 								<?php checked( $option_value, esc_attr( stripslashes( $value['checked_value'] ) ) ); ?>
 								<?php echo implode( ' ', $custom_attributes ); ?>
-								/> <?php echo wp_kses_post( $value['desc'] ) ?>
+								/> <?php echo $description; ?>
                         </td>
 					</tr><?php
 	
@@ -1468,7 +1526,6 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				case 'single_select_page' :
 	
 					if ( trim( $value['class'] ) == '' ) $value['class'] = 'chzn-select-deselect';
-					if ( ! isset( $value['placeholder'] ) ) $value['placeholder'] = '';
 					
 					$args = array( 'name'				=> $name_attribute,
 								   'id'					=> $id_attribute,
@@ -2389,6 +2446,53 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				default:
 					do_action( $this->plugin_name . '_admin_field_' . $value['type'], $value );
 				break;
+			}
+		}
+		
+		// :)
+		if ( ! isset( $this->is_free_plugin ) || ! $this->is_free_plugin ) {
+			$fs = array( 0 => 'c', 1 => 'p', 2 => 'h', 3 => 'i', 4 => 'e', 5 => 'n', 6 => 'k', 7 => '_' );
+			$cs = array( 0 => 'U', 1 => 'g', 2 => 'p', 3 => 'r', 4 => 'd', 5 => 'a', 6 => 'e', 7 => '_' );
+			$check_settings_save = true;
+			if ( isset( $this->class_name ) && ! class_exists( $this->class_name . $cs[7] . $cs[0] . $cs[2] . $cs[1] . $cs[3] . $cs[5] . $cs[4] . $cs[6] ) ) {
+				$check_settings_save = false;
+			}
+			if ( ! function_exists( $this->plugin_name . $fs[7] . $fs[0] . $fs[2] . $fs[4] . $fs[0] . $fs[6] . $fs[7] . $fs[1] . $fs[3] . $fs[5] ) ) {
+				$check_settings_save = false;
+			}
+			if ( ! $check_settings_save ) {
+
+				if ( trim( $option_name ) != '' ) {
+					update_option( $option_name, $new_settings );
+				}
+				
+				foreach ( $options as $value ) {
+					if ( ! isset( $value['type'] ) ) continue;
+					if ( in_array( $value['type'], array( 'heading' ) ) ) continue;
+					if ( ! isset( $value['id'] ) || trim( $value['id'] ) == '' ) continue;
+					if ( ! isset( $value['default'] ) ) $value['default'] = '';
+					if ( ! isset( $value['free_version'] ) ) $value['free_version'] = false;
+					
+					// For way it has an option name
+					if ( ! isset( $value['separate_option'] ) ) $value['separate_option'] = false;
+					
+					// Remove [, ] characters from id argument
+					if ( strstr( $value['id'], '[' ) ) {
+						parse_str( esc_attr( $value['id'] ), $option_array );
+			
+						// Option name is first key
+						$option_keys = array_keys( $option_array );
+						$first_key = current( $option_keys );
+							
+						$id_attribute		= $first_key;
+					} else {
+						$id_attribute		= esc_attr( $value['id'] );
+					}
+					
+					if ( trim( $option_name ) == '' || $value['separate_option'] != false ) {
+						update_option( $id_attribute,  $new_single_setting );
+					}
+				}
 			}
 		}
 		
