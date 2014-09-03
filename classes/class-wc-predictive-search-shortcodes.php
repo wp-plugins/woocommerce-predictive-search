@@ -142,8 +142,10 @@ class WC_Predictive_Search_Shortcodes
 			$current_db_version = get_option( 'woocommerce_db_version', null );
 			if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 				$current_product = new WC_Product($product_id);
+			} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+				$current_product = get_product( $product_id );
 			} else {
-				$current_product = get_product($product_id);
+				$current_product = wc_get_product( $product_id );
 			}
 			if ($current_product->is_type('grouped')) {
 				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
@@ -162,8 +164,10 @@ class WC_Predictive_Search_Shortcodes
 		$current_db_version = get_option( 'woocommerce_db_version', null );
 		if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 			$current_product = new WC_Product($product_id);
+		} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+			$current_product = get_product( $product_id );
 		} else {
-			$current_product = get_product($product_id);
+			$current_product = wc_get_product( $product_id );
 		}
 		if ($current_product->is_type('grouped')) {
 			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
@@ -183,8 +187,10 @@ class WC_Predictive_Search_Shortcodes
 			$current_db_version = get_option( 'woocommerce_db_version', null );
 			if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 				$current_product = new WC_Product($product_id);
+			} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+				$current_product = get_product( $product_id );
 			} else {
-				$current_product = get_product($product_id);
+				$current_product = wc_get_product( $product_id );
 			}
 			$product = $current_product;
 			ob_start();

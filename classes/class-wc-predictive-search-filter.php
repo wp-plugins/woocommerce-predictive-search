@@ -224,11 +224,16 @@ class WC_Predictive_Search_Hook_Filter
 	
 	public static function search_by_title_only( $search, &$wp_query ) {
 		global $wpdb;
+		global $wp_version;
 		$q = $wp_query->query_vars;
 		if ( empty( $search) || !isset($q['s']) )
 			return $search; // skip processing - no search term in query
 		$search = '';
-		$term = esc_sql( like_escape( trim($q['s']) ) );
+		if ( version_compare( $wp_version, '4.0', '<' ) ) {
+			$term = esc_sql( like_escape( trim($q['s'] ) ) );
+		} else {
+			$term = esc_sql( $wpdb->esc_like( trim($q['s'] ) ) );
+		}
 		$term_nospecial = preg_replace( "/[^a-zA-Z0-9_.\s]/", "", $term );
 		$search_nospecial = false;
 		if ( $term != $term_nospecial ) $search_nospecial = true;
@@ -244,9 +249,14 @@ class WC_Predictive_Search_Hook_Filter
 	
 	public static function predictive_posts_orderby( $orderby, &$wp_query ) {
 		global $wpdb;
+		global $wp_version;
 		$q = $wp_query->query_vars;
 		if (isset($q['orderby']) && $q['orderby'] == 'predictive' && isset($q['s']) ) {
-			$term = esc_sql( like_escape( trim($q['s']) ) );
+			if ( version_compare( $wp_version, '4.0', '<' ) ) {
+				$term = esc_sql( like_escape( trim($q['s'] ) ) );
+			} else {
+				$term = esc_sql( $wpdb->esc_like( trim($q['s'] ) ) );
+			}
 			$orderby = "$wpdb->posts.post_title NOT LIKE '{$term}%' ASC, $wpdb->posts.post_title ASC";
 		}
 		

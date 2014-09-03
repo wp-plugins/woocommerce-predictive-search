@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
-Tested up to: 3.9.1
-Stable tag: 2.2.2.6
+Tested up to: 3.9.2
+Stable tag: 2.2.2.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,12 @@ Many people have found this post [Optimizing WooCommerce Site Search](https://a3
 
 = Pro Version Lifetime License advanced features =
 
+>= backbone.js / WooCommerce JSON REST API =
+
+>* All the Pro Version front end features are built in [backbone.js](http://backbonejs.org/)
+>* Lightweight with all events parsed via backbone.js JSON interface with WooCommerce API.
+>* All Results Search page is a SPA - Single Page Application.
+
 = Focus Keywords: =
 * Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
 * Predictive Search meta section on each product page, post and page for setting 'Focus Keywords and Keyword Phrases'.
@@ -74,6 +80,7 @@ Many people have found this post [Optimizing WooCommerce Site Search](https://a3
 
 = All Search Results Pages: =
 * To see more results for the search Click through from the Widget drop down footer to the 'All Results Search Page'. Design like the facebook search.
+* All Results Search Page is a backbone.js SPA (Single Page Application). Click on Filter type Tab and results load without reloading the page.
 * All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
 * User can configure the All Results Search Page for each result to show 
  - Number of Characters of description text to show
@@ -83,7 +90,7 @@ Many people have found this post [Optimizing WooCommerce Site Search](https://a3
  - Add to cart button
  - Number of results to show before 'endless scroll' bar.
 
-* 'All Results Search Page' features endless scroll - allows the page to load quickly and show 'infinite' number of results. 
+* 'All Results Search Page' features endless scroll loaded by backbone.js - allows the page to load quickly and show 'infinite' number of results. 
 
 = Widget Search =
 * Configure each widget to search all 'types'
@@ -120,6 +127,9 @@ Many people have found this post [Optimizing WooCommerce Site Search](https://a3
 * Full integration with the Google Analytics Site Serach Feature
 * Use the plugins default Query parameter:ps or create your own.
 
+= Performance Settings =
+* Manually set the number of characters that must be typed before the first query begins. Options are 1 to 6 characters.
+* Manually set delay in milli-seconds that the query begins at after a character is typed in the search box. Options are 500 to 1500ms. 
  
 = Plugins Resources = 
 
@@ -189,6 +199,12 @@ You can use this plugin only when you have installed the WooCommerce plugin.
  
 
 == Changelog ==
+
+= 2.2.2.7 =
+* Tweak - Tested and updated for full compatibility with soon to be released WooCommerce major version 2.2
+* Tweak - Use wc_get_product() function instead of get_product() function when site is using WooCommerce Version 2.2
+* Tweak - Use $wpdb->esc_like() function instead of like_escape() function, which is deprecated on WordPress 4.0
+* Tweak - Updated google font face in plugin framework.
 
 = 2.2.2.6 - 2014/07/29 = 
 * Fix - Added .woocommerce class to container div of search result page to apply WooCommerce style from theme.
@@ -381,6 +397,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.7 =
+Upgrade now for tweaks that give full compatibility with soon to be released WooCommerce 2.2 back to version 2.1
 
 = 2.2.2.6 =
 Upgrade now for a Results page style bug fix.

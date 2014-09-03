@@ -111,10 +111,10 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 		
-		wp_enqueue_style( 'a3rev-admin-ui-style', $this->admin_plugin_url() . '/assets/css/admin-ui-style.css' );
+		wp_enqueue_style( 'a3rev-admin-ui-style', $this->admin_plugin_url() . '/assets/css/admin-ui-style' . $suffix . '.css' );
 		
 		if ( version_compare( $wp_version, '3.8', '>=' ) ) {
-			wp_enqueue_style( 'a3rev-admin-flat-ui-style', $this->admin_plugin_url() . '/assets/css/admin-flat-ui-style.css' );
+			wp_enqueue_style( 'a3rev-admin-flat-ui-style', $this->admin_plugin_url() . '/assets/css/admin-flat-ui-style' . $suffix . '.css' );
 		}
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( 'a3rev-chosen-new-style', $this->admin_plugin_url() . '/assets/js/chosen/chosen' . $suffix . '.css' );
@@ -928,6 +928,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		$admin_message = '';
 		
 		if ( isset( $_POST['form_name_action'] ) && $_POST['form_name_action'] == $form_key ) {
+			
+			do_action( $this->plugin_name . '_before_settings_save_reset' );
 			do_action( $this->plugin_name . '-' . trim( $form_key ) . '_before_settings_save' );
 			
 			// Save settings action
@@ -940,6 +942,9 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				$this->reset_settings( $options, $option_name, true );
 				$admin_message = $this->get_success_message( ( isset( $form_messages['reset_message'] ) ) ? $form_messages['reset_message'] : ''  );
 			}
+			
+			do_action( $this->plugin_name . '-' . trim( $form_key ) . '_after_settings_save' );
+			do_action( $this->plugin_name . '_after_settings_save_reset' );
 		}
 		do_action( $this->plugin_name . '-' . trim( $form_key ) . '_settings_init' );
 		
