@@ -146,9 +146,9 @@ class WC_Predictive_Search_Shortcodes
 				$current_product = get_product($product_id);
 			}
 			if ($current_product->is_type('grouped')) {
-				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
+				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			} elseif ($current_product->is_type('variable')) {
-				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
+				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			} else {
 				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			}
@@ -166,9 +166,9 @@ class WC_Predictive_Search_Shortcodes
 			$current_product = get_product($product_id);
 		}
 		if ($current_product->is_type('grouped')) {
-			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		} elseif ($current_product->is_type('variable')) {
-			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		} else {
 			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		}
@@ -280,8 +280,9 @@ class WC_Predictive_Search_Shortcodes
 			//$search_all_products = get_posts($total_args);
 									
 			$search_products = get_posts($args);
-						
-			$html = '<p class="rs_result_heading">'.__('Showing all results for your search', 'woops').' | '.$search_keyword.'</p>';
+			
+			$html = '<div class="woocommerce">';			
+			$html .= '<p class="rs_result_heading">'.__('Showing all results for your search', 'woops').' | '.$search_keyword.'</p>';
 			if ( $search_products && count($search_products) > 0 ){
 					
 				$html .= '<style type="text/css">
@@ -364,7 +365,8 @@ auto_click_more();
 				}
 			} else {
 				$html .= '<p style="text-align:center">'.__('Nothing Found! Please refine your search and try again.', 'woops').'</p>';
-			} 
+			}
+			$html .= '</div>'; 
 			
 			return $html;
 		}

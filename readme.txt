@@ -2,9 +2,9 @@
 
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
-Requires at least: 3.5
-Tested up to: 3.8.1
-Stable tag: 2.2.2.1
+Requires at least: 3.7
+Tested up to: 3.9.1
+Stable tag: 2.2.2.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,7 +17,7 @@ WooCommerce Predictive Search engine queries <strong>your entire product databas
 = Key Features =
 
 * WooCommerce Predictive Search engine delivers 100% accurate results, 100% of the time.
-* New Feature Pretty URL for the All Search Results pages.
+* Pretty URL for the All Search Results pages.
 * Use 'live search' to wow your customers by delivering deadly, super fast search results.
 * Add and configure a search box to any widgetized area on your site.
 * Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
@@ -30,33 +30,38 @@ WooCommerce Predictive Search engine queries <strong>your entire product databas
 * 'All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
 * 'All Results Search Page' features endless scroll - allows the page to load quickly and show 'infinite' number of results. 
 
-= Mobile Responsive App style admin interface =
-Like WordPress we believe that a3rev plugin users should be able to configure and tweak our plugins settings while on the go, right from their mobile or tablet. This plugins features an app style admin interface with Switches, Sliders and a smart interface that hides associated settings when a feature is not turned ON.
+= a3rev Plugins Lite & Pro Version Admin Interface =
 
-* 100% compatible with WordPress v3.8.0 admin interface.
-* Backward compatibility to WordPress v3.5.0
-* App style admin interface.
-* Admin app interface is fully mobile and tablet responsive.
+* All a3rev Lite Version plugins have exactly the same admin interface as the Pro Version.
+* Pro Version features and settings are inside of a Yellow border.
+* The Pro Version settings are all active on the admin panels But do not save and are not applied to the front end.
+* Upgrading to the Pro version activates all the Pro version Features and Settings and removes the Yellow side bar and borders.
 
-= Lite & Pro Version Admin Interface =
-All a3rev Lite Version plugins have exactly the same admin interface as the Pro Version. Pro Version features and settings are easy to spot on the admin dashboard, Predictive Search Widget and shortcode pop-up as they are inside of a Yellow border. The Pro Version settings are all active on the admin panels so they can be used to get a great idea of how they work and what is available BUT the settings do not save when changes are saved and hence are not applied to the front end. Upgrading to the Pro version activates all the Pro version Features and Settings and removes the Yellow side bar and borders.
+>= Premium Support = 
+>
+>The a3rev team does not provide support for the WooCommerce Predictive Search plugin on the WordPress.org forums. One on one developer support is available via the plugins a3rev [support forum](https://a3rev.com/forums/forum/woocommerce-plugins/predictive-search/) to people who have purchased a [WooCommerce Predictive Serach Pro](http://a3rev.com/shop/woocommerce-predictive-search/) plugin Lifetime License. 
+>
+>The Pro Version has lots of extra features that coupled with developer support might be well worth your investment!
 
-= Lite Version Support =
+= Optimizing WooCommerce Site Search =
 
-As a Lite Version user please post all support requests to the plugins WordPress Support forum. We do not watch that forum and posting there you will be relying on another user for support, not an a3rev team member. Upgrading to a Pro Version Licence gives 'write' access to the a3rev support forum and hence Lifetime priority support as part of the License.
+Many people have found this post [Optimizing WooCommerce Site Search](https://a3rev.com/forums/topic/optimizing-woocommerce-site-search/) extremely useful in really being able to tweak their site search for the benefit of their customer user experience on their site.
 
-= Pro Version Upgrade =
+= Pro Version Lifetime License advanced features =
 
-WooCommerce Predictive Search is now the most powerful site search engine ever developed, because with the Pro version you can optimize your entire site search to perform just the way you want it too. No matter how your customers or clients search the all new Predictive Search 'Focus keyword' feature allows you to configure your site search feature to return the results you want when you want it. Total Control.
-
-= Pro Version advanced features =
-
-= Site Search Optimization: =
+= Focus Keywords: =
 * Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
 * Predictive Search meta section on each product page, post and page for setting 'Focus Keywords and Keyword Phrases'.
+* Configure focus keywords via Products Quick Editor and Bulk Editor.
+
+= Exclude Content from Search results =
 * Exclude any product, post or page from Predictive Search results Globally from the admin panel or right from the Predictive Search Meta on product, post or page.
-* Integration with SEO plugins. Can be a massive time saver. Configure your plugin with the click of a mouse to use Focus Keywords that are set on an SEO plugin you are using. Include any 'Focus Keywords' that have been set while optimizing the site content for search engine search.  
-* Currently supports * Yoasts WordPress SEO and the * All in One SEO plugins. If you use another WordPress SEO Plugin and would like to see it included in the list of supported plugins please just let us know and we will look in including support for it in future updates.
+
+= SEO Plugin Integration =
+* Integration with SEO plugins. Can be a massive time saver. 
+* Configure your plugin with the click of a mouse to use Focus Keywords that are set on an SEO plugin you are using. 
+* Include any 'Focus Keywords' that have been set while optimizing the site content for search engine search.  
+* Currently supports * Yoasts WordPress SEO and the * All in One SEO plugins.  
 
 = General =
 * Use 'live search' to wow your customers - fast and deadly accurate.
@@ -111,9 +116,10 @@ WooCommerce Predictive Search is now the most powerful site search engine ever d
 * Full documentation instructions on how to add the search function to your sites header.
 * Back up 'Book a Service' with us to place the search function if your theme requires advanced CSS skills and you don't have easy access to a coder.
 
-= Priority Support =
+= Google Analytics Site Search =
+* Full integration with the Google Analytics Site Serach Feature
+* Use the plugins default Query parameter:ps or create your own.
 
-Please note that we do not provide support for our Lite Version plugins. Hundreds of thousands of plugin downloads has proven that vast majority of the support requests we get have nothing to do with our plugins but are related to bugs in the users theme or other plugins they have installed. We give priority support to those users who purchase a Pro Version license. In this plugins case, we offer a single payment, Lifetime License fee which includes access to and full support from the a3rev developers on the plugins support forum.
  
 = Plugins Resources = 
 
@@ -135,7 +141,7 @@ If you do a translation for your site please send it to us for inclusion in the 
 
 = Minimum Requirements =
 
-* WordPress 3.5 or greater
+* WordPress 3.7 or greater
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
  
@@ -171,7 +177,7 @@ The manual installation method involves downloading our plugin and uploading it 
 
 3. Locate WooCommerce Predictive Search widget and drag it into the sidebar where you want it to show. 
 
-4.Give the widget a Title and click SAVE.
+4. Give the widget a Title and click SAVE.
  
 5. Enjoy.
 
@@ -184,6 +190,35 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Changelog ==
 
+= 2.2.2.6 - 2014/07/29 = 
+* Fix - Added .woocommerce class to container div of search result page to apply WooCommerce style from theme.
+
+= 2.2.2.5 - 2014/07/21 = 
+* Fix - Moved $search_box_text into esc_js() function to stop the search breaking when default text is entered with slash characters.
+* Tweak - Tested 100% compatible with WooCommerce version 2.1.12
+* Credit - Thanks to Rodney Washington for alerting us to this issue.
+
+= 2.2.2.4 - 2014/06/17 =
+* Tweak - Changed add_filter( 'gettext', array( $this, 'change_button_text' ), null, 2 ); to add_filter( 'gettext', array( $this, 'change_button_text' ), null, 3 ); 
+* Tweak - Update change_button_text() function from ( $original == 'Insert into Post' ) to ( is_admin() && $original === 'Insert into Post' ) 
+* Tweak - Added support for placeholder feature for input, email , password , text area types.
+* Tweak - Updated chosen js script to latest version 1.0.1 on the a3rev Plugin Framework
+* Tweak - Update plugins wordpress.org description and admin Yellow sidebar text. 
+* Tweak - Tested 100% compatible with WooCommerce version 2.1.11
+
+= 2.2.2.3 - 2014/05/20 =
+* Tweak - Checked and updated for full compatibility with WooCommerce Version 2.1.9 and WordPress version 3.9.1
+* Fix - Updated preg_replace function that removes special characters from database query.
+* Credit - to Peter Scott [Web Systems Management](http://www.websysman.com/) for advising the issue and access to find and fix it.
+
+= 2.2.2.2 - 2014/04/26 =
+* Tweak - Added new Google Analytics tab and config settings to dashboard. (New Pro Version feature)
+* Tweak - Updated Priced text in search box drop down and on Search Results page to Price.
+* Tweak - Updated Framework help text font for consistency.
+* Tweak - Added remove_all_filters('mce_external_plugins'); before call to wp_editor to remove extension scripts from other plugins.
+* Tweak - Checked and updated for full compatibility with WooCommerce Version 2.1.7 and WordPress version 3.9
+* Credit - Thanks to [Simon Edge](https://a3rev.com/forums/topic/how-do-i-change-textlayout-of-search-results-template/) for pointing out the Priced typo.
+
 = 2.2.2.1 - 2014/02/08 =
 * Feature - Special Characters Within near match. Query strings that CONTAINS a special character eg d'E return all matches found for d'e and de.
 * Feature - Special Characters Prepend and Append near match e.g. Query (Purple) will return all matches found for (Purple) and Purple.
@@ -193,7 +228,6 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 * Tweak - Framework load time. Added remove_all_filters('mce_external_plugins'); before call to wp_editor to remove extension scripts from other plugins.
 * Credit - Thanks to Mylene http://www.marcelbroquet.com for pointing out the Special Characters Within issue.
 * Credit - Thanks to Scott Lesh http://ledanse.com/ for pointing out the Special characters Prepend and Append issue.
-
 
 = 2.2.2 - 2014/01/27 =
 * Feature - Upgraded for 100% compatibility with WooCommerce Version 2.1 with backward compatibility to Version 2.0
@@ -347,6 +381,21 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.2.6 =
+Upgrade now for a Results page style bug fix.
+
+= 2.2.2.5 =
+Update your plugin now for 1 new bug fix and full compatibility with WooCommerce version 2.1.12.
+
+= 2.2.2.4 =
+Upgrade now for 4 framework code tweaks that makes your plugin fully compatible with WooCommerce version 2.1.11
+
+= 2.2.2.3 =
+Update now for an important bug fix and full compatibility with WooCommerce Version 2.1.9 and WordPress Version 3.9.1
+
+= 2.2.2.2 =
+Update your plugin now for 4 code Tweaks and full compatibility with WooCommerce 2.1.7 and WordPress 3.9
 
 = 2.2.2.1 =
 Update your plugin now for 2 new special characters search functions and 4 associated tweaks
