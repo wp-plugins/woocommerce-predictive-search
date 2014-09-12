@@ -205,7 +205,7 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 * Tweak - Tested 100% compatible with WordPress Version 4.0
 * Tweak - Added WordPress plugin icon
 
-= 2.2.2.7 =
+= 2.2.2.7 - 2014/09/01 =
 * Tweak - Tested and updated for full compatibility with soon to be released WooCommerce major version 2.2
 * Tweak - Use wc_get_product() function instead of get_product() function when site is using WooCommerce Version 2.2
 * Tweak - Use $wpdb->esc_like() function instead of like_escape() function, which is deprecated on WordPress 4.0
