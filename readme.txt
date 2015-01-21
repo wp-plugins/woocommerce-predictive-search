@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
-Tested up to: 4.0
-Stable tag: 2.2.2.8
+Tested up to: 4.1
+Stable tag: 2.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,12 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.2.3 - 2015/01/21 =
+* Tweak - Remove case KEY.RETURN from autocomplete script. Removes wait for results query to run and populate the dropdown when type search characters and click enter key or search icon before redirect to the All Results Search page. Search query is run on the All Results Search page instead. Halves the number of queries to the database in that scenario.
+* Tweak - Tested 100% compatible with WooCommerce 2.2.10
+* Tweak - Tested 100% compatible with WordPress Version 4.1
+* Credit - Thanks to Mike Spakowski for his help with his research and posting on the a3rev support forum in creating the KEY.RETURN performance tweak.
 
 = 2.2.2.8 - 2014/09/12 =
 * Tweak - Tested 100% compatible with WooCommerce 2.2.2
@@ -402,6 +408,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.3 =
+Upgrade now for 1 performance tweak, plus tweaks for full compatibility with WooCommerce 2.2.10 and WordPress 4.1
 
 = 2.2.2.8 =
 Upgrade now for full compatibility with WooCommerce Version 2.2.2 and WordPress 4.0
