@@ -68,7 +68,7 @@ class WC_Predictive_Search_Widgets extends WP_Widget
 <script type="text/javascript">
 jQuery(document).ready(function() {
 	jQuery(document).on("click", "#bt_pp_search_<?php echo $id;?>", function(){
-		if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
+		if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo esc_js( $search_box_text ); ?>') {
 			<?php if (get_option('permalink_structure') == '') { ?>jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();<?php } else { ?>var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+ jQuery("#pp_course_<?php echo $id;?>").val().replace('(', '%28').replace(')', '%29');
 			<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
 			<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
@@ -78,7 +78,7 @@ jQuery(document).ready(function() {
 	});
 	jQuery("#fr_pp_search_widget_<?php echo $id;?>").bind("keypress", function(e) {
 		if (e.keyCode == 13) {
-			if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo $search_box_text; ?>') {
+			if (jQuery("#pp_course_<?php echo $id;?>").val() != '' && jQuery("#pp_course_<?php echo $id;?>").val() != '<?php echo esc_js( $search_box_text ); ?>') {
 				<?php if (get_option('permalink_structure') == '') { ?>jQuery("#fr_pp_search_widget_<?php echo $id;?>").submit();<?php } else { ?>var pp_search_url_<?php echo $id;?> = '<?php echo rtrim( get_permalink(get_option('woocommerce_search_page_id')), '/' );?>/keyword/'+ jQuery("#pp_course_<?php echo $id;?>").val().replace('(', '%28').replace(')', '%29');
 				<?php if ($cat_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/scat/<?php echo $cat_slug; ?>';
 				<?php } elseif ($tag_slug != '') { ?> pp_search_url_<?php echo $id;?> += '/stag/<?php echo $tag_slug; ?>'; <?php } ?>
@@ -120,7 +120,7 @@ jQuery(document).ready(function() {
             <input type="hidden" name="page_id" value="<?php echo get_option('woocommerce_search_page_id'); ?>"  />
             <?php } ?>
    			<div class="ctr_search">
-			<input type="text" id="pp_course_<?php echo $id;?>" onblur="if (this.value == '') {this.value = '<?php echo $search_box_text; ?>';}" onfocus="if (this.value == '<?php echo $search_box_text; ?>') {this.value = '';}" value="<?php echo $search_box_text; ?>" name="rs" class="txt_livesearch" /><span class="bt_search" id="bt_pp_search_<?php echo $id;?>"></span>
+			<input type="text" id="pp_course_<?php echo $id;?>" onblur="if (this.value == '') {this.value = '<?php echo esc_js( $search_box_text ); ?>';}" onfocus="if (this.value == '<?php echo esc_js( $search_box_text ); ?>') {this.value = '';}" value="<?php echo esc_attr( $search_box_text ); ?>" name="rs" class="txt_livesearch" /><span class="bt_search" id="bt_pp_search_<?php echo $id;?>"></span>
             </div>
             <?php			
 			if ($cat_slug != '') { ?>
