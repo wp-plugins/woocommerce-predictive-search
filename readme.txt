@@ -4,7 +4,7 @@ Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
 Tested up to: 4.1
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,11 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.2.4 - 2015/01/30 =
+* Tweak - Refactored custom MySQL query command for search speed for a noticeable improvement time taken to show results in search box dropdown and All results page load. Really noticeable on larger stores.
+* Tweak - Moved Focus keyword settings further down the Settings tab and edited the help text.
+* Credit - Big shout out for David Hannes for all of his help in this upgrade with improvements to site search speed.
 
 = 2.2.3 - 2015/01/21 =
 * Tweak - Remove case KEY.RETURN from autocomplete script. Removes wait for results query to run and populate the dropdown when type search characters and click enter key or search icon before redirect to the All Results Search page. Search query is run on the All Results Search page instead. Halves the number of queries to the database in that scenario.
@@ -408,6 +413,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.4 =
+Stage 2 upgrade in major refactoring of the search engine. Please upgrade now and see a marked improvement in search speed times - especially on big sites.
 
 = 2.2.3 =
 Upgrade now for 1 performance tweak, plus tweaks for full compatibility with WooCommerce 2.2.10 and WordPress 4.1
