@@ -19,18 +19,18 @@ class WC_Predictive_Search
 {
 	public static function get_id_excludes() {
 		global $wc_predictive_id_excludes;
-		
+
 		$exclude_products = get_option('woocommerce_search_exclude_products', '');
 		if (is_array($exclude_products)) {
 			$exclude_products = implode(",", $exclude_products);
 		}
-		
+
 		$wc_predictive_id_excludes = array();
 		$wc_predictive_id_excludes['exclude_products'] = $exclude_products;
-		
+
 		return $wc_predictive_id_excludes;
 	}
-	
+
 	public static function woops_get_product_thumbnail( $post_id, $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
 		global $woocommerce;
 		$woocommerce_db_version = get_option( 'woocommerce_db_version', null );
@@ -42,13 +42,13 @@ class WC_Predictive_Search
 			$placeholder_height = $shop_catalog['height'];
 		}
 		if ( has_post_thumbnail($post_id) ) {
-			return get_the_post_thumbnail( $post_id, $size ); 
+			return get_the_post_thumbnail( $post_id, $size );
 		}
-		
+
 		$mediumSRC = '';
-		
+
 		if (trim($mediumSRC == '')) {
-			$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null); 
+			$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null);
 			$attachments = get_posts($args);
 			if ($attachments) {
 				foreach ( $attachments as $attachment ) {
@@ -57,21 +57,21 @@ class WC_Predictive_Search
 				}
 			}
 		}
-		
+
 		if (trim($mediumSRC == '')) {
 			// Load the product
 			$product = get_post( $post_id );
-			
+
 			// Get ID of parent product if one exists
 			if ( !empty( $product->post_parent ) )
 				$post_id = $product->post_parent;
-				
+
 			if (has_post_thumbnail($post_id)) {
-				return get_the_post_thumbnail( $post_id, $size ); 
+				return get_the_post_thumbnail( $post_id, $size );
 			}
-			
+
 			if (trim($mediumSRC == '')) {
-				$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null); 
+				$args = array( 'post_parent' => $post_id ,'numberposts' => 1, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'DESC', 'orderby' => 'ID', 'post_status' => null);
 				$attachments = get_posts($args);
 				if ($attachments) {
 					foreach ( $attachments as $attachment ) {
@@ -81,14 +81,14 @@ class WC_Predictive_Search
 				}
 			}
 		}
-		
+
 		if (trim($mediumSRC != '')) {
 			return $mediumSRC;
 		} else {
 			return '<img src="'. ( ( version_compare( $woocommerce_db_version, '2.1', '<' ) ) ? woocommerce_placeholder_img_src() : wc_placeholder_img_src() ) .'" alt="Placeholder" width="' . $placeholder_width . '" height="' . $placeholder_height . '" />';
 		}
 	}
-	
+
 	public static function woops_limit_words($str='',$len=100,$more) {
 		if (trim($len) == '' || $len < 0) $len = 100;
 	   if ( $str=="" || $str==NULL ) return $str;
@@ -110,22 +110,22 @@ class WC_Predictive_Search
 			}
 			return $str;
 	}
-	
+
 	public static function create_page( $slug, $option, $page_title = '', $page_content = '', $post_parent = 0 ) {
 		global $wpdb;
-		 
-		$option_value = get_option($option); 
-		 
-		if ( $option_value > 0 && get_post( $option_value ) ) 
+
+		$option_value = get_option($option);
+
+		if ( $option_value > 0 && get_post( $option_value ) )
 			return;
-		
+
 		$page_found = $wpdb->get_var("SELECT ID FROM " . $wpdb->posts . " WHERE post_name = '$slug' LIMIT 1;");
 		if ( $page_found ) :
-			if ( ! $option_value ) 
+			if ( ! $option_value )
 				update_option( $option, $page_found );
 			return;
 		endif;
-		
+
 		$page_data = array(
 			'post_status' 		=> 'publish',
 			'post_type' 		=> 'page',
@@ -137,16 +137,16 @@ class WC_Predictive_Search
 			'comment_status' 	=> 'closed'
 		);
 		$page_id = wp_insert_post( $page_data );
-		
+
 		update_option( $option, $page_id );
 	}
-	
+
 	public static function strip_shortcodes ($content='') {
 		$content = preg_replace( '|\[(.+?)\](.+?\[/\\1\])?|s', '', $content);
-		
+
 		return $content;
 	}
-	
+
 	public static function plugin_extension() {
 		$html = '';
 		$html .= '<a href="http://a3rev.com/shop/" target="_blank" style="float:right;margin-top:5px; margin-left:10px;" ><div class="a3-plugin-ui-icon a3-plugin-ui-a3-rev-logo"></div></a>';
@@ -185,27 +185,21 @@ class WC_Predictive_Search
 		$html .= '<h3>'.__('FREE a3rev WordPress Plugins', 'woops').'</h3>';
 		$html .= '<p>';
 		$html .= '<ul style="padding-left:10px;">';
+		$html .= '<li>* <a href="http://wordpress.org/plugins/a3-responsive-slider/" target="_blank">'.__('a3 Responsive Slider', 'woops').'</a>&nbsp;&nbsp;&nbsp;'.__( 'New Release!' , 'woops' ).'</li>';
 		$html .= '<li>* <a href="http://wordpress.org/plugins/contact-us-page-contact-people/" target="_blank">'.__('Contact Us Page - Contact People', 'woops').'</a></li>';
 		$html .= '<li>* <a href="http://wordpress.org/plugins/wp-email-template/" target="_blank">'.__('WordPress Email Template', 'woops').'</a></li>';
 		$html .= '<li>* <a href="http://wordpress.org/plugins/page-views-count/" target="_blank">'.__('Page View Count', 'woops').'</a></li>';
 		$html .= '</ul>';
 		$html .= '</p>';
-		$html .= '<h3>'.__('Help spread the Word about this plugin', 'woops').'</h3>';
-		$html .= '<p>'.__("Things you can do to help others find this plugin", 'woops');
-		$html .= '<ul style="padding-left:10px;">';
-		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Rate this plugin 5', 'woops').' <img src="'.WOOPS_IMAGES_URL.'/stars.png" align="top" style="width:auto;height:auto" /> '.__('on WordPress.org', 'woops').'</a></li>';
-		$html .= '<li>* <a href="http://wordpress.org/plugins/woocommerce-predictive-search/" target="_blank">'.__('Mark the plugin as a fourite', 'woops').'</a></li>';
-		$html .= '</ul>';
-		$html .= '</p>';
 		return $html;
 	}
-	
+
 	public static function predictive_extension_shortcode() {
 		$html = '';
 		$html .= '<div id="woo_predictive_extensions">'.__("Yes you'll love the Predictive Search shortcode feature. Upgrading to the", 'woops').' <a target="_blank" href="'.WOOPS_AUTHOR_URI.'">'.__('Pro Version', 'woops').'</a> '.__("activates this shortcode feature as well as the awesome 'Smart Search' feature, per widget controls, the All Search Results page customization settings and function features.", 'woops').'</div>';
-		return $html;	
+		return $html;
 	}
-	
+
 	public static function upgrade_version_2_0() {
 		$exclude_products = get_option('woocommerce_search_exclude_products', '');
 		if ($exclude_products !== false) {
