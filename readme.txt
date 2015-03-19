@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
-Tested up to: 4.1
-Stable tag: 2.2.5
+Tested up to: 4.1.1
+Stable tag: 2.2.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,10 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.2.6 - 2015/03/19 =
+* Tweak - Tested and Tweaked for full compatibility with WooCommerce Version 2.3.7
+* Tweak - Tested and Tweaked for full compatibility with WordPress Version 4.1.1
 
 = 2.2.5 - 2015/02/13 =
 * Tweak - Maintenance update for full compatibility with WooCommerce major version release 2.3.0 with backward compatibility to WC 2.2.0
@@ -418,6 +422,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.6 =
+Upgrade now for full compatibility with WooCommerce Version 2.3.7 and WordPress version 4.1.1
 
 = 2.2.5 =
 Upgrade now for full compatibility with WooCommerce major version release 2.3.0 with backward compatibility to WooCommerce v 2.2.0
