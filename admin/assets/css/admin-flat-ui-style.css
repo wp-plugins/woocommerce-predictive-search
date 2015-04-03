@@ -181,13 +181,13 @@
 }
 
 /* Style for Chosen lib */
-.chzn-container-single .chzn-single {
+.chosen-container-single .chosen-single {
 	background: #FFF !important;	
 }
-.chzn-container-active .chzn-single-with-drop {
+.chosen-container-active .chosen-single-with-drop {
 	background: #FFF !important;	
 }
-.chzn-container-multi .chzn-choices .search-choice {
+.chosen-container-multi .chosen-choices .search-choice {
 	background: #e4e4e4 !important;
 	-webkit-box-shadow: none !important;
 	-moz-box-shadow   : none !important;
