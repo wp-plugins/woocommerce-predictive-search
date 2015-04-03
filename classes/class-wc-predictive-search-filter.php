@@ -26,6 +26,14 @@ class WC_Predictive_Search_Hook_Filter
 		WC_Predictive_Search::get_id_excludes();
 	}
 
+	public static function pre_get_posts( $query ) {
+		$q = $query->query_vars;
+		if ( isset( $q['ps_post_type'] ) ) {
+	        $query->set( 'post_type', $q['ps_post_type'] );
+	    }
+	    return $query;
+	}
+
 	public static function get_result_popup() {
 		check_ajax_referer( 'woops-get-result-popup', 'security' );
 		add_filter( 'posts_search', array('WC_Predictive_Search_Hook_Filter', 'search_by_title_only'), 500, 2 );
@@ -47,7 +55,7 @@ class WC_Predictive_Search_Hook_Filter
 		$end_row = $row;
 
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> 0, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE, 'ps_post_type' => 'product');
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				if (get_option('permalink_structure') == '')

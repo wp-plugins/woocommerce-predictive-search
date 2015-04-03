@@ -11,7 +11,7 @@ function wc_predictive_install()
     // Set Settings Default from Admin Init
     global $wc_predictive_search_admin_init;
     $wc_predictive_search_admin_init->set_default_settings();
-    update_option('wc_predictive_search_lite_version', '2.2.6');
+    update_option('wc_predictive_search_lite_version', '2.2.7');
     flush_rewrite_rules();
 
     update_option('wc_predictive_search_just_installed', true);
@@ -87,6 +87,8 @@ add_action('wp_ajax_nopriv_woops_get_result_search_page', array('WC_Predictive_S
 add_action('wp_ajax_woops_get_result_popup', array('WC_Predictive_Search_Hook_Filter', 'get_result_popup'));
 add_action('wp_ajax_nopriv_woops_get_result_popup', array('WC_Predictive_Search_Hook_Filter', 'get_result_popup'));
 
+add_filter( 'pre_get_posts', array('WC_Predictive_Search_Hook_Filter', 'pre_get_posts'), 500 );
+
 if (!is_admin()) add_action('init', array('WC_Predictive_Search_Hook_Filter', 'add_frontend_style'));
 
 // Check upgrade functions
@@ -100,6 +102,6 @@ function woo_ps_lite_upgrade_plugin()
         update_option('wc_predictive_search_lite_version', '2.0');
     }
 
-    update_option('wc_predictive_search_lite_version', '2.2.6');
+    update_option('wc_predictive_search_lite_version', '2.2.7');
 }
 ?>
