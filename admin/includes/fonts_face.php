@@ -350,6 +350,16 @@ class WC_Predictive_Search_Fonts_Face extends WC_Predictive_Search_Admin_UI
 	/* Fonts Face Constructor */
 	/*-----------------------------------------------------------------------------------*/
 	public function __construct() {
+		$google_fonts = apply_filters( $this->plugin_name . '_google_fonts', $this->google_fonts );
+		
+		sort( $google_fonts );
+		
+		$new_google_fonts = array();
+		foreach ( $google_fonts as $row ) {
+			$new_google_fonts[$row['name']]  = $row;
+		}
+		
+		$this->google_fonts = $new_google_fonts;
 		
 	}
 	
@@ -368,21 +378,8 @@ class WC_Predictive_Search_Fonts_Face extends WC_Predictive_Search_Admin_UI
 	/* Get Google Fonts */
 	/*-----------------------------------------------------------------------------------*/
 	public function get_google_fonts() {
-		$google_fonts = apply_filters( $this->plugin_name . '_google_fonts', $this->google_fonts );
-		
-		$hash = array();
-		foreach ( $google_fonts as $font_face ) {
-			$hash[$font_face["name"]] = $font_face;
-		}
-		
-		ksort($hash);
-		
-		$google_fonts = array();
-		foreach ( $hash as $record ) {
-			$google_fonts[] = $record;
-		}
-		
-		return $google_fonts;
+				
+		return $this->google_fonts;
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -390,15 +387,11 @@ class WC_Predictive_Search_Fonts_Face extends WC_Predictive_Search_Admin_UI
 	/* Generate font CSS for frontend */
 	/*-----------------------------------------------------------------------------------*/
 	public function generate_font_css( $option, $em = '1.2' ) {
-
-		// Test if font-face is a Google font
-		foreach ( $this->get_google_fonts() as $font) {
-
-			// Add single quotation marks to font name and default arial sans-serif ending
-			if ( $option['face'] == $font['name'] ) 
-				$option['face'] = "'" . $option['face'] . "', arial, sans-serif";
-
-		} // END foreach
+		$google_fonts = $this->get_google_fonts();
+		
+		if ( array_key_exists( $option['face'], $google_fonts ) ) {
+			$option['face'] = "'" . $option['face'] . "', arial, sans-serif";
+		}
 
 		if ( !@$option['style'] && !@$option['size'] && !@$option['color'] )
 			return 'font-family: '.stripslashes($option["face"]).' !important;';
@@ -415,25 +408,23 @@ class WC_Predictive_Search_Fonts_Face extends WC_Predictive_Search_Admin_UI
 	
 	add_action( 'wp_head', array( $this, 'generate_google_webfonts' ) );
 	*/
-	public function generate_google_webfonts( $google_fonts = array(), $echo = true ) {
+	public function generate_google_webfonts( $my_google_fonts = array(), $echo = true ) {
+		$google_fonts = $this->get_google_fonts();
+		
 		$fonts = '';
 		$output = '';
 
 		// Go through the options
-		if ( is_array( $google_fonts ) ) {
-			foreach ( $google_fonts as $font_face ) {
-				// Go through the google font array
-				foreach ( $this->get_google_fonts() as $font) {
-					// Check if the google font name exists in the current "face" option
-					if ( $font_face == $font['name'] && !strstr( $fonts, $font['name'] ) ) {
-						// Add google font to output
-						$fonts .= $font['name'].$font['variant']."|";
-					} // End If Statement
-				} // End Foreach Loop
+		if ( is_array( $my_google_fonts ) ) {
+			foreach ( $my_google_fonts as $font_face ) {
+				// Check if the google font name exists in the current "face" option
+				if ( array_key_exists( $font_face, $google_fonts ) && !strstr( $fonts, $font_face ) ) {
+					$fonts .= $google_fonts[$font_face]['name'].$google_fonts[$font_face]['variant']."|";
+				}
 			} // End Foreach Loop
 
 			// Output google font css in header
-			if ( $fonts ) {
+			if ( trim( $fonts ) != '' ) {
 				$fonts = str_replace( " ","+",$fonts);
 				$output .= "\n<!-- Google Webfonts -->\n";
 				$output .= '<link href="http'. ( is_ssl() ? 's' : '' ) .'://fonts.googleapis.com/css?family=' . $fonts .'" rel="stylesheet" type="text/css" />'."\n";

@@ -142,13 +142,15 @@ class WC_Predictive_Search_Shortcodes
 			$current_db_version = get_option( 'woocommerce_db_version', null );
 			if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 				$current_product = new WC_Product($product_id);
+			} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+				$current_product = get_product( $product_id );
 			} else {
-				$current_product = get_product($product_id);
+				$current_product = wc_get_product( $product_id );
 			}
 			if ($current_product->is_type('grouped')) {
-				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
+				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			} elseif ($current_product->is_type('variable')) {
-				$product_price_output = '<div class="rs_rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</div>';
+				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			} else {
 				$product_price_output = '<div class="rs_rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</div>';
 			}
@@ -162,13 +164,15 @@ class WC_Predictive_Search_Shortcodes
 		$current_db_version = get_option( 'woocommerce_db_version', null );
 		if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 			$current_product = new WC_Product($product_id);
+		} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+			$current_product = get_product( $product_id );
 		} else {
-			$current_product = get_product($product_id);
+			$current_product = wc_get_product( $product_id );
 		}
 		if ($current_product->is_type('grouped')) {
-			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		} elseif ($current_product->is_type('variable')) {
-			$product_price_output = '<span class="rs_price">'.__('Priced', 'woops').' '. $current_product->get_price_html(). '</span>';
+			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		} else {
 			$product_price_output = '<span class="rs_price">'.__('Price', 'woops').': '. $current_product->get_price_html(). '</span>';
 		}
@@ -183,8 +187,10 @@ class WC_Predictive_Search_Shortcodes
 			$current_db_version = get_option( 'woocommerce_db_version', null );
 			if ( version_compare( $current_db_version, '2.0', '<' ) && null !== $current_db_version ) {
 				$current_product = new WC_Product($product_id);
+			} elseif ( version_compare( WC()->version, '2.2.0', '<' ) ) {
+				$current_product = get_product( $product_id );
 			} else {
-				$current_product = get_product($product_id);
+				$current_product = wc_get_product( $product_id );
 			}
 			$product = $current_product;
 			ob_start();
@@ -238,7 +244,7 @@ class WC_Predictive_Search_Shortcodes
 		global $wp_query;
 		global $wpdb;
 		global $wc_predictive_id_excludes;
-		$p = 0;
+		$psp = 0;
 		$row = 10;
 		$search_keyword = '';
 		$cat_slug = '';
@@ -252,11 +258,11 @@ class WC_Predictive_Search_Shortcodes
 		if (isset($wp_query->query_vars['keyword'])) $search_keyword = stripslashes( strip_tags( urldecode( $wp_query->query_vars['keyword'] ) ) );
 		else if (isset($_REQUEST['rs']) && trim($_REQUEST['rs']) != '') $search_keyword = stripslashes( strip_tags( $_REQUEST['rs'] ) );
 		
-		$start = $p * $row;
+		$start = $psp * $row;
 		$end_row = $row;
 				
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE, 'ps_post_type' => 'product');
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter_admin .= '&scat='.$cat_slug;
@@ -280,8 +286,9 @@ class WC_Predictive_Search_Shortcodes
 			//$search_all_products = get_posts($total_args);
 									
 			$search_products = get_posts($args);
-						
-			$html = '<p class="rs_result_heading">'.__('Showing all results for your search', 'woops').' | '.$search_keyword.'</p>';
+			
+			$html = '<div class="woocommerce">';			
+			$html .= '<p class="rs_result_heading">'.__('Showing all results for your search', 'woops').' | '.$search_keyword.'</p>';
 			if ( $search_products && count($search_products) > 0 ){
 					
 				$html .= '<style type="text/css">
@@ -315,7 +322,7 @@ class WC_Predictive_Search_Shortcodes
 					$product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_content ) ) ),$text_lenght,'...');
 					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_excerpt ) ) ),$text_lenght,'...');
 					
-					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
+					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar"><a href="'.$link_detail.'">'.$avatar.'</a></span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
 					
 					$html .= '<div style="clear:both"></div>';
 					$end_row--;
@@ -325,7 +332,7 @@ class WC_Predictive_Search_Shortcodes
 				if ( count($search_products) > $row ) {
 					$woops_get_result_search_page = wp_create_nonce("woops-get-result-search-page");
 					
-					$html .= '<div id="search_more_rs"></div><div style="clear:both"></div><div id="rs_more_check"></div><div class="rs_more_result"><span class="p_data">'.($p + 1).'</span><img src="'.WOOPS_IMAGES_URL.'/more-results-loader.gif" /><div><em>'.__('Loading More Results...', 'woops').'</em></div></div>';
+					$html .= '<div id="search_more_rs"></div><div style="clear:both"></div><div id="rs_more_check"></div><div class="rs_more_result"><span class="p_data">'.($psp + 1).'</span><img src="'.WOOPS_IMAGES_URL.'/more-results-loader.gif" /><div><em>'.__('Loading More Results...', 'woops').'</em></div></div>';
 					$html .= "<script>jQuery(document).ready(function() {
 var search_rs_obj = jQuery('#rs_more_check');
 var is_loading = false;
@@ -340,7 +347,7 @@ function auto_click_more() {
 			var p_data_obj = jQuery('.rs_more_result .p_data');
 			var p_data = p_data_obj.html();
 			p_data_obj.html('');
-			var urls = '&p='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter_admin."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
+			var urls = '&psp='+p_data+'&row=".$row."&q=".$search_keyword.$extra_parameter_admin."&action=woops_get_result_search_page&security=".$woops_get_result_search_page."';
 			jQuery.post('".admin_url( 'admin-ajax.php', 'relative' )."', urls, function(theResponse){
 				if(theResponse != ''){
 					var num = parseInt(p_data)+1;
@@ -364,7 +371,8 @@ auto_click_more();
 				}
 			} else {
 				$html .= '<p style="text-align:center">'.__('Nothing Found! Please refine your search and try again.', 'woops').'</p>';
-			} 
+			}
+			$html .= '</div>'; 
 			
 			return $html;
 		}
@@ -376,7 +384,7 @@ auto_click_more();
 		add_filter( 'posts_orderby', array('WC_Predictive_Search_Hook_Filter', 'predictive_posts_orderby'), 500, 2 );
 		add_filter( 'posts_request', array('WC_Predictive_Search_Hook_Filter', 'posts_request_unconflict_role_scoper_plugin'), 500, 2);
 		global $wc_predictive_id_excludes;
-		$p = 1;
+		$psp = 1;
 		$row = 10;
 		$search_keyword = '';
 		$cat_slug = '';
@@ -385,16 +393,16 @@ auto_click_more();
 		$show_price = false;
 		$show_categories = false;
 		$show_tags = false;
-		if (isset($_REQUEST['p']) && $_REQUEST['p'] > 0) $p = $_REQUEST['p'];
+		if (isset($_REQUEST['psp']) && $_REQUEST['psp'] > 0) $psp = $_REQUEST['psp'];
 		if (isset($_REQUEST['row']) && $_REQUEST['row'] > 0) $row = $_REQUEST['row'];
 		if (isset($_REQUEST['q']) && trim($_REQUEST['q']) != '') $search_keyword = $_REQUEST['q'];
 		
-		$start = $p * $row;
+		$start = $psp * $row;
 		$end = $start + $row;
 		$end_row = $row;
 		
 		if ($search_keyword != '') {
-			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE);
+			$args = array( 's' => $search_keyword, 'numberposts' => $row+1, 'offset'=> $start, 'orderby' => 'predictive', 'order' => 'ASC', 'post_type' => 'product', 'post_status' => 'publish', 'exclude' => $wc_predictive_id_excludes['exclude_products'], 'suppress_filters' => FALSE, 'ps_post_type' => 'product');
 			if ($cat_slug != '') {
 				$args['tax_query'] = array( array('taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => $cat_slug) );
 				$extra_parameter .= '&scat='.$cat_slug;
@@ -429,7 +437,7 @@ auto_click_more();
 					$product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_content ) ) ),$text_lenght,'...');
 					if (trim($product_description) == '') $product_description = WC_Predictive_Search::woops_limit_words( strip_tags( WC_Predictive_Search::strip_shortcodes( strip_shortcodes( $product->post_excerpt ) ) ),$text_lenght,'...');
 										
-					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar">'.$avatar.'</span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
+					$html .= '<div class="rs_result_row"><span class="rs_rs_avatar"><a href="'.$link_detail.'">'.$avatar.'</a></span><div class="rs_content"><a href="'.$link_detail.'"><span class="rs_rs_name">'.stripslashes( $product->post_title).'</span></a>'.$product_price_output.'<div class="rs_rs_description">'.$product_description.'</div>'.$product_cats_output.$product_tags_output.'</div></div>';
 					$html .= '<div style="clear:both"></div>';
 					$end_row--;
 					if ($end_row < 1) break;
