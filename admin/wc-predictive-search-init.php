@@ -11,7 +11,7 @@ function wc_predictive_install()
     // Set Settings Default from Admin Init
     global $wc_predictive_search_admin_init;
     $wc_predictive_search_admin_init->set_default_settings();
-    update_option('wc_predictive_search_lite_version', '2.2.7');
+    update_option('wc_predictive_search_lite_version', '2.2.8');
     flush_rewrite_rules();
 
     update_option('wc_predictive_search_just_installed', true);
@@ -102,6 +102,6 @@ function woo_ps_lite_upgrade_plugin()
         update_option('wc_predictive_search_lite_version', '2.0');
     }
 
-    update_option('wc_predictive_search_lite_version', '2.2.7');
+    update_option('wc_predictive_search_lite_version', '2.2.8');
 }
 ?>

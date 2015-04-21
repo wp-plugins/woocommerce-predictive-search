@@ -90,7 +90,6 @@
 .a3rev_blue_message_box a{color:#F00}
 .a3rev_panel_container .chosen-container{margin-bottom:5px;margin-right:2px}
 @font-face{font-family:"a3-plugin-framework";src:url("../fonts/a3-plugin-framework.eot");src:url("../fonts/a3-plugin-framework.eot?#iefix") format("embedded-opentype"),url("../fonts/a3-plugin-framework.woff") format("woff"),url("../fonts/a3-plugin-framework.ttf") format("truetype"),url("../fonts/a3-plugin-framework.svg#a3-plugin-framework") format("svg");font-weight:normal;font-style:normal}
-[data-icon]:before{font-family:"a3-plugin-framework" !important;content:attr(data-icon);font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 [class^="a3-plugin-ui-"]:before,[class*=" a3-plugin-ui-"]:before{font-family:"a3-plugin-framework" !important;font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .a3-plugin-ui-a3-plugins-icon:before{content:"a"}
 .a3-plugin-ui-a3-rev-logo:before{content:"b"}
