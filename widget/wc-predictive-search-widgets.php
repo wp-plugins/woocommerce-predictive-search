@@ -113,7 +113,7 @@ jQuery(document).ready(function() {
 </script>
         <div class="pp_search_container" id="pp_search_container_<?php echo $id;?>" style=" <?php echo $style; ?> ">
         <div style="display:none" class="chrome_xp"></div>
-		<form autocomplete="off" action="<?php echo get_permalink(get_option('woocommerce_search_page_id'));?>" method="get" class="fr_search_widget" id="fr_pp_search_widget_<?php echo $id;?>">
+		<form autocomplete="off" action="<?php echo str_replace(array('http:','https:'), '', get_permalink(get_option('woocommerce_search_page_id')) ); ?>" method="get" class="fr_search_widget" id="fr_pp_search_widget_<?php echo $id;?>">
         	<?php
 			if (get_option('permalink_structure') == '') {
 			?>

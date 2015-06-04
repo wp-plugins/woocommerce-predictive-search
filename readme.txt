@@ -3,8 +3,8 @@
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
 Requires at least: 3.7
-Tested up to: 4.2.1
-Stable tag: 2.2.9
+Tested up to: 4.2.2
+Stable tag: 2.2.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,12 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 2.2.10 - 2015/06/04 =
+* Tweak - Tested and Tweaked for full compatibility with WordPress Version 4.2.2
+* Tweak - Tested and Tweaked for full compatibility with WooCommerce Version 2.3.10
+* Fix - Update search result page URL to the format //domain.com/ so it's always is correct when loaded as http or https
+* Credit - Thanks to Lifetime License owner [Derek](https://a3rev.com/forums/topic/insecure-form-call/) for the heads up about the issue.
 
 = 2.2.9 - 2015/05/05 =
 * Tweak - Tested for full compatibility with WordPress Version 4.2.1
@@ -436,6 +442,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Upgrade Notice ==
+
+= 2.2.10 =
+Maintenance Upgrade. Tested and Tweaked for full compatibility with WooCommerce 2.3.10 and WordPress 4.2.2
 
 = 2.2.9 =
 Maintenance Update. 1 Bug fix for full compatibility with PHP caching plugins and full compatibility with WordPress version 4.2.1
