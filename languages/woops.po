@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Predictive Search\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-08 13:32+0700\n"
-"PO-Revision-Date: 2014-02-08 13:32+0700\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2015-02-13 13:05+0700\n"
+"PO-Revision-Date: 2015-02-13 13:05+0700\n"
+"Last-Translator: Nguyen Cong Tuan <mr.nguyencongtuan@gmail.com>\n"
 "Language-Team: a3rev\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -16,224 +16,226 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/admin-interface.php:127
+#: admin/admin-interface.php:129
 msgid "Settings successfully saved."
 msgstr ""
 
-#: admin/admin-interface.php:135
+#: admin/admin-interface.php:137
 msgid "Error: Settings can not save."
 msgstr ""
 
-#: admin/admin-interface.php:143
+#: admin/admin-interface.php:145
 msgid "Settings successfully reseted."
 msgstr ""
 
-#: admin/admin-interface.php:164
+#: admin/admin-interface.php:166
 msgid "Thin"
 msgstr ""
 
-#: admin/admin-interface.php:165
+#: admin/admin-interface.php:167
 msgid "Thin/Italic"
 msgstr ""
 
-#: admin/admin-interface.php:166
+#: admin/admin-interface.php:168
 msgid "Normal"
 msgstr ""
 
-#: admin/admin-interface.php:167
+#: admin/admin-interface.php:169
 msgid "Italic"
 msgstr ""
 
-#: admin/admin-interface.php:168
+#: admin/admin-interface.php:170
 msgid "Bold"
 msgstr ""
 
-#: admin/admin-interface.php:169
+#: admin/admin-interface.php:171
 msgid "Bold/Italic"
 msgstr ""
 
-#: admin/admin-interface.php:179
+#: admin/admin-interface.php:181
 msgid "Solid"
 msgstr ""
 
-#: admin/admin-interface.php:180
+#: admin/admin-interface.php:182
 msgid "Double"
 msgstr ""
 
-#: admin/admin-interface.php:181
+#: admin/admin-interface.php:183
 msgid "Dashed"
 msgstr ""
 
-#: admin/admin-interface.php:182
+#: admin/admin-interface.php:184
 msgid "Dotted"
 msgstr ""
 
-#: admin/admin-interface.php:183
+#: admin/admin-interface.php:185
 msgid "Groove"
 msgstr ""
 
-#: admin/admin-interface.php:184
+#: admin/admin-interface.php:186
 msgid "Ridge"
 msgstr ""
 
-#: admin/admin-interface.php:185
+#: admin/admin-interface.php:187
 msgid "Inset"
 msgstr ""
 
-#: admin/admin-interface.php:186
+#: admin/admin-interface.php:188
 msgid "Outset"
 msgstr ""
 
-#: admin/admin-interface.php:1296 admin/admin-interface.php:1386
-#: admin/admin-interface.php:1415
+#: admin/admin-interface.php:1359 admin/admin-interface.php:1449
+#: admin/admin-interface.php:1478
 #: admin/settings/all-results-page-settings.php:221
 #: admin/settings/all-results-page-settings.php:232
 #: admin/settings/all-results-page-settings.php:243
 #: admin/settings/all-results-page-settings.php:254
 #: admin/settings/all-results-page-settings.php:265
-#: admin/settings/global-settings.php:230
-#: admin/settings/global-settings.php:293
+#: admin/settings/global-settings.php:258
+#: admin/settings/global-settings.php:295
+#: admin/settings/google-analytics-settings.php:209
 #: admin/settings/search-function-settings.php:257
 #: admin/settings/search-function-settings.php:314
 msgid "ON"
 msgstr ""
 
-#: admin/admin-interface.php:1297 admin/admin-interface.php:1387
-#: admin/admin-interface.php:1416
+#: admin/admin-interface.php:1360 admin/admin-interface.php:1450
+#: admin/admin-interface.php:1479
 #: admin/settings/all-results-page-settings.php:222
 #: admin/settings/all-results-page-settings.php:233
 #: admin/settings/all-results-page-settings.php:244
 #: admin/settings/all-results-page-settings.php:255
 #: admin/settings/all-results-page-settings.php:266
-#: admin/settings/global-settings.php:231
-#: admin/settings/global-settings.php:294
+#: admin/settings/global-settings.php:259
+#: admin/settings/global-settings.php:296
+#: admin/settings/google-analytics-settings.php:210
 #: admin/settings/search-function-settings.php:258
 #: admin/settings/search-function-settings.php:315
 msgid "OFF"
 msgstr ""
 
-#: admin/admin-interface.php:1457
+#: admin/admin-interface.php:1520
 #: admin/settings/search-function-settings.php:268
 msgid "Width"
 msgstr ""
 
-#: admin/admin-interface.php:1459
+#: admin/admin-interface.php:1522
 msgid "Height"
 msgstr ""
 
-#: admin/admin-interface.php:1461
+#: admin/admin-interface.php:1524
 msgid "Hard Crop"
 msgstr ""
 
-#: admin/admin-interface.php:1539
+#: admin/admin-interface.php:1601
 msgid "-- Default Fonts --"
 msgstr ""
 
-#: admin/admin-interface.php:1550
+#: admin/admin-interface.php:1612
 msgid "-- Google Fonts --"
 msgstr ""
 
-#: admin/admin-interface.php:1591
+#: admin/admin-interface.php:1653
 msgid "Preview your customized typography settings"
 msgstr ""
 
-#: admin/admin-interface.php:1725 admin/admin-interface.php:1984
+#: admin/admin-interface.php:1787 admin/admin-interface.php:2046
 msgid "Preview your customized border settings"
 msgstr ""
 
-#: admin/admin-interface.php:1734 admin/admin-interface.php:1975
+#: admin/admin-interface.php:1796 admin/admin-interface.php:2037
 msgid "Rounded"
 msgstr ""
 
-#: admin/admin-interface.php:1735 admin/admin-interface.php:1976
+#: admin/admin-interface.php:1797 admin/admin-interface.php:2038
 msgid "Square"
 msgstr ""
 
-#: admin/admin-interface.php:1745 admin/admin-interface.php:1989
+#: admin/admin-interface.php:1807 admin/admin-interface.php:2051
 msgid "Top Left Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1765 admin/admin-interface.php:2009
+#: admin/admin-interface.php:1827 admin/admin-interface.php:2071
 msgid "Top Right Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1785 admin/admin-interface.php:2029
+#: admin/admin-interface.php:1847 admin/admin-interface.php:2091
 msgid "Bottom Right Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1805 admin/admin-interface.php:2049
+#: admin/admin-interface.php:1867 admin/admin-interface.php:2111
 msgid "Bottom Left Corner"
 msgstr ""
 
-#: admin/admin-interface.php:1898
+#: admin/admin-interface.php:1960
 msgid "Preview your customized border styles settings"
 msgstr ""
 
-#: admin/admin-interface.php:2110
+#: admin/admin-interface.php:2172
 msgid "YES"
 msgstr ""
 
-#: admin/admin-interface.php:2111
+#: admin/admin-interface.php:2173
 msgid "NO"
 msgstr ""
 
-#: admin/admin-interface.php:2125
+#: admin/admin-interface.php:2187
 msgid "Horizontal Shadow"
 msgstr ""
 
-#: admin/admin-interface.php:2143
+#: admin/admin-interface.php:2205
 msgid "Vertical Shadow"
 msgstr ""
 
-#: admin/admin-interface.php:2161
+#: admin/admin-interface.php:2223
 msgid "Blur Distance"
 msgstr ""
 
-#: admin/admin-interface.php:2179
+#: admin/admin-interface.php:2241
 msgid "Spread Size"
 msgstr ""
 
-#: admin/admin-interface.php:2197
+#: admin/admin-interface.php:2259
 msgid "INNER"
 msgstr ""
 
-#: admin/admin-interface.php:2198
+#: admin/admin-interface.php:2260
 msgid "OUTER"
 msgstr ""
 
-#: admin/admin-interface.php:2216
+#: admin/admin-interface.php:2278
 msgid "Preview your customized box shadow settings"
 msgstr ""
 
-#: admin/admin-interface.php:2405
+#: admin/admin-interface.php:2514
 msgid "Save changes"
 msgstr ""
 
-#: admin/admin-interface.php:2406
+#: admin/admin-interface.php:2515
 msgid "Reset Settings"
 msgstr ""
 
 #: admin/admin-pages/predictive-search-page.php:63
 #: admin/admin-pages/predictive-search-page.php:64
-#: admin/settings/global-settings.php:223
+#: admin/settings/global-settings.php:251
 msgid "Predictive Search"
 msgstr ""
 
-#: admin/admin-ui.php:127
+#: admin/admin-ui.php:135
 #, php-format
 msgid "Settings inside this yellow border are %s Features."
 msgstr ""
 
-#: admin/admin-ui.php:129
+#: admin/admin-ui.php:137
 #, php-format
 msgid ""
 "Upgrade to the <a href=\"%s\" target=\"_blank\">%s</a> to activate these "
 "settings."
 msgstr ""
 
-#: admin/admin-ui.php:131 admin/admin-ui.php:133
+#: admin/admin-ui.php:139 admin/admin-ui.php:141
 #: classes/class-wc-predictive-search-metabox.php:47
-#: classes/class-wc-predictive-search.php:205
+#: classes/class-wc-predictive-search.php:201
 #: widget/wc-predictive-search-widgets.php:185
 #: widget/wc-predictive-search-widgets.php:202
 msgid "Pro Version"
@@ -311,8 +313,12 @@ msgstr ""
 #: admin/settings/all-results-page-settings.php:225
 #: admin/settings/search-function-settings.php:250
 #: classes/class-wc-predictive-search-shortcodes.php:112
+#: classes/class-wc-predictive-search-shortcodes.php:151
 #: classes/class-wc-predictive-search-shortcodes.php:153
+#: classes/class-wc-predictive-search-shortcodes.php:155
 #: classes/class-wc-predictive-search-shortcodes.php:173
+#: classes/class-wc-predictive-search-shortcodes.php:175
+#: classes/class-wc-predictive-search-shortcodes.php:177
 msgid "Price"
 msgstr ""
 
@@ -425,55 +431,24 @@ msgid "Settings"
 msgstr ""
 
 #: admin/settings/global-settings.php:217
-msgid "Advanced Site Search Optimization"
-msgstr ""
-
-#: admin/settings/global-settings.php:218
-msgid ""
-"Get Complete Control over Search results, for every product, post and page "
-"with Predictive Search Focus Keywords and / or the Focus Keywords you have "
-"set in leading SEO plugins."
-msgstr ""
-
-#: admin/settings/global-settings.php:240
-msgid "SEO Focus Keywords"
-msgstr ""
-
-#: admin/settings/global-settings.php:241
-msgid "Supported plugins, WordPress SEO and ALL in ONE SEO Pack."
-msgstr ""
-
-#: admin/settings/global-settings.php:246
-msgid "Select SEO plugin"
-msgstr ""
-
-#: admin/settings/global-settings.php:247
-msgid "Yoast WordPress SEO"
-msgstr ""
-
-#: admin/settings/global-settings.php:248
-msgid "All in One SEO"
-msgstr ""
-
-#: admin/settings/global-settings.php:253
 msgid "Global Search Box Text"
 msgstr ""
 
-#: admin/settings/global-settings.php:258
-#: admin/settings/global-settings.php:313
+#: admin/settings/global-settings.php:222
+#: admin/settings/global-settings.php:315
 msgid "Text to Show"
 msgstr ""
 
-#: admin/settings/global-settings.php:259
-#: admin/settings/global-settings.php:315
+#: admin/settings/global-settings.php:223
+#: admin/settings/global-settings.php:317
 msgid "&lt;empty&gt; shows nothing"
 msgstr ""
 
-#: admin/settings/global-settings.php:267
+#: admin/settings/global-settings.php:231
 msgid "Search Page Configuration"
 msgstr ""
 
-#: admin/settings/global-settings.php:269
+#: admin/settings/global-settings.php:233
 msgid ""
 "Predictive Search has detected the WPML plugin. On install a search page was "
 "auto created for each language in use. Please use the WPML String "
@@ -482,35 +457,111 @@ msgid ""
 "manually create a search page for it."
 msgstr ""
 
-#: admin/settings/global-settings.php:269
+#: admin/settings/global-settings.php:233
 msgid ""
 "A search results page needs to be selected so that WooCommerce Predictive "
 "Search knows where to show search results. This page should have been "
 "created upon installation of the plugin, if not you need to create it."
 msgstr ""
 
-#: admin/settings/global-settings.php:272
+#: admin/settings/global-settings.php:236
 msgid "Search Page"
 msgstr ""
 
-#: admin/settings/global-settings.php:273
+#: admin/settings/global-settings.php:237
 msgid "Page contents:"
 msgstr ""
 
-#: admin/settings/global-settings.php:280
+#: admin/settings/global-settings.php:244
+msgid "Predictive Search Focus Keywords"
+msgstr ""
+
+#: admin/settings/global-settings.php:245
+msgid ""
+"<strong>Important!</strong> Do not turn this feature on unless you have or "
+"will be adding Focus Keywords to your products. ON and Predictive search "
+"will query every product in searches checking for Focus Keywords. Increased "
+"and unnecessary queries ( if you have not set Focus Keywords ) can and on "
+"larger stores will degrade the search speed."
+msgstr ""
+
+#: admin/settings/global-settings.php:268
+msgid "SEO Focus Keywords"
+msgstr ""
+
+#: admin/settings/global-settings.php:269
+msgid "Supported plugins, WordPress SEO and ALL in ONE SEO Pack."
+msgstr ""
+
+#: admin/settings/global-settings.php:274
+msgid "Select SEO plugin"
+msgstr ""
+
+#: admin/settings/global-settings.php:275
+msgid "Yoast WordPress SEO"
+msgstr ""
+
+#: admin/settings/global-settings.php:276
+msgid "All in One SEO"
+msgstr ""
+
+#: admin/settings/global-settings.php:282
 msgid "House Keeping"
 msgstr ""
 
-#: admin/settings/global-settings.php:284
+#: admin/settings/global-settings.php:286
 msgid "Clean up on Deletion"
 msgstr ""
 
-#: admin/settings/global-settings.php:285
+#: admin/settings/global-settings.php:287
 msgid ""
 "On deletion (not deactivate) the plugin it will completely remove all of its "
 "code and tables it has created, leaving no trace it was ever here. If "
 "upgrading to the Pro Version this is <span class=\"description\">not "
 "recommended</span>"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:82
+msgid "Google Analytics Settings successfully saved."
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:83
+msgid "Error: Google Analytics Settings can not save."
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:84
+msgid "Google Analytics Settings successfully reseted."
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:154
+#: admin/tabs/google-analytics-tab.php:78
+msgid "Google Analytics"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:198
+msgid "Google Analytics Site Search Integration"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:202
+msgid "Track Predictive Search Result with Google Analytics"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:218
+msgid "Google Analytics UID"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:219
+msgid "Example:"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:226
+msgid "Query Parameter"
+msgstr ""
+
+#: admin/settings/google-analytics-settings.php:227
+msgid ""
+"The parameter that is to be entered on the track Site Search config page on "
+"your Google Anayitics account. Default: [default_value]"
 msgstr ""
 
 #: admin/settings/search-function-settings.php:81
@@ -673,7 +724,7 @@ msgid ""
 "WordPress, WooCommerce or Theme search function)"
 msgstr ""
 
-#: admin/wc-predictive-search-init.php:7
+#: admin/wc-predictive-search-init.php:9
 msgid "Woocommerce Predictive Search"
 msgstr ""
 
@@ -697,11 +748,11 @@ msgstr ""
 msgid "Nothing found for that name. Try a different spelling or name."
 msgstr ""
 
-#: classes/class-wc-predictive-search-filter.php:270
+#: classes/class-wc-predictive-search-filter.php:280
 msgid "Documentation"
 msgstr ""
 
-#: classes/class-wc-predictive-search-filter.php:271
+#: classes/class-wc-predictive-search-filter.php:281
 msgid "Support"
 msgstr ""
 
@@ -822,34 +873,27 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:149
-#: classes/class-wc-predictive-search-shortcodes.php:151
-#: classes/class-wc-predictive-search-shortcodes.php:169
-#: classes/class-wc-predictive-search-shortcodes.php:171
-msgid "Priced"
-msgstr ""
-
-#: classes/class-wc-predictive-search-shortcodes.php:212
+#: classes/class-wc-predictive-search-shortcodes.php:218
 msgid "Category"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:230
+#: classes/class-wc-predictive-search-shortcodes.php:236
 msgid "Tags"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:284
+#: classes/class-wc-predictive-search-shortcodes.php:291
 msgid "Showing all results for your search"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:328
+#: classes/class-wc-predictive-search-shortcodes.php:335
 msgid "Loading More Results..."
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:352
+#: classes/class-wc-predictive-search-shortcodes.php:359
 msgid "No More Results to Show"
 msgstr ""
 
-#: classes/class-wc-predictive-search-shortcodes.php:366
+#: classes/class-wc-predictive-search-shortcodes.php:373
 msgid "Nothing Found! Please refine your search and try again."
 msgstr ""
 
@@ -977,43 +1021,39 @@ msgid "FREE a3rev WordPress Plugins"
 msgstr ""
 
 #: classes/class-wc-predictive-search.php:188
-msgid "Contact Us Page - Contact People"
+msgid "a3 Lazy Load"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:188
+msgid "WooCommerce Compatible"
 msgstr ""
 
 #: classes/class-wc-predictive-search.php:189
-msgid "WordPress Email Template"
+msgid "a3 Portfolio"
 msgstr ""
 
 #: classes/class-wc-predictive-search.php:190
-msgid "Page View Count"
+msgid "a3 Responsive Slider"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:191
+msgid "Contact Us Page - Contact People"
+msgstr ""
+
+#: classes/class-wc-predictive-search.php:192
+msgid "WordPress Email Template"
 msgstr ""
 
 #: classes/class-wc-predictive-search.php:193
-msgid "Help spread the Word about this plugin"
+msgid "Page View Count"
 msgstr ""
 
-#: classes/class-wc-predictive-search.php:194
-msgid "Things you can do to help others find this plugin"
-msgstr ""
-
-#: classes/class-wc-predictive-search.php:196
-msgid "Rate this plugin 5"
-msgstr ""
-
-#: classes/class-wc-predictive-search.php:196
-msgid "on WordPress.org"
-msgstr ""
-
-#: classes/class-wc-predictive-search.php:197
-msgid "Mark the plugin as a fourite"
-msgstr ""
-
-#: classes/class-wc-predictive-search.php:205
+#: classes/class-wc-predictive-search.php:201
 msgid ""
 "Yes you'll love the Predictive Search shortcode feature. Upgrading to the"
 msgstr ""
 
-#: classes/class-wc-predictive-search.php:205
+#: classes/class-wc-predictive-search.php:201
 msgid ""
 "activates this shortcode feature as well as the awesome 'Smart Search' "
 "feature, per widget controls, the All Search Results page customization "
