@@ -971,7 +971,8 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 		<?php
 		$count_heading = 0;
 		$end_heading_id = false;
-		
+		$header_box_opening = false;
+
 		foreach ( $options as $value ) {
 			if ( ! isset( $value['type'] ) ) continue;
 			if ( ! isset( $value['id'] ) ) $value['id'] = '';
@@ -1147,13 +1148,18 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				}
 				$id_attribute		= esc_attr( $option_name ) . '_' . $id_attribute;
 			}
-	
+
 			// Switch based on type
 			switch( $value['type'] ) {
-	
+
 				// Heading
 				case 'heading':
-					
+
+					$is_box = true;
+					if ( isset( $value['is_box'] ) && 0 == $value['is_box'] ) {
+						$is_box = false;
+					}
+
 					$count_heading++;
 					if ( $count_heading > 1 )  {
 						if ( trim( $end_heading_id ) != '' ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $end_heading_id ) . '_end' );
@@ -1165,22 +1171,53 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 						$end_heading_id = $value['id'];
 					else
 						$end_heading_id = '';
-						
+
+					if ( $is_box && $header_box_opening ) {
+						$header_box_opening = false;
+						echo '</div>' . "\n\n"; // close box inside
+						echo '</div>' . "\n\n"; // close panel box
+					}
+
 					$view_doc = ( isset( $value['view_doc'] ) ) ? $value['view_doc'] : '';
-					
+
 					if ( ! empty( $value['id'] ) ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $value['id'] ) . '_before' );
-					
+
 					echo '<div id="'. esc_attr( $value['id'] ) . '" class="a3rev_panel_inner '. esc_attr( $value['class'] ) .'" style="'. esc_attr( $value['css'] ) .'">' . "\n\n";
-					if ( stristr( $value['class'], 'pro_feature_fields' ) !== false && ! empty( $value['id'] ) ) $this->upgrade_top_message( true, sanitize_title( $value['id'] ) );
-					elseif ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
-					
+
+					if ( ! $is_box ) {
+						if ( stristr( $value['class'], 'pro_feature_fields' ) !== false && ! empty( $value['id'] ) ) $this->upgrade_top_message( true, sanitize_title( $value['id'] ) );
+						elseif ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
+					}
+
+					if ( $is_box ) {
+						echo '<div class="a3rev_panel_box_handle" >' . "\n\n";
+					}
+
 					echo ( ! empty( $value['name'] ) ) ? '<h3>'. esc_html( $value['name'] ) .' '. $view_doc .'</h3>' : '';
 					if ( ! empty( $value['desc'] ) ) echo wpautop( wptexturize( wp_kses_post( $value['desc'] ) ) );
+
+					if ( $is_box ) {
+						if ( stristr( $value['class'], 'pro_feature_fields' ) !== false && ! empty( $value['id'] ) ) $this->upgrade_top_message( true, sanitize_title( $value['id'] ) );
+						elseif ( stristr( $value['class'], 'pro_feature_fields' ) !== false ) $this->upgrade_top_message( true );
+					}
+
+					if ( $is_box ) {
+						echo '</div>' . "\n\n"; // close box handle
+					}
+
+					if ( $is_box ) {
+						echo '<div id="'. esc_attr( $value['id'] ) . '_box_inside" class="a3rev_panel_box_inside" >' . "\n\n";
+						echo '<div class="a3rev_panel_box_main" >' . "\n\n";
+
+						// Mark this heading as a box is openning to check for close it on next header box
+						$header_box_opening = true;
+					}
+
 					echo '<table class="form-table">' . "\n\n";
-					
+
 					if ( ! empty( $value['id'] ) ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $value['id'] ) . '_start' );
 				break;
-	
+
 				// Standard text inputs and subtypes like 'number'
 				case 'text':
 				case 'email':
@@ -2506,6 +2543,12 @@ class WC_Predictive_Search_Admin_Interface extends WC_Predictive_Search_Admin_UI
 				echo '</table>' . "\n\n";
 				echo '</div>' . "\n\n";
 			if ( trim( $end_heading_id ) != '' ) do_action( $this->plugin_name . '_settings_' . sanitize_title( $end_heading_id ) . '_after' );	
+		}
+
+		if ( $header_box_opening ) {
+			$header_box_opening = false;
+			echo '</div>' . "\n\n"; // close box inside
+			echo '</div>' . "\n\n"; // close panel box
 		}
 		
 		?>

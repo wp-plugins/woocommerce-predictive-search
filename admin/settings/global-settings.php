@@ -88,16 +88,11 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 
 		add_action( $this->plugin_name . '_set_default_settings' , array( $this, 'set_default_settings' ) );
 
-		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'reset_default_settings' ) );
-
-		add_action( $this->plugin_name . '_settings_' . 'predictive_search_searchbox_text' . '_after', array( $this, 'predictive_search_searchbox_text' ) );
+		add_action( $this->plugin_name . '_settings_' . 'predictive_search_searchbox_text' . '_start', array( $this, 'predictive_search_searchbox_text' ) );
+		add_action( $this->plugin_name . '_settings_' . 'predictive_search_synch_data' . '_start', array( $this, 'predictive_search_synch_data' ) );
 
 		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'after_save_settings' ) );
 		//add_action( $this->plugin_name . '_get_all_settings' , array( $this, 'get_settings' ) );
-
-		// Add yellow border for pro fields
-		add_action( $this->plugin_name . '_settings_pro_focus_keywords_before', array( $this, 'pro_fields_before' ) );
-		add_action( $this->plugin_name . '_settings_pro_seo_focus_keywords_after', array( $this, 'pro_fields_after' ) );
 	}
 
 	/*-----------------------------------------------------------------------------------*/
@@ -121,16 +116,6 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 	}
 
 	/*-----------------------------------------------------------------------------------*/
-	/* reset_default_settings()
-	/* Reset default settings with function called from Admin Interface */
-	/*-----------------------------------------------------------------------------------*/
-	public function reset_default_settings() {
-		global $wc_predictive_search_admin_interface;
-
-		$wc_predictive_search_admin_interface->reset_settings( $this->form_fields, $this->option_name, true, true );
-	}
-
-	/*-----------------------------------------------------------------------------------*/
 	/* after_save_settings()
 	/* Process when clean on deletion option is un selected */
 	/*-----------------------------------------------------------------------------------*/
@@ -142,6 +127,21 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 		}
 		if ( isset( $_REQUEST['woocommerce_search_box_text']) ) {
 			update_option('woocommerce_search_box_text',  $_REQUEST['woocommerce_search_box_text'] );
+		}
+		if ( isset( $_POST['predicitve-search-synch-wp-data'] ) ) {
+			@set_time_limit(86400);
+			@ini_set("memory_limit","640M");
+			global $wc_predictive_search;
+			$wc_predictive_search->install_databases();
+
+			global $wc_ps_synch;
+			$wc_ps_synch->synch_full_database();
+
+			echo '<div class="updated"><p>' . __( '<strong>SUCCESS</strong>! Your Predictive Search Database has been successfully updated.', 'woops' ) . '</p></div>';
+		}
+
+		if ( isset( $_POST['bt_save_settings'] ) ) {
+			flush_rewrite_rules();
 		}
 	}
 
@@ -218,14 +218,6 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
                 'type' 		=> 'heading',
 				'id'		=> 'predictive_search_searchbox_text',
            	),
-			array(
-				'name' 		=> __( 'Text to Show', 'woops' ),
-				'desc'		=> __( '&lt;empty&gt; shows nothing', 'woops' ),
-				'id' 		=> 'woocommerce_search_box_text',
-				'type' 		=> 'text',
-				'default'	=> '',
-				'free_version'		=> true,
-			),
 
       		array(
             	'name' 		=> __('Search Page Configuration', 'woops'),
@@ -237,20 +229,17 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 				'desc' 		=> __('Page contents:', 'woops').' [woocommerce_search]',
 				'id' 		=> 'woocommerce_search_page_id',
 				'type' 		=> 'single_select_page',
-				'free_version'		=> true,
 			),
 
 			array(
-            	'name' 		=> __( 'Predictive Search Focus Keywords', 'woops' ),
-				'desc'		=> __( '<strong>Important!</strong> Do not turn this feature on unless you have or will be adding Focus Keywords to your products. ON and Predictive search will query every product in searches checking for Focus Keywords. Increased and unnecessary queries ( if you have not set Focus Keywords ) can and on larger stores will degrade the search speed.', 'woops' ),
+            	'name' 		=> __( 'Special Characters', 'woops' ),
+				'desc'		=> __( 'Select any special characters that are used on this site. Selecting a character will mean that results will be returned when user search input includes or excludes the special character. <strong>IMPORTANT!</strong> Do not turn this feature on unless needed. If ON - only select actual characters used in Product Titles, SKU, Category Names etc - each special character selected creates 1 extra query per search object, per product, post or page.', 'woops' ),
                 'type' 		=> 'heading',
-                'type' 		=> 'heading',
-				'id'		=> 'pro_focus_keywords',
            	),
 			array(
-				'name' 		=> __( 'Predictive Search', 'woops' ),
-				'class'		=> 'woocommerce_search_focus_enable',
-				'id' 		=> 'woocommerce_search_focus_enable',
+				'name' 		=> __( 'Special Character Function', 'woops' ),
+				'class'		=> 'woocommerce_search_remove_special_character',
+				'id' 		=> 'woocommerce_search_remove_special_character',
 				'type' 		=> 'onoff_checkbox',
 				'default'	=> 'no',
 				'checked_value'		=> 'yes',
@@ -261,22 +250,22 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 
 			array(
                 'type' 		=> 'heading',
-				'class'		=> 'woocommerce_search_focus_plugin_container',
-				'id'		=> 'pro_seo_focus_keywords',
+				'class'		=> 'woocommerce_search_remove_special_character_container',
            	),
 			array(
-				'name' 		=> __( "SEO Focus Keywords", 'woops' ),
-				'desc' 		=> __("Supported plugins, WordPress SEO and ALL in ONE SEO Pack.", 'woops'),
-				'id' 		=> 'woocommerce_search_focus_plugin',
-				'type' 		=> 'select',
-				'default'	=> 'none',
-				'options'	=> array(
-						'none'						=> __( 'Select SEO plugin', 'woops' ) ,
-						'yoast_seo_plugin'			=> __( 'Yoast WordPress SEO', 'woops' ) ,
-						'all_in_one_seo_plugin'		=> __( 'All in One SEO', 'woops' ) ,
-					),
+				'name' 		=> __( "Select Characters", 'woops' ),
+				'id' 		=> 'woocommerce_search_special_characters',
+				'type' 		=> 'multiselect',
+				'css'		=> 'width:600px; min-height:80px;',
+				'options'	=> WC_Predictive_Search_Functions::special_characters_list(),
 			),
 
+			array(
+            	'name' 		=> __( 'Manual Database Sync', 'woops' ),
+            	'desc'		=> __( 'Predictive Search database is auto updated whenever a product or post is published or updated. Please run a Manual database sync if you upload products by csv or feel that Predictive Search results are showing old data.  Will sync the Predictive Search database with your current WooCommerce and WordPress databases', 'woops' ),
+            	'id'		=> 'predictive_search_synch_data',
+                'type' 		=> 'heading',
+           	),
 
 			array(
 				'name' 		=> __( 'House Keeping', 'woops' ).' :',
@@ -289,7 +278,6 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 				'default'	=> 'no',
 				'type' 		=> 'onoff_checkbox',
 				'separate_option'	=> true,
-				'free_version'		=> true,
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
 				'checked_label'		=> __( 'ON', 'woops' ),
@@ -301,31 +289,53 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 
 	function predictive_search_searchbox_text() {
 		if ( class_exists('SitePress') ) {
+			$woocommerce_search_box_text = get_option('woocommerce_search_box_text', array() );
+			if ( !is_array( $woocommerce_search_box_text) ) $woocommerce_search_box_text = array();
 
 			global $sitepress;
 			$active_languages = $sitepress->get_active_languages();
 			if ( is_array($active_languages)  && count($active_languages) > 0 ) {
 	?>
-    		<div class="pro_feature_fields">
-    		<table class="form-table">
+    		<tr valign="top" class="">
+				<td class="forminp" colspan="2">
+                <?php _e("Enter the translated search box text for each language for WPML to show it correct on the front end.", 'woops'); ?>
+				</td>
+			</tr>
     <?php
 				foreach ( $active_languages as $language ) {
 	?>
     		<tr valign="top" class="">
 				<th class="titledesc" scope="row"><label for="woocommerce_search_box_text_<?php echo $language['code']; ?>"><?php _e('Text to Show', 'woops');?> (<?php echo $language['display_name']; ?>)</label></th>
 				<td class="forminp">
-                	<input type="text" class="" value="" style="min-width:300px;" id="woocommerce_search_box_text_<?php echo $language['code']; ?>" name="woocommerce_search_box_text_language[<?php echo $language['code']; ?>]" /> <span class="description"><?php _e('&lt;empty&gt; shows nothing', 'woops'); ?></span>
+                	<input type="text" class="" value="<?php if (isset($woocommerce_search_box_text[$language['code']]) ) esc_attr_e( stripslashes( $woocommerce_search_box_text[$language['code']] ) ); ?>" style="min-width:300px;" id="woocommerce_search_box_text_<?php echo $language['code']; ?>" name="woocommerce_search_box_text[<?php echo $language['code']; ?>]" /> <span class="description"><?php _e('&lt;empty&gt; shows nothing', 'woops'); ?></span>
 				</td>
 			</tr>
     <?php
 				}
-	?>
-    		</table>
-            </div>
-    <?php
 			}
-    	}
 
+		} else {
+			$woocommerce_search_box_text = get_option('woocommerce_search_box_text', '' );
+			if ( is_array( $woocommerce_search_box_text) ) $woocommerce_search_box_text = '';
+	?>
+            <tr valign="top" class="">
+				<th class="titledesc" scope="row"><label for="woocommerce_search_box_text"><?php _e('Text to Show', 'woops');?></label></th>
+				<td class="forminp">
+                	<input type="text" class="" value="<?php esc_attr_e( stripslashes( $woocommerce_search_box_text ) ); ?>" style="min-width:300px;" id="woocommerce_search_box_text" name="woocommerce_search_box_text" /> <span class="description"><?php _e('&lt;empty&gt; shows nothing', 'woops'); ?></span>
+				</td>
+			</tr>
+    <?php }
+	}
+
+	public function predictive_search_synch_data() {
+	?>
+		<tr valign="top" class="">
+			<th class="titledesc" scope="row"><label><?php _e('Sync Search Data', 'woops');?></label></th>
+			<td class="forminp">
+				<input type="submit" class="button button-primary" name="predicitve-search-synch-wp-data" value="<?php _e('Sync Now', 'woops');?>" />
+			</td>
+		</tr>
+	<?php
 	}
 
 	public function include_script() {
@@ -341,12 +351,27 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 			$('.woocommerce_search_focus_plugin_container').css( {'visibility': 'hidden', 'height' : '0px', 'overflow' : 'hidden'} );
 		}
 
+		if ( $("input.woocommerce_search_remove_special_character:checked").val() == 'yes') {
+			$('.woocommerce_search_remove_special_character_container').css( {'visibility': 'visible', 'height' : 'auto', 'overflow' : 'inherit'} );
+		} else {
+			$('.woocommerce_search_remove_special_character_container').css( {'visibility': 'hidden', 'height' : '0px', 'overflow' : 'hidden'} );
+		}
+
 		$(document).on( "a3rev-ui-onoff_checkbox-switch", '.woocommerce_search_focus_enable', function( event, value, status ) {
 			$('.woocommerce_search_focus_plugin_container').hide().css( {'visibility': 'visible', 'height' : 'auto', 'overflow' : 'inherit'} );
 			if ( status == 'true' ) {
 				$(".woocommerce_search_focus_plugin_container").slideDown();
 			} else {
 				$(".woocommerce_search_focus_plugin_container").slideUp();
+			}
+		});
+
+		$(document).on( "a3rev-ui-onoff_checkbox-switch", '.woocommerce_search_remove_special_character', function( event, value, status ) {
+			$('.woocommerce_search_remove_special_character_container').hide().css( {'visibility': 'visible', 'height' : 'auto', 'overflow' : 'inherit'} );
+			if ( status == 'true' ) {
+				$(".woocommerce_search_remove_special_character_container").slideDown();
+			} else {
+				$(".woocommerce_search_remove_special_character_container").slideUp();
 			}
 		});
 

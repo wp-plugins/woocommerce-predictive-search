@@ -84,9 +84,8 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 			);
 			
 		add_action( $this->plugin_name . '_set_default_settings' , array( $this, 'set_default_settings' ) );
-		
-		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'reset_default_settings' ) );
-		
+
+		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'after_save_settings' ) );
 		//add_action( $this->plugin_name . '_get_all_settings' , array( $this, 'get_settings' ) );
 	}
 	
@@ -109,17 +108,40 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 		
 		$wc_predictive_search_admin_interface->reset_settings( $this->form_fields, $this->option_name, false );
 	}
-	
+
 	/*-----------------------------------------------------------------------------------*/
-	/* reset_default_settings()
-	/* Reset default settings with function called from Admin Interface */
+	/* after_save_settings()
+	/* Process when clean on deletion option is un selected */
 	/*-----------------------------------------------------------------------------------*/
-	public function reset_default_settings() {
-		global $wc_predictive_search_admin_interface;
-		
-		$wc_predictive_search_admin_interface->reset_settings( $this->form_fields, $this->option_name, true, true );
+	public function after_save_settings() {
+		if ( ( isset( $_POST['bt_save_settings'] ) || isset( $_POST['bt_reset_settings'] ) ) )  {
+			global $wc_ps_exclude_data;
+			$wc_ps_exclude_data->empty_table();
+
+			delete_option( 'woocommerce_search_exclude_products' );
+			delete_option( 'woocommerce_search_exclude_posts' );
+			delete_option( 'woocommerce_search_exclude_pages' );
+		}
+		if ( isset( $_POST['bt_save_settings'] ) )  {
+			global $wc_ps_exclude_data;
+			if ( isset( $_POST['woocommerce_search_exclude_products'] ) && count( $_POST['woocommerce_search_exclude_products'] ) > 0 ) {
+				foreach ( $_POST['woocommerce_search_exclude_products'] as $item_id ) {
+					$wc_ps_exclude_data->insert_item( $item_id, 'product' );
+				}
+			}
+			if ( isset( $_POST['woocommerce_search_exclude_posts'] ) && count( $_POST['woocommerce_search_exclude_posts'] ) > 0 ) {
+				foreach ( $_POST['woocommerce_search_exclude_posts'] as $item_id ) {
+					$wc_ps_exclude_data->insert_item( $item_id, 'post' );
+				}
+			}
+			if ( isset( $_POST['woocommerce_search_exclude_pages'] ) && count( $_POST['woocommerce_search_exclude_pages'] ) > 0 ) {
+				foreach ( $_POST['woocommerce_search_exclude_pages'] as $item_id ) {
+					$wc_ps_exclude_data->insert_item( $item_id, 'page' );
+				}
+			}
+		}
 	}
-	
+
 	/*-----------------------------------------------------------------------------------*/
 	/* get_settings()
 	/* Get settings with function called from Admin Interface */
@@ -186,47 +208,56 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 	public function init_form_fields() {
 		
 		global $wpdb;
-		$all_products = array();
-		$all_posts = array();
-		$all_pages = array();
-		$all_p_categories = array();
-		$all_p_tags = array();
+		$all_products     = array();
+		$all_posts        = array();
+		$all_pages        = array();
+
+		$products_excluded     = array();
+		$posts_excluded        = array();
+		$pages_excluded        = array();
 		
 		if ( is_admin() && in_array (basename($_SERVER['PHP_SELF']), array('admin.php') ) && isset( $_GET['tab'] ) && $_GET['tab'] == 'exclude-content' ) {
 			
-		$results_products = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='product' AND post_status='publish' ORDER BY post_title ASC");
-		if ($results_products) {
-			foreach($results_products as $product_data) {
-				$all_products[$product_data->ID] = $product_data->post_title;
+			$results_products = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='product' AND post_status='publish' ORDER BY post_title ASC");
+			if ($results_products) {
+				foreach($results_products as $product_data) {
+					$all_products[$product_data->ID] = $product_data->post_title;
+				}
 			}
-		}
-		$results_posts = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='post' AND post_status='publish' ORDER BY post_title ASC");
-		if ($results_posts) {
-			foreach($results_posts as $post_data) {
-				$all_posts[$post_data->ID] = $post_data->post_title;
+			$results_posts = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='post' AND post_status='publish' ORDER BY post_title ASC");
+			if ($results_posts) {
+				foreach($results_posts as $post_data) {
+					$all_posts[$post_data->ID] = $post_data->post_title;
+				}
 			}
-		}
-		$results_pages = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='page' AND post_status='publish' ORDER BY post_title ASC");
-		if ($results_pages) {
-			foreach($results_pages as $page_data) {
-				$all_pages[$page_data->ID] = $page_data->post_title;
+			$results_pages = $wpdb->get_results("SELECT ID, post_title FROM ".$wpdb->prefix."posts WHERE post_type='page' AND post_status='publish' ORDER BY post_title ASC");
+			if ($results_pages) {
+				foreach($results_pages as $page_data) {
+					$all_pages[$page_data->ID] = $page_data->post_title;
+				}
 			}
-		}
-		$results_p_categories = $wpdb->get_results("SELECT t.term_id, t.name FROM ".$wpdb->prefix."terms AS t INNER JOIN ".$wpdb->prefix."term_taxonomy AS tt ON(t.term_id=tt.term_id) WHERE tt.taxonomy='product_cat' ORDER BY t.name ASC");
-		if ($results_p_categories) {
-			foreach($results_p_categories as $p_categories_data) {
-				$all_p_categories[$p_categories_data->term_id] = $p_categories_data->name;
+
+			if ( isset( $_POST['bt_save_settings'] ) )  {
+				$products_excluded = array();
+				if ( isset( $_POST['woocommerce_search_exclude_products'] ) ) {
+					$products_excluded     = $_POST['woocommerce_search_exclude_products'];
+				}
+				$posts_excluded = array();
+				if ( isset( $_POST['woocommerce_search_exclude_posts'] ) ) {
+					$posts_excluded        = $_POST['woocommerce_search_exclude_posts'];
+				}
+				$pages_excluded = array();
+				if ( isset( $_POST['woocommerce_search_exclude_pages'] ) ) {
+					$pages_excluded        = $_POST['woocommerce_search_exclude_pages'];
+				}
+			} else {
+				$products_excluded     = $wpdb->get_col( $wpdb->prepare( "SELECT object_id FROM {$wpdb->prefix}ps_exclude WHERE object_type = %s ", 'product' ) );
+				$posts_excluded        = $wpdb->get_col( $wpdb->prepare( "SELECT object_id FROM {$wpdb->prefix}ps_exclude WHERE object_type = %s ", 'post' ) );
+				$pages_excluded        = $wpdb->get_col( $wpdb->prepare( "SELECT object_id FROM {$wpdb->prefix}ps_exclude WHERE object_type = %s ", 'page' ) );
 			}
-		}
-		$results_p_tags = $wpdb->get_results("SELECT t.term_id, t.name FROM ".$wpdb->prefix."terms AS t INNER JOIN ".$wpdb->prefix."term_taxonomy AS tt ON(t.term_id=tt.term_id) WHERE tt.taxonomy='product_tag' ORDER BY t.name ASC");
-		if ($results_p_tags) {
-			foreach($results_p_tags as $p_tags_data) {
-				$all_p_tags[$p_tags_data->term_id] = $p_tags_data->name;
-			}
+
 		}
 		
-		}
-				
   		// Define settings			
      	$this->form_fields = apply_filters( $this->option_name . '_settings_fields', array(
 		
@@ -241,28 +272,7 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 				'placeholder' => __( 'Choose Products', 'woops' ),
 				'css'		=> 'width:600px; min-height:80px;',
 				'options'	=> $all_products,
-				'free_version'		=> true,
-			),
-			
-			array(
-                'type' 		=> 'heading',
-				'class'		=> 'pro_feature_fields',
-           	),
-			array(  
-				'name' 		=> __( 'Exclude Product Categories', 'woops' ),
-				'id' 		=> 'woocommerce_search_exclude_p_categories',
-				'type' 		=> 'multiselect',
-				'placeholder' => __( 'Choose Product Categories', 'woops' ),
-				'css'		=> 'width:600px; min-height:80px;',
-				'options'	=> $all_p_categories,
-			),
-			array(  
-				'name' 		=> __( 'Exclude Product Tags', 'woops' ),
-				'id' 		=> 'woocommerce_search_exclude_p_tags',
-				'type' 		=> 'multiselect',
-				'placeholder' => __( 'Choose Product Tags', 'woops' ),
-				'css'		=> 'width:600px; min-height:80px;',
-				'options'	=> $all_p_tags,
+				'default'	=> $products_excluded,
 			),
 			array(  
 				'name' 		=> __( 'Exclude Posts', 'woops' ),
@@ -271,6 +281,7 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 				'placeholder' => __( 'Choose Posts', 'woops' ),
 				'css'		=> 'width:600px; min-height:80px;',
 				'options'	=> $all_posts,
+				'default'	=> $posts_excluded,
 			),
 			array(  
 				'name' 		=> __( 'Exclude Pages', 'woops' ),
@@ -279,6 +290,7 @@ class WC_PS_Exclude_Content_Settings extends WC_Predictive_Search_Admin_UI
 				'placeholder' => __( 'Choose Pages', 'woops' ),
 				'css'		=> 'width:600px; min-height:80px;',
 				'options'	=> $all_pages,
+				'default'	=> $pages_excluded,
 			),
 		
         ));

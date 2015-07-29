@@ -10,7 +10,7 @@
 .livesearch{width:99.5%;float:left;margin-top:-1px;background:#FFF;position:absolute;top:0;z-index:1000 !important;}
 .fr_search_widget{margin:0 0 0 0;padding:0;width:100%;float:left;}
 		
-.ctr_search .txt_livesearch,#wrap .ctr_search .txt_livesearch{-webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0px;border:0 !important;width:84% !important;position:relative !important;border: 0 none !important;background: #FFF !important;line-height: 20px !important;margin: 0 !important;padding:3px 0px 4px !important;height:20px !important; -moz-box-shadow: 0px 0px 0px #FFF; -webkit-box-shadow: 0px 0px 0px #FFF; box-shadow: 0px 0px 0px #FFF; }
+.ctr_search .txt_livesearch,#wrap .ctr_search .txt_livesearch{-webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0px;border:0 !important;width:84% !important;position:relative !important;border: 0 none !important;background: #FFF !important;line-height: 20px !important;margin: 0 !important;padding:3px 0px 4px !important;height:20px !important; -moz-box-shadow: 0px 0px 0px #FFF; -webkit-box-shadow: 0px 0px 0px #FFF; box-shadow: 0px 0px 0px #FFF;}
 .bt_search{background:url('../../images/bg-search.png') no-repeat 0 center; cursor: pointer;float: right;height: 100%;position: absolute;right: 0px;width: 16%; max-width:30px; top:0px;}
 .ajax_search_content{padding:0 5%;width:90%;float:left;overflow:auto;max-height:600px;}
 .result_row{width:100%;float:left;margin:6px 0;}
@@ -31,7 +31,7 @@
 .more_result span {color: #999;font-size:10px !important; font-weight:bold;}
 .ajax_no_result{width:90%;background:#F2F2F2 !important;padding:3px 5%;}
 
-.ctr_search, .ctr_search .txt_livesearch,#wrap .ctr_search .txt_livesearch, .livesearch, .bt_search, .ajax_search_content_title,.more_result, .predictive_results ul li .rs_content_popup, .rs_avatar, .ajax_search_content, .ajax_no_result {box-sizing:content-box !important; -moz-box-sizing:content-box !important; -webkit-box-sizing:content-box !important;}
+.ctr_search, .ctr_search .txt_livesearch,#wrap .ctr_search .txt_livesearch, .livesearch, .bt_search, .ajax_search_content_title,.more_result, .predictive_results, .predictive_results ul li .rs_content_popup, .rs_avatar, .ajax_search_content, .ajax_no_result {box-sizing:content-box !important; -moz-box-sizing:content-box !important; -webkit-box-sizing:content-box !important;}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 .fr_search_widget .ctr_search .txt_livesearch {line-height:17px !important;border-left: 0px solid #FFF !important;left: 0px !important;}
 .ajax_search_content_title,.more_result { width: 91% !important;}

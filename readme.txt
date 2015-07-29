@@ -2,9 +2,9 @@
 
 Contributors: a3rev, A3 Revolution Software Development team
 Tags: WooCommerce Predictive Search, WooCommerce, Predictive Search, Live Search, e-commerce,  wordpress ecommerce
-Requires at least: 3.7
-Tested up to: 4.2.2
-Stable tag: 2.2.10
+Requires at least: 4.0
+Tested up to: 4.2.3
+Stable tag: 3.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,128 +12,100 @@ WooCommerce Predictive Search gives your customers an awesome search experience 
 
 == Description ==
 
-WooCommerce Predictive Search engine queries <strong>your entire product database</strong> while you type. It delivers users instant and changing results as they type in the dropdown which shows the product thumbnail, product title and description. Users can click through from the dropdown to the 'All Results Search page' that features endless scroll.
+WooCommerce Predictive Search engine delivers users instant and changing results as they type in the dropdown which shows the product thumbnail, product title and description. Users can click through from the dropdown to the 'All Results Search page' that features endless scroll.
 
 = Key Features =
 
+* Search objects include Product name, Post name, Page name
+* Add Predictive Search box via the WooCommerce Predictive Search Widget to any widgetized area on you site
 * WooCommerce Predictive Search engine delivers 100% accurate results, 100% of the time.
+* Super-fast results even on sites with 1,000's of products, posts and pages
+* Results show in search box dropdown as soon as you start to type.
+* Results in dropdown show Product Thumbnail / Post Feature image thumbnail, Title and description text.
+* Click through to see all search results on a designated page (features endless scroll)
 * Pretty URL for the All Search Results pages.
-* Use 'live search' to wow your customers by delivering deadly, super fast search results.
-* Add and configure a search box to any widgetized area on your site.
-* Shows the results beautifully in the widget drop-down with Product Thumbnail, Title and description text.
-* Searches your entire WooCommerce product database for the product name that match what is being typed.
-* Set the number of Product results to show in the drop down.
-* Add description text to show by default inside each Widget Search box.
-* Set the number of characters of the product description text to show with each search result.
-* Exclude Products from Predictive Search.
-* Click through from the Widget dropdown to the 'All Results Search Page'.
-* 'All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
-* 'All Results Search Page' features endless scroll - allows the page to load quickly and show 'infinite' number of results.
 
-= a3rev Plugins Lite & Pro Version Admin Interface =
+= WooCommerce Predictive Search Widget =
 
-* All a3rev Lite Version plugins have exactly the same admin interface as the Pro Version.
-* Pro Version features and settings are inside of a Yellow border.
-* The Pro Version settings are all active on the admin panels But do not save and are not applied to the front end.
-* Upgrading to the Pro version activates all the Pro version Features and Settings and removes the Yellow side bar and borders.
+* Add Predictive Search box via the WooCommerce Predictive Search Widget
+* Set text that shows in the search box on front end - example 'Type your search here'
+* Choose which objects- Products, Posts, Pages should be included in the search
+* Set the number of results to show for each object type e.g. Products 6
+* When there are more results than can show in the dropdown a link is added to the dropdown footer to see all results
+* Set order that the search object shows in the dropdown and on the All Results Search page.
+* Option to show Product prices with Products results in the dropdown
+* Option to show description extract with results including the length in characters
+* Add any number of Predictive Search Widgets to widget areas around your site
 
->= Premium Support =
->
->The a3rev team does not provide support for the WooCommerce Predictive Search plugin on the WordPress.org forums. One on one developer support is available via the plugins a3rev [support forum](https://a3rev.com/forums/forum/woocommerce-plugins/predictive-search/) to people who have purchased a [WooCommerce Predictive Serach Pro](http://a3rev.com/shop/woocommerce-predictive-search/) plugin Lifetime License.
->
->The Pro Version has lots of extra features that coupled with developer support might be well worth your investment!
 
-= Optimizing WooCommerce Site Search =
+= All Search Results Page =
 
-Many people have found this post [Optimizing WooCommerce Site Search](https://a3rev.com/forums/topic/optimizing-woocommerce-site-search/) extremely useful in really being able to tweak their site search for the benefit of their customer user experience on their site.
+* On install the plugin auto creates a WooCommerce Predictive Search page with shortcode
+* Page title and url can be edited to your liking
+* All results search page shows results in list format with Object sort
+* All results search page results show with endless scroll feature
+* Option to set the number of results to show per endless scroll action - default is 10
+* Option to show description extracts and set the number of description characters to show - default is 100
+* Option to show product SKU with Products search results
+* Option to show product prices with Product search results
+* Option to show Add to cart button with Product search results
+* Option to show Categories meta for each Product and Post result
+* Option to show the Tags meta for each Product and Post result
+* All results show with featured image thumbnails
 
-= Pro Version Lifetime License advanced features =
+= Exclude Objects from Predictive Search =
 
->= backbone.js / WooCommerce JSON REST API =
+* Exclude any product from showing in Predictive Search results
+* Exclude any post from showing in Predictive Search results
+* Exclude any page from showing in Predictive Search Results
 
->* All the Pro Version front end features are built in [backbone.js](http://backbonejs.org/)
->* Lightweight with all events parsed via backbone.js JSON interface with WooCommerce API.
->* All Results Search page is a SPA - Single Page Application.
+= Special Characters =
 
-= Focus Keywords: =
-* Predictive Search 'Focus keywords' gives you 100% accuracy in Optimizing your entire site anyway you want. Optimize your 'site search' by adding a 'Focus Keywords or Keyword Phrases' to any product page, post, wp-page just like an SEO plugin except it is for site search not external search engines and its 100% accurate and super fast.
-* Predictive Search meta section on each product page, post and page for setting 'Focus Keywords and Keyword Phrases'.
-* Configure focus keywords via Products Quick Editor and Bulk Editor.
+* Special Characters near match. Query strings that CONTAINS a special character eg d'E return all matches found for d'e and de.
+* Special Characters Prepend and Append near match e.g. Query (Purple) will return all matches found for (Purple) and Purple.
+* Option to turn Special Characters Function ON or OFF
+* Option to select any Special Characters used on your site. Results returned with or without special character input
 
-= Exclude Content from Search results =
-* Exclude any product, post or page from Predictive Search results Globally from the admin panel or right from the Predictive Search Meta on product, post or page.
+= Singular / Plural Result(s) =
 
-= SEO Plugin Integration =
-* Integration with SEO plugins. Can be a massive time saver.
-* Configure your plugin with the click of a mouse to use Focus Keywords that are set on an SEO plugin you are using.
-* Include any 'Focus Keywords' that have been set while optimizing the site content for search engine search.
-* Currently supports * Yoasts WordPress SEO and the * All in One SEO plugins.
+* Returns results when user adds plural (s) to search term - the s is ignored e.g. bike and bikes will both return the same results
 
-= General =
-* Use 'live search' to wow your customers - fast and deadly accurate.
-* Add Predictive Search anywhere on your site via unlimited Widgets, Shortcodes and Search functions
-* Fully customizable - define what gets searched and what shows in the search box drop down.
-* Easy to read and easy to sort All Search Results pages featuring endless scroll.
-* Pretty URL's for the All Search Results pages.
-* Search by Product name, Product SKU, Product Categories, Product tags, posts and Pages and any combination of these
-* Configure Search of your entire WooCommerce product database by Product titles, SKU's, Product Categories and Tags, exclude any.
+= Languages =
 
-= All Search Results Pages: =
-* To see more results for the search Click through from the Widget drop down footer to the 'All Results Search Page'. Design like the facebook search.
-* All Results Search Page is a backbone.js SPA (Single Page Application). Click on Filter type Tab and results load without reloading the page.
-* All Results Search Page' shows products thumbnail, Title as a clickable link to the product and product text description.
-* User can configure the All Results Search Page for each result to show
- - Number of Characters of description text to show
- - Product Categories,
- - Product Tags,
- - Product Prices including 'special' pricing with each result.
- - Add to cart button
- - Number of results to show before 'endless scroll' bar.
+* Fully translation ready
+* Fully compatible with WPML including static and dynamic strings
+* Fully compatible with qtranslate plugin
 
-* 'All Results Search Page' features endless scroll loaded by backbone.js - allows the page to load quickly and show 'infinite' number of results.
+= Other Features =
 
-= Widget Search =
-* Configure each widget to search all 'types'
- - Product name,
- - Product SKU,
- - Product Categories,
- - Product Tags,
- - Posts,
- - Pages
- - or any combination of these.
+* Predictive Search Database is auto updated each time a Product, Post or Page is created, updated or deleted
+* Manual Database Sync option to manually sync Predictive Search database with WooCommerce and WordPress databases if required
+* No Conflict. Can be used in conjunction with any other Search plugin without conflicts occurring
+* Woocommerce Predictive Search front end JavaScript functions are built on in backbone.js
+* Backbone makes Predictive Search an incredibly robust, powerful and lightweight application
+* All front end calls now via WooCommerce Legacy API instead of ajax-admin.php
+* The All Results Search Pages is a backbone.js (SPA) Single Page Application
+* Backbone stack backbone/underscore/router used for the All Results Search page
+* The Sort product by search object loads the results without loading a new page
+* Results are cached not on your server but on the user's machine via Backbone.localStorage.js
 
-* Set the number of each search 'type' eg Product category results to show in the search box dropdown.
-* Use drag and drop to set the search 'type' order that the results show in the drop down.
-* All Search results page sorted is auto sorted into results types configured for the widget.
 
-= Shortcodes =
-* WooCommerce Predictive Search shortcodes - Insert and configure the Search box into any page or post via shortcode.
-* Customize shortcodes search box dimensions and alignment on page.
-* Full customization just like the Widget search
+= WooCommerce Predictive Search Premium Version =
 
-= Smart Search =
-* 'Smart Search'. An intuitive technology that auto detects if the page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy. This delivers extremely relevant  search results.
-* Activate Smart search in any widget or any search function.
-* Activate or deactivate the 'Smart Search" feature with the click of a mouse.
+For those that want a deeper store search there is the Premium Predictive Search plugin. The Premium has all of the features of the FREE version plus these advanced search features
 
-= Search Function =
-* Add a Predictive Search box to any part of your site that is not widgetized via the Predictive search Function.
-* From the admin panel configure all the Parameters of the Search function then just use the short function code to add the Search box where ever you want it. example in the header.
-* Once installed change the parameters of the global search from the admin panel.
-* Full documentation instructions on how to add the search function to your sites header.
-* Back up 'Book a Service' with us to place the search function if your theme requires advanced CSS skills and you don't have easy access to a coder.
+* Additional Search objects - Product SKU, Product category and Product Tags
+* Focus Keywords - Predictive Search meta section on each product page, post and page for setting 'Focus Keywords and Keyword Phrases'
+* Full integration with Yoast SEO and All in One SEO plugins
+* Full integration with the Google Analytics Site Search Feature
+* Predictive Search PHP tag for adding search to your sites header (when header does not support widgets)
+* Shortcode - Add search box to any product post or page by shortcode
+* Smart Search Option - auto detects if the current page is Product Category, Product tag, Post Category or Post tag and features results from that taxonomy.
+* Performance enhancement settings for sites that have very large stores example 10,000+ products or posts
 
-= Google Analytics Site Search =
-* Full integration with the Google Analytics Site Serach Feature
-* Use the plugins default Query parameter:ps or create your own.
+= Resources =
 
-= Performance Settings =
-* Manually set the number of characters that must be typed before the first query begins. Options are 1 to 6 characters.
-* Manually set delay in milli-seconds that the query begins at after a character is typed in the search box. Options are 500 to 1500ms.
-
-= Plugins Resources =
-
-[Home Page](http://a3rev.com/shop/woocommerce-predictive-search/) |
+[Premium Version](http://a3rev.com/shop/woocommerce-predictive-search/) |
 [Documentation](http://docs.a3rev.com/user-guides/woocommerce/woo-predictive-search/) |
 
 
@@ -151,9 +123,9 @@ If you do a translation for your site please send it to us for inclusion in the 
 
 = Minimum Requirements =
 
-* WordPress 3.7 or greater
+* WordPress 4.0 or greater
 * PHP version 5.2.4 or greater
-* MySQL version 5.0 or greater
+* MySQL version 5.1 or greater
 
 = Automatic installation =
 
@@ -171,13 +143,12 @@ The manual installation method involves downloading our plugin and uploading it 
 
 == Screenshots ==
 
-1. Set up WooCommerce Predictive Search Widget. Set Title that show on the front end. Set the number of results to show in the dropdown. Set the number of characters of the description text to show with each result. Link to the All Search Results Page shows at the bottom of the widget.
+1. Set up WooCommerce Predictive Search Widget.
 
-2. All Search Results Page with Endless Scroll. Please note the image shows results with Prices, Product Categories and Product Tags - these are Pro Version features that are NOT activated on the Lite Version.
+2. All Search Results Page with Endless Scroll.
 
-3. The plugin adds a Predictive Search tab to your WooCommerce Settings. It also auto creates a WooCommerce Predictive Search page on your site with the predictive search shortcode embedded. This is for the 'All Results Search Page' creation. You can change the pages location if you know what you are doing.
+3. The plugin adds the Predictive Search menu to your WooCommerce sub menu items.
 
-4. The plugin auto adds a Predictive search Shortcode icon to all of your pages and posts visual editors. Note: Shortcodes are not a supported feature on the lite version.
 
 == Usage ==
 
@@ -199,6 +170,41 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 
 == Changelog ==
+
+= 3.0.0 - 2015/07/29 =
+* Feature - Complete rebuild of Predictive Search database
+* Feature - All search objects are stored in Predictive Search Database tables
+* Feature - Performance enhancement, 1,000's of less Database calls - faster and lighter
+* Feature - Predictive Search Database auto updates when products, posts or pages are created or updated or deleted
+* Feature - Added Backbone technology combined with Backbone.localStorage for Predictive Search Widget
+* Feature - Added Backbone technology combined with Backbone Router for All Results Search page
+* Feature - Backbone.js / Woo API makes the plugin incredibly lightweight.
+* Feature - All front end calls now via WooCommerce Legacy API instead of ajax-admin.php
+* Feature - Use Underscore.js script as template for Backbone.js for rendering template display on frontend
+* Feature - Use Backbone.localStorage.js to cache the search term for user
+* Feature - Added search for Post title and Page title
+* Feature - Added option to exclude posts and pages from predictive search
+* Feature - Added Special Characters near match. Query strings that CONTAINS a special character eg d'E return all matches found for d'e and de.
+* Feature - Added Special Characters Prepend and Append near match e.g. Query (Purple) will return all matches found for (Purple) and Purple.
+* Feature - Added option to turn Special Characters Function ON or OFF
+* Feature - Added option to select any Special Characters used on your site. Results returned with or without special character input
+* Feature - Manual Database Sync allows admin to manually sync Predictive Search database with WooCommerce and WordPress databases
+* Feature - Added singular and plural result(s). Returns results when user adds plural (s) to search term
+* Feature - Added show SKU, Price, Add to Cart, Product Categories and Product Tags on All Results Page results. Each has ON or OFF switch
+* Feature - No Conflict. Update all MySQL query to Predictive Search database, so that it does not conflict with any another Search plugin
+* Feature - Added full compatibility with WPML for static and dynamic strings
+* Feature - Function to auto convert all Predictive Search pre Version 3.0.0 to new PS database structure
+* Tweak - Register Legacy API  '/wc_ps_legacy_api' for Predictive Search plugin to use with Backbone.js
+* Tweak - Removed 'woops_get_result_search_page' AJAX action and replace with Backbone.js
+* Tweak - Removed 'woops_get_result_popup' AJAX action and replace with Backbone.js
+* Tweak - Removed all Premium Version settings from that admin panels
+* Tweak - Removed all Premium Version settings from Predictive Search Widget
+* Tweak - Removed all Premium Version 'Focus keyword' settings
+* Tweak - Tested for full compatibility with WooCommerce version 2.3.13
+* Tweak - Tested for full compatibility with WordPress version 4.2.3
+* Tweak - Updated help text and added new help text
+* Dev - Defined filter tag 'wc_ps_legacy_api_url' for developer can update the legacy api url
+* Dev - Defined filter tag 'wc_ps_vars' and 'wc_ps_results_vars' so Developer can add to global vars to PS JavaScript
 
 = 2.2.10 - 2015/06/04 =
 * Tweak - Tested and Tweaked for full compatibility with WordPress Version 4.2.2
@@ -443,6 +449,9 @@ You can use this plugin only when you have installed the WooCommerce plugin.
 
 == Upgrade Notice ==
 
+= 3.0.0 =
+Massive Feature Upgrade. Complete rebuild of Predictive Search database - Upgrade now for a faster, lighter and more powerful search engine. Includes 21 new features and 8 code Tweaks.
+
 = 2.2.10 =
 Maintenance Upgrade. Tested and Tweaked for full compatibility with WooCommerce 2.3.10 and WordPress 4.2.2
 
@@ -516,7 +525,7 @@ Please update your plugin now for full WordPress v3.6.0 compatibility
 Upgrade now for a Complete admin dashboard UI overhaul and comprehensive code WP_DEBUG.
 
 = 2.1.6 =
-Install this upgrade for a futher reduction in memory used by each search that is performed.
+Install this upgrade for a further reduction in memory used by each search that is performed.
 
 = 2.1.5 =
 Update now for 2 important Lite Version feature fixes.

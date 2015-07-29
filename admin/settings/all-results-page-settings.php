@@ -84,9 +84,6 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 			);
 		
 		add_action( $this->plugin_name . '_set_default_settings' , array( $this, 'set_default_settings' ) );
-		
-		add_action( $this->plugin_name . '-' . $this->form_key . '_settings_init' , array( $this, 'reset_default_settings' ) );
-		
 		//add_action( $this->plugin_name . '_get_all_settings' , array( $this, 'get_settings' ) );
 		
 	}
@@ -109,16 +106,6 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 		global $wc_predictive_search_admin_interface;
 		
 		$wc_predictive_search_admin_interface->reset_settings( $this->form_fields, $this->option_name, false );
-	}
-	
-	/*-----------------------------------------------------------------------------------*/
-	/* reset_default_settings()
-	/* Reset default settings with function called from Admin Interface */
-	/*-----------------------------------------------------------------------------------*/
-	public function reset_default_settings() {
-		global $wc_predictive_search_admin_interface;
-		
-		$wc_predictive_search_admin_interface->reset_settings( $this->form_fields, $this->option_name, true, true );
 	}
 	
 	/*-----------------------------------------------------------------------------------*/
@@ -192,7 +179,6 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 			array(
             	'name' 		=> __( 'Search results page settings', 'woops' ),
                 'type' 		=> 'heading',
-				'class'		=> 'pro_feature_fields',
            	),
 			array(  
 				'name' 		=> __( 'Results', 'woops' ),
@@ -215,7 +201,7 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 				'desc' 		=> __('ON to show product SKU with search results', 'woops'),
 				'id' 		=> 'woocommerce_search_sku_enable',
 				'type' 		=> 'onoff_checkbox',
-				'default'	=> 'no',
+				'default'	=> 'yes',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
 				'checked_label'		=> __( 'ON', 'woops' ),
@@ -226,7 +212,7 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 				'desc' 		=> __('ON to show product price with search results', 'woops'),
 				'id' 		=> 'woocommerce_search_price_enable',
 				'type' 		=> 'onoff_checkbox',
-				'default'	=> 'no',
+				'default'	=> 'yes',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
 				'checked_label'		=> __( 'ON', 'woops' ),
@@ -237,7 +223,7 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 				'desc' 		=> __('On to show Add to cart button with search results', 'woops'),
 				'id' 		=> 'woocommerce_search_addtocart_enable',
 				'type' 		=> 'onoff_checkbox',
-				'default'	=> 'no',
+				'default'	=> 'yes',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
 				'checked_label'		=> __( 'ON', 'woops' ),
@@ -248,7 +234,7 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 				'desc' 		=> __('On to show categories with search results', 'woops'),
 				'id' 		=> 'woocommerce_search_categories_enable',
 				'type' 		=> 'onoff_checkbox',
-				'default'	=> 'no',
+				'default'	=> 'yes',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
 				'checked_label'		=> __( 'ON', 'woops' ),
@@ -259,7 +245,7 @@ class WC_PS_All_Results_Page_Settings extends WC_Predictive_Search_Admin_UI
 				'desc' 		=> __('On to show tags with search results', 'woops'),
 				'id' 		=> 'woocommerce_search_tags_enable',
 				'type' 		=> 'onoff_checkbox',
-				'default'	=> 'no',
+				'default'	=> 'yes',
 				'checked_value'		=> 'yes',
 				'unchecked_value'	=> 'no',
 				'checked_label'		=> __( 'ON', 'woops' ),
