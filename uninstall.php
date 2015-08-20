@@ -50,6 +50,7 @@ if ( get_option('woocommerce_search_lite_clean_on_deletion') == 'yes' ) {
 
 	delete_option('woocommerce_search_remove_special_character');
 	delete_option('woocommerce_search_special_characters');
+	delete_option('wc_predictive_search_synched_data');
 
 	delete_option('woocommerce_search_lite_clean_on_deletion');
 

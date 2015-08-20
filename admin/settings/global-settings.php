@@ -130,9 +130,7 @@ class WC_Predictive_Search_Global_Settings extends WC_Predictive_Search_Admin_UI
 		}
 		if ( isset( $_POST['predicitve-search-synch-wp-data'] ) ) {
 			@set_time_limit(86400);
-			@ini_set("memory_limit","640M");
-			global $wc_predictive_search;
-			$wc_predictive_search->install_databases();
+			@ini_set("memory_limit","1000M");
 
 			global $wc_ps_synch;
 			$wc_ps_synch->synch_full_database();

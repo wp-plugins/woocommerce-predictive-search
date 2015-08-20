@@ -148,6 +148,14 @@ class WC_PS_Posts_Data
 	}
 
 	/**
+	 * Get Predictive Search Latest Post ID
+	 */
+	public function get_latest_post_id() {
+		global $wpdb;
+		return $wpdb->get_var( "SELECT post_id FROM {$wpdb->ps_posts} ORDER BY post_id DESC LIMIT 0,1" );
+	}
+
+	/**
 	 * Delete Predictive Search Post
 	 */
 	public function delete_item( $post_id ) {

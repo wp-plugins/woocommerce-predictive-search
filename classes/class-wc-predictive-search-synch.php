@@ -26,15 +26,30 @@ class WC_Predictive_Search_Synch
 		global $wc_ps_posts_data;
 		global $wc_ps_product_sku_data;
 
-		// Empty all tables
-		$wc_ps_posts_data->empty_table();
-		$wc_ps_product_sku_data->empty_table();
+		// Check if synch data is stopped at latest run then continue synch without empty all the tables
+		$synched_data = get_option( 'wc_predictive_search_synched_data', 0 );
+
+		if ( 0 == $synched_data ) {
+			// continue synch data from stopped post ID
+			$stopped_ID = $wc_ps_posts_data->get_latest_post_id();
+			if ( empty( $stopped_ID ) || is_null( $stopped_ID ) ) {
+				$stopped_ID = 0;
+			}
+		} else {
+			// Empty all tables
+			$wc_ps_posts_data->empty_table();
+			$wc_ps_product_sku_data->empty_table();
+
+			update_option( 'wc_predictive_search_synched_data', 0 );
+
+			$stopped_ID = 0;
+		}
 
 		$post_types = apply_filters( 'predictive_search_post_types_support', array( 'post', 'page', 'product' ) );
 
 		$all_posts = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT ID, post_title, post_type FROM {$wpdb->posts} WHERE post_status = %s AND post_type IN ('". implode("','", $post_types ) ."')" , 'publish'
+				"SELECT ID, post_title, post_type FROM {$wpdb->posts} WHERE ID > %d AND post_status = %s AND post_type IN ('". implode("','", $post_types ) ."') ORDER BY ID ASC" , $stopped_ID, 'publish'
 			)
 		);
 
@@ -52,6 +67,8 @@ class WC_Predictive_Search_Synch
 				}
 			}
 		}
+
+		update_option( 'wc_predictive_search_synched_data', 1 );
 	}
 
 	public function synch_full_database() {
