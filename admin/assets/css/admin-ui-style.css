@@ -461,7 +461,7 @@
 }
 
 /* Chosen Style */
-.a3rev_panel_container .chzn-container {
+.a3rev_panel_container .chosen-container {
 	margin-bottom:5px;
 	margin-right:2px;	
 }
@@ -479,19 +479,6 @@
   font-weight: normal;
   font-style: normal;
 
-}
-
-[data-icon]:before {
-  font-family: "a3-plugin-framework" !important;
-  content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 [class^="a3-plugin-ui-"]:before,
@@ -599,6 +586,12 @@
 
 /* END A3 Plugin Framework Font Icons */
 
+@media screen and ( min-width: 783px ) {
+	.a3rev_panel_container .chosen-container-multi {
+		min-width:300px;
+	}
+}
+
 @media screen and ( max-width: 782px ) {
 	#a3_plugin_panel_fields {
 		width: 100%;	
@@ -645,7 +638,7 @@
 	.a3rev_panel_container input.a3rev-color-picker { margin-top: 1px !important;}
 	.a3rev_panel_container input.wp-picker-default { margin-top: 1px !important; padding:2px 8px !important; }
 	
-	.a3rev_panel_container .chzn-container-multi {
+	.a3rev_panel_container .chosen-container-multi {
 		width: 100% !important;	
 	}
 	.a3rev_blue_message_box_container {
@@ -663,7 +656,7 @@
 	.a3_subsubsub_section .subsubsub {
 		text-align:left;	
 	}
-	.a3rev_panel_container .chzn-container-single {
+	.a3rev_panel_container .chosen-container-single {
 		max-width: 300px !important;
 	}
 }

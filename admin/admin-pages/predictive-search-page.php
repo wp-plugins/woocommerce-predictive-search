@@ -97,7 +97,6 @@ class WC_Admin_Predictive_Search_Page extends WC_Predictive_Search_Admin_UI
 		include_once( $this->admin_plugin_dir() . '/tabs/global-settings-tab.php' );
 		include_once( $this->admin_plugin_dir() . '/tabs/all-results-pages-tab.php' );
 		include_once( $this->admin_plugin_dir() . '/tabs/exclude-content-tab.php' );
-		include_once( $this->admin_plugin_dir() . '/tabs/search-function-tab.php' );
 		
 	}
 	
